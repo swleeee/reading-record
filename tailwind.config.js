@@ -8,6 +8,25 @@ export default {
     extend: {
       colors: {
         orange10: '#039339',
+        brown90: '#3E2723',
+        brown80: '#4E342E',
+        brown70: '#5D4037',
+        brown60: '#6D4C41',
+        brown50: '#795548',
+        brown40: '#8D6E63',
+        brown30: '#A1887F',
+        brown20: '#BCAAA4',
+        brown10: '#D7CCC8',
+        brown05: '#EFEBE9',
+        gray70: '212121',
+        gray60: '424242',
+        gray50: '616161',
+        gray40: '757575',
+        gray30: '9E9E9E',
+        gray20: 'BDBDBD',
+        gray10: 'E0E0E0',
+        white: '#FFFFFF',
+        black: '#000000',
       },
       spacing: {
         1: '1px',
@@ -88,17 +107,122 @@ export default {
     },
   },
   plugins: [
-    plugin(function ({ addUtilities }) {
-      const newUtilities = {
-        '.skew-10deg': {
-          transform: 'skewY(-10deg)',
+    ({ addUtilities, theme }) => {
+      const buttonUtilities = {
+        '.button-default': {
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          columnGap: '6px',
+          border: 0,
+          borderRadius: '8px',
+          cursor: 'pointer',
         },
-        '.skew-15deg': {
-          transform: 'skewY(-15deg)',
+        '.button-loading': {
+          cursor: 'wait',
+        },
+        '.button-primary-loading': {
+          '@apply button-primary': {},
+          '@apply button-loading': {},
+
+          backgroundColor: theme('colors.brown40'),
+
+          '&:hover': {
+            backgroundColor: theme('colors.brown40'),
+          },
+        },
+
+        '.button-primary': {
+          color: theme('colors.white'),
+          backgroundColor: theme('colors.brown40'),
+
+          '&:hover': {
+            backgroundColor: theme('colors.brown60'),
+          },
+
+          '&:disabled': {
+            backgroundColor: theme('colors.brown20'),
+            cursor: 'not-allowed',
+          },
+        },
+
+        '.button-secondary-loading': {
+          '@apply button-secondary': {},
+          '@apply button-loading': {},
+
+          '&:hover': {
+            backgroundColor: theme('colors.white'),
+          },
+        },
+
+        '.button-secondary': {
+          border: `1px solid ${theme('colors.brown60')}`,
+          color: theme('colors.brown60'),
+          backgroundColor: theme('colors.white'),
+
+          '&:hover': {
+            backgroundColor: theme('colors.brown10'),
+          },
+
+          '&:disabled': {
+            border: 0,
+            color: theme('colors.brown20'),
+            backgroundColor: theme('colors.brown05'),
+            cursor: 'not-allowed',
+          },
+        },
+
+        '.button-tertiary-loading': {
+          '@apply button-tertiary': {},
+          '@apply button-loading': {},
+
+          '&:hover': {
+            color: theme('colors.brown40'),
+          },
+        },
+
+        '.button-tertiary': {
+          minWidth: 'inherit',
+          padding: 0,
+          color: theme('colors.brown40'),
+          backgroundColor: 'transparent',
+          textDecoration: 'underline',
+
+          '&:hover': {
+            color: theme('colors.brown60'),
+          },
+
+          '&:disabled': {
+            color: theme('colors.brown20'),
+            cursor: 'not-allowed',
+          },
+        },
+
+        '.button-full': {
+          '@apply button-default': {},
+          padding: '16px 20px',
+          fontSize: '15px',
+          minWidth: '200px',
+        },
+
+        '.button-lg': {
+          '@apply button-default': {},
+          padding: '16px 20px',
+          fontSize: '14px',
+        },
+        '.button-md': {
+          '@apply button-default': {},
+          padding: '12px 20px',
+          fontSize: '12px',
+        },
+        '.button-sm': {
+          '@apply button-default': {},
+          padding: '8px 12px',
+          fontSize: '11px',
         },
       };
 
-      addUtilities(newUtilities);
-    }),
+      addUtilities(buttonUtilities, ['hover', 'focus']);
+    },
   ],
 };
