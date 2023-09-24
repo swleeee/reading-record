@@ -1,0 +1,29 @@
+import {
+  Meta,
+  Title,
+  Subtitle,
+  Description,
+  Primary,
+  Controls,
+  Story,
+} from '@storybook/blocks';
+import * as ButtonStories from './Button.stories.ts';
+
+<Meta title="Button" of={ButtonStories} />
+
+<Title />
+
+{/* Default implementation */}
+
+<Primary />
+<br />
+
+## Inputs
+
+The component accepts the following inputs (props):
+
+<Controls />
+
+<Story of={ButtonStories.Primary} />
+<Story of={ButtonStories.Secondary} />
+<Story of={ButtonStories.Tertiary} />
