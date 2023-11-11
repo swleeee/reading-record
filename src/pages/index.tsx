@@ -1,9 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import tw from 'twin.macro';
-
-import './App.css';
 
 const Caption = tw.p`
   font-noto font-light text-caption-1 w-full md:font-thin md:text-head-0 md:leading-6 md:whitespace-normal md:text-left md:mt-36
@@ -23,11 +21,12 @@ const Input = styled.input<{ hasDarkHover: boolean }>([
         `,
 ]);
 
-const App = () => {
+const root = () => {
   const w = '20px';
   const h = '10px';
+
   return (
-    <>
+    <div>
       {/* <input tw="border, hover: border-black" /> */}
       <Input hasDarkHover value="DDDDD" />
       <Caption>ddd</Caption>
@@ -40,8 +39,8 @@ const App = () => {
           Welcome to your Vite + React + TypeScript + Tailwind CSS project.
         </p>
       </div>
-    </>
+    </div>
   );
 };
 
-export default App;
+export default root;

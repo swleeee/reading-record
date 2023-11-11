@@ -7,7 +7,7 @@
 
     // "module": "ESNext",
     "jsx": "react-jsx",
-    "module": "CommonJS",
+    "module": "es2022",
     "skipLibCheck": true,
     "removeComments": true, //컴파일시 주석제거
     "noImplicitAny": true, //any타입 금지 여부
@@ -16,7 +16,7 @@
     "strictPropertyInitialization": true, //class constructor 작성시 타입체크 강하게
     "noImplicitThis": true, //this 키워드가 any 타입일 경우 에러내기
     "alwaysStrict": true, //자바스크립트 "use strict" 모드 켜기
-
+    "moduleResolution": "node",
     /* Bundler mode */
     // "moduleResolution": "bundler",
     // "allowImportingTsExtensions": true,
