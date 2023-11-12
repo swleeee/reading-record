@@ -7,26 +7,28 @@ export default {
   theme: {
     extend: {
       colors: {
-        orange10: '#039339',
-        brown90: '#3E2723',
-        brown80: '#4E342E',
-        brown70: '#5D4037',
-        brown60: '#6D4C41',
-        brown50: '#795548',
-        brown40: '#8D6E63',
-        brown30: '#A1887F',
-        brown20: '#BCAAA4',
-        brown10: '#D7CCC8',
-        brown05: '#EFEBE9',
-        gray70: '212121',
-        gray60: '424242',
-        gray50: '616161',
-        gray40: '757575',
-        gray30: '9E9E9E',
-        gray20: 'BDBDBD',
-        gray10: 'E0E0E0',
-        white: '#FFFFFF',
-        black: '#000000',
+        brown50: '#F0EDEC',
+        brown100: '#D2C8C4',
+        brown200: '#BCADA8',
+        brown300: '#9D8780',
+        brown400: '#8A7067',
+        brown500: '#6D4C41',
+        brown600: '#63453B',
+        brown700: '#4D362E',
+        brown800: '#3C2A24',
+        brwon900: '#2E201B',
+        blue50: '#E6F0FF',
+        blue100: '#6BA6FF',
+        blue200: '#2B7FFF',
+        blue300: '#0065FF',
+        blue400: '#0047B3',
+        blue500: '#00329C',
+        red50: '#FAE6EB',
+        red100: '#E36B89',
+        red200: '#DB2E56',
+        red300: '#CE0033',
+        red400: '#900024',
+        red500: '#7E001F',
       },
       spacing: {
         1: '1px',
@@ -331,23 +333,23 @@ export default {
           '@apply button-primary': {},
           '@apply button-loading': {},
 
-          backgroundColor: theme('colors.brown40'),
+          backgroundColor: theme('colors.brown400'),
 
           '&:hover': {
-            backgroundColor: theme('colors.brown40'),
+            backgroundColor: theme('colors.brown400'),
           },
         },
 
         '.button-primary': {
           color: theme('colors.white'),
-          backgroundColor: theme('colors.brown40'),
+          backgroundColor: theme('colors.brown400'),
 
           '&:hover': {
-            backgroundColor: theme('colors.brown60'),
+            backgroundColor: theme('colors.brown600'),
           },
 
           '&:disabled': {
-            backgroundColor: theme('colors.brown20'),
+            backgroundColor: theme('colors.brown200'),
             cursor: 'not-allowed',
           },
         },
@@ -362,18 +364,18 @@ export default {
         },
 
         '.button-secondary': {
-          border: `1px solid ${theme('colors.brown60')}`,
-          color: theme('colors.brown60'),
+          border: `1px solid ${theme('colors.brown600')}`,
+          color: theme('colors.brown600'),
           backgroundColor: theme('colors.white'),
 
           '&:hover': {
-            backgroundColor: theme('colors.brown10'),
+            backgroundColor: theme('colors.brown100'),
           },
 
           '&:disabled': {
             border: 0,
-            color: theme('colors.brown20'),
-            backgroundColor: theme('colors.brown05'),
+            color: theme('colors.brown200'),
+            backgroundColor: theme('colors.brown50'),
             cursor: 'not-allowed',
           },
         },
@@ -383,23 +385,23 @@ export default {
           '@apply button-loading': {},
 
           '&:hover': {
-            color: theme('colors.brown40'),
+            color: theme('colors.brown400'),
           },
         },
 
         '.button-tertiary': {
           minWidth: 'inherit',
           padding: 0,
-          color: theme('colors.brown40'),
+          color: theme('colors.brown400'),
           backgroundColor: 'transparent',
           textDecoration: 'underline',
 
           '&:hover': {
-            color: theme('colors.brown60'),
+            color: theme('colors.brown600'),
           },
 
           '&:disabled': {
-            color: theme('colors.brown20'),
+            color: theme('colors.brown200'),
             cursor: 'not-allowed',
           },
         },

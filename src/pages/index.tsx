@@ -5,7 +5,7 @@ import tw from 'twin.macro';
 
 const Caption = tw.p`
   font-noto font-light d-caption-r12 w-full md:font-thin md:t-headline-3 md:leading-6 md:whitespace-normal md:text-left md:mt-36
-hover:text-orange10
+hover:text-gray-100
   
 `;
 
