@@ -1,11 +1,9 @@
 import React from 'react';
 
-interface LoginProps {
-  children: React.ReactNode;
-}
+import { LoginLayout } from '@/components';
 
-const Login = ({ children }: LoginProps) => {
-  return <div>Login</div>;
+const Login = () => {
+  return <LoginLayout />;
 };
 
 export default Login;

@@ -1,1 +1,2 @@
-export * from './common';
+export * from './atoms';
+export * from './layouts';
