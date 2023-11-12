@@ -34,18 +34,21 @@ export default {
         //...
       },
       fontSize: {
-        'title-0': '90px',
-        //...
-        'head-0': '45px',
-        //...
-        'body-1': '18px',
-        //...
-        'caption-1': '12px',
-        //...
+        56: '56px',
+        48: '48px',
+        40: '40px',
+        36: '36px',
+        32: '32px',
+        24: '24px',
+        18: '18px',
+        16: '16px',
+        14: '14px',
+        12: '12px',
       },
       fontFamily: {
         garamond: 'GaramondPremrPro, Arial, sans-serif',
         noto: 'Noto Sans, Arial, sans-serif',
+        pretendard: 'Pretendard',
       },
       fontWeight: {
         ultralight: 100,
@@ -59,9 +62,12 @@ export default {
         black: 900,
       },
       lineHeight: {
-        default: '1.2',
-        12: '12px',
-        //...
+        150: '1.5',
+        140: '1.4',
+        130: '1.3',
+        125: '1.25',
+        120: '1.2',
+        110: '1.1',
       },
       minWidth: {
         320: '320px',
@@ -108,6 +114,206 @@ export default {
   },
   plugins: [
     ({ addUtilities, theme }) => {
+      const fontUtilities = {
+        '.d-display': {
+          fontSize: theme('fontSize.56'),
+          fontWeight: theme('fontWeight.bold'),
+          fontFamily: theme('fontFamily.pretendard'),
+          lineHeight: theme('lineHeight.110'),
+        },
+        '.d-headline-1': {
+          fontSize: theme('fontSize.40'),
+          fontWeight: theme('fontWeight.bold'),
+          fontFamily: theme('fontFamily.pretendard'),
+          lineHeight: theme('lineHeight.150'),
+        },
+        '.d-headline-2': {
+          fontSize: theme('fontSize.32'),
+          fontWeight: theme('fontWeight.bold'),
+          fontFamily: theme('fontFamily.pretendard'),
+          lineHeight: theme('lineHeight.150'),
+        },
+        '.d-headline-3': {
+          fontSize: theme('fontSize.24'),
+          fontWeight: theme('fontWeight.bold'),
+          fontFamily: theme('fontFamily.pretendard'),
+          lineHeight: theme('lineHeight.125'),
+        },
+        '.d-headline-4': {
+          fontSize: theme('fontSize.18'),
+          fontWeight: theme('fontWeight.bold'),
+          fontFamily: theme('fontFamily.pretendard'),
+          lineHeight: theme('lineHeight.120'),
+        },
+        '.d-body-sb18': {
+          fontSize: theme('fontSize.18'),
+          fontWeight: theme('fontWeight.semibold'),
+          fontFamily: theme('fontFamily.pretendard'),
+          lineHeight: theme('lineHeight.140'),
+        },
+        '.d-body-m16': {
+          fontSize: theme('fontSize.16'),
+          fontWeight: theme('fontWeight.medium'),
+          fontFamily: theme('fontFamily.pretendard'),
+          lineHeight: theme('lineHeight.140'),
+        },
+        '.d-body-r16': {
+          fontSize: theme('fontSize.16'),
+          fontWeight: theme('fontWeight.normal'),
+          fontFamily: theme('fontFamily.pretendard'),
+          lineHeight: theme('lineHeight.140'),
+        },
+        '.d-body-m14': {
+          fontSize: theme('fontSize.14'),
+          fontWeight: theme('fontWeight.medium'),
+          fontFamily: theme('fontFamily.pretendard'),
+          lineHeight: theme('lineHeight.140'),
+        },
+        '.d-body-r14': {
+          fontSize: theme('fontSize.14'),
+          fontWeight: theme('fontWeight.normal'),
+          fontFamily: theme('fontFamily.pretendard'),
+          lineHeight: theme('lineHeight.140'),
+        },
+        '.d-caption-r12': {
+          fontSize: theme('fontSize.12'),
+          fontWeight: theme('fontWeight.normal'),
+          fontFamily: theme('fontFamily.pretendard'),
+          lineHeight: theme('lineHeight.130'),
+        },
+        '.t-display': {
+          fontSize: theme('fontSize.48'),
+          fontWeight: theme('fontWeight.bold'),
+          fontFamily: theme('fontFamily.pretendard'),
+          lineHeight: theme('lineHeight.110'),
+        },
+        '.t-headline-1': {
+          fontSize: theme('fontSize.32'),
+          fontWeight: theme('fontWeight.bold'),
+          fontFamily: theme('fontFamily.pretendard'),
+          lineHeight: theme('lineHeight.150'),
+        },
+        '.t-headline-2': {
+          fontSize: theme('fontSize.24'),
+          fontWeight: theme('fontWeight.bold'),
+          fontFamily: theme('fontFamily.pretendard'),
+          lineHeight: theme('lineHeight.125'),
+        },
+        '.t-headline-3': {
+          fontSize: theme('fontSize.18'),
+          fontWeight: theme('fontWeight.bold'),
+          fontFamily: theme('fontFamily.pretendard'),
+          lineHeight: theme('lineHeight.120'),
+        },
+        '.t-headline-4': {
+          fontSize: theme('fontSize.16'),
+          fontWeight: theme('fontWeight.bold'),
+          fontFamily: theme('fontFamily.pretendard'),
+          lineHeight: theme('lineHeight.120'),
+        },
+        '.t-body-sb16': {
+          fontSize: theme('fontSize.16'),
+          fontWeight: theme('fontWeight.semibold'),
+          fontFamily: theme('fontFamily.pretendard'),
+          lineHeight: theme('lineHeight.130'),
+        },
+        '.t-body-m14': {
+          fontSize: theme('fontSize.14'),
+          fontWeight: theme('fontWeight.medium'),
+          fontFamily: theme('fontFamily.pretendard'),
+          lineHeight: theme('lineHeight.130'),
+        },
+        '.t-body-r14': {
+          fontSize: theme('fontSize.14'),
+          fontWeight: theme('fontWeight.normal'),
+          fontFamily: theme('fontFamily.pretendard'),
+          lineHeight: theme('lineHeight.130'),
+        },
+        '.t-body-m12': {
+          fontSize: theme('fontSize.12'),
+          fontWeight: theme('fontWeight.medium'),
+          fontFamily: theme('fontFamily.pretendard'),
+          lineHeight: theme('lineHeight.130'),
+        },
+        '.t-body-r12': {
+          fontSize: theme('fontSize.12'),
+          fontWeight: theme('fontWeight.normal'),
+          fontFamily: theme('fontFamily.pretendard'),
+          lineHeight: theme('lineHeight.130'),
+        },
+        '.t-caption-r12': {
+          fontSize: theme('fontSize.12'),
+          fontWeight: theme('fontWeight.normal'),
+          fontFamily: theme('fontFamily.pretendard'),
+          lineHeight: theme('lineHeight.120'),
+        },
+        '.m-display': {
+          fontSize: theme('fontSize.36'),
+          fontWeight: theme('fontWeight.bold'),
+          fontFamily: theme('fontFamily.pretendard'),
+          lineHeight: theme('lineHeight.110'),
+        },
+        '.m-headline-1': {
+          fontSize: theme('fontSize.24'),
+          fontWeight: theme('fontWeight.bold'),
+          fontFamily: theme('fontFamily.pretendard'),
+          lineHeight: theme('lineHeight.125'),
+        },
+        '.m-headline-2': {
+          fontSize: theme('fontSize.18'),
+          fontWeight: theme('fontWeight.bold'),
+          fontFamily: theme('fontFamily.pretendard'),
+          lineHeight: theme('lineHeight.120'),
+        },
+        '.m-headline-3': {
+          fontSize: theme('fontSize.26'),
+          fontWeight: theme('fontWeight.bold'),
+          fontFamily: theme('fontFamily.pretendard'),
+          lineHeight: theme('lineHeight.120'),
+        },
+        '.m-headline-4': {
+          fontSize: theme('fontSize.14'),
+          fontWeight: theme('fontWeight.bold'),
+          fontFamily: theme('fontFamily.pretendard'),
+          lineHeight: theme('lineHeight.120'),
+        },
+        '.m-body-sb16': {
+          fontSize: theme('fontSize.16'),
+          fontWeight: theme('fontWeight.semibold'),
+          fontFamily: theme('fontFamily.pretendard'),
+          lineHeight: theme('lineHeight.130'),
+        },
+        '.m-body-m14': {
+          fontSize: theme('fontSize.14'),
+          fontWeight: theme('fontWeight.medium'),
+          fontFamily: theme('fontFamily.pretendard'),
+          lineHeight: theme('lineHeight.130'),
+        },
+        '.m-body-r14': {
+          fontSize: theme('fontSize.14'),
+          fontWeight: theme('fontWeight.normal'),
+          fontFamily: theme('fontFamily.pretendard'),
+          lineHeight: theme('lineHeight.130'),
+        },
+        '.m-body-m12': {
+          fontSize: theme('fontSize.12'),
+          fontWeight: theme('fontWeight.medium'),
+          fontFamily: theme('fontFamily.pretendard'),
+          lineHeight: theme('lineHeight.130'),
+        },
+        '.m-body-r12': {
+          fontSize: theme('fontSize.12'),
+          fontWeight: theme('fontWeight.normal'),
+          fontFamily: theme('fontFamily.pretendard'),
+          lineHeight: theme('lineHeight.130'),
+        },
+        '.m-caption-r12': {
+          fontSize: theme('fontSize.12'),
+          fontWeight: theme('fontWeight.normal'),
+          fontFamily: theme('fontFamily.pretendard'),
+          lineHeight: theme('lineHeight.120'),
+        },
+      };
       const buttonUtilities = {
         '.button-default': {
           display: 'flex',
@@ -223,6 +429,7 @@ export default {
       };
 
       addUtilities(buttonUtilities, ['hover', 'focus']);
+      addUtilities(fontUtilities);
     },
   ],
 };
