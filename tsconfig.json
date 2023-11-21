@@ -33,7 +33,7 @@
     "noFallthroughCasesInSwitch": true, //switch문 이상하면 에러내기
     "allowSyntheticDefaultImports": true,
 
-    "types": ["node"],
+    "types": ["node", "vite-plugin-svgr/client"],
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]
@@ -41,6 +41,6 @@
   },
 
   "files": ["twin.d.ts"],
-  "include": ["src", "types"],
+  "include": ["src", "types", "custom.d.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
