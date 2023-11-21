@@ -29,10 +29,28 @@ export default {
         red300: '#CE0033',
         red400: '#900024',
         red500: '#7E001F',
+        gray50: '#F2F2F2',
+        gray100: '#D6D6D6',
+        gray200: '#C2C2C2',
+        gray300: '#A6A6A6',
+        gray400: '#959595',
+        gray500: '#7A7A7A',
+        gray600: '#6F6F6F',
+        gray700: '#575757',
+        gray800: '#434343',
+        gray900: '#333333',
       },
       spacing: {
         1: '1px',
         2: '2px',
+        7: '7px',
+        9: '9px',
+        10: '10px',
+        16: '16px',
+        20: '20px',
+        32: '32px',
+        96: '96px',
+        200: '200px',
         //...
       },
       fontSize: {
@@ -107,13 +125,13 @@ export default {
       },
     },
     screens: {
-      xsm: '320px',
-      sm: '428px',
-      md: '768px',
-      lg: '1024px',
-      xl: '1280px',
+      mobile: '576px',
+      tablet: '768px',
+      labtop: '992px',
+      desktop: '1200px',
     },
   },
+
   plugins: [
     ({ addUtilities, theme }) => {
       const fontUtilities = {
@@ -430,8 +448,39 @@ export default {
         },
       };
 
+      const inputUtilities = {
+        '.input-default': {
+          border: `1px solid ${theme('colors.gray300')}`,
+          borderRadius: '4px',
+          padding: '7px 9px',
+          color: `${theme('colors.black')}`,
+
+          '&::placeholder': {
+            color: `${theme('colors.gray300')}`,
+          },
+
+          '&:hover': {
+            border: `1px solid ${theme('colors.gray900')}`,
+          },
+
+          '&:focus': {
+            border: `1px solid ${theme('colors.blue300')}`,
+          },
+
+          '&:disabled': {
+            border: `1px solid ${theme('colors.gray300')}`,
+            backgroundColor: `${theme('colors.gray100')}`,
+            cursor: 'not-allowed',
+          },
+        },
+        '.input-error': {
+          border: `1px solid ${theme('colors.red200')}`,
+        },
+      };
+
       addUtilities(buttonUtilities, ['hover', 'focus']);
       addUtilities(fontUtilities);
+      addUtilities(inputUtilities, ['hover', 'focus', 'disabled']);
     },
   ],
 };
