@@ -334,119 +334,6 @@ export default {
           lineHeight: theme('lineHeight.120'),
         },
       };
-      const buttonUtilities = {
-        '.button-default': {
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          columnGap: '6px',
-          border: 0,
-          borderRadius: '8px',
-          cursor: 'pointer',
-        },
-        '.button-loading': {
-          cursor: 'wait',
-        },
-        '.button-primary-loading': {
-          '@apply button-primary': {},
-          '@apply button-loading': {},
-
-          backgroundColor: theme('colors.brown400'),
-
-          '&:hover': {
-            backgroundColor: theme('colors.brown400'),
-          },
-        },
-
-        '.button-primary': {
-          color: theme('colors.white'),
-          backgroundColor: theme('colors.brown400'),
-
-          '&:hover': {
-            backgroundColor: theme('colors.brown600'),
-          },
-
-          '&:disabled': {
-            backgroundColor: theme('colors.brown200'),
-            cursor: 'not-allowed',
-          },
-        },
-
-        '.button-secondary-loading': {
-          '@apply button-secondary': {},
-          '@apply button-loading': {},
-
-          '&:hover': {
-            backgroundColor: theme('colors.white'),
-          },
-        },
-
-        '.button-secondary': {
-          border: `1px solid ${theme('colors.brown600')}`,
-          color: theme('colors.brown600'),
-          backgroundColor: theme('colors.white'),
-
-          '&:hover': {
-            backgroundColor: theme('colors.brown100'),
-          },
-
-          '&:disabled': {
-            border: 0,
-            color: theme('colors.brown200'),
-            backgroundColor: theme('colors.brown50'),
-            cursor: 'not-allowed',
-          },
-        },
-
-        '.button-tertiary-loading': {
-          '@apply button-tertiary': {},
-          '@apply button-loading': {},
-
-          '&:hover': {
-            color: theme('colors.brown400'),
-          },
-        },
-
-        '.button-tertiary': {
-          minWidth: 'inherit',
-          padding: 0,
-          color: theme('colors.brown400'),
-          backgroundColor: 'transparent',
-          textDecoration: 'underline',
-
-          '&:hover': {
-            color: theme('colors.brown600'),
-          },
-
-          '&:disabled': {
-            color: theme('colors.brown200'),
-            cursor: 'not-allowed',
-          },
-        },
-
-        '.button-full': {
-          '@apply button-default': {},
-          padding: '16px 20px',
-          fontSize: '15px',
-          minWidth: '200px',
-        },
-
-        '.button-lg': {
-          '@apply button-default': {},
-          padding: '16px 20px',
-          fontSize: '14px',
-        },
-        '.button-md': {
-          '@apply button-default': {},
-          padding: '12px 20px',
-          fontSize: '12px',
-        },
-        '.button-sm': {
-          '@apply button-default': {},
-          padding: '8px 12px',
-          fontSize: '11px',
-        },
-      };
 
       const inputUtilities = {
         '.input-default': {
@@ -478,7 +365,6 @@ export default {
         },
       };
 
-      addUtilities(buttonUtilities, ['hover', 'focus']);
       addUtilities(fontUtilities);
       addUtilities(inputUtilities, ['hover', 'focus', 'disabled']);
     },
