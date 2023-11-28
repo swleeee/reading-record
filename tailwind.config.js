@@ -335,38 +335,7 @@ export default {
         },
       };
 
-      const inputUtilities = {
-        '.input-default': {
-          border: `1px solid ${theme('colors.gray300')}`,
-          borderRadius: '4px',
-          padding: '7px 9px',
-          color: `${theme('colors.black')}`,
-
-          '&::placeholder': {
-            color: `${theme('colors.gray300')}`,
-          },
-
-          '&:hover': {
-            border: `1px solid ${theme('colors.gray900')}`,
-          },
-
-          '&:focus': {
-            border: `1px solid ${theme('colors.blue300')}`,
-          },
-
-          '&:disabled': {
-            border: `1px solid ${theme('colors.gray300')}`,
-            backgroundColor: `${theme('colors.gray100')}`,
-            cursor: 'not-allowed',
-          },
-        },
-        '.input-error': {
-          border: `1px solid ${theme('colors.red200')}`,
-        },
-      };
-
       addUtilities(fontUtilities);
-      addUtilities(inputUtilities, ['hover', 'focus', 'disabled']);
     },
   ],
 };
