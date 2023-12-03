@@ -12,7 +12,7 @@ interface InputProps {
   placeholder?: string;
   type?: string;
   value: string;
-  register: UseFormRegisterReturn;
+  register?: UseFormRegisterReturn<string>;
 }
 
 const Input = ({
