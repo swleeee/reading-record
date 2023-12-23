@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { AuthNavigation, LoginForm } from '@/components';
+import { AuthNavigation, LoginForm, SocialLogin } from '@/components';
 import * as S from './LoginLayout.styled';
 
 const LoginLayout = () => {
@@ -10,6 +10,7 @@ const LoginLayout = () => {
       <S.LoginContents>
         <LoginForm />
         <AuthNavigation />
+        <SocialLogin />
       </S.LoginContents>
     </S.LoginLayout>
   );

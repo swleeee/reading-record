@@ -39,6 +39,8 @@ export default {
         gray700: '#575757',
         gray800: '#434343',
         gray900: '#333333',
+        kakao: '#FEE500',
+        naver: '#03C75A',
       },
       spacing: {
         1: '1px',
