@@ -33,13 +33,12 @@ const Button = ({
     <S.Button
       className={className}
       type={actionType}
+      isLoading={isLoading}
       disabled={isDisabled}
       sizeType={sizeType}
       styleType={styleType}
-      isLoading={isLoading}
       onClick={onClick}
     >
-      {/* {isLoading ? <LoadingSpinnner /> : label} */}
       {isLoading && (
         <LoadingSpinnner
           colorType={styleType === 'primary' ? 'white' : 'brown'}

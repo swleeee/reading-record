@@ -39,8 +39,8 @@ const getButtonSize = (sizeType: ButtonSizeType) => {
 };
 
 // NOTE: 버튼 크기
-const buttonLg = tw`m-body-m14 px-[9px] py-[7px] tablet:(t-body-m14 px-[10px] py-[8px]) labtop:d-body-m16`;
-const buttonFull = tw`m-body-m14 min-w-[200px] w-full py-[7px] tablet:(t-body-m14 py-[8px]) labtop:d-body-m16`;
+const buttonLg = tw`m-body-m14 h-[44px] px-[14px] tablet:(t-body-m14 px-[10px] py-[8px]) labtop:d-body-m16`;
+const buttonFull = tw`m-body-m14 min-w-[200px] w-full h-[44px] tablet:(t-body-m14 py-[8px]) labtop:d-body-m16`;
 
 const getButtonStyle = (isLoading: boolean, styleType: ButtonStyleType) => {
   if (styleType === 'secondary') {
