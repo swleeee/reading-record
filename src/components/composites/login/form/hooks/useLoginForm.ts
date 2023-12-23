@@ -12,6 +12,7 @@ const useLoginForm = () => {
     formState: { errors },
     watch,
     register,
+    handleSubmit,
   } = useForm<typeof loginForm>({
     mode: 'onTouched',
     defaultValues: loginForm,
@@ -21,12 +22,17 @@ const useLoginForm = () => {
     setIsPasswordVisible(!isPasswordVisible);
   };
 
+  const handleLoginFormSubmit = handleSubmit(() => {
+    alert('로그인 성공');
+  });
+
   return {
     isPasswordVisible,
     errors,
     watch,
     register,
     handlePasswordToggle,
+    handleLoginFormSubmit,
   };
 };
 
