@@ -105,6 +105,9 @@ export default {
       maxHeight: {
         460: '460px',
       },
+      zIndex: {
+        TOAST: '1000',
+      },
       boxShadow: {
         sm: '0px 0px 8px rgba(0, 0, 0, 0.1)',
         md: '0px 2px 16px rgba(0, 0, 0, 0.1)',
@@ -119,11 +122,15 @@ export default {
           '0%': { opacity: 0 },
           '100%': { opacity: 1 },
         },
+        fadeOut: {
+          '0%': { opacity: 1 },
+          '100%': { opacity: 0 },
+        },
       },
-
       animation: {
         show: 'show 200ms cubic-bezier(.6, 0, .4, 1) 1000ms forwards',
-        fadeIn: 'fadeIn 300ms cubic-bezier(.6, 0, .4, 1) forwards',
+        fadeIn: '0.3s forwards fadeIn',
+        fadeOut: '0.3s forwards fadeOut',
       },
     },
     screens: {
