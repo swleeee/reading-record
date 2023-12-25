@@ -7,4 +7,5 @@ export interface ToastType {
   type: 'success' | 'warning' | 'info';
   title?: string;
   message: string;
+  duration?: number;
 }

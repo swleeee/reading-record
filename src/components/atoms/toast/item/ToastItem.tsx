@@ -7,23 +7,29 @@ import SuccessIcon from '@/assets/icon/ic_task_all.svg?react';
 import type { ToastType } from '@/types';
 import * as S from './ToastItem.styled';
 
+const TOAST_DURATION = 3000;
+const TRANSITION_DURATION = 1200;
+
 const ToastIconType = {
   success: <SuccessIcon css={S.toastSymbolIcon('success')} />,
   warning: <WarningIcon css={S.toastSymbolIcon('warning')} />,
   info: <InfoIcon css={S.toastSymbolIcon('info')} />,
 };
 
-function ToastItem({ id, type, title, message }: ToastType) {
+function ToastItem({
+  id,
+  duration = TOAST_DURATION,
+  type,
+  title,
+  message,
+}: ToastType) {
   const [isClosing, setIsClosing] = useState(false);
 
   const { removeToast } = useToast();
 
   useEffect(() => {
-    const TOAST_DURATION = 3000;
-    const TRANSITION_DURATION = 1200;
-
     const existTimeout = setTimeout(() => {
-      setIsClosing(true);
+      duration && setIsClosing(true);
     }, TOAST_DURATION);
 
     const expireToastTimeout = setTimeout(() => {

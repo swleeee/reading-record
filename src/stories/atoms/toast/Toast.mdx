@@ -1,0 +1,29 @@
+import {
+  Meta,
+  Title,
+  Subtitle,
+  Description,
+  Primary,
+  Controls,
+  Story,
+} from '@storybook/blocks';
+import * as ToastStories from './Toast.stories.tsx';
+
+<Meta title="Toast" of={ToastStories} />
+
+<Title />
+
+{/* Default implementation */}
+
+<Primary />
+<br />
+
+## Inputs
+
+The component accepts the following inputs (props):
+
+<Controls />
+
+<Story of={ToastStories.SuccessToast} />
+<Story of={ToastStories.WarningToast} />
+<Story of={ToastStories.InformationToast} />
