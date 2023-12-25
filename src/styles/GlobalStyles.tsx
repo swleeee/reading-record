@@ -22,6 +22,10 @@ const customStyles = css`
     border: 0;
     outline: 0;
   }
+  #root {
+    // FIXME: 모바일에서 주소 영역에 의해서 스크롤이 생기는 이슈
+    ${tw`h-[100dvh]`}
+  }
 `;
 
 const GlobalStyles = () => (

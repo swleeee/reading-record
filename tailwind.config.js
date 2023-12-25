@@ -39,6 +39,8 @@ export default {
         gray700: '#575757',
         gray800: '#434343',
         gray900: '#333333',
+        kakao: '#FEE500',
+        naver: '#03C75A',
       },
       spacing: {
         1: '1px',
@@ -103,6 +105,9 @@ export default {
       maxHeight: {
         460: '460px',
       },
+      zIndex: {
+        TOAST: '1000',
+      },
       boxShadow: {
         sm: '0px 0px 8px rgba(0, 0, 0, 0.1)',
         md: '0px 2px 16px rgba(0, 0, 0, 0.1)',
@@ -117,11 +122,15 @@ export default {
           '0%': { opacity: 0 },
           '100%': { opacity: 1 },
         },
+        fadeOut: {
+          '0%': { opacity: 1 },
+          '100%': { opacity: 0 },
+        },
       },
-
       animation: {
         show: 'show 200ms cubic-bezier(.6, 0, .4, 1) 1000ms forwards',
-        fadeIn: 'fadeIn 300ms cubic-bezier(.6, 0, .4, 1) forwards',
+        fadeIn: '0.3s forwards fadeIn',
+        fadeOut: '0.3s forwards fadeOut',
       },
     },
     screens: {
@@ -334,153 +343,8 @@ export default {
           lineHeight: theme('lineHeight.120'),
         },
       };
-      const buttonUtilities = {
-        '.button-default': {
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          columnGap: '6px',
-          border: 0,
-          borderRadius: '8px',
-          cursor: 'pointer',
-        },
-        '.button-loading': {
-          cursor: 'wait',
-        },
-        '.button-primary-loading': {
-          '@apply button-primary': {},
-          '@apply button-loading': {},
 
-          backgroundColor: theme('colors.brown400'),
-
-          '&:hover': {
-            backgroundColor: theme('colors.brown400'),
-          },
-        },
-
-        '.button-primary': {
-          color: theme('colors.white'),
-          backgroundColor: theme('colors.brown400'),
-
-          '&:hover': {
-            backgroundColor: theme('colors.brown600'),
-          },
-
-          '&:disabled': {
-            backgroundColor: theme('colors.brown200'),
-            cursor: 'not-allowed',
-          },
-        },
-
-        '.button-secondary-loading': {
-          '@apply button-secondary': {},
-          '@apply button-loading': {},
-
-          '&:hover': {
-            backgroundColor: theme('colors.white'),
-          },
-        },
-
-        '.button-secondary': {
-          border: `1px solid ${theme('colors.brown600')}`,
-          color: theme('colors.brown600'),
-          backgroundColor: theme('colors.white'),
-
-          '&:hover': {
-            backgroundColor: theme('colors.brown100'),
-          },
-
-          '&:disabled': {
-            border: 0,
-            color: theme('colors.brown200'),
-            backgroundColor: theme('colors.brown50'),
-            cursor: 'not-allowed',
-          },
-        },
-
-        '.button-tertiary-loading': {
-          '@apply button-tertiary': {},
-          '@apply button-loading': {},
-
-          '&:hover': {
-            color: theme('colors.brown400'),
-          },
-        },
-
-        '.button-tertiary': {
-          minWidth: 'inherit',
-          padding: 0,
-          color: theme('colors.brown400'),
-          backgroundColor: 'transparent',
-          textDecoration: 'underline',
-
-          '&:hover': {
-            color: theme('colors.brown600'),
-          },
-
-          '&:disabled': {
-            color: theme('colors.brown200'),
-            cursor: 'not-allowed',
-          },
-        },
-
-        '.button-full': {
-          '@apply button-default': {},
-          padding: '16px 20px',
-          fontSize: '15px',
-          minWidth: '200px',
-        },
-
-        '.button-lg': {
-          '@apply button-default': {},
-          padding: '16px 20px',
-          fontSize: '14px',
-        },
-        '.button-md': {
-          '@apply button-default': {},
-          padding: '12px 20px',
-          fontSize: '12px',
-        },
-        '.button-sm': {
-          '@apply button-default': {},
-          padding: '8px 12px',
-          fontSize: '11px',
-        },
-      };
-
-      const inputUtilities = {
-        '.input-default': {
-          border: `1px solid ${theme('colors.gray300')}`,
-          borderRadius: '4px',
-          padding: '7px 9px',
-          color: `${theme('colors.black')}`,
-
-          '&::placeholder': {
-            color: `${theme('colors.gray300')}`,
-          },
-
-          '&:hover': {
-            border: `1px solid ${theme('colors.gray900')}`,
-          },
-
-          '&:focus': {
-            border: `1px solid ${theme('colors.blue300')}`,
-          },
-
-          '&:disabled': {
-            border: `1px solid ${theme('colors.gray300')}`,
-            backgroundColor: `${theme('colors.gray100')}`,
-            cursor: 'not-allowed',
-          },
-        },
-        '.input-error': {
-          border: `1px solid ${theme('colors.red200')}`,
-        },
-      };
-
-      addUtilities(buttonUtilities, ['hover', 'focus']);
       addUtilities(fontUtilities);
-      addUtilities(inputUtilities, ['hover', 'focus', 'disabled']);
     },
   ],
 };
