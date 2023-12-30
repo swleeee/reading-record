@@ -1,5 +1,8 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { useSetRecoilState } from 'recoil';
+
+import { windowSizeState } from './stores';
 
 // NOTE: _app.tsx, 404.tsx
 const DEFAULT_MODULES: Record<string, { [key: string]: any }> =
@@ -27,8 +30,25 @@ const components = Object.keys(COMPONENT_MODULES).map((modulePath) => {
 });
 
 export const Router = () => {
+  const setWindowSize = useSetRecoilState(windowSizeState);
+
   const App = defaultRoutes?.['_app'] || Fragment;
   const NotFound = defaultRoutes?.['404'] || Fragment;
+
+  useEffect(() => {
+    const handleScreenResize = () => {
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    };
+
+    window.addEventListener('resize', handleScreenResize);
+
+    return () => {
+      window.removeEventListener('resize', handleScreenResize);
+    };
+  }, []);
 
   return (
     <BrowserRouter>
