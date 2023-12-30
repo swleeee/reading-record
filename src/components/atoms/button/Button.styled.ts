@@ -23,7 +23,7 @@ const buttonSecondaryLoading = css`
   ${tw`hover:bg-white`}
 `;
 
-const buttonTertiaryDefault = tw`min-w-[inherit] p-0 text-brown400 bg-transparent underline hover:text-brown500 active:text-brown600 focus:(border border-solid border-brown700) disabled:(text-brown100 cursor-not-allowed)`;
+const buttonTertiaryDefault = tw`min-w-[inherit] h-auto p-0 text-brown400 bg-transparent underline hover:text-brown500 active:text-brown600 focus:(border border-solid border-brown700) disabled:(text-brown100 cursor-not-allowed)`;
 const buttonTertiaryLoading = css`
   ${buttonLoading};
   ${buttonTertiaryDefault};
