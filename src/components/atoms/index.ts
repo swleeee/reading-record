@@ -1,3 +1,4 @@
+export * from './header';
 export * from './portal';
 export * from './spinner';
 export { default as Button } from './button/Button';
