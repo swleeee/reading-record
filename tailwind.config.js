@@ -41,6 +41,7 @@ export default {
         gray900: '#333333',
         kakao: '#FEE500',
         naver: '#03C75A',
+        black_50: 'rgba(0,0,0,0.5)',
       },
       spacing: {
         1: '1px',
@@ -106,6 +107,7 @@ export default {
         460: '460px',
       },
       zIndex: {
+        SIDEBAR: '999',
         TOAST: '1000',
       },
       boxShadow: {
@@ -126,11 +128,21 @@ export default {
           '0%': { opacity: 1 },
           '100%': { opacity: 0 },
         },
+        openSidebar: {
+          '0%': { right: '-300px', opacity: 0 },
+          '100%': { right: '0', opacity: 1 },
+        },
+        closeSidebar: {
+          '0%': { right: '0', opacity: 1 },
+          '100%': { right: '-300px', opacity: 0 },
+        },
       },
       animation: {
         show: 'show 200ms cubic-bezier(.6, 0, .4, 1) 1000ms forwards',
         fadeIn: '0.3s forwards fadeIn',
         fadeOut: '0.3s forwards fadeOut',
+        openSidebar: '1s forwards openSidebar',
+        closeSidebar: '1s forwards closeSidebar',
       },
     },
     screens: {
