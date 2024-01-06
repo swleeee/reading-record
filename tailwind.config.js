@@ -65,7 +65,9 @@ export default {
         24: '24px',
         18: '18px',
         16: '16px',
+        15: '15px',
         14: '14px',
+        13: '13px',
         12: '12px',
       },
       fontFamily: {
@@ -204,6 +206,18 @@ export default {
           fontFamily: theme('fontFamily.pretendard'),
           lineHeight: theme('lineHeight.140'),
         },
+        '.d-body-m15': {
+          fontSize: theme('fontSize.15'),
+          fontWeight: theme('fontWeight.medium'),
+          fontFamily: theme('fontFamily.pretendard'),
+          lineHeight: theme('lineHeight.140'),
+        },
+        '.d-body-r15': {
+          fontSize: theme('fontSize.15'),
+          fontWeight: theme('fontWeight.normal'),
+          fontFamily: theme('fontFamily.pretendard'),
+          lineHeight: theme('lineHeight.140'),
+        },
         '.d-body-m14': {
           fontSize: theme('fontSize.14'),
           fontWeight: theme('fontWeight.medium'),
@@ -270,6 +284,18 @@ export default {
           fontFamily: theme('fontFamily.pretendard'),
           lineHeight: theme('lineHeight.130'),
         },
+        '.t-body-m13': {
+          fontSize: theme('fontSize.13'),
+          fontWeight: theme('fontWeight.medium'),
+          fontFamily: theme('fontFamily.pretendard'),
+          lineHeight: theme('lineHeight.130'),
+        },
+        '.t-body-r13': {
+          fontSize: theme('fontSize.13'),
+          fontWeight: theme('fontWeight.normal'),
+          fontFamily: theme('fontFamily.pretendard'),
+          lineHeight: theme('lineHeight.130'),
+        },
         '.t-body-m12': {
           fontSize: theme('fontSize.12'),
           fontWeight: theme('fontWeight.medium'),
@@ -332,6 +358,18 @@ export default {
         },
         '.m-body-r14': {
           fontSize: theme('fontSize.14'),
+          fontWeight: theme('fontWeight.normal'),
+          fontFamily: theme('fontFamily.pretendard'),
+          lineHeight: theme('lineHeight.130'),
+        },
+        '.m-body-m13': {
+          fontSize: theme('fontSize.13'),
+          fontWeight: theme('fontWeight.medium'),
+          fontFamily: theme('fontFamily.pretendard'),
+          lineHeight: theme('lineHeight.130'),
+        },
+        '.m-body-r13': {
+          fontSize: theme('fontSize.13'),
           fontWeight: theme('fontWeight.normal'),
           fontFamily: theme('fontFamily.pretendard'),
           lineHeight: theme('lineHeight.130'),

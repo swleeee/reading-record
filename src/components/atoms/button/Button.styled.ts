@@ -23,7 +23,7 @@ const buttonSecondaryLoading = css`
   ${tw`hover:bg-white`}
 `;
 
-const buttonTertiaryDefault = tw`min-w-[inherit] h-auto p-0 text-brown400 bg-transparent underline hover:text-brown500 active:text-brown600 focus:(border border-solid border-brown700) disabled:(text-brown100 cursor-not-allowed)`;
+const buttonTertiaryDefault = tw`min-w-[inherit] h-auto p-0 text-brown400 bg-transparent hover:text-brown500 active:text-brown600 focus:(border border-solid border-brown700) disabled:(text-brown100 cursor-not-allowed)`;
 const buttonTertiaryLoading = css`
   ${buttonLoading};
   ${buttonTertiaryDefault};
@@ -32,13 +32,15 @@ const buttonTertiaryLoading = css`
 
 const getButtonSize = (sizeType: ButtonSizeType) => {
   if (sizeType === 'lg') return buttonLg;
-  if (sizeType === 'md') return buttonLg; // TODO: "md"에 대한 스타일 정의할 것
-  if (sizeType === 'sm') return buttonLg; // TODO: "md"에 대한 스타일 정의할 것
+  if (sizeType === 'md') return buttonMd;
+  if (sizeType === 'sm') return buttonSm;
 
   return buttonFull;
 };
 
 // NOTE: 버튼 크기
+const buttonSm = tw`m-body-m12 h-[28px] px-[8px] tablet:(t-body-m12 px-[6px] py-[4px]) labtop:d-body-m14`;
+const buttonMd = tw`m-body-m14 h-[36px] px-[10px] tablet:(t-body-m14 px-[8px] py-[6px]) labtop:d-body-m16`;
 const buttonLg = tw`m-body-m14 h-[44px] px-[14px] tablet:(t-body-m14 px-[10px] py-[8px]) labtop:d-body-m16`;
 const buttonFull = tw`m-body-m14 min-w-[200px] w-full h-[44px] tablet:(t-body-m14 py-[8px]) labtop:d-body-m16`;
 
