@@ -1,14 +1,9 @@
 import React from 'react';
-import { useRecoilValue } from 'recoil';
 
-import { deviceState } from '@/stores';
-import { Header, MobileHeader } from '@/components';
+import { MainLayout } from '@/components';
 
 const root = () => {
-  const device = useRecoilValue(deviceState);
-
-  if (device === 'mobile') return <MobileHeader />;
-  return <Header />;
+  return <MainLayout>메인 화면</MainLayout>;
 };
 
 export default root;
