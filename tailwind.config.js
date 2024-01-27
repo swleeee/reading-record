@@ -113,9 +113,14 @@ export default {
         TOAST: '1000',
       },
       boxShadow: {
-        sm: '0px 0px 8px rgba(0, 0, 0, 0.1)',
-        md: '0px 2px 16px rgba(0, 0, 0, 0.1)',
-        lg: '0px 4px 32px rgba(0, 0, 0, 0.1)',
+        light_sm:
+          '0 1px 3px 0 rgba(45, 39, 39, 0.12), 0 1px 2px -1px rgba(45, 39, 39, 0.12)',
+        light_md:
+          '0 4px 6px -1px rgba(45, 39, 39, 0.12), 0 2px 4px -2px rgba(45, 39, 39, 0.12)',
+        light_lg:
+          '0 10px 15px -3px rgba(45, 39, 39, 0.12), 0 4px 6px -4px rgba(45, 39, 39, 0.12)',
+        light_xl:
+          '0 20px 25px -5 px rgba(45, 39, 39, 0.12), 0 8px 16px -6px rgba(45, 39, 39, 0.12)',
       },
       keyframes: {
         show: {
