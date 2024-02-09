@@ -1,4 +1,5 @@
 import React from 'react';
+import { MemoryRouter } from 'react-router';
 import { RecoilRoot } from 'recoil';
 import { Decorator } from '@storybook/react';
 
@@ -8,7 +9,9 @@ const previewDecorator: Decorator = (Story, context) => {
   return (
     <RecoilRoot>
       <GlobalStyles />
-      <Story {...context} />
+      <MemoryRouter>
+        <Story {...context} />
+      </MemoryRouter>
     </RecoilRoot>
   );
 };
