@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useRecoilValue } from 'recoil';
 
+import { deviceState } from '@/stores';
 import DefaultPropfileIcon from '@/assets/icon/ic_default_profile.svg?react';
 import LikeFillIcon from '@/assets/icon/ic_like_fill.svg?react';
 import type { BookCardType } from '@/types';
@@ -19,6 +21,8 @@ const BookRecordCard = ({
   likeCount,
   content,
 }: BookRecordCardProps) => {
+  const device = useRecoilValue(deviceState);
+
   return (
     <Link css={S.bookRecordCard} to={`${linkToBaseUrl}/${id}`}>
       <S.Line />
@@ -36,7 +40,7 @@ const BookRecordCard = ({
             <S.LikeCount>{likeCount}</S.LikeCount>
           </S.LikeWrapper>
         </S.Header>
-        <S.RecordContent>{content}</S.RecordContent>
+        <S.RecordContent device={device}>{content}</S.RecordContent>
       </S.BookRecordInfo>
     </Link>
   );
