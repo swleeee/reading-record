@@ -19,13 +19,13 @@ const BookRecordCard = ({
   profileImgSrc,
   userName,
   likeCount,
+  createdDate,
   content,
 }: BookRecordCardProps) => {
   const device = useRecoilValue(deviceState);
 
   return (
     <Link css={S.bookRecordCard} to={`${linkToBaseUrl}/${id}`}>
-      <S.Line />
       <S.BookCoverImg src={bookImgSrc} />
       <S.BookRecordInfo>
         <S.Header>
@@ -35,6 +35,7 @@ const BookRecordCard = ({
             <DefaultPropfileIcon css={S.profile} />
           )}
           <S.UserName>{userName}</S.UserName>
+          <S.CreatedDate>{createdDate}</S.CreatedDate>
           <S.LikeWrapper>
             <LikeFillIcon css={S.likeIcon} />
             <S.LikeCount>{likeCount}</S.LikeCount>

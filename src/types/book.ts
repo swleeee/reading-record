@@ -4,5 +4,6 @@ export interface BookCardType {
   profileImgSrc: string | null;
   userName: string;
   likeCount: number;
+  createdDate: string;
   content: string;
 }

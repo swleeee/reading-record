@@ -24,6 +24,7 @@ const root = () => {
       profileImgSrc: null,
       userName: '홍길동',
       likeCount: 14,
+      createdDate: '2024. 04. 01',
       content:
         'dsfkldsjfldsjfkldsjfljdsfkldsjfldsjfkldsjfljdsfkldsjfldsjfkldsjfljdsfkldsjfldsjfkldsjfljdsfkldsjfldsjfkldsjfljdsfkldsjfldsjfkldsjfljdsfkldsjfldsjfkldsjfljdsfkldsjfldsjfkldsjfljdsfkldsjfldsjfkldsjfljdsfkldsjfldsjfkldsjfljdsfkldsjfldsjfkldsjfljdsfkldsjfldsjfkldsjfljdsfkldsjfldsjfkldsjfljdsfkldsjfldsjfkldsjfljdsfkldsjfldsjfkldsjfljdsfkldsjfldsjfkldsjfljdsfkldsjfldsjfkldsjfljdsfkldsjfldsjfkldsjflj',
     },
@@ -33,6 +34,7 @@ const root = () => {
       profileImgSrc: Profile1Img,
       userName: '김명석',
       likeCount: 8,
+      createdDate: '2024. 03. 28',
       content: 'dsfkldsjfldsj',
     },
     {
@@ -41,6 +43,7 @@ const root = () => {
       profileImgSrc: Profile2Img,
       userName: '박주영',
       likeCount: 5,
+      createdDate: '2024. 03. 26',
       content: 'dsfk 아ㅣㄴㅇ러ㅣㄴ아  ㅇㄴㅇㄹ안ㄹ ㅇㄴ리ㅏㅇ너',
     },
     {
@@ -49,6 +52,7 @@ const root = () => {
       profileImgSrc: null,
       userName: '홍길동',
       likeCount: 14,
+      createdDate: '2024. 03. 30',
       content:
         'dsfkldsjfldsjfkldsjfljdsfkldsjfldsjfkldsjfljdsfkldsjfldsjfkldsjfljdsfkldsjfldsjfkldsjfljdsfkldsjfldsjfkldsjfljdsfkldsjfldsjfkldsjfljdsfkldsjfldsjfkldsjfljdsfkldsjfldsjfkldsjfljdsfkldsjfldsjfkldsjfljdsfkldsjfldsjfkldsjfljdsfkldsjfldsjfkldsjfljdsfkldsjfldsjfkldsjfljdsfkldsjfldsjfkldsjfljdsfkldsjfldsjfkldsjfljdsfkldsjfldsjfkldsjfljdsfkldsjfldsjfkldsjfljdsfkldsjfldsjfkldsjfljdsfkldsjfldsjfkldsjflj',
     },
@@ -58,6 +62,7 @@ const root = () => {
       profileImgSrc: Profile1Img,
       userName: '김명석',
       likeCount: 8,
+      createdDate: '2024. 04. 01',
       content: 'dsfkldsjfldsj',
     },
     {
@@ -66,6 +71,7 @@ const root = () => {
       profileImgSrc: Profile2Img,
       userName: '박주영',
       likeCount: 5,
+      createdDate: '2024. 03. 31',
       content: 'dsfk 아ㅣㄴㅇ러ㅣㄴ아  ㅇㄴㅇㄹ안ㄹ ㅇㄴ리ㅏㅇ너',
     },
   ];
@@ -79,7 +85,7 @@ const root = () => {
           modules={[Navigation, Pagination, Scrollbar, A11y]}
           rewind
           slidesPerView={1.2}
-          spaceBetween={16}
+          spaceBetween={28}
         >
           {books.map((book) => (
             <SwiperSlide key={book.id}>
