@@ -3,7 +3,7 @@ import tw, { css, styled } from 'twin.macro';
 import type { DeviceType } from '@/types';
 
 export const bookRecordCard = css`
-  ${tw` relative flex gap-x-[19px] w-[300px] h-[148px] rounded-[4px] px-[12px] py-[18px] shadow-light_md hover:bg-brown50`}
+  ${tw` relative flex gap-x-[19px] min-w-[288px] h-[148px] rounded-[4px] px-[12px] py-[18px] shadow-light_md hover:bg-brown50`}
 `;
 
 // TODO: 스타일 컴포넌트명 적절한 것으로 수정
