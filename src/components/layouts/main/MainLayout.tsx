@@ -1,20 +1,22 @@
 import React from 'react';
 import { useRecoilValue } from 'recoil';
 
-import { deviceState } from '@/stores';
 import { Header, MobileHeader } from '@/components';
+import { deviceState } from '@/stores';
+import * as S from './MainLayout.styled';
 
 interface MainLayoutProps {
+  className?: string;
   children: React.ReactNode;
 }
 
-const MainLayout = ({ children }: MainLayoutProps) => {
+const MainLayout = ({ className, children }: MainLayoutProps) => {
   const device = useRecoilValue(deviceState);
 
   return (
     <>
       {device === 'mobile' ? <MobileHeader /> : <Header />}
-      {children}
+      <S.Body className={className}>{children}</S.Body>
     </>
   );
 };
