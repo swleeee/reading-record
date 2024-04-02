@@ -39,9 +39,10 @@ export default {
         gray700: '#575757',
         gray800: '#434343',
         gray900: '#333333',
+        black_50: 'rgba(0,0,0,0.5)',
+        mobile: '#fBFBFB',
         kakao: '#FEE500',
         naver: '#03C75A',
-        black_50: 'rgba(0,0,0,0.5)',
       },
       spacing: {
         1: '1px',
@@ -64,6 +65,7 @@ export default {
         32: '32px',
         24: '24px',
         18: '18px',
+        17: '17px',
         16: '16px',
         15: '15px',
         14: '14px',
@@ -199,6 +201,18 @@ export default {
           fontFamily: theme('fontFamily.pretendard'),
           lineHeight: theme('lineHeight.140'),
         },
+        '.d-body-m17': {
+          fontSize: theme('fontSize.17'),
+          fontWeight: theme('fontWeight.medium'),
+          fontFamily: theme('fontFamily.pretendard'),
+          lineHeight: theme('lineHeight.140'),
+        },
+        '.d-body-r17': {
+          fontSize: theme('fontSize.17'),
+          fontWeight: theme('fontWeight.normal'),
+          fontFamily: theme('fontFamily.pretendard'),
+          lineHeight: theme('lineHeight.140'),
+        },
         '.d-body-m16': {
           fontSize: theme('fontSize.16'),
           fontWeight: theme('fontWeight.medium'),
@@ -277,6 +291,18 @@ export default {
           fontFamily: theme('fontFamily.pretendard'),
           lineHeight: theme('lineHeight.130'),
         },
+        '.t-body-m15': {
+          fontSize: theme('fontSize.15'),
+          fontWeight: theme('fontWeight.medium'),
+          fontFamily: theme('fontFamily.pretendard'),
+          lineHeight: theme('lineHeight.130'),
+        },
+        '.t-body-r15': {
+          fontSize: theme('fontSize.15'),
+          fontWeight: theme('fontWeight.normal'),
+          fontFamily: theme('fontFamily.pretendard'),
+          lineHeight: theme('lineHeight.130'),
+        },
         '.t-body-m14': {
           fontSize: theme('fontSize.14'),
           fontWeight: theme('fontWeight.medium'),
@@ -352,6 +378,18 @@ export default {
         '.m-body-sb16': {
           fontSize: theme('fontSize.16'),
           fontWeight: theme('fontWeight.semibold'),
+          fontFamily: theme('fontFamily.pretendard'),
+          lineHeight: theme('lineHeight.130'),
+        },
+        '.m-body-m15': {
+          fontSize: theme('fontSize.15'),
+          fontWeight: theme('fontWeight.medium'),
+          fontFamily: theme('fontFamily.pretendard'),
+          lineHeight: theme('lineHeight.130'),
+        },
+        '.m-body-r15': {
+          fontSize: theme('fontSize.15'),
+          fontWeight: theme('fontWeight.normal'),
           fontFamily: theme('fontFamily.pretendard'),
           lineHeight: theme('lineHeight.130'),
         },
