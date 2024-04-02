@@ -1,6 +1,5 @@
 import tw, { css, styled } from 'twin.macro';
 
-import { ANIMATION } from '@/styles';
 import type { ToastType } from '@/types';
 
 const TOAST_COLOR = {

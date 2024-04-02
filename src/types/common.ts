@@ -9,3 +9,5 @@ export interface ToastType {
   message: string;
   duration?: number;
 }
+
+export type DeviceType = 'mobile' | 'tablet' | 'labtop';
