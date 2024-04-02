@@ -73,20 +73,28 @@ const BestCommentaryMobile = () => {
   ];
 
   return (
-    <Swiper
-      css={S.swiper}
-      centeredSlides
-      modules={[Navigation, Pagination, Scrollbar, A11y]}
-      rewind
-      slidesPerView={1.2}
-      spaceBetween={28}
-    >
-      {books.map((book) => (
-        <SwiperSlide key={book.id}>
-          <BookRecordCard linkToBaseUrl="book" {...book} />
-        </SwiperSlide>
-      ))}
-    </Swiper>
+    <>
+      <header>
+        {/* FIXME: 뷰포트 너비에 따라서 Swiper의 좌우 여백이 달라져 Title의 좌우 
+        여백과 달라지는 이슈 수정 필요! */}
+        <S.Title>주간 기록 베스트 10!</S.Title>
+      </header>
+
+      <Swiper
+        css={S.swiper}
+        centeredSlides
+        modules={[Navigation, Pagination, Scrollbar, A11y]}
+        rewind
+        slidesPerView={1.2}
+        spaceBetween={28}
+      >
+        {books.map((book) => (
+          <SwiperSlide key={book.id}>
+            <BookRecordCard linkToBaseUrl="book" {...book} />
+          </SwiperSlide>
+        ))}
+      </Swiper>
+    </>
   );
 };
 
