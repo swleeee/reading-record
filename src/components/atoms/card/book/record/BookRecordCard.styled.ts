@@ -3,7 +3,7 @@ import tw, { css, styled } from 'twin.macro';
 import type { DeviceType } from '@/types';
 
 export const bookRecordCard = css`
-  ${tw` relative flex gap-x-[19px] min-w-[208px] h-[148px] rounded-[4px] px-[12px] py-[18px] shadow-light_md hover:bg-brown50`}
+  ${tw` relative flex gap-x-[19px] min-w-[208px] h-[148px] rounded-[4px] px-[12px] py-[18px] bg-white shadow-light_md hover:bg-brown50`}
 `;
 
 export const BookCoverImg = tw.img`absolute left-[-20px] w-full max-w-[75px] h-full max-h-[116px] object-fill shadow-light_lg`;
