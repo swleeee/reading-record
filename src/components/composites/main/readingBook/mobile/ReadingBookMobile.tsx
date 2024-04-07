@@ -8,9 +8,9 @@ import Book1Img from '@/assets/image/book1.png';
 import Book2Img from '@/assets/image/book2.png';
 import type { BookReadingCardType } from '@/types';
 import BookAddLink from './link/BookAddLink';
-import * as S from './CurrentBookMobile.styled';
+import * as S from './ReadingBookMobile.styled';
 
-const CurrentBookMobile = () => {
+const ReadingBookMobile = () => {
   const readingBooks: BookReadingCardType[] = [
     {
       id: '1',
@@ -64,7 +64,7 @@ const CurrentBookMobile = () => {
   ];
 
   return (
-    <S.CurrentBookSection>
+    <S.ReadingBookSection>
       <header>
         <S.Title>현재 읽고 있는 책!</S.Title>
       </header>
@@ -100,8 +100,8 @@ const CurrentBookMobile = () => {
       ) : (
         <BookAddLink />
       )}
-    </S.CurrentBookSection>
+    </S.ReadingBookSection>
   );
 };
 
-export default CurrentBookMobile;
+export default ReadingBookMobile;

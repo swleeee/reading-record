@@ -1,2 +1,2 @@
 export * from './bestCommentary';
-export * from './currentBook';
+export * from './readingBook';
