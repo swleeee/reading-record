@@ -5,10 +5,10 @@ import { useRecoilValue } from 'recoil';
 import { deviceState } from '@/stores';
 import DefaultPropfileIcon from '@/assets/icon/ic_default_profile.svg?react';
 import LikeFillIcon from '@/assets/icon/ic_like_fill.svg?react';
-import type { BookCardType } from '@/types';
+import type { BookRecordCardType } from '@/types';
 import * as S from './BookRecordCard.styled';
 
-interface BookRecordCardProps extends BookCardType {
+interface BookRecordCardProps extends BookRecordCardType {
   linkToBaseUrl: string;
 }
 

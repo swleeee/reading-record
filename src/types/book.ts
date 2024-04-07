@@ -1,4 +1,4 @@
-export interface BookCardType {
+export interface BookRecordCardType {
   id: string;
   bookImgSrc: string;
   profileImgSrc: string | null;

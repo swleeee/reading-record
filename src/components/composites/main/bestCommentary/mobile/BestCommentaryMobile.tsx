@@ -8,12 +8,12 @@ import Book1Img from '@/assets/image/book1.png';
 import Book2Img from '@/assets/image/book2.png';
 import Profile1Img from '@/assets/image/profile1.png';
 import Profile2Img from '@/assets/image/profile2.png';
-import type { BookCardType } from '@/types';
+import type { BookRecordCardType } from '@/types';
 import * as S from './BestCommentaryMobile.styled';
 
 const BestCommentaryMobile = () => {
   // TODO: 더미용 데이터로 삭제 예정
-  const books: BookCardType[] = [
+  const books: BookRecordCardType[] = [
     {
       id: '1',
       bookImgSrc: Book1Img,
