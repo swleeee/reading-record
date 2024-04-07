@@ -7,3 +7,12 @@ export interface BookRecordCardType {
   createdDate: string;
   content: string;
 }
+
+export interface BookReadingCardType {
+  id: string;
+  bookImgSrc: string;
+  title: string;
+  publisher: string;
+  authors: string[];
+  readingStartDate: string;
+}
