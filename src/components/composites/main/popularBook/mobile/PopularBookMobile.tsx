@@ -7,7 +7,7 @@ import 'swiper/css';
 import { SegmentedButton } from '@/components';
 import Book1Img from '@/assets/image/book1.png';
 import Book2Img from '@/assets/image/book2.png';
-import type { BookPopularCardType, SelectOptionType } from '@/types';
+import type { PopularBookCardType, SelectOptionType } from '@/types';
 import * as S from './PopularBookMobile.styled';
 
 const PopularBookMobile = () => {
@@ -17,7 +17,7 @@ const PopularBookMobile = () => {
     { key: 'year', label: 'Year' },
   ];
 
-  const popularBooks: BookPopularCardType[] = [
+  const popularBooks: PopularBookCardType[] = [
     {
       id: '1',
       bookImgSrc: Book1Img,

@@ -6,12 +6,12 @@ import 'swiper/css';
 import { BookReadingCard } from '@/components';
 import Book1Img from '@/assets/image/book1.png';
 import Book2Img from '@/assets/image/book2.png';
-import type { BookReadingCardType } from '@/types';
+import type { ReadingBookCardType } from '@/types';
 import BookAddLink from './link/BookAddLink';
 import * as S from './ReadingBookMobile.styled';
 
 const ReadingBookMobile = () => {
-  const readingBooks: BookReadingCardType[] = [
+  const readingBooks: ReadingBookCardType[] = [
     {
       id: '1',
       bookImgSrc: Book1Img,
