@@ -8,11 +8,18 @@ export interface BookRecordCardType {
   content: string;
 }
 
-export interface BookReadingCardType {
+export interface ReadingBookCardType {
   id: string;
   bookImgSrc: string;
   title: string;
   publisher: string;
   authors: string[];
   readingStartDate: string;
+}
+
+export interface PopularBookCardType {
+  id: string;
+  bookImgSrc: string;
+  title: string;
+  content: string;
 }
