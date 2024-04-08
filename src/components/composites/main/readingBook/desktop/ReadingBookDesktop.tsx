@@ -1,8 +1,7 @@
 import React from 'react';
 
-import { BookReadingCard } from '@/components';
+import { BookAddLink, BookReadingCard } from '@/components';
 import type { ReadingBookCardType } from '@/types';
-import BookAddLink from '../mobile/link/BookAddLink';
 import * as S from './ReadingBookDesktop.styled';
 
 interface ReadingBookDesktopProps {

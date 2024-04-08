@@ -3,9 +3,8 @@ import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 
-import { BookReadingCard } from '@/components';
+import { BookAddLink, BookReadingCard } from '@/components';
 import type { ReadingBookCardType } from '@/types';
-import BookAddLink from './link/BookAddLink';
 import * as S from './ReadingBookMobile.styled';
 
 interface ReadingBookMobileProps {

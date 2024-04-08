@@ -1,6 +1,7 @@
 export * from './button';
 export * from './card';
 export * from './header';
+export * from './link';
 export * from './portal';
 export * from './spinner';
 export { default as Input } from './input/Input';
