@@ -110,6 +110,9 @@ export default {
       maxHeight: {
         460: '460px',
       },
+      gridTemplateColumns: {
+        'auto-fill-192': 'repeat(auto-fill, minmax(192px, 1fr))',
+      },
       zIndex: {
         SIDEBAR: '999',
         TOAST: '1000',
