@@ -3,6 +3,7 @@ import React from 'react';
 import * as S from './BookReadingCard.styled';
 
 interface BookReadingCardProps {
+  className?: string;
   id: string;
   bookImgSrc: string;
   title: string;
@@ -12,6 +13,7 @@ interface BookReadingCardProps {
 }
 
 const BookReadingCard = ({
+  className,
   id, // TODO: id 추후 활용
   bookImgSrc,
   title,
@@ -21,7 +23,7 @@ const BookReadingCard = ({
 }: BookReadingCardProps) => {
   return (
     // TODO: 클릭 이벤트 추가 예정
-    <S.CardButton type="button" onClick={() => {}}>
+    <S.CardButton className={className} type="button" onClick={() => {}}>
       <S.BookTitle>{title}</S.BookTitle>
       <S.BookDescriptionWrapper>
         <S.BookThumbnail src={bookImgSrc} alt="book thumbnail" />
