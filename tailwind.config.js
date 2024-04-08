@@ -113,6 +113,7 @@ export default {
       gridTemplateColumns: {
         'auto-fill-144': 'repeat(auto-fill, minmax(144px, 1fr))',
         'auto-fill-192': 'repeat(auto-fill, minmax(192px, 1fr))',
+        'auto-fill-240': 'repeat(auto-fill, minmax(240px, 1fr))',
       },
       zIndex: {
         SIDEBAR: '999',
