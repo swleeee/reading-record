@@ -11,3 +11,8 @@ export interface ToastType {
 }
 
 export type DeviceType = 'mobile' | 'tablet' | 'labtop';
+
+export interface SelectOptionType {
+  key: string;
+  label: string;
+}
