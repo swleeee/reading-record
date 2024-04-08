@@ -16,3 +16,10 @@ export interface BookReadingCardType {
   authors: string[];
   readingStartDate: string;
 }
+
+export interface BookPopularCardType {
+  id: string;
+  bookImgSrc: string;
+  title: string;
+  content: string;
+}
