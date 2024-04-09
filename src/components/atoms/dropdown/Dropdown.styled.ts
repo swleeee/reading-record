@@ -1,14 +1,14 @@
 import tw, { css, styled } from 'twin.macro';
 
-export const Dropdown = tw.div`flex flex-col shrink-0 gap-y-[4px]`;
+export const Dropdown = tw.div`relative shrink-0`;
 
-export const DropdownToggleButton = tw.button`flex justify-between items-center gap-x-[4px] border border-gray300 rounded-[4px] px-[11px] py-[9px] h-[40px] bg-white`;
+export const DropdownToggleButton = tw.button`flex justify-between items-center gap-x-[4px] border border-gray300 rounded-[4px] px-[11px] py-[9px] w-full h-[40px] bg-white`;
 
 export const Label = tw.span`m-body-r13 tablet:t-body-r13 desktop:d-body-r15`;
 
 export const Placeholder = tw.span`m-body-r12 text-gray300 tablet:t-body-r12 desktop:d-body-r14`;
 
-export const DropdownOptionWrapper = tw.ul`border border-gray300 rounded-[4px] bg-white overflow-hidden`;
+export const DropdownOptionWrapper = tw.ul`absolute top-[calc(100%+4px)] w-full border border-gray300 rounded-[4px] bg-white overflow-hidden`;
 
 export const DropdownOption = tw.li`hover:bg-brown50 `;
 
