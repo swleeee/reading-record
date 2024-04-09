@@ -13,6 +13,7 @@ interface InputProps {
   type?: string;
   value: string;
   register?: UseFormRegisterReturn<string>;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const Input = ({
@@ -25,6 +26,7 @@ const Input = ({
   type = 'text',
   value,
   register,
+  onChange,
 }: InputProps) => {
   return (
     <S.InputWrapper className={className}>
@@ -37,6 +39,7 @@ const Input = ({
         placeholder={placeholder}
         type={type}
         value={value}
+        onChange={onChange}
         {...register}
       />
       {children && children}
