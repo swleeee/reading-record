@@ -1,9 +1,9 @@
 import tw, { css } from 'twin.macro';
 
-export const Form = tw.form`tablet:(flex justify-center)`;
+export const Form = tw.form`h-fit tablet:(flex justify-center max-w-[600px])`;
 
 export const searchInput = css`
-  ${tw`relative tablet:(flex-1 max-w-[600px])`}
+  ${tw`relative tablet:flex-1`}
 
   & > input {
     ${tw`pr-[44px] w-full`}
