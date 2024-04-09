@@ -14,7 +14,6 @@ const BookSearch = () => {
       <Dropdown
         css={S.filterDropdown}
         options={BOOK_SEARCH_DROPDOWN_OPTIONS}
-        placeholder="선택"
         selectedOption={selectedOption}
         onSelect={handleSearchTypeSelect}
       />
