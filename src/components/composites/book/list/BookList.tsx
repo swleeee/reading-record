@@ -1,7 +1,8 @@
 import React from 'react';
 
+import { Pagination } from '@/components';
 import type { GetBooksServerModel } from '@/types';
-import BookListData from './data/bookListData';
+import BookListData from './data/BookListData';
 
 const BookList = () => {
   const bookServerData: GetBooksServerModel = {
@@ -81,7 +82,8 @@ const BookList = () => {
   return (
     <>
       <BookListData books={bookServerData.documents} />
-      {/* TODO: 페이지네이션 작성 */}
+      {/* 카카오 도서 검색 API 연동 시 페이지네이션 기능 구현 */}
+      <Pagination />
     </>
   );
 };
