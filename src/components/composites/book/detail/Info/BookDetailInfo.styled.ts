@@ -36,8 +36,6 @@ export const BookThumbnailSection = styled.section<{ src: string }>`
 
 export const BookThumbnail = tw.img`relative w-[144px] h-[216px] rounded-[4px] object-fill shadow-light_lg tablet:(w-[178px] h-[252px]) desktop:(w-[198px] h-[286px])`;
 
-export const BookTitle = tw.span`m-body-m14 tablet:t-body-m14 desktop:d-body-m16`;
-
 export const BookInfoList = tw.dl`grid grid-cols-[minmax(80px, auto) 1fr] gap-y-[4px] max-w-[800px] rounded-[4px] mx-[24px] px-[12px] py-[10px] bg-brown50 tablet:mx-auto`;
 
 export const BookInfoTitle = tw.dt`m-body-m13 tablet:t-body-m13 desktop:d-body-m15`;
