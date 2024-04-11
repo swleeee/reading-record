@@ -45,3 +45,19 @@ export interface GetBooksServerModel {
     url: string;
   }[];
 }
+
+export interface GetBookRecordsServerModel {
+  pageInfo: {
+    totalCount: number;
+    totalPages: number;
+  };
+  records: {
+    id: string;
+    userName: string;
+    createdDate: string;
+    profileImgSrc: string | null;
+    likeCount: number;
+    content: string;
+    rating: number;
+  }[];
+}
