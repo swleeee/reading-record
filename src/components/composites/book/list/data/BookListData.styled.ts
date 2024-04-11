@@ -48,15 +48,3 @@ export const publisherLink = css`
 export const Time = tw.time`m-body-r12 text-gray-600 tablet:t-body-r12 desktop:d-body-r14`;
 
 export const BookContent = tw.p`m-body-r13 tablet:t-body-r13 desktop:d-body-r15`;
-
-export const NoResult = tw.section`flex flex-col items-center gap-y-[8px]`;
-
-export const noResultIcon = css`
-  ${tw`w-[64px] h-[64px]`}
-
-  & > g > path {
-    ${tw`fill-gray600`}
-  }
-`;
-
-export const NoResultDescription = tw.p`m-body-r12 text-gray-600 text-center tablet:t-body-r12 desktop:d-body-r14`;
