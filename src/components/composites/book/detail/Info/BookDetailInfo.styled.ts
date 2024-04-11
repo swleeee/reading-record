@@ -1,5 +1,7 @@
 import tw, { css, styled } from 'twin.macro';
 
+export const BookDetailSection = tw.section`mb-[64px]`;
+
 export const BookInfoWrapper = tw.section`w-full h-full rounded-[4px] px-[4px]`;
 
 export const BookSubInfoList = tw.dl`relative flex justify-center gap-x-[12px] mt-[-25px] mb-[24px] px-[24px] desktop:mt-[-32px]`;

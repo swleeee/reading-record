@@ -9,7 +9,7 @@ interface BookInfoContentProps {
 
 const BookDetailInfo = ({ book }: BookInfoContentProps) => {
   return (
-    <section>
+    <S.BookDetailSection>
       <S.BookThumbnailSection src={book.thumbnail}>
         <S.BookThumbnail src={book.thumbnail} alt="book thumbnail" />
       </S.BookThumbnailSection>
@@ -51,7 +51,7 @@ const BookDetailInfo = ({ book }: BookInfoContentProps) => {
           <S.BookInfoDescription>{book.contents}</S.BookInfoDescription>
         </S.BookInfoList>
       </S.BookInfoWrapper>
-    </section>
+    </S.BookDetailSection>
   );
 };
 
