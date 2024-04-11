@@ -1,8 +1,7 @@
 import React from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 
-import { Button } from '@/components';
-import NoResultIcon from '@/assets/icon/ic_error.svg?react';
+import { Button, NoData } from '@/components';
 import type { GetBooksServerModel } from '@/types';
 import * as S from './BookListData.styled';
 
@@ -51,14 +50,9 @@ const BookListData = ({ books }: BookListDataProps) => {
       </Link>
     ))
   ) : (
-    <S.NoResult>
-      <NoResultIcon css={S.noResultIcon} />
-      <S.NoResultDescription>
-        검색어의 철자가 정확한지 다시 한 번 확인해주세요. <br />
-        검색어의 단어 수를 줄이거나, 두 단어 이상의 검색어인 경우, 띄어쓰기를
-        해주세요.
-      </S.NoResultDescription>
-    </S.NoResult>
+    <NoData
+      content={`검색어의 철자가 정확한지 다시 한 번 확인해주세요.\n검색어의 단어 수를 줄이거나, 두 단어 이상의 검색어인 경우, 띄어쓰기를 해주세요.`}
+    />
   );
 };
 
