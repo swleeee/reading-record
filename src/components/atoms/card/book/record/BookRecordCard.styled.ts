@@ -12,14 +12,6 @@ export const BookRecordInfo = tw.div`flex flex-col gap-y-[8px] flex-1 ml-[55px]`
 
 export const Header = tw.div`flex items-center`;
 
-export const profile = css`
-  ${tw`w-[28px] h-[28px] rounded-full mr-[6px]`}
-`;
-
-export const Profile = styled.img`
-  ${profile};
-`;
-
 export const UserName = tw.span`flex-1 m-body-r14 text-left tablet:t-body-r14 desktop:d-body-r16`;
 
 export const CreatedDate = tw.time`m-body-r12 text-gray600 mr-[4px] tablet:t-body-r12 desktop:d-body-r14`;

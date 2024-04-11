@@ -2,8 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 
+import { Profile } from '@/components';
 import { deviceState } from '@/stores';
-import DefaultPropfileIcon from '@/assets/icon/ic_default_profile.svg?react';
 import LikeFillIcon from '@/assets/icon/ic_like_fill.svg?react';
 import type { BookRecordCardType } from '@/types';
 import * as S from './BookRecordCard.styled';
@@ -29,11 +29,7 @@ const BookRecordCard = ({
       <S.BookCoverImg src={bookImgSrc} />
       <S.BookRecordInfo>
         <S.Header>
-          {profileImgSrc ? (
-            <S.Profile src={profileImgSrc} />
-          ) : (
-            <DefaultPropfileIcon css={S.profile} />
-          )}
+          <Profile src={profileImgSrc} />
           <S.UserName>{userName}</S.UserName>
           <S.CreatedDate>{createdDate}</S.CreatedDate>
           <S.LikeWrapper>
