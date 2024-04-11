@@ -2,11 +2,11 @@ import tw, { css, styled } from 'twin.macro';
 
 export const BookDetailSection = tw.section`mb-[64px]`;
 
-export const BookInfoWrapper = tw.section`w-full h-full rounded-[4px] px-[4px]`;
+export const BookInfoWrapper = tw.section`w-full max-w-[768px] h-full mx-auto rounded-[4px] px-[24px] desktop:max-w-[1200px]`;
 
-export const BookSubInfoList = tw.dl`relative flex justify-center gap-x-[12px] mt-[-25px] mb-[24px] px-[24px] desktop:mt-[-32px]`;
+export const BookSubInfoList = tw.dl`relative flex justify-center gap-x-[12px] mt-[-25px] mb-[24px] desktop:mt-[-32px]`;
 
-export const BookSubInfoWrapper = tw.div`flex-1 max-w-[258px] border border-brown100 rounded-[4px] shadow-light_sm overflow-hidden`;
+export const BookSubInfoWrapper = tw.div`flex-1 border border-brown100 rounded-[4px] shadow-light_sm overflow-hidden`;
 
 export const BookSubInfoTitle = tw.dt`py-[4px] m-body-m13 text-center bg-white tablet:t-body-m13 desktop:d-body-m15`;
 
@@ -38,7 +38,7 @@ export const BookThumbnailSection = styled.section<{ src: string }>`
 
 export const BookThumbnail = tw.img`relative w-[144px] h-[216px] rounded-[4px] object-fill shadow-light_lg tablet:(w-[178px] h-[252px]) desktop:(w-[198px] h-[286px])`;
 
-export const BookInfoList = tw.dl`grid grid-cols-[minmax(80px, auto) 1fr] gap-y-[4px] max-w-[800px] rounded-[4px] mx-[24px] px-[12px] py-[10px] bg-brown50 tablet:mx-auto`;
+export const BookInfoList = tw.dl`grid grid-cols-[minmax(80px, auto) 1fr] gap-y-[4px] rounded-[4px] px-[12px] py-[10px] bg-brown50 tablet:mx-auto`;
 
 export const BookInfoTitle = tw.dt`m-body-m13 tablet:t-body-m13 desktop:d-body-m15`;
 
