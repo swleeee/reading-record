@@ -1,5 +1,15 @@
 import tw, { css, styled } from 'twin.macro';
 
+export const ModalSection = tw.section`h-[433px]`;
+
+export const NoneItem = styled.article`
+  ${tw`flex justify-center items-center w-full h-full rounded-[4px] bg-gray50 opacity-50`}
+
+  & > p {
+    ${tw`m-body-m15 text-gray-900 tablet:t-body-m15 desktop:d-body-m17`}
+  }
+`;
+
 export const Item = styled.article<{ marginBottom?: string }>`
   ${({ marginBottom }) => css`
     ${tw`flex flex-col gap-y-[4px]`}

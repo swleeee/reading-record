@@ -83,65 +83,82 @@ const BookReadingStatusChangeModal = React.forwardRef<
       closeFn={closeModal}
       activeFn={handleReadingStatusChange}
     >
-      <section>
-        <SegmentedButton
-          css={S.readingStatusButtonGroup}
-          options={BOOK_READING_STATUS_OPTIONS}
-          selectedOption={selectedOption}
-          onClick={handleOptionSelect}
-        />
-        <S.Item marginBottom="24px">
-          <S.Label
-            isRequired={selectedOption?.key === 'pending' ? false : true}
-          >
-            독서 기간
-          </S.Label>
-          <div>
-            <span>캘린더-1</span>
-            <span>캘린더-2</span>
-          </div>
-        </S.Item>
-        <S.Item marginBottom="24px">
-          <S.Label
-            isRequired={selectedOption?.key === 'completed' ? true : false}
-          >
-            평점
-          </S.Label>
-          <S.RatingInfo>
-            {Array.from({ length: 5 }, (_, i) => (
-              <RatingIcon
-                key={i}
-                css={S.ratingIcon(
-                  i - 1 < (watch('rating') ? watch('rating')! : 0),
+      <SegmentedButton
+        css={S.readingStatusButtonGroup}
+        options={BOOK_READING_STATUS_OPTIONS}
+        selectedOption={selectedOption}
+        onClick={handleOptionSelect}
+      />
+      <S.ModalSection>
+        {selectedOption?.key === 'pending' ? (
+          // TODO: 도서 '읽기 전' 상태일 때 하기와 같이 문구 임시 노출 (추후 수정 필요)
+          <S.NoneItem>
+            <p>책을 한 번 읽어보세요 :)</p>
+          </S.NoneItem>
+        ) : (
+          <>
+            <S.Item marginBottom="24px">
+              <S.Label
+                isRequired={selectedOption?.key === 'pending' ? false : true}
+              >
+                독서 기간
+              </S.Label>
+              <div>
+                <span>캘린더-1</span>
+                <span>캘린더-2</span>
+              </div>
+            </S.Item>
+            {selectedOption?.key === 'completed' && (
+              <S.Item marginBottom="24px">
+                <S.Label
+                  isRequired={
+                    selectedOption?.key === 'completed' ? true : false
+                  }
+                >
+                  평점
+                </S.Label>
+                <S.RatingInfo>
+                  {Array.from({ length: 5 }, (_, i) => (
+                    <RatingIcon
+                      key={i}
+                      css={S.ratingIcon(
+                        i - 1 < (watch('rating') ? watch('rating')! : 0),
+                      )}
+                      onMouseEnter={handleRatingMouseEnter(i)}
+                    />
+                  ))}
+                </S.RatingInfo>
+              </S.Item>
+            )}
+            {selectedOption?.key === 'completed' && (
+              <S.Item>
+                <S.Label
+                  isRequired={
+                    selectedOption?.key === 'completed' ? true : false
+                  }
+                  htmlFor="recordContent"
+                >
+                  감상문
+                </S.Label>
+                <Textarea
+                  css={S.recordContent}
+                  hasError={!!errors.recordContent}
+                  id="recordContent"
+                  maxLength={1000}
+                  placeholder="감상문 내용을 입력해주세요."
+                  value={watch('recordContent') ?? ''}
+                  register={register('recordContent', {
+                    required: ERROR_MSG.REQUIRED,
+                  })}
+                />
+                {errors.recordContent?.message && (
+                  <ErrorMessage message={errors.recordContent.message} />
                 )}
-                onMouseEnter={handleRatingMouseEnter(i)}
-              />
-            ))}
-          </S.RatingInfo>
-        </S.Item>
-        <S.Item>
-          <S.Label
-            isRequired={selectedOption?.key === 'completed' ? true : false}
-            htmlFor="recordContent"
-          >
-            감상문
-          </S.Label>
-          <Textarea
-            css={S.recordContent}
-            hasError={!!errors.recordContent}
-            id="recordContent"
-            maxLength={1000}
-            placeholder="감상문 내용을 입력해주세요."
-            value={watch('recordContent') ?? ''}
-            register={register('recordContent', {
-              required: ERROR_MSG.REQUIRED,
-            })}
-          />
-          {errors.recordContent?.message && (
-            <ErrorMessage message={errors.recordContent.message} />
-          )}
-        </S.Item>
-      </section>
+              </S.Item>
+            )}
+          </>
+        )}
+      </S.ModalSection>
     </Modal>
   );
 });
