@@ -7,7 +7,7 @@ import * as S from './SegmentedButton.styled';
 interface SegmentedButtonProps {
   className?: string;
   options: SelectOptionType[]; // TODO: options 배열의 길이가 2 이상만 허용되도록 Type 설정
-  selectedOption: SelectOptionType;
+  selectedOption: SelectOptionType | null;
   onClick: (option: SelectOptionType) => () => void;
 }
 
@@ -27,7 +27,7 @@ const SegmentedButton = ({
   return (
     <S.SegmentButtonGroup className={className}>
       {options.map((option, i) => {
-        const isSelected = option.key === selectedOption.key;
+        const isSelected = option.key === selectedOption?.key;
 
         return (
           <S.SegmentButton

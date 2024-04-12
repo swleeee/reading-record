@@ -1,6 +1,9 @@
 import React from 'react';
 
+import { Button } from '@/components';
+import { useModal } from '@/hooks';
 import type { GetBooksServerModel } from '@/types';
+import BookReadingStatusChangeModal from './readingStatusChangeModal/BookReadingStatusChangeModal';
 import * as S from './BookDetailInfo.styled';
 
 interface BookInfoContentProps {
@@ -8,6 +11,8 @@ interface BookInfoContentProps {
 }
 
 const BookDetailInfo = ({ book }: BookInfoContentProps) => {
+  const { modalRef, openModal } = useModal();
+
   return (
     <S.BookDetailSection>
       <S.BookThumbnailSection src={book.thumbnail}>
@@ -25,7 +30,21 @@ const BookDetailInfo = ({ book }: BookInfoContentProps) => {
           </S.BookSubInfoWrapper>
           <S.BookSubInfoWrapper>
             <S.BookSubInfoTitle>읽기 상태</S.BookSubInfoTitle>
-            <S.BookSubInfoDescription>읽지 않음</S.BookSubInfoDescription>
+            <S.BookSubInfoDescription>
+              <span>읽지 않음</span>
+              {/* TODO: 추후 위치 적절한지 고려한 후 수정 필요 */}
+              <Button
+                styleType="tertiary"
+                sizeType="sm"
+                label="변경"
+                onClick={openModal(
+                  <BookReadingStatusChangeModal
+                    ref={modalRef}
+                    readingStatus="completed"
+                  />,
+                )}
+              />
+            </S.BookSubInfoDescription>
           </S.BookSubInfoWrapper>
         </S.BookSubInfoList>
         <S.BookInfoList>

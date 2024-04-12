@@ -118,6 +118,7 @@ export default {
       zIndex: {
         SIDEBAR: '999',
         TOAST: '1000',
+        MODAL: '1000',
       },
       boxShadow: {
         light_sm:
@@ -131,8 +132,12 @@ export default {
       },
       keyframes: {
         show: {
-          '0%': { transform: 'scale(0)', opacity: 1 },
+          '0%': { transform: 'scale(0)', opacity: 0 },
           '100%': { transform: 'scale(1)', opacity: 1 },
+        },
+        hide: {
+          '0%': { transform: 'scale(1)', opacity: 1 },
+          '100%': { transform: 'scale(0)', opacity: 0 },
         },
         fadeIn: {
           '0%': { opacity: 0 },
@@ -152,7 +157,8 @@ export default {
         },
       },
       animation: {
-        show: 'show 200ms cubic-bezier(.6, 0, .4, 1) 1000ms forwards',
+        show: '0.7s forwards show',
+        hide: '0.7s forwards hide',
         fadeIn: '0.3s forwards fadeIn',
         fadeOut: '0.3s forwards fadeOut',
         openSidebar: '1s forwards openSidebar',

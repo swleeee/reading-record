@@ -6,11 +6,11 @@ export const BookInfoWrapper = tw.section`w-full max-w-[768px] h-full mx-auto ro
 
 export const BookSubInfoList = tw.dl`relative flex justify-center gap-x-[12px] mt-[-25px] mb-[24px] desktop:mt-[-32px]`;
 
-export const BookSubInfoWrapper = tw.div`flex-1 border border-brown100 rounded-[4px] shadow-light_sm overflow-hidden`;
+export const BookSubInfoWrapper = tw.div`flex flex-col flex-1 border border-brown100 rounded-[4px] shadow-light_sm overflow-hidden`;
 
 export const BookSubInfoTitle = tw.dt`py-[4px] m-body-m13 text-center bg-white tablet:t-body-m13 desktop:d-body-m15`;
 
-export const BookSubInfoDescription = tw.dt`h-full py-[6px] m-body-r12 text-center bg-brown100 tablet:t-body-r12 desktop:d-body-r14`;
+export const BookSubInfoDescription = tw.dd`flex flex-1 justify-center items-center flex-wrap gap-x-[4px] py-[6px] m-body-r12 text-center bg-gray100 tablet:t-body-r12 desktop:d-body-r14`;
 
 export const BookThumbnailSection = styled.section<{ src: string }>`
   ${({ src }) => css`
