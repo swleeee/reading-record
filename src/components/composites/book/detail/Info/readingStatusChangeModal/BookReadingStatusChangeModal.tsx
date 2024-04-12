@@ -1,10 +1,19 @@
 import React, { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
 
 import { Modal, SegmentedButton } from '@/components';
 import { useModal, useToast } from '@/hooks';
 import { BOOK_READING_STATUS_OPTIONS, TOAST } from '@/assets';
+import RatingIcon from '@/assets/icon/ic_rating.svg?react';
 import type { SelectOptionType } from '@/types';
 import * as S from './BookReadingStatusChangeModal.styled';
+
+type Form = {
+  readingStartDateTime: string | null;
+  readingEndDateTime: string | null;
+  rating: number | null;
+  recordContent: string | null;
+};
 
 interface BookReadingStatusChangeModalProps {
   readingStatus: string;
@@ -18,6 +27,10 @@ const BookReadingStatusChangeModal = React.forwardRef<
   const [selectedOption, setSelectedOption] = useState<SelectOptionType | null>(
     null,
   );
+
+  const { watch, setValue } = useForm<Form>({
+    mode: 'onTouched',
+  });
 
   const { addToast } = useToast();
   const { closeModal } = useModal(setIsModalShow);
@@ -37,6 +50,10 @@ const BookReadingStatusChangeModal = React.forwardRef<
     */
     addToast(TOAST.SUCCESS.UPDATE_READING_COMPLETED_STATUS);
     closeModal();
+  };
+
+  const handleRatingMouseEnter = (index: number) => () => {
+    setValue('rating', index);
   };
 
   useEffect(() => {
@@ -84,7 +101,17 @@ const BookReadingStatusChangeModal = React.forwardRef<
           >
             평점
           </S.Label>
-          <span>평점 매기기</span>
+          <S.RatingInfo>
+            {Array.from({ length: 5 }, (_, i) => (
+              <RatingIcon
+                key={i}
+                css={S.ratingIcon(
+                  i - 1 < (watch('rating') ? watch('rating')! : 0),
+                )}
+                onMouseEnter={handleRatingMouseEnter(i)}
+              />
+            ))}
+          </S.RatingInfo>
         </S.Item>
         <S.Item>
           <S.Label

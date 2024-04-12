@@ -21,3 +21,14 @@ export const Label = styled.label<{ isRequired?: boolean }>`
 export const readingStatusButtonGroup = css`
   ${tw`mb-[12px]`}
 `;
+
+export const RatingInfo = tw.div`flex gap-x-[8px] w-fit cursor-pointer`;
+
+export const ratingIcon = (isFilled: boolean) => css`
+  ${tw`w-[20px] h-[20px]`}
+
+  & > g > path {
+    ${tw`fill-brown400 duration-300`}
+    ${!isFilled && tw`opacity-30`}
+  }
+`;
