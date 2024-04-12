@@ -1,6 +1,24 @@
 export const TOAST = {
-  SUCCESS: {},
-  WARNING: {},
+  SUCCESS: {
+    UPDATE_READING_PENDING_STATUS: {
+      type: 'success',
+      message: `'읽기 전' 상태 변경 완료!`,
+    },
+    UPDATE_READING_ONGOING_STATUS: {
+      type: 'success',
+      message: `'읽기 중' 상태 변경 완료!`,
+    },
+    UPDATE_READING_COMPLETED_STATUS: {
+      type: 'success',
+      message: `'읽기 완료' 상태 변경 완료!`,
+    },
+  },
+  WARNING: {
+    UPDATE_READING_STATUS: {
+      type: 'warning',
+      message: '상태를 변경할 수 없습니다 :(',
+    },
+  },
   INFO: {
     SERVICE_REPAIRING: {
       type: 'info',
