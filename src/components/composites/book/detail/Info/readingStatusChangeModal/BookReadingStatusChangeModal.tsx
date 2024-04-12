@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
-import { Modal, SegmentedButton } from '@/components';
+import { ErrorMessage, Modal, SegmentedButton, Textarea } from '@/components';
 import { useModal, useToast } from '@/hooks';
-import { BOOK_READING_STATUS_OPTIONS, TOAST } from '@/assets';
+import { BOOK_READING_STATUS_OPTIONS, ERROR_MSG, TOAST } from '@/assets';
 import RatingIcon from '@/assets/icon/ic_rating.svg?react';
 import type { SelectOptionType } from '@/types';
 import * as S from './BookReadingStatusChangeModal.styled';
@@ -28,7 +28,13 @@ const BookReadingStatusChangeModal = React.forwardRef<
     null,
   );
 
-  const { watch, setValue } = useForm<Form>({
+  const {
+    formState: { errors },
+    watch,
+    register,
+    setValue,
+    handleSubmit,
+  } = useForm<Form>({
     mode: 'onTouched',
   });
 
@@ -39,8 +45,12 @@ const BookReadingStatusChangeModal = React.forwardRef<
     setSelectedOption(option);
   };
 
+  const handleRatingMouseEnter = (index: number) => () => {
+    setValue('rating', index);
+  };
+
   // TODO: 추후 작성 예정
-  const handleReadingStatusChange = () => {
+  const handleReadingStatusChange = handleSubmit(() => {
     /*
       NOTE: 상황별 토스트
       1. '읽기 전', '읽기 중' -> '읽기 완료' (TOAST.SUCCESS.UPDATE_READING_PENDING_STATUS) 
@@ -50,11 +60,7 @@ const BookReadingStatusChangeModal = React.forwardRef<
     */
     addToast(TOAST.SUCCESS.UPDATE_READING_COMPLETED_STATUS);
     closeModal();
-  };
-
-  const handleRatingMouseEnter = (index: number) => () => {
-    setValue('rating', index);
-  };
+  });
 
   useEffect(() => {
     const initReadingStatusOption = BOOK_READING_STATUS_OPTIONS.find(
@@ -116,10 +122,24 @@ const BookReadingStatusChangeModal = React.forwardRef<
         <S.Item>
           <S.Label
             isRequired={selectedOption?.key === 'completed' ? true : false}
+            htmlFor="recordContent"
           >
             감상문
           </S.Label>
-          <p>감상문 내용</p>
+          <Textarea
+            css={S.recordContent}
+            hasError={!!errors.recordContent}
+            id="recordContent"
+            maxLength={1000}
+            placeholder="감상문 내용을 입력해주세요."
+            value={watch('recordContent') ?? ''}
+            register={register('recordContent', {
+              required: ERROR_MSG.REQUIRED,
+            })}
+          />
+          {errors.recordContent?.message && (
+            <ErrorMessage message={errors.recordContent.message} />
+          )}
         </S.Item>
       </section>
     </Modal>

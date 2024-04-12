@@ -32,3 +32,7 @@ export const ratingIcon = (isFilled: boolean) => css`
     ${!isFilled && tw`opacity-30`}
   }
 `;
+
+export const recordContent = css`
+  ${tw`h-[120px] tablet:h-[200px] desktop:h-[240px]`}
+`;
