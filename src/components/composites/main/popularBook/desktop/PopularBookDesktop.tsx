@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { SegmentedButton } from '@/components';
-import { DATE_FILTER_OPTIONS } from '@/assets';
+import { POPULAR_BOOK_DATE_FILTER_OPTIONS } from '@/assets';
 import type { PopularBookCardType, SelectOptionType } from '@/types';
 import * as S from './PopularBookDesktop.styled';
 
@@ -12,7 +12,7 @@ interface PopularBookDesktopProps {
 
 const PopularBookDesktop = ({ books }: PopularBookDesktopProps) => {
   const [selectedOption, setSelectedOption] = useState<SelectOptionType>(
-    DATE_FILTER_OPTIONS[0],
+    POPULAR_BOOK_DATE_FILTER_OPTIONS[0],
   );
 
   const handleOptionSelect = (option: SelectOptionType) => () => {
@@ -25,7 +25,7 @@ const PopularBookDesktop = ({ books }: PopularBookDesktopProps) => {
         <S.Title>가장 인기있는 도서는?</S.Title>
         <SegmentedButton
           css={S.dateSegmentedButton}
-          options={DATE_FILTER_OPTIONS}
+          options={POPULAR_BOOK_DATE_FILTER_OPTIONS}
           selectedOption={selectedOption}
           onClick={handleOptionSelect}
         />

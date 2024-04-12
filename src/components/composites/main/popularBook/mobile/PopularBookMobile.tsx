@@ -5,7 +5,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 
 import { SegmentedButton } from '@/components';
-import { DATE_FILTER_OPTIONS } from '@/assets';
+import { POPULAR_BOOK_DATE_FILTER_OPTIONS } from '@/assets';
 import type { PopularBookCardType, SelectOptionType } from '@/types';
 import * as S from './PopularBookMobile.styled';
 
@@ -15,7 +15,7 @@ interface PopularBookMobileProps {
 
 const PopularBookMobile = ({ books }: PopularBookMobileProps) => {
   const [selectedOption, setSelectedOption] = useState<SelectOptionType>(
-    DATE_FILTER_OPTIONS[0],
+    POPULAR_BOOK_DATE_FILTER_OPTIONS[0],
   );
 
   const handleOptionSelect = (option: SelectOptionType) => () => {
@@ -28,7 +28,7 @@ const PopularBookMobile = ({ books }: PopularBookMobileProps) => {
         <S.Title>가장 인기있는 도서는?</S.Title>
         <SegmentedButton
           css={S.dateSegmentedButton}
-          options={DATE_FILTER_OPTIONS}
+          options={POPULAR_BOOK_DATE_FILTER_OPTIONS}
           selectedOption={selectedOption}
           onClick={handleOptionSelect}
         />

@@ -9,3 +9,9 @@ export const BOOK_REVIEW_DROPDOWN_OPTIONS = [
   { key: 'like', label: '좋아요순' },
   { key: 'recent', label: '최신순' },
 ];
+
+export const POPULAR_BOOK_DATE_FILTER_OPTIONS = [
+  { key: 'week', label: 'Week' },
+  { key: 'month', label: 'Month' },
+  { key: 'year', label: 'Year' },
+];
