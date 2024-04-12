@@ -9,6 +9,7 @@ import type { SelectOptionType } from '@/types';
 import * as S from './BookReadingStatusChangeModal.styled';
 
 type Form = {
+  readingStatus: SelectOptionType | null;
   readingStartDateTime: string | null;
   readingEndDateTime: string | null;
   rating: number | null;
@@ -24,9 +25,6 @@ const BookReadingStatusChangeModal = React.forwardRef<
   BookReadingStatusChangeModalProps
 >(({ readingStatus }, ref) => {
   const [isModalShow, setIsModalShow] = useState(true);
-  const [selectedOption, setSelectedOption] = useState<SelectOptionType | null>(
-    null,
-  );
 
   const {
     formState: { errors },
@@ -42,7 +40,7 @@ const BookReadingStatusChangeModal = React.forwardRef<
   const { closeModal } = useModal(setIsModalShow);
 
   const handleOptionSelect = (option: SelectOptionType) => () => {
-    setSelectedOption(option);
+    setValue('readingStatus', option);
   };
 
   const handleRatingMouseEnter = (index: number) => () => {
@@ -67,7 +65,8 @@ const BookReadingStatusChangeModal = React.forwardRef<
       (option) => option.key === readingStatus,
     );
 
-    setSelectedOption(
+    setValue(
+      'readingStatus',
       initReadingStatusOption ?? BOOK_READING_STATUS_OPTIONS[0],
     );
   }, []);
@@ -86,11 +85,11 @@ const BookReadingStatusChangeModal = React.forwardRef<
       <SegmentedButton
         css={S.readingStatusButtonGroup}
         options={BOOK_READING_STATUS_OPTIONS}
-        selectedOption={selectedOption}
+        selectedOption={watch('readingStatus')}
         onClick={handleOptionSelect}
       />
       <S.ModalSection>
-        {selectedOption?.key === 'pending' ? (
+        {watch('readingStatus')?.key === 'pending' ? (
           // TODO: 도서 '읽기 전' 상태일 때 하기와 같이 문구 임시 노출 (추후 수정 필요)
           <S.NoneItem>
             <p>책을 한 번 읽어보세요 :)</p>
@@ -99,7 +98,9 @@ const BookReadingStatusChangeModal = React.forwardRef<
           <>
             <S.Item marginBottom="24px">
               <S.Label
-                isRequired={selectedOption?.key === 'pending' ? false : true}
+                isRequired={
+                  watch('readingStatus')?.key === 'pending' ? false : true
+                }
               >
                 독서 기간
               </S.Label>
@@ -108,11 +109,11 @@ const BookReadingStatusChangeModal = React.forwardRef<
                 <span>캘린더-2</span>
               </div>
             </S.Item>
-            {selectedOption?.key === 'completed' && (
+            {watch('readingStatus')?.key === 'completed' && (
               <S.Item marginBottom="24px">
                 <S.Label
                   isRequired={
-                    selectedOption?.key === 'completed' ? true : false
+                    watch('readingStatus')?.key === 'completed' ? true : false
                   }
                 >
                   평점
@@ -130,11 +131,11 @@ const BookReadingStatusChangeModal = React.forwardRef<
                 </S.RatingInfo>
               </S.Item>
             )}
-            {selectedOption?.key === 'completed' && (
+            {watch('readingStatus')?.key === 'completed' && (
               <S.Item>
                 <S.Label
                   isRequired={
-                    selectedOption?.key === 'completed' ? true : false
+                    watch('readingStatus')?.key === 'completed' ? true : false
                   }
                   htmlFor="recordContent"
                 >
