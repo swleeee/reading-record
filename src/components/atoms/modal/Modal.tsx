@@ -13,7 +13,7 @@ interface ModalProps {
   closeButtonName: string;
   title: string;
   activeFn: () => void;
-  closeFn?: () => void;
+  closeFn: () => void;
 }
 
 const Modal = React.forwardRef<HTMLDialogElement, ModalProps>(
