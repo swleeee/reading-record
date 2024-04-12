@@ -1,27 +1,32 @@
 import React, { useRef } from 'react';
 import { useRecoilState } from 'recoil';
 
-import { modalComponentState } from '@/stores';
+import { modalState } from '@/stores';
 
-export const useModal = (changeShowStatus?: (isShow: boolean) => void) => {
+export const useModal = () => {
   const modalRef = useRef<HTMLDialogElement>(null);
 
-  const [modalComponents, setModalComponents] =
-    useRecoilState(modalComponentState);
+  const [modals, setModals] = useRecoilState(modalState);
 
-  const openModal = (component: React.ReactNode) => () => {
-    document.body.style.cssText = 'overflow-y: hidden';
+  const openModal =
+    (component: React.ReactElement<HTMLDialogElement>) => () => {
+      document.body.style.cssText = 'overflow-y: hidden';
 
-    setModalComponents([...modalComponents, component]);
-  };
+      setModals([...modals, { isShow: true, component }]);
+    };
 
   const closeModal = () => {
-    changeShowStatus && changeShowStatus(false);
+    const newModalComponents = [...modals];
+    const lastModals = newModalComponents.pop();
 
-    const newModalComponents = [...modalComponents];
-    newModalComponents.pop();
+    if (!lastModals) return;
+
+    setModals([
+      ...newModalComponents,
+      { isShow: false, component: lastModals.component },
+    ]);
     const closeTimeId = setTimeout(() => {
-      setModalComponents(newModalComponents);
+      setModals(newModalComponents);
     }, 500);
 
     if (newModalComponents.length === 0) {
@@ -35,7 +40,7 @@ export const useModal = (changeShowStatus?: (isShow: boolean) => void) => {
 
   return {
     modalRef,
-    modalComponents,
+    modals,
     openModal,
     closeModal,
   };

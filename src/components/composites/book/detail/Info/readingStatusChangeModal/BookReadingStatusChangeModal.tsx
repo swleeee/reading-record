@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 
 import { ErrorMessage, Modal, SegmentedButton, Textarea } from '@/components';
@@ -24,8 +24,6 @@ const BookReadingStatusChangeModal = React.forwardRef<
   HTMLDialogElement,
   BookReadingStatusChangeModalProps
 >(({ readingStatus }, ref) => {
-  const [isModalShow, setIsModalShow] = useState(true);
-
   const {
     formState: { errors },
     watch,
@@ -37,7 +35,7 @@ const BookReadingStatusChangeModal = React.forwardRef<
   });
 
   const { addToast } = useToast();
-  const { closeModal } = useModal(setIsModalShow);
+  const { closeModal } = useModal();
 
   const handleOptionSelect = (option: SelectOptionType) => () => {
     setValue('readingStatus', option);
@@ -74,7 +72,6 @@ const BookReadingStatusChangeModal = React.forwardRef<
   return (
     <Modal
       ref={ref}
-      isShow={isModalShow}
       isDisabled={false}
       activeButtonName="변경"
       closeButtonName="닫기"

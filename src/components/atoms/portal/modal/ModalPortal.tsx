@@ -1,16 +1,16 @@
 import React from 'react';
 import { useRecoilValue } from 'recoil';
 
-import { modalComponentState } from '@/stores';
+import { modalState } from '@/stores';
 import Portal from '../Portal';
 import * as S from './ModalPortal.styled';
 
 const ModalPortal = () => {
-  const modalComponents = useRecoilValue(modalComponentState);
+  const modals = useRecoilValue(modalState);
 
   return (
-    <Portal isMounted={!!modalComponents.length} container="#modal">
-      {modalComponents?.map((component, i) => (
+    <Portal isMounted={!!modals.length} container="#modal">
+      {modals?.map(({ component }, i) => (
         <S.Dim key={i}>{component}</S.Dim>
       ))}
     </Portal>
