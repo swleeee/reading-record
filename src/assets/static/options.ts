@@ -18,6 +18,6 @@ export const POPULAR_BOOK_DATE_FILTER_OPTIONS = [
 
 export const BOOK_READING_STATUS_OPTIONS = [
   { key: 'pending', label: '읽기 전' },
-  { key: 'onGoing', label: '읽기 중' },
+  { key: 'ongoing', label: '읽기 중' },
   { key: 'completed', label: '읽기 완료' },
 ];

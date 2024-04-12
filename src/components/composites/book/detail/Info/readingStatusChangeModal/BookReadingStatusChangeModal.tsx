@@ -85,15 +85,15 @@ const BookReadingStatusChangeModal = React.forwardRef<
         selectedOption={watch('readingStatus')}
         onClick={handleOptionSelect}
       />
-      <S.ModalSection>
+      <S.DataSection>
         {watch('readingStatus')?.key === 'pending' ? (
           // TODO: 도서 '읽기 전' 상태일 때 하기와 같이 문구 임시 노출 (추후 수정 필요)
-          <S.NoneItem>
+          <S.EmptyDataWrapper>
             <p>책을 한 번 읽어보세요 :)</p>
-          </S.NoneItem>
+          </S.EmptyDataWrapper>
         ) : (
           <>
-            <S.Item marginBottom="24px">
+            <S.DataWrapper marginBottom="24px">
               <S.Label
                 isRequired={
                   watch('readingStatus')?.key === 'pending' ? false : true
@@ -105,9 +105,9 @@ const BookReadingStatusChangeModal = React.forwardRef<
                 <span>캘린더-1</span>
                 <span>캘린더-2</span>
               </div>
-            </S.Item>
+            </S.DataWrapper>
             {watch('readingStatus')?.key === 'completed' && (
-              <S.Item marginBottom="24px">
+              <S.DataWrapper marginBottom="24px">
                 <S.Label
                   isRequired={
                     watch('readingStatus')?.key === 'completed' ? true : false
@@ -126,10 +126,10 @@ const BookReadingStatusChangeModal = React.forwardRef<
                     />
                   ))}
                 </S.RatingInfo>
-              </S.Item>
+              </S.DataWrapper>
             )}
             {watch('readingStatus')?.key === 'completed' && (
-              <S.Item>
+              <S.DataWrapper>
                 <S.Label
                   isRequired={
                     watch('readingStatus')?.key === 'completed' ? true : false
@@ -152,11 +152,11 @@ const BookReadingStatusChangeModal = React.forwardRef<
                 {errors.recordContent?.message && (
                   <ErrorMessage message={errors.recordContent.message} />
                 )}
-              </S.Item>
+              </S.DataWrapper>
             )}
           </>
         )}
-      </S.ModalSection>
+      </S.DataSection>
     </Modal>
   );
 });
