@@ -26,6 +26,15 @@ const customStyles = css`
     // FIXME: 모바일에서 주소 영역에 의해서 스크롤이 생기는 이슈
     ${tw`h-[100dvh]`}
   }
+
+  input,
+  textarea,
+  div,
+  button,
+  select,
+  a {
+    -webkit-tap-highlight-color: transparent;
+  }
 `;
 
 const GlobalStyles = () => (
