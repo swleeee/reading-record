@@ -3,6 +3,7 @@ export * from './card';
 export * from './header';
 export * from './input';
 export * from './link';
+export * from './message';
 export * from './portal';
 export * from './spinner';
 export { default as Dropdown } from './dropdown/Dropdown';
