@@ -19,9 +19,9 @@ export const MonthButton = styled.button<{ isSelected: boolean }>`
   `}
 `;
 
-export const ViewOtherDateButton = tw.button`rounded-full hover:bg-brown50`;
+export const MonthYearNavButton = tw.button`rounded-full hover:bg-brown50`;
 
-export const moveIcon = css`
+export const openCloseIcon = css`
   ${tw`w-[20px] h-[20px]`}
 
   & > g > path {

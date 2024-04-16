@@ -39,7 +39,7 @@ const Calendar = ({
   return (
     <S.CalendarWrapper>
       <S.CalendarHeader>
-        <S.ViewOtherDateButton
+        <S.MonthYearNavButton
           type="button"
           aria-label={
             dateViewMode === 'date'
@@ -50,8 +50,8 @@ const Calendar = ({
           }
           onClick={handleOtherDateView(dateViewMode, 'prev')}
         >
-          <ArrowLeftIcon css={S.moveIcon} />
-        </S.ViewOtherDateButton>
+          <ArrowLeftIcon css={S.openCloseIcon} />
+        </S.MonthYearNavButton>
         <S.DateLabelWrapper>
           <S.DateLabel>
             {dateViewMode === 'year'
@@ -72,13 +72,13 @@ const Calendar = ({
             )}
           >
             {dateViewMode === 'date' ? (
-              <ArrowDropdownIcon css={S.moveIcon} />
+              <ArrowDropdownIcon css={S.openCloseIcon} />
             ) : (
-              <ArrowDropupIcon css={S.moveIcon} />
+              <ArrowDropupIcon css={S.openCloseIcon} />
             )}
           </S.ToggleButton>
         </S.DateLabelWrapper>
-        <S.ViewOtherDateButton
+        <S.MonthYearNavButton
           type="button"
           aria-label={
             dateViewMode === 'date'
@@ -89,8 +89,8 @@ const Calendar = ({
           }
           onClick={handleOtherDateView(dateViewMode, 'next')}
         >
-          <ArrowRightIcon css={S.moveIcon} />
-        </S.ViewOtherDateButton>
+          <ArrowRightIcon css={S.openCloseIcon} />
+        </S.MonthYearNavButton>
       </S.CalendarHeader>
       {(dateViewMode === 'month' || dateViewMode === 'year') && (
         <div>
