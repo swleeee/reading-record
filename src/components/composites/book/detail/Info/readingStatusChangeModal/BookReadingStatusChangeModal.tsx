@@ -1,7 +1,14 @@
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+import type { Dayjs } from 'dayjs';
 
-import { ErrorMessage, Modal, SegmentedButton, Textarea } from '@/components';
+import {
+  DatePicker,
+  ErrorMessage,
+  Modal,
+  SegmentedButton,
+  Textarea,
+} from '@/components';
 import { useModal, useToast } from '@/hooks';
 import { BOOK_READING_STATUS_OPTIONS, ERROR_MSG, TOAST } from '@/assets';
 import RatingIcon from '@/assets/icon/ic_rating.svg?react';
@@ -10,8 +17,8 @@ import * as S from './BookReadingStatusChangeModal.styled';
 
 type Form = {
   readingStatus: SelectOptionType | null;
-  readingStartDateTime: string | null;
-  readingEndDateTime: string | null;
+  readingStartDateTime: Dayjs | null;
+  readingEndDateTime: Dayjs | null;
   rating: number | null;
   recordContent: string | null;
 };
@@ -36,6 +43,16 @@ const BookReadingStatusChangeModal = React.forwardRef<
 
   const { addToast } = useToast();
   const { closeModal } = useModal();
+
+  const selectDate = (type: 'start' | 'end') => (date: Dayjs) => {
+    if (type === 'start') {
+      setValue('readingStartDateTime', date);
+    }
+
+    if (type === 'end') {
+      setValue('readingEndDateTime', date);
+    }
+  };
 
   const handleOptionSelect = (option: SelectOptionType) => () => {
     setValue('readingStatus', option);
@@ -101,10 +118,19 @@ const BookReadingStatusChangeModal = React.forwardRef<
               >
                 독서 기간
               </S.Label>
-              <div>
-                <span>캘린더-1</span>
-                <span>캘린더-2</span>
-              </div>
+              <S.DatePickerWrapper>
+                <DatePicker
+                  selectedDate={watch('readingStartDateTime')}
+                  placeholder="독서 시작 날짜를 선택하세요."
+                  selectDate={selectDate('start')}
+                />
+                <DatePicker
+                  isDisabled={watch('readingStatus')?.key === 'ongoing'}
+                  selectedDate={watch('readingEndDateTime')}
+                  placeholder="독서 종료 날짜를 선택하세요."
+                  selectDate={selectDate('end')}
+                />
+              </S.DatePickerWrapper>
             </S.DataWrapper>
             {watch('readingStatus')?.key === 'completed' && (
               <S.DataWrapper marginBottom="24px">

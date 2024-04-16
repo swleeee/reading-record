@@ -28,6 +28,14 @@ export const Label = styled.label<{ isRequired?: boolean }>`
   `}
 `;
 
+export const DatePickerWrapper = styled.div`
+  ${tw`flex flex-wrap gap-x-[16px] gap-y-[4px]`}
+
+  & > dialog:first-of-type {
+    ${tw`relative after:(content-["~"] absolute top-1/2 right-[-12px] -translate-y-1/2)`}
+  }
+`;
+
 export const readingStatusButtonGroup = css`
   ${tw`mb-[12px]`}
 `;

@@ -119,6 +119,7 @@ export default {
         SIDEBAR: '999',
         TOAST: '1000',
         MODAL: '1000',
+        POPUP: '1000',
       },
       boxShadow: {
         light_sm:

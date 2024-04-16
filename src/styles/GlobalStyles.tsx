@@ -36,6 +36,16 @@ const customStyles = css`
     -webkit-tap-highlight-color: transparent;
   }
 
+  button {
+    cursor: pointer;
+    border: 0;
+    background-color: transparent;
+
+    &:disabled {
+      cursor: not-allowed;
+    }
+  }
+
   textarea {
     resize: none;
     outline: 0;
