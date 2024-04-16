@@ -7,6 +7,7 @@ interface InputProps {
   className?: string;
   children?: React.ReactNode;
   isDisabled?: boolean;
+  isReadOnly?: boolean;
   hasError?: boolean;
   maxLength?: number;
   placeholder?: string;
@@ -20,6 +21,7 @@ const Input = ({
   className,
   children,
   isDisabled = false,
+  isReadOnly = false,
   hasError = false,
   maxLength,
   placeholder,
@@ -34,6 +36,7 @@ const Input = ({
         aria-invalid={hasError}
         autoComplete="off"
         disabled={isDisabled}
+        readOnly={isReadOnly}
         hasError={hasError}
         maxLength={maxLength}
         placeholder={placeholder}
