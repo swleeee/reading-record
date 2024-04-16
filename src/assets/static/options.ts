@@ -21,3 +21,8 @@ export const BOOK_READING_STATUS_OPTIONS = [
   { key: 'ongoing', label: '읽기 중' },
   { key: 'completed', label: '읽기 완료' },
 ];
+
+export const DATE_PICKER_VIEW_MODE_OPTIONS = [
+  { key: 'month', label: 'Month' },
+  { key: 'year', label: 'Year' },
+];

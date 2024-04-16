@@ -11,6 +11,7 @@ export interface ToastType {
 }
 
 export type DeviceType = 'mobile' | 'tablet' | 'labtop';
+export type DateViewMode = 'date' | 'month' | 'year';
 
 export interface SelectOptionType {
   key: string;

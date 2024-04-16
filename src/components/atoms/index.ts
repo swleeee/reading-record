@@ -6,6 +6,7 @@ export * from './link';
 export * from './message';
 export * from './portal';
 export * from './spinner';
+export { default as DatePicker } from './datePicker/DatePicker';
 export { default as Dropdown } from './dropdown/Dropdown';
 export { default as Modal } from './modal/Modal';
 export { default as NoData } from './noData/NoData';
