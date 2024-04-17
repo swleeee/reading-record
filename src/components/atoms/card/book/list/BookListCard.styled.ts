@@ -1,12 +1,30 @@
 import tw, { css, styled } from 'twin.macro';
 
 export const bookDetailLink = css`
-  ${tw`flex gap-x-[12px] mb-[8px] border border-white rounded-[4px] px-[8px] py-[12px] bg-white shadow-light_sm tablet:(gap-x-[20px] mb-[16px]) desktop:(gap-x-[32px] mb-[24px])`}
+  ${tw`flex flex-col gap-y-[4px] mb-[8px] border border-white rounded-[4px] px-[8px] py-[12px] bg-white shadow-light_sm tablet:(gap-x-[20px] mb-[16px]) desktop:(gap-x-[32px] mb-[24px])`}
 
-  &:hover > img {
+  &:hover > main > img {
     ${tw`scale-105 duration-200`}
   }
 `;
+
+export const Header = tw.header`flex justify-between items-center border-b border-b-gray200 py-[8px]`;
+
+export const ReadingStatus = tw.span`m-body-m14 text-brown400 tablet:t-body-m14 desktop:d-body-m16`;
+
+export const RatingWrapper = tw.div`flex items-center gap-x-[2px]`;
+
+export const ratingIcon = css`
+  ${tw`w-[20px] h-[20px]`}
+
+  & > g > path {
+    ${tw`fill-brown400`}
+  }
+`;
+
+export const Rating = tw.span`m-body-m13 tablet:t-body-m13 desktop:d-body-m15`;
+
+export const Main = tw.main`flex gap-x-[12px]`;
 
 export const BookThumbnail = tw.img`shrink-0 border border-brown300 w-[120px] tablet:w-[130px] desktop:w-[160px]`;
 

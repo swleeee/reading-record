@@ -1,3 +1,5 @@
+import { BOOK_READING_STATUS_OPTIONS } from '@/assets';
+
 export interface BookRecordCardType {
   id: string;
   bookImgSrc: string;
@@ -31,6 +33,8 @@ export interface GetBooksServerModel {
     total_count: number;
   };
   documents: {
+    readingStatus: (typeof BOOK_READING_STATUS_OPTIONS)[number]['key'];
+    rating: number | null;
     authors: string[];
     contents: string;
     datetime: string;

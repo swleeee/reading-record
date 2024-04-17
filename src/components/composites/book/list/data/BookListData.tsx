@@ -12,6 +12,8 @@ const BookListData = ({ books }: BookListDataProps) => {
     books.map((book) => (
       <BookListCard
         key={book.isbn}
+        readingStatus={book.readingStatus}
+        rating={book.rating}
         isbn={book.isbn}
         thumbnail={book.thumbnail}
         bookTitle={book.title}
