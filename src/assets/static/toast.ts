@@ -14,6 +14,17 @@ export const TOAST = {
     },
   },
   WARNING: {
+    LOGIN_EMAIL_NOT_CONFIRMED: {
+      type: 'warning',
+      title: '로그인을 실패하였습니다.',
+      message:
+        '가입 확인이 안 된 상태입니다. \n이메일을 열고 확인 링크를 눌러주세요. :)',
+    },
+    LOGIN_FAILED: {
+      type: 'warning',
+      title: '로그인을 실패하였습니다.',
+      message: '아이디와 비밀번호를 확인해주세요. :)',
+    },
     UPDATE_READING_STATUS: {
       type: 'warning',
       message: '상태를 변경할 수 없습니다 :(',
