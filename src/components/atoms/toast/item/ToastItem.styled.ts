@@ -39,4 +39,4 @@ export const toastSymbolIcon = (type: ToastType['type']) => css`
 
 export const ToastTitle = tw.div`m-body-m14 tablet:t-body-m14 labtop:d-body-m16`;
 
-export const ToastMessage = tw.p`m-body-r12 whitespace-pre tablet:t-body-r12 labtop:d-body-r14`;
+export const ToastMessage = tw.p`m-body-r12 whitespace-pre-wrap tablet:t-body-r12 labtop:d-body-r14`;
