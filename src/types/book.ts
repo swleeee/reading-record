@@ -1,3 +1,5 @@
+import { BOOK_READING_STATUS_OPTIONS } from '@/assets';
+
 export interface BookRecordCardType {
   id: string;
   bookImgSrc: string;
@@ -31,6 +33,8 @@ export interface GetBooksServerModel {
     total_count: number;
   };
   documents: {
+    readingStatus: (typeof BOOK_READING_STATUS_OPTIONS)[number]['key'];
+    rating: number | null;
     authors: string[];
     contents: string;
     datetime: string;
@@ -59,5 +63,24 @@ export interface GetBookRecordsServerModel {
     likeCount: number;
     content: string;
     rating: number;
+  }[];
+}
+
+export interface GetMyLibraryServerModel {
+  pageInfo: {
+    totalCount: number;
+    totalPages: number;
+  };
+  books: {
+    isbn: string;
+    readingStatus: (typeof BOOK_READING_STATUS_OPTIONS)[number]['key'];
+    rating: number | null;
+    thumbnail: string;
+    bookTitle: string;
+    bookContent: string;
+    authors: string[];
+    translators: string[];
+    datetime: string;
+    publisher: string;
   }[];
 }

@@ -17,3 +17,7 @@ export interface SelectOptionType {
   key: string;
   label: string;
 }
+
+export interface TabType extends SelectOptionType {
+  content: React.ReactNode;
+}
