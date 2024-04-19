@@ -122,6 +122,7 @@ export default {
         POPUP: '1000',
       },
       boxShadow: {
+        radioButton: `0 0 0 2px theme('colors.brown400')`,
         light_sm:
           '0 1px 3px 0 rgba(45, 39, 39, 0.12), 0 1px 2px -1px rgba(45, 39, 39, 0.12)',
         light_md:

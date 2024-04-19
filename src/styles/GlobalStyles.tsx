@@ -19,6 +19,9 @@ const customStyles = css`
     ${tw`min-h-screen overflow-x-hidden`}
   }
   input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
     border: 0;
     outline: 0;
   }
