@@ -10,6 +10,7 @@ export * from './spinner';
 export { default as DatePicker } from './datePicker/DatePicker';
 export { default as Dropdown } from './dropdown/Dropdown';
 export { default as Modal } from './modal/Modal';
+export { default as LabelContent } from './labelContent/LabelContent';
 export { default as NoData } from './noData/NoData';
 export { default as Pagination } from './pagination/Pagination';
 export { default as Popup } from './popup/Popup';
