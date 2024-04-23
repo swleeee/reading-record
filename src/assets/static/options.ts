@@ -26,3 +26,8 @@ export const DATE_PICKER_VIEW_MODE_OPTIONS = [
   { key: 'month', label: 'Month' },
   { key: 'year', label: 'Year' },
 ];
+
+export const GENDER_OPTIONS = [
+  { key: 'm', label: '남자' },
+  { key: 'w', label: '여자' },
+];

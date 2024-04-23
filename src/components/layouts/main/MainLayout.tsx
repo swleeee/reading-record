@@ -16,7 +16,7 @@ const MainLayout = ({ className, children }: MainLayoutProps) => {
   return (
     <>
       {device === 'mobile' ? <MobileHeader /> : <Header />}
-      <S.Body className={className}>{children}</S.Body>
+      <S.Main className={className}>{children}</S.Main>
     </>
   );
 };
