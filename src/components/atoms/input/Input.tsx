@@ -9,6 +9,7 @@ interface InputProps {
   isDisabled?: boolean;
   isReadOnly?: boolean;
   hasError?: boolean;
+  id?: string;
   maxLength?: number;
   placeholder?: string;
   type?: string;
@@ -23,6 +24,7 @@ const Input = ({
   isDisabled = false,
   isReadOnly = false,
   hasError = false,
+  id,
   maxLength,
   placeholder,
   type = 'text',
@@ -38,6 +40,7 @@ const Input = ({
         disabled={isDisabled}
         readOnly={isReadOnly}
         hasError={hasError}
+        id={id}
         maxLength={maxLength}
         placeholder={placeholder}
         type={type}
