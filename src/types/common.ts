@@ -21,3 +21,5 @@ export interface SelectOptionType {
 export interface TabType extends SelectOptionType {
   content: React.ReactNode;
 }
+
+export type CheckboxGroupType<T extends string> = { [key in T]: boolean };
