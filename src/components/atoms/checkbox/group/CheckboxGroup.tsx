@@ -15,16 +15,20 @@ const createContext = <T extends string>() =>
 const Context = createContext<string>();
 
 interface CheckboxGroupProps<T extends string> {
+  className?: string;
   children: React.ReactNode;
   checkedList: CheckboxGroupType<T>;
 }
 
 const CheckboxGroup = <T extends string>({
+  className,
   children,
   checkedList,
 }: CheckboxGroupProps<T>) => {
   return (
-    <Context.Provider value={{ checkedList }}>{children}</Context.Provider>
+    <Context.Provider value={{ checkedList }}>
+      <div className={className}>{children}</div>
+    </Context.Provider>
   );
 };
 

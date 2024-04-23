@@ -1,4 +1,4 @@
-import tw, { css } from 'twin.macro';
+import tw, { css, styled } from 'twin.macro';
 
 export const Form = tw.form`max-w-[640px] mx-auto`;
 
@@ -16,7 +16,12 @@ export const inputWrapper = css`
   }
 `;
 
-export const BirthdayContainer = tw.div`flex items-center border border-gray300 rounded-[4px] bg-white`;
+export const BirthdayContainer = styled.div<{ hasError: boolean }>`
+  ${({ hasError }) => css`
+    ${tw`flex items-center border border-gray300 rounded-[4px] bg-white`}
+    ${hasError && tw`border-red200`}
+  `}
+`;
 
 export const birthdayInputWrapper = css`
   ${inputWrapper};
@@ -30,13 +35,18 @@ export const birthdayInputWrapper = css`
   }
 `;
 
+export const checkboxGroup = (hasError: boolean) => css`
+  ${tw`border border-gray300 rounded-[4px] px-[12px] py-[20px] bg-white`}
+  ${hasError && tw`border-red200`}
+`;
+
 export const checkbox = css`
   ${tw`mb-[20px]`}
 `;
 
 export const AgreementAllText = tw.span`m-body-m15 tablet:t-body-m15 desktop:d-body-m17`;
 
-export const AgreementContainer = tw.div`flex justify-between items-center`;
+export const AgreementItemWrapper = tw.div`flex justify-between items-center`;
 
 export const AgreementLabelWrapper = tw.div`m-body-r14 tablet:t-body-r14 desktop:d-body-r16`;
 
