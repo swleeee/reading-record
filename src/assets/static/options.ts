@@ -31,3 +31,5 @@ export const GENDER_OPTIONS = [
   { key: 'm', label: '남자' },
   { key: 'w', label: '여자' },
 ];
+
+export const TERMS_DATE_OPTIONS = [{ key: '20240424', label: '2024.04.24' }];
