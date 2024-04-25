@@ -1,11 +1,5 @@
 import tw, { css, styled } from 'twin.macro';
 
-export const modal = css`
-  & > div > main {
-    ${tw`max-h-[600px] overflow-y-auto`}
-  }
-`;
-
 export const Section = tw.section`flex flex-col gap-y-[4px] mb-[16px]`;
 
 export const H3 = tw.h3`mb-[20px] m-headline-4 tablet:t-headline-4 desktop:d-headline-4`;
