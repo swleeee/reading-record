@@ -33,3 +33,5 @@ export const GENDER_OPTIONS = [
 ];
 
 export const TERMS_DATE_OPTIONS = [{ key: '20240424', label: '2024.04.24' }];
+
+export const PRIVACY_DATE_OPTIONS = [{ key: '20240424', label: '2024.04.24' }];
