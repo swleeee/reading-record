@@ -8,11 +8,11 @@ import * as S from './Modal.styled';
 interface ModalProps {
   className?: string;
   children: React.ReactNode;
-  isDisabled: boolean;
-  activeButtonName: string;
+  isDisabled?: boolean;
+  activeButtonName?: string;
   closeButtonName: string;
   title: string;
-  activeFn: () => void;
+  activeFn?: () => void;
   closeFn: () => void;
 }
 
@@ -55,7 +55,7 @@ const Modal = React.forwardRef<HTMLDialogElement, ModalProps>(
               <CloseIcon />
             </S.CloseButton>
           </S.Header>
-          {children}
+          <main>{children}</main>
           <S.ButtonWrapper>
             <Button
               label={closeButtonName}
@@ -63,13 +63,15 @@ const Modal = React.forwardRef<HTMLDialogElement, ModalProps>(
               sizeType="md"
               onClick={closeFn}
             />
-            <Button
-              isDisabled={isDisabled}
-              label={activeButtonName}
-              styleType="primary"
-              sizeType="md"
-              onClick={activeFn}
-            />
+            {activeButtonName && activeFn && (
+              <Button
+                isDisabled={isDisabled}
+                label={activeButtonName}
+                styleType="primary"
+                sizeType="md"
+                onClick={activeFn}
+              />
+            )}
           </S.ButtonWrapper>
         </S.ModalWrapper>
       </S.Modal>
