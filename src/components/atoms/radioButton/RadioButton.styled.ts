@@ -15,6 +15,6 @@ export const Label = tw.label`pl-[8px] m-body-r13 cursor-pointer tablet:t-body-r
 export const Input = styled.input`
   ${({ type }) => css`
     ${type === 'radio' &&
-    tw`w-[16px] h-[16px] border border-solid border-gray300 rounded-full cursor-pointer checked:(border-[2px] border-white bg-brown400 shadow-radioButton) desktop:(w-[24px] h-[24px] checked:border-[3px])`}
+    tw`w-[16px] h-[16px] border border-solid border-gray300 rounded-full cursor-pointer checked:(border-[2px] border-white bg-brown400 shadow-radioButton) desktop:(w-[20px] h-[20px] checked:border-[3px])`}
   `}
 `;
