@@ -5,6 +5,7 @@ import {
   CheckboxGroup,
   Input,
   LabelContent,
+  Link,
   RadioButton,
 } from '@/components';
 import { ERROR_MSG, GENDER_OPTIONS } from '@/assets';
@@ -233,7 +234,6 @@ const SignupForm = () => {
           </CheckboxGroup.All>
           <S.AgreementItemWrapper>
             <CheckboxGroup.Item
-              css={S.checkbox}
               id="term"
               isChecked={watch('termOfAgreements.term')}
               onItemSelect={handleTermItemSelect}
@@ -243,16 +243,12 @@ const SignupForm = () => {
                 <S.AgreementRequiredText>(필수)</S.AgreementRequiredText>
               </S.AgreementLabelWrapper>
             </CheckboxGroup.Item>
-            <Button
-              styleType="tertiary"
-              sizeType="md"
-              label="약관 보기"
-              onClick={() => {}} // TODO: 작성 예정
-            />
+            <Link sizeType="lg" styleType="tertiaryBrown" to="/terms">
+              약관 보기
+            </Link>
           </S.AgreementItemWrapper>
           <S.AgreementItemWrapper>
             <CheckboxGroup.Item
-              css={S.checkbox}
               id="policy"
               isChecked={watch('termOfAgreements.policy')}
               onItemSelect={handleTermItemSelect}
@@ -262,12 +258,9 @@ const SignupForm = () => {
                 <S.AgreementRequiredText>(필수)</S.AgreementRequiredText>
               </S.AgreementLabelWrapper>
             </CheckboxGroup.Item>
-            <Button
-              styleType="tertiary"
-              sizeType="md"
-              label="약관 보기"
-              onClick={() => {}} // TODO: 작성 예정
-            />
+            <Link sizeType="lg" styleType="tertiaryBrown" to="/privacy">
+              약관 보기
+            </Link>
           </S.AgreementItemWrapper>
           <CheckboxGroup.Item
             id="age"
