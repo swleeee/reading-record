@@ -46,7 +46,7 @@ export const checkbox = css`
 
 export const AgreementAllText = tw.span`m-body-m15 tablet:t-body-m15 desktop:d-body-m17`;
 
-export const AgreementItemWrapper = tw.div`flex justify-between items-center`;
+export const AgreementItemWrapper = tw.div`flex justify-between items-center mb-[20px]`;
 
 export const AgreementLabelWrapper = tw.div`m-body-r14 tablet:t-body-r14 desktop:d-body-r16`;
 
