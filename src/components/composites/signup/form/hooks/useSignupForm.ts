@@ -1,10 +1,13 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 dayjs.extend(customParseFormat);
 
-import { ERROR_MSG, GENDER_OPTIONS } from '@/assets';
+import { useToast } from '@/hooks';
+import { useSignup } from '@/services';
+import { ERROR_MSG, GENDER_OPTIONS, TOAST } from '@/assets';
 import type { CheckboxGroupType, SelectOptionType } from '@/types';
 
 const TERM_AGREEMENT = { term: false, policy: false, age: false };
@@ -20,6 +23,8 @@ interface FormType {
 }
 
 const useSignupForm = () => {
+  const navigate = useNavigate();
+
   const {
     formState: { errors },
     watch,
@@ -40,6 +45,8 @@ const useSignupForm = () => {
       termOfAgreements: TERM_AGREEMENT,
     },
   });
+  const { mutate: createUser } = useSignup();
+  const { addToast } = useToast();
 
   const getBirthDateValid = () => {
     const date = `${watch('birth.year')}-${watch('birth.month')}-${watch(
@@ -124,6 +131,36 @@ const useSignupForm = () => {
       if (hasError) {
         return;
       }
+
+      const { year, month, day } = data.birth;
+
+      const req = {
+        email: data.email,
+        password: data.password,
+        options: {
+          data: {
+            nickname: data.nickname,
+            gender: data.gender.key as 'm' | 'f', // TODO: 타입 좁히기 필요
+            birth: `${year}-${month}-${day}`,
+            termsFlag: data.termOfAgreements.term,
+            privacyFlag: data.termOfAgreements.policy,
+            ageFlag: data.termOfAgreements.age,
+          },
+        },
+      };
+
+      createUser(req, {
+        onSuccess: () => {
+          addToast(TOAST.SUCCESS.SIGNUP);
+          navigate('/login');
+        },
+        onError: (error) => {
+          switch (error.message) {
+            case 'User already registered':
+              addToast(TOAST.WARNING.AUTH_ALREADY_REGISTERED);
+          }
+        },
+      });
     },
     () => {
       checkAgreementRequiredError();

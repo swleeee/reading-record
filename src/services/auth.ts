@@ -1,7 +1,13 @@
 import { useMutation } from '@tanstack/react-query';
 
-import { loginAPI } from '@/apis';
-import type { LoginQueryModel } from '@/types';
+import { loginAPI, signupAPI } from '@/apis';
+import type { LoginQueryModel, SignupQueryModel } from '@/types';
+
+export const useSignup = () => {
+  return useMutation({
+    mutationFn: (req: SignupQueryModel) => signupAPI(req),
+  });
+};
 
 export const useLogin = () => {
   return useMutation({
