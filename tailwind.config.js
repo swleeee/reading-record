@@ -398,7 +398,7 @@ export default {
           lineHeight: theme('lineHeight.120'),
         },
         '.m-headline-3': {
-          fontSize: theme('fontSize.26'),
+          fontSize: theme('fontSize.16'),
           fontWeight: theme('fontWeight.bold'),
           fontFamily: theme('fontFamily.pretendard'),
           lineHeight: theme('lineHeight.120'),
