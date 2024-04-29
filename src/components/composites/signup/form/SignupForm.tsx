@@ -8,12 +8,15 @@ import {
   Link,
   RadioButton,
 } from '@/components';
-import { ERROR_MESSAGE, GENDER_OPTIONS } from '@/assets';
+import {
+  ERROR_MESSAGE,
+  GENDER_OPTIONS,
+  NICKNAME_MIN_LENGTH,
+  PASSWORD_MIN_LENGTH,
+  PASS_MESSAGE,
+} from '@/assets';
 import useSignupForm from './hooks/useSignupForm';
 import * as S from './SignupForm.styled';
-
-const PASSWORD_MIN_LENGTH = 4;
-const NICKNAME_MIN_LENGTH = 2;
 
 const SignupForm = () => {
   const {
@@ -85,7 +88,7 @@ const SignupForm = () => {
             required: ERROR_MESSAGE.REQUIRED,
             minLength: {
               value: PASSWORD_MIN_LENGTH,
-              message: `비밀번호는 ${PASSWORD_MIN_LENGTH}자 이상이어야 합니다`,
+              message: ERROR_MESSAGE.MIN_LENGTH_PASSWORD,
             },
             pattern: {
               value:
@@ -124,7 +127,7 @@ const SignupForm = () => {
         css={S.labelContent}
         isRequired
         error={errors.nickname?.message}
-        pass={isNicknameChecked ? '사용 가능한 닉네임입니다.' : ''}
+        pass={isNicknameChecked ? PASS_MESSAGE.NICKNAME : ''}
         id="nickname"
         label="닉네임"
       >
@@ -140,7 +143,7 @@ const SignupForm = () => {
               required: ERROR_MESSAGE.REQUIRED,
               minLength: {
                 value: NICKNAME_MIN_LENGTH,
-                message: `${NICKNAME_MIN_LENGTH}글자 이상 입력해주세요.`,
+                message: ERROR_MESSAGE.MIN_LENGTH_NICKNAME,
               },
               pattern: {
                 value: /^[A-za-z0-9가-힣]{2,20}$/,

@@ -144,7 +144,7 @@ const useSignupForm = () => {
         if (isDuplicated) {
           setError('nickname', {
             type: 'validate',
-            message: '닉네임이 중복되었습니다.',
+            message: ERROR_MESSAGE.DUPLICATE_NICKNAME,
           });
         } else {
           if (!isNicknameChecked) {
@@ -193,7 +193,7 @@ const useSignupForm = () => {
               console.log('중복 O');
               setError('nickname', {
                 type: 'validate',
-                message: '닉네임이 중복되었습니다.',
+                message: ERROR_MESSAGE.DUPLICATE_NICKNAME,
               });
             } else {
               console.log('중복 X');
