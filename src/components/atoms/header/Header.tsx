@@ -1,12 +1,13 @@
 import React from 'react';
 
-import { Button } from '@/components';
+import { useUser } from '@/contexts';
+import { Button, Link } from '@/components';
 import DefaultProfileIcon from '@/assets/icon/ic_default_profile.svg?react';
 import * as S from './Header.styled';
 
 const Header = () => {
-  // TODO: 로그인 연동 후 수정
-  const isLogin = true;
+  const { user } = useUser();
+  const isLogin = !!user;
 
   return (
     <S.Header>
@@ -27,11 +28,13 @@ const Header = () => {
       {isLogin ? (
         <S.UserInfo>
           <DefaultProfileIcon css={S.defaultProfileIcon} />
-          <S.UserName>홍길동님</S.UserName>
+          <S.UserName>{user.user_metadata.nickname}님</S.UserName>
           <Button styleType="tertiary" sizeType="sm" label="로그아웃" />
         </S.UserInfo>
       ) : (
-        <Button styleType="tertiary" sizeType="sm" label="회원가입/로그인" />
+        <Link styleType="tertiaryBrown" sizeType="md" to="/login">
+          회원가입/로그인
+        </Link>
       )}
     </S.Header>
   );
