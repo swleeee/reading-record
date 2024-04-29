@@ -190,14 +190,11 @@ const useSignupForm = () => {
         {
           onSuccess: (isDuplicated) => {
             if (isDuplicated) {
-              console.log('중복 O');
               setError('nickname', {
                 type: 'validate',
                 message: ERROR_MESSAGE.DUPLICATE_NICKNAME,
               });
             } else {
-              console.log('중복 X');
-
               createUser(req, {
                 onSuccess: () => {
                   addToast(TOAST_MESSAGE.SUCCESS.SIGNUP);
