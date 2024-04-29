@@ -25,7 +25,7 @@ const useLoginForm = () => {
     defaultValues: loginForm,
   });
 
-  const { mutate: login } = useLogin();
+  const { isPending: isLoginLoading, mutate: login } = useLogin();
   const { addToast } = useToast();
 
   const handlePasswordToggle = () => {
@@ -52,6 +52,7 @@ const useLoginForm = () => {
 
   return {
     isPasswordVisible,
+    isLoginLoading,
     errors,
     watch,
     register,

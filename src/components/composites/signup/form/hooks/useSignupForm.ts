@@ -46,8 +46,11 @@ const useSignupForm = () => {
       termOfAgreements: TERM_AGREEMENT,
     },
   });
-  const { mutate: checkNicknameDuplicated } = useCheckNicknameDuplicated();
-  const { mutate: createUser } = useSignup();
+  const {
+    isPending: isCheckNicknameDuplicatedLoading,
+    mutate: checkNicknameDuplicated,
+  } = useCheckNicknameDuplicated();
+  const { isPending: isSignupLoading, mutate: createUser } = useSignup();
   const { addToast } = useToast();
 
   const getBirthDateValid = () => {
@@ -265,6 +268,8 @@ const useSignupForm = () => {
 
   return {
     isNicknameChecked,
+    isCheckNicknameDuplicatedLoading,
+    isSignupLoading,
     errors,
     watch,
     register,

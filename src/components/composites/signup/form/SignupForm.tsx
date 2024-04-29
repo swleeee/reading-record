@@ -18,6 +18,8 @@ const NICKNAME_MIN_LENGTH = 2;
 const SignupForm = () => {
   const {
     isNicknameChecked,
+    isCheckNicknameDuplicatedLoading,
+    isSignupLoading,
     errors,
     watch,
     register,
@@ -147,9 +149,10 @@ const SignupForm = () => {
           />
           <Button
             isDisabled={isNicknameChecked}
+            isLoading={isCheckNicknameDuplicatedLoading}
+            label="중복 확인"
             styleType="secondary"
             sizeType="lg"
-            label="중복 확인"
             onClick={handleNicknameDuplicateCheck}
           />
         </S.ContentWrapper>
@@ -271,10 +274,11 @@ const SignupForm = () => {
       <Button
         css={S.signupButton}
         isDisabled={!!Object.keys(errors).length}
+        isLoading={isSignupLoading}
+        actionType="submit"
+        label="회원 가입"
         styleType="primary"
         sizeType="full"
-        label="회원 가입"
-        actionType="submit"
       />
     </S.Form>
   );

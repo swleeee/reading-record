@@ -13,7 +13,7 @@ const Header = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const { mutate: logout } = useLogout();
+  const { isPending: isLogoutLoading, mutate: logout } = useLogout();
   const { user } = useUser();
   const { addToast } = useToast();
   const isLogin = !!user;
@@ -57,9 +57,10 @@ const Header = () => {
           <DefaultProfileIcon css={S.defaultProfileIcon} />
           <S.UserName>{user.user_metadata.nickname}님</S.UserName>
           <Button
+            isLoading={isLogoutLoading}
+            label="로그아웃"
             styleType="tertiary"
             sizeType="sm"
-            label="로그아웃"
             onClick={handleLogout}
           />
         </S.UserInfo>

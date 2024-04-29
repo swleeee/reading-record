@@ -10,6 +10,7 @@ import * as S from './LoginForm.styled';
 const LoginForm = () => {
   const {
     isPasswordVisible,
+    isLoginLoading,
     errors,
     watch,
     register,
@@ -48,10 +49,12 @@ const LoginForm = () => {
       </Input>
       <Button
         css={S.loginButton}
+        isDisabled={!!Object.keys(errors).length}
+        isLoading={isLoginLoading}
         actionType="submit"
+        label="로그인"
         styleType="primary"
         sizeType="full"
-        label="로그인"
       />
     </S.LoginForm>
   );

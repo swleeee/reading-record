@@ -16,7 +16,7 @@ const MobileHeaderSidebar = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const { mutate: logout } = useLogout();
+  const { isPending: isLogoutLoading, mutate: logout } = useLogout();
   const { user } = useUser();
   const { addToast } = useToast();
   const device = useRecoilValue(deviceState);
@@ -77,9 +77,10 @@ const MobileHeaderSidebar = () => {
               {user.user_metadata.nickname}님, 환영합니다.
             </S.UserName>
             <Button
+              isLoading={isLogoutLoading}
+              label="로그아웃"
               styleType="tertiary"
               sizeType="md"
-              label="로그아웃"
               onClick={handleLogout}
             />
           </S.UserInfo>
