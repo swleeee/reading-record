@@ -1,14 +1,20 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 import { Pagination } from '@/components';
 import { useGetBooks } from '@/services';
+import SearchIcon from '@/assets/icon/ic_search.svg?react';
 import { BOOK_SEARCH_DROPDOWN_OPTIONS } from '@/constants';
 import type { GetBooksQueryModel } from '@/types';
 import BookListData from './data/BookListData';
+import * as S from './BookList.styled';
 
 const BookList = () => {
   const [searchParams] = useSearchParams();
+
+  const noSearchRef = useRef<HTMLDivElement | null>(null);
+
+  const [noSearchClientTop, setNoSearchClientTop] = useState(0);
 
   const target = BOOK_SEARCH_DROPDOWN_OPTIONS.find(({ key }) =>
     searchParams.get(key),
@@ -25,10 +31,24 @@ const BookList = () => {
   const { data } = useGetBooks(req);
   // TODO: 'readingStatus', 'rating' 관련 조회 API 추가 필요
 
-  /* 
-  TODO: 카카오 도서 검색 API 상으로 전체 검색은 불가능하여 하기와 같이 검색하지 않았을 경우에 대한 스크린 제작 필요
-*/
-  if (!data) return <div>검색창을 이용해주세요. :)</div>;
+  useEffect(() => {
+    if (noSearchRef) {
+      setNoSearchClientTop(
+        noSearchRef.current?.getBoundingClientRect().top ?? 0,
+      );
+    }
+  }, [noSearchRef]);
+
+  if (!data)
+    return (
+      <S.NoSearchContainer
+        ref={noSearchRef}
+        boundingClientTop={noSearchClientTop}
+      >
+        <SearchIcon css={S.searchIcon} />
+        <S.NoSearchText>검색창을 이용해주세요 :)</S.NoSearchText>
+      </S.NoSearchContainer>
+    );
 
   return (
     <>

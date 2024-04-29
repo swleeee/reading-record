@@ -160,6 +160,23 @@ export default {
           '0%': { right: '0', opacity: 1 },
           '100%': { right: '-300px', opacity: 0 },
         },
+        shakingUpAndDown: {
+          from: {
+            transform: 'translateY(0)',
+          },
+          '25%': {
+            transform: 'translateY(10px)',
+          },
+          '50%': {
+            transform: 'translateY(-10px)',
+          },
+          '75%': {
+            transform: 'translateY(10px)',
+          },
+          to: {
+            transform: 'translateY(0)',
+          },
+        },
       },
       animation: {
         show: '0.7s forwards show',
@@ -168,6 +185,7 @@ export default {
         fadeOut: '0.3s forwards fadeOut',
         openSidebar: '1s forwards openSidebar',
         closeSidebar: '1s forwards closeSidebar',
+        shakingUpAndDown: '4s forwards 0s infinite shakingUpAndDown',
       },
     },
     screens: {
