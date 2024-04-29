@@ -18,11 +18,9 @@ export const Navbar = styled.nav`
   }
 `;
 
-export const NavLink = styled.a<{ isSelected: boolean }>`
-  ${({ isSelected }) => css`
-    ${tw`inline-flex items-center t-body-m14 cursor-pointer hover:text-brown300 desktop:d-body-m16`}
-    ${isSelected ? tw`text-brown400` : tw`text-gray300`}
-  `}
+export const navLink = (isSelected: boolean) => css`
+  ${tw`inline-flex items-center t-body-m14 cursor-pointer hover:text-brown300 desktop:d-body-m16`}
+  ${isSelected ? tw`text-brown400` : tw`text-gray300`}
 `;
 
 export const UserInfo = tw.div`flex items-center gap-x-[4px]`;

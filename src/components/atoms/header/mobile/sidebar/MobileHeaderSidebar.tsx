@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 
 import { useUser } from '@/contexts';
@@ -93,17 +93,17 @@ const MobileHeaderSidebar = () => {
       <S.Navbar>
         <ul>
           <li>
-            <S.NavLink isSelected={location.pathname === '/book'} href="/book">
+            <NavLink css={S.navLink(location.pathname === '/book')} to="/book">
               도서 목록
-            </S.NavLink>
+            </NavLink>
           </li>
           <li>
-            <S.NavLink
-              isSelected={location.pathname === '/myLibrary'}
-              href="/myLibrary"
+            <NavLink
+              css={S.navLink(location.pathname === '/myLibrary')}
+              to="/myLibrary"
             >
               독서 기록
-            </S.NavLink>
+            </NavLink>
           </li>
         </ul>
       </S.Navbar>
