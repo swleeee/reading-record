@@ -36,8 +36,6 @@ const SignupForm = () => {
     errors.birth?.year?.message ||
     errors.birth?.month?.message ||
     errors.birth?.day?.message;
-  // TODO: 이후 작성 예정
-  const handleEmailDuplicateCheck = () => {};
 
   return (
     <S.Form onSubmit={handleAccountCreate}>
@@ -63,12 +61,6 @@ const SignupForm = () => {
                 message: ERROR_MSG.INVALID_EMAIL,
               },
             })}
-          />
-          <Button
-            styleType="secondary"
-            sizeType="lg"
-            label="중복 확인"
-            onClick={handleEmailDuplicateCheck}
           />
         </S.ContentWrapper>
       </LabelContent>
