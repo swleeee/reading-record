@@ -66,3 +66,5 @@ export const publisherLink = css`
 export const Time = tw.time`m-body-r12 text-gray-600 tablet:t-body-r12 desktop:d-body-r14`;
 
 export const BookContent = tw.p`m-body-r13 tablet:t-body-r13 desktop:d-body-r15`;
+
+export const SkeletonContent = tw.div`flex-1`;
