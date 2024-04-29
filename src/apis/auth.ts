@@ -20,3 +20,5 @@ export const loginAPI = async (req: LoginQueryModel) => {
 
   return data;
 };
+
+export const logoutAPI = async () => await supabase.auth.signOut();

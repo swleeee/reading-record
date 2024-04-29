@@ -1,16 +1,33 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import { useUser } from '@/contexts';
 import { Button, Link } from '@/components';
+import { useToast } from '@/hooks';
+import { useLogout } from '@/services';
 import DefaultProfileIcon from '@/assets/icon/ic_default_profile.svg?react';
+import { TOAST } from '@/assets';
 import * as S from './Header.styled';
 
 const Header = () => {
+  const navigate = useNavigate();
   const location = useLocation();
 
+  const { mutate: logout } = useLogout();
   const { user } = useUser();
+  const { addToast } = useToast();
   const isLogin = !!user;
+
+  const handleLogout = () => {
+    logout(undefined, {
+      onSuccess: () => {
+        if (location.pathname !== '/') {
+          navigate('/');
+        }
+        addToast(TOAST.SUCCESS.LOGOUT);
+      },
+    });
+  };
 
   return (
     <S.Header>
@@ -39,7 +56,12 @@ const Header = () => {
         <S.UserInfo>
           <DefaultProfileIcon css={S.defaultProfileIcon} />
           <S.UserName>{user.user_metadata.nickname}님</S.UserName>
-          <Button styleType="tertiary" sizeType="sm" label="로그아웃" />
+          <Button
+            styleType="tertiary"
+            sizeType="sm"
+            label="로그아웃"
+            onClick={handleLogout}
+          />
         </S.UserInfo>
       ) : (
         <Link styleType="tertiaryBrown" sizeType="md" to="/login">

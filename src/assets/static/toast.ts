@@ -4,6 +4,10 @@ export const TOAST = {
       type: 'success',
       message: '회원가입이 완료되었습니다.',
     },
+    LOGOUT: {
+      type: 'success',
+      message: '로그아웃 처리 완료되었습니다.',
+    },
     UPDATE_READING_PENDING_STATUS: {
       type: 'success',
       message: `'읽기 전' 상태 변경 완료!`,
