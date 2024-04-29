@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { ErrorMessage, PassMessage } from '@/components';
 import * as S from './LabelContent.styled';
 
 interface LabelContentProps {
@@ -7,6 +8,7 @@ interface LabelContentProps {
   children: React.ReactNode;
   isRequired?: boolean;
   error?: string;
+  pass?: string;
   id: string;
   label: string;
 }
@@ -16,6 +18,7 @@ const LabelContent = ({
   children,
   isRequired,
   error,
+  pass,
   id,
   label,
 }: LabelContentProps) => {
@@ -25,7 +28,8 @@ const LabelContent = ({
         {label}
       </S.Label>
       {children}
-      {error && <S.ErrorMessage>{error}</S.ErrorMessage>}
+      {error && <ErrorMessage css={S.message} message={error} />}
+      {pass && <PassMessage css={S.message} message={pass} />}
     </S.LabelContent>
   );
 };

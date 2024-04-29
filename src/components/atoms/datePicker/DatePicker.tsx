@@ -2,11 +2,11 @@ import React from 'react';
 import dayjs from 'dayjs';
 
 import { Input, Popup, SegmentedButton } from '@/components';
-import { DATE_PICKER_VIEW_MODE_OPTIONS } from '@/assets';
 import ArrowDropdownIcon from '@/assets/icon/ic_arrow_drop_down.svg?react';
 import ArrowDropupIcon from '@/assets/icon/ic_arrow_drop_up.svg?react';
 import ArrowLeftIcon from '@/assets/icon/ic_arrow_left.svg?react';
 import ArrowRightIcon from '@/assets/icon/ic_arrow_right.svg?react';
+import { DATE_PICKER_VIEW_MODE_OPTIONS } from '@/constants';
 import { useDatePicker, useDateViewMode } from './hooks';
 import * as S from './DatePicker.styled';
 

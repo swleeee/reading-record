@@ -17,4 +17,6 @@ export const Label = styled.label<LabelProps>`
   `}
 `;
 
-export const ErrorMessage = tw.span`inline-block mt-[4px] m-body-r12 text-red200 tablet:t-body-r12 desktop:d-body-r14`;
+export const message = css`
+  ${tw`mt-[4px]`}
+`;

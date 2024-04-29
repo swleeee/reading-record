@@ -5,15 +5,29 @@ import { LinkSizeType, LinkStyleType } from '@/types';
 import * as S from './Link.styled';
 
 interface LinkProps {
+  className?: string;
   children: React.ReactNode;
   sizeType: LinkSizeType;
   styleType: LinkStyleType;
   to: string;
+  onClick?: () => void;
 }
 
-const Link = ({ sizeType, styleType, children, to }: LinkProps) => {
+const Link = ({
+  className,
+  sizeType,
+  styleType,
+  children,
+  to,
+  onClick,
+}: LinkProps) => {
   return (
-    <LinkComponent css={S.link(sizeType, styleType)} to={to}>
+    <LinkComponent
+      className={className}
+      css={S.link(sizeType, styleType)}
+      to={to}
+      onClick={onClick}
+    >
       {children}
     </LinkComponent>
   );

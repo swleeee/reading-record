@@ -1,5 +1,13 @@
-export const TOAST = {
+export const TOAST_MESSAGE = {
   SUCCESS: {
+    SIGNUP: {
+      type: 'success',
+      message: '회원가입이 완료되었습니다.',
+    },
+    LOGOUT: {
+      type: 'success',
+      message: '로그아웃 처리 완료되었습니다.',
+    },
     UPDATE_READING_PENDING_STATUS: {
       type: 'success',
       message: `'읽기 전' 상태 변경 완료!`,
@@ -14,6 +22,10 @@ export const TOAST = {
     },
   },
   WARNING: {
+    AUTH_ALREADY_REGISTERED: {
+      type: 'warning',
+      message: '이미 등록된 계정입니다.',
+    },
     LOGIN_EMAIL_NOT_CONFIRMED: {
       type: 'warning',
       title: '로그인을 실패하였습니다.',
@@ -31,6 +43,10 @@ export const TOAST = {
     },
   },
   INFO: {
+    CHECK_NICKNAME: {
+      type: 'info',
+      message: '닉네임 중복 확인을 완료해주세요 :)',
+    },
     SERVICE_REPAIRING: {
       type: 'info',
       title: '서비스 준비중입니다.',

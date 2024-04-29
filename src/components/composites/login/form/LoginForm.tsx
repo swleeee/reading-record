@@ -1,15 +1,16 @@
 import React from 'react';
 
 import { Button, Input } from '@/components';
-import { ERROR_MSG } from '@/assets';
 import VisibilityOff from '@/assets/icon/ic_visibility_off.svg?react';
 import VisibilityOn from '@/assets/icon/ic_visibility_on.svg?react';
+import { ERROR_MESSAGE } from '@/constants';
 import useLoginForm from './hooks/useLoginForm';
 import * as S from './LoginForm.styled';
 
 const LoginForm = () => {
   const {
     isPasswordVisible,
+    isLoginLoading,
     errors,
     watch,
     register,
@@ -25,7 +26,7 @@ const LoginForm = () => {
         value={watch('email')}
         placeholder="이메일"
         register={register('email', {
-          required: ERROR_MSG.REQUIRED,
+          required: ERROR_MESSAGE.REQUIRED,
         })}
       />
       <Input
@@ -35,7 +36,7 @@ const LoginForm = () => {
         placeholder="비밀번호"
         type={isPasswordVisible ? 'text' : 'password'}
         register={register('password', {
-          required: ERROR_MSG.REQUIRED,
+          required: ERROR_MESSAGE.REQUIRED,
         })}
       >
         <S.VisibleButton
@@ -48,10 +49,12 @@ const LoginForm = () => {
       </Input>
       <Button
         css={S.loginButton}
+        isDisabled={!!Object.keys(errors).length}
+        isLoading={isLoginLoading}
         actionType="submit"
+        label="로그인"
         styleType="primary"
         sizeType="full"
-        label="로그인"
       />
     </S.LoginForm>
   );

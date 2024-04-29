@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
-import { BOOK_SEARCH_DROPDOWN_OPTIONS } from '@/assets';
+import { BOOK_SEARCH_DROPDOWN_OPTIONS } from '@/constants';
 import type { SelectOptionType } from '@/types';
 
 const useBookSearch = () => {

@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 
 import { useToast } from '@/hooks';
 import { useLogin } from '@/services';
-import { TOAST } from '@/assets';
+import { TOAST_MESSAGE } from '@/constants';
 
 const loginForm = {
   email: '',
@@ -25,7 +25,7 @@ const useLoginForm = () => {
     defaultValues: loginForm,
   });
 
-  const { mutate: login } = useLogin();
+  const { isPending: isLoginLoading, mutate: login } = useLogin();
   const { addToast } = useToast();
 
   const handlePasswordToggle = () => {
@@ -40,11 +40,11 @@ const useLoginForm = () => {
       onError: (error) => {
         switch (error.message) {
           case 'Email not confirmed':
-            addToast(TOAST.WARNING.LOGIN_EMAIL_NOT_CONFIRMED);
+            addToast(TOAST_MESSAGE.WARNING.LOGIN_EMAIL_NOT_CONFIRMED);
             break;
 
           case 'Invalid login credentials':
-            addToast(TOAST.WARNING.LOGIN_FAILED);
+            addToast(TOAST_MESSAGE.WARNING.LOGIN_FAILED);
         }
       },
     });
@@ -52,6 +52,7 @@ const useLoginForm = () => {
 
   return {
     isPasswordVisible,
+    isLoginLoading,
     errors,
     watch,
     register,

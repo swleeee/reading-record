@@ -1,9 +1,9 @@
 import React from 'react';
 
 import { useToast } from '@/hooks';
-import { TOAST } from '@/assets';
 import KakaoSymbolIcon from '@/assets/icon/ic_kakaoSymbol.svg?react';
 import NaverSymbolIcon from '@/assets/icon/ic_naverSymbol.svg?react';
+import { TOAST_MESSAGE } from '@/constants';
 import * as S from './SocialLogin.styled';
 
 const SocialLogin = () => {
@@ -11,7 +11,7 @@ const SocialLogin = () => {
 
   // TODO: 토스트 -> 모달 교체 예정
   const handleSocialLoginButtonClick = () => {
-    addToast(TOAST.INFO.SERVICE_REPAIRING);
+    addToast(TOAST_MESSAGE.INFO.SERVICE_REPAIRING);
   };
 
   return (

@@ -5,7 +5,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 
 import { SegmentedButton } from '@/components';
-import { POPULAR_BOOK_DATE_FILTER_OPTIONS } from '@/assets';
+import { POPULAR_BOOK_DATE_FILTER_OPTIONS } from '@/constants';
 import type { PopularBookCardType, SelectOptionType } from '@/types';
 import * as S from './PopularBookMobile.styled';
 

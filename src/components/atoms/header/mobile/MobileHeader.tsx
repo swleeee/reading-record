@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { Link } from '@/components';
 import { useSidebar } from '@/hooks';
 import HamburgerIcon from '@/assets/icon/ic_hamburger.svg?react';
 import MobileHeaderSidebar from './sidebar/MobileHeaderSidebar';
@@ -10,7 +11,10 @@ const MobileHeader = () => {
 
   return (
     <S.MobileHeader>
-      <S.Logo>READING-RECORD</S.Logo>
+      {/* TODO: 추후 svg 대체 시 확인 필요 */}
+      <Link css={S.logo} styleType="tertiaryGray" sizeType="md" to="/">
+        READING-RECORD
+      </Link>
       <S.SidebarButton
         type="button"
         aria-label="Open sidebar"

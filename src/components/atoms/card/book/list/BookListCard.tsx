@@ -2,8 +2,8 @@ import React from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 
 import { Button } from '@/components';
-import { BOOK_READING_STATUS_OPTIONS } from '@/assets';
 import RatingIcon from '@/assets/icon/ic_rating.svg?react';
+import { BOOK_READING_STATUS_OPTIONS } from '@/constants';
 import * as S from './BookListCard.styled';
 
 interface BookListCardProps {

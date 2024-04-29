@@ -10,8 +10,12 @@ import {
   Textarea,
 } from '@/components';
 import { useModal, useToast } from '@/hooks';
-import { BOOK_READING_STATUS_OPTIONS, ERROR_MSG, TOAST } from '@/assets';
 import RatingIcon from '@/assets/icon/ic_rating.svg?react';
+import {
+  BOOK_READING_STATUS_OPTIONS,
+  ERROR_MESSAGE,
+  TOAST_MESSAGE,
+} from '@/constants';
 import type { SelectOptionType } from '@/types';
 import * as S from './BookReadingStatusChangeModal.styled';
 
@@ -71,7 +75,7 @@ const BookReadingStatusChangeModal = React.forwardRef<
       3. '읽기 중' -> '읽기 전' (TOAST.SUCCESS.UPDATE_READING_PENDING_STATUS)
       4. '읽기 완료' -> '읽기 전' or '읽기 중' (TOAST.WARNING.UPDATE_READING_STATUS)
     */
-    addToast(TOAST.SUCCESS.UPDATE_READING_COMPLETED_STATUS);
+    addToast(TOAST_MESSAGE.SUCCESS.UPDATE_READING_COMPLETED_STATUS);
     closeModal();
   });
 
@@ -172,7 +176,7 @@ const BookReadingStatusChangeModal = React.forwardRef<
                   placeholder="감상문 내용을 입력해주세요."
                   value={watch('recordContent') ?? ''}
                   register={register('recordContent', {
-                    required: ERROR_MSG.REQUIRED,
+                    required: ERROR_MESSAGE.REQUIRED,
                   })}
                 />
                 {errors.recordContent?.message && (
