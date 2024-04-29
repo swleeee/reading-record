@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import { Dropdown } from '@/components';
-import { TERMS_DATE_OPTIONS } from '@/assets';
+import { TERMS_DATE_OPTIONS } from '@/constants';
 import type { SelectOptionType } from '@/types';
 import TermsArticles from './articles/TermsArticles';
 import * as S from './Terms.styled';

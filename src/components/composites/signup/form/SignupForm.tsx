@@ -14,7 +14,7 @@ import {
   NICKNAME_MIN_LENGTH,
   PASSWORD_MIN_LENGTH,
   PASS_MESSAGE,
-} from '@/assets';
+} from '@/constants';
 import useSignupForm from './hooks/useSignupForm';
 import * as S from './SignupForm.styled';
 

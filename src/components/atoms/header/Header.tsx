@@ -6,7 +6,7 @@ import { Button, Link } from '@/components';
 import { useToast } from '@/hooks';
 import { useLogout } from '@/services';
 import DefaultProfileIcon from '@/assets/icon/ic_default_profile.svg?react';
-import { TOAST_MESSAGE } from '@/assets';
+import { TOAST_MESSAGE } from '@/constants';
 import * as S from './Header.styled';
 
 const Header = () => {

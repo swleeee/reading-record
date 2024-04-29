@@ -1,9 +1,9 @@
 import React from 'react';
 
 import { Button, Input } from '@/components';
-import { ERROR_MESSAGE } from '@/assets';
 import VisibilityOff from '@/assets/icon/ic_visibility_off.svg?react';
 import VisibilityOn from '@/assets/icon/ic_visibility_on.svg?react';
+import { ERROR_MESSAGE } from '@/constants';
 import useLoginForm from './hooks/useLoginForm';
 import * as S from './LoginForm.styled';
 

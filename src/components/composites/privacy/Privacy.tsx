@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import { Dropdown } from '@/components';
-import { PRIVACY_DATE_OPTIONS } from '@/assets';
+import { PRIVACY_DATE_OPTIONS } from '@/constants';
 import type { SelectOptionType } from '@/types';
 import PrivacyArticles from './articles/PrivacyArticles';
 import * as S from './Privacy.styled';

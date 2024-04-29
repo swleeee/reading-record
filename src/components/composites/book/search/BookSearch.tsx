@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Dropdown, SearchInput } from '@/components';
-import { BOOK_SEARCH_DROPDOWN_OPTIONS } from '@/assets';
+import { BOOK_SEARCH_DROPDOWN_OPTIONS } from '@/constants';
 import useBookSearch from './hooks/useBookSearch';
 import * as S from './BookSearch.styled';
 

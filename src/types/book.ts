@@ -1,4 +1,4 @@
-import { BOOK_READING_STATUS_OPTIONS } from '@/assets';
+import { BOOK_READING_STATUS_OPTIONS } from '@/constants';
 
 export interface BookRecordCardType {
   id: string;

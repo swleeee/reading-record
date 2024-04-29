@@ -10,12 +10,12 @@ import {
   Textarea,
 } from '@/components';
 import { useModal, useToast } from '@/hooks';
+import RatingIcon from '@/assets/icon/ic_rating.svg?react';
 import {
   BOOK_READING_STATUS_OPTIONS,
   ERROR_MESSAGE,
   TOAST_MESSAGE,
-} from '@/assets';
-import RatingIcon from '@/assets/icon/ic_rating.svg?react';
+} from '@/constants';
 import type { SelectOptionType } from '@/types';
 import * as S from './BookReadingStatusChangeModal.styled';
 

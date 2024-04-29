@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import { Pagination } from '@/components';
-import { BOOK_REVIEW_DROPDOWN_OPTIONS } from '@/assets';
+import { BOOK_REVIEW_DROPDOWN_OPTIONS } from '@/constants';
 import type { GetBookRecordsServerModel, SelectOptionType } from '@/types';
 import BookRecordListData from './data/BookRecordListData';
 

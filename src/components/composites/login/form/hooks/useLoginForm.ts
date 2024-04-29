@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 
 import { useToast } from '@/hooks';
 import { useLogin } from '@/services';
-import { TOAST_MESSAGE } from '@/assets';
+import { TOAST_MESSAGE } from '@/constants';
 
 const loginForm = {
   email: '',

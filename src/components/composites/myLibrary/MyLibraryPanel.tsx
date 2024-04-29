@@ -1,9 +1,9 @@
 import React from 'react';
 
 import { BookListCard, NoData, Pagination } from '@/components';
-import { BOOK_READING_STATUS_OPTIONS } from '@/assets';
 import Book1Img from '@/assets/image/book1.png';
 import Book2Img from '@/assets/image/book2.png';
+import { BOOK_READING_STATUS_OPTIONS } from '@/constants';
 import type { GetMyLibraryServerModel } from '@/types';
 
 interface MyLibraryPanelProps {

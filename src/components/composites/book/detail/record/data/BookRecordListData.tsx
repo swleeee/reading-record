@@ -1,9 +1,9 @@
 import React from 'react';
 
 import { Dropdown, NoData, Profile } from '@/components';
-import { BOOK_REVIEW_DROPDOWN_OPTIONS } from '@/assets';
 import LikeIcon from '@/assets/icon/ic_thumb_up.svg?react';
 import RatingIcon from '@/assets/icon/ic_rating.svg?react';
+import { BOOK_REVIEW_DROPDOWN_OPTIONS } from '@/constants';
 import type { GetBookRecordsServerModel, SelectOptionType } from '@/types';
 import * as S from './BookRecordListData.styled';
 

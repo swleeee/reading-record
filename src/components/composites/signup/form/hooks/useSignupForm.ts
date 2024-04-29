@@ -7,7 +7,7 @@ dayjs.extend(customParseFormat);
 
 import { useToast } from '@/hooks';
 import { useCheckNicknameDuplicated, useSignup } from '@/services';
-import { ERROR_MESSAGE, GENDER_OPTIONS, TOAST_MESSAGE } from '@/assets';
+import { ERROR_MESSAGE, GENDER_OPTIONS, TOAST_MESSAGE } from '@/constants';
 import type { CheckboxGroupType, SelectOptionType } from '@/types';
 
 const TERM_AGREEMENT = { term: false, policy: false, age: false };

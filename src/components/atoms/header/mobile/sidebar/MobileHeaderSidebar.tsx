@@ -7,9 +7,9 @@ import { Button, Link } from '@/components';
 import { useOnClickOutside, useSidebar, useToast } from '@/hooks';
 import { useLogout } from '@/services';
 import { deviceState } from '@/stores';
-import { TOAST_MESSAGE } from '@/assets';
 import CloseIcon from '@/assets/icon/ic_close.svg?react';
 import ArrowForwardIcon from '@/assets/icon/ic_arrow_forward.svg?react';
+import { TOAST_MESSAGE } from '@/constants';
 import * as S from './MobileHeaderSidebar.styled';
 
 const MobileHeaderSidebar = () => {
