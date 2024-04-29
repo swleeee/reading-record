@@ -1,4 +1,5 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 
 import { useUser } from '@/contexts';
 import { Button, Link } from '@/components';
@@ -6,22 +7,31 @@ import DefaultProfileIcon from '@/assets/icon/ic_default_profile.svg?react';
 import * as S from './Header.styled';
 
 const Header = () => {
+  const location = useLocation();
+
   const { user } = useUser();
   const isLogin = !!user;
 
   return (
     <S.Header>
-      <S.Logo>READING-RECORD</S.Logo>
+      {/* TODO: 추후 svg 대체 시 확인 필요 */}
+      <Link css={S.logo} styleType="tertiaryBrown" sizeType="md" to="/">
+        READING-RECORD
+      </Link>
       <S.Navbar>
         <ul>
           <li>
-            <S.NavLink href="/">도서 목록</S.NavLink>
+            <S.NavLink isSelected={location.pathname === '/book'} href="/book">
+              도서 목록
+            </S.NavLink>
           </li>
           <li>
-            <S.NavLink href="/">독서 기록</S.NavLink>
-          </li>
-          <li>
-            <S.NavLink href="/">커뮤니티</S.NavLink>
+            <S.NavLink
+              isSelected={location.pathname === '/myLibrary'}
+              href="/myLibrary"
+            >
+              독서 기록
+            </S.NavLink>
           </li>
         </ul>
       </S.Navbar>
