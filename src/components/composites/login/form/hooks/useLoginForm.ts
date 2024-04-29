@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 
 import { useToast } from '@/hooks';
 import { useLogin } from '@/services';
-import { TOAST } from '@/assets';
+import { TOAST_MESSAGE } from '@/assets';
 
 const loginForm = {
   email: '',
@@ -40,11 +40,11 @@ const useLoginForm = () => {
       onError: (error) => {
         switch (error.message) {
           case 'Email not confirmed':
-            addToast(TOAST.WARNING.LOGIN_EMAIL_NOT_CONFIRMED);
+            addToast(TOAST_MESSAGE.WARNING.LOGIN_EMAIL_NOT_CONFIRMED);
             break;
 
           case 'Invalid login credentials':
-            addToast(TOAST.WARNING.LOGIN_FAILED);
+            addToast(TOAST_MESSAGE.WARNING.LOGIN_FAILED);
         }
       },
     });

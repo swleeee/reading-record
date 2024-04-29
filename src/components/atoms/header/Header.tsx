@@ -6,7 +6,7 @@ import { Button, Link } from '@/components';
 import { useToast } from '@/hooks';
 import { useLogout } from '@/services';
 import DefaultProfileIcon from '@/assets/icon/ic_default_profile.svg?react';
-import { TOAST } from '@/assets';
+import { TOAST_MESSAGE } from '@/assets';
 import * as S from './Header.styled';
 
 const Header = () => {
@@ -24,7 +24,7 @@ const Header = () => {
         if (location.pathname !== '/') {
           navigate('/');
         }
-        addToast(TOAST.SUCCESS.LOGOUT);
+        addToast(TOAST_MESSAGE.SUCCESS.LOGOUT);
       },
     });
   };

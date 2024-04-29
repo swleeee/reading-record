@@ -1,4 +1,4 @@
-export const TOAST = {
+export const TOAST_MESSAGE = {
   SUCCESS: {
     SIGNUP: {
       type: 'success',

@@ -7,7 +7,7 @@ import { Button, Link } from '@/components';
 import { useOnClickOutside, useSidebar, useToast } from '@/hooks';
 import { useLogout } from '@/services';
 import { deviceState } from '@/stores';
-import { TOAST } from '@/assets';
+import { TOAST_MESSAGE } from '@/assets';
 import CloseIcon from '@/assets/icon/ic_close.svg?react';
 import ArrowForwardIcon from '@/assets/icon/ic_arrow_forward.svg?react';
 import * as S from './MobileHeaderSidebar.styled';
@@ -31,7 +31,7 @@ const MobileHeaderSidebar = () => {
         if (location.pathname !== '/') {
           navigate('/');
         }
-        addToast(TOAST.SUCCESS.LOGOUT);
+        addToast(TOAST_MESSAGE.SUCCESS.LOGOUT);
         closeSidebar();
       },
     });

@@ -7,7 +7,7 @@ dayjs.extend(customParseFormat);
 
 import { useToast } from '@/hooks';
 import { useCheckNicknameDuplicated, useSignup } from '@/services';
-import { ERROR_MSG, GENDER_OPTIONS, TOAST } from '@/assets';
+import { ERROR_MSG, GENDER_OPTIONS, TOAST_MESSAGE } from '@/assets';
 import type { CheckboxGroupType, SelectOptionType } from '@/types';
 
 const TERM_AGREEMENT = { term: false, policy: false, age: false };
@@ -164,7 +164,7 @@ const useSignupForm = () => {
       }
 
       if (!isNicknameChecked) {
-        addToast(TOAST.INFO.CHECK_NICKNAME);
+        addToast(TOAST_MESSAGE.INFO.CHECK_NICKNAME);
 
         return;
       }
@@ -200,13 +200,13 @@ const useSignupForm = () => {
 
               createUser(req, {
                 onSuccess: () => {
-                  addToast(TOAST.SUCCESS.SIGNUP);
+                  addToast(TOAST_MESSAGE.SUCCESS.SIGNUP);
                   navigate('/login');
                 },
                 onError: (error) => {
                   switch (error.message) {
                     case 'User already registered':
-                      addToast(TOAST.WARNING.AUTH_ALREADY_REGISTERED);
+                      addToast(TOAST_MESSAGE.WARNING.AUTH_ALREADY_REGISTERED);
                   }
                 },
               });
