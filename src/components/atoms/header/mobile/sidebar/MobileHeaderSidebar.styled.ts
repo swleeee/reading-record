@@ -17,7 +17,9 @@ export const UserInfo = tw.div`flex flex-col items-center`;
 
 export const UserName = tw.span`mb-[12px] m-body-m14`;
 
-export const Logo = tw.span`m-headline-1  tablet:t-headline-1 labtop:d-headline-1`;
+export const logo = css`
+  ${tw`m-headline-1 tablet:t-headline-1 labtop:d-headline-1`}
+`;
 
 export const LoginLink = tw.a`inline-flex gap-x-[4px] m-body-sb16`;
 
@@ -29,4 +31,9 @@ export const Navbar = styled.nav`
   }
 `;
 
-export const NavLink = tw.a`inline-flex items-center w-full h-[48px]  rounded-[4px] px-[12px] m-body-m14 cursor-pointer hover:bg-brown50`;
+export const NavLink = styled.a<{ isSelected: boolean }>`
+  ${({ isSelected }) => css`
+    ${tw`inline-flex items-center w-full h-[48px]  rounded-[4px] px-[12px] m-body-m14 cursor-pointer hover:bg-brown50`}
+    ${isSelected ? tw`text-brown400` : tw`text-gray300`}
+  `}
+`;

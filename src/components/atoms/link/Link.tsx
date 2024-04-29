@@ -10,14 +10,23 @@ interface LinkProps {
   sizeType: LinkSizeType;
   styleType: LinkStyleType;
   to: string;
+  onClick?: () => void;
 }
 
-const Link = ({ className, sizeType, styleType, children, to }: LinkProps) => {
+const Link = ({
+  className,
+  sizeType,
+  styleType,
+  children,
+  to,
+  onClick,
+}: LinkProps) => {
   return (
     <LinkComponent
       className={className}
       css={S.link(sizeType, styleType)}
       to={to}
+      onClick={onClick}
     >
       {children}
     </LinkComponent>
