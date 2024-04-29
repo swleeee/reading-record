@@ -1,13 +1,20 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 
-import { BookList, BookSearch, MainLayout } from '@/components';
+import {
+  BookList,
+  BookListSkeleton,
+  BookSearch,
+  MainLayout,
+} from '@/components';
 import * as S from './index.styled';
 
 const root = () => {
   return (
     <MainLayout css={S.mainLayout}>
       <BookSearch />
-      <BookList />
+      <Suspense fallback={<BookListSkeleton />}>
+        <BookList />
+      </Suspense>
     </MainLayout>
   );
 };

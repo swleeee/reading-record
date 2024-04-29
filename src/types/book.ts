@@ -26,6 +26,14 @@ export interface PopularBookCardType {
   content: string;
 }
 
+export interface GetBooksQueryModel {
+  query: string; // NOTE: 필수
+  sort: 'accuracy' | 'latest'; // NOTE: 기본값: accuracy
+  page: number;
+  size: number;
+  target: 'title' | 'isbn' | 'publisher' | 'person';
+}
+
 export interface GetBooksServerModel {
   meta: {
     is_end: boolean;

@@ -25,10 +25,20 @@ const usePagination = (maxPageCount: number, totalPages: number) => {
 
     const result = Array.from(
       { length: lastIndex - firstIndex + 1 },
-      (_, i) => i + 1,
+      (_, i) => firstIndex + i,
     );
 
     return result;
+  };
+
+  const getAllQuery = (searchParams: URL['searchParams']) => {
+    return Object.keys(Object.fromEntries(searchParams)).reduce(
+      (acc, query) => ({
+        ...acc,
+        [query]: searchParams.getAll(query),
+      }),
+      {},
+    );
   };
 
   const handlePreviousPageMove = () => {
@@ -42,7 +52,7 @@ const usePagination = (maxPageCount: number, totalPages: number) => {
     );
 
     setSearchParams({
-      ...searchParams,
+      ...getAllQuery(searchParams),
       page: `${prevPageNum}`,
     });
   };
@@ -51,7 +61,7 @@ const usePagination = (maxPageCount: number, totalPages: number) => {
     if (currentPage === 1) return;
 
     setSearchParams({
-      ...searchParams,
+      ...getAllQuery(searchParams),
       page: '1',
     });
   };
@@ -67,7 +77,7 @@ const usePagination = (maxPageCount: number, totalPages: number) => {
     );
 
     setSearchParams({
-      ...searchParams,
+      ...getAllQuery(searchParams),
       page: `${nextPageNum}`,
     });
   };
@@ -76,14 +86,14 @@ const usePagination = (maxPageCount: number, totalPages: number) => {
     if (currentPage === totalPages) return;
 
     setSearchParams({
-      ...searchParams,
+      ...getAllQuery(searchParams),
       page: `${totalPages}`,
     });
   };
 
   const handleNumberClick = (index: number) => () => {
     setSearchParams({
-      ...searchParams,
+      ...getAllQuery(searchParams),
       page: `${index}`,
     });
   };
