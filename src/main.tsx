@@ -4,7 +4,7 @@ import { RecoilRoot } from 'recoil';
 import { QueryClientProvider } from '@tanstack/react-query';
 
 import { AuthContextProvider } from './contexts';
-import { ModalPortal, SidebarPortal, Toast } from './components';
+import { ModalPortal, Toast } from './components';
 import { Router } from './router';
 import { queryClient } from './services';
 import GlobalStyles from './styles/GlobalStyles';
@@ -16,7 +16,6 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <RecoilRoot>
           <GlobalStyles />
           <Toast />
-          <SidebarPortal />
           <ModalPortal />
           <Router />
         </RecoilRoot>
