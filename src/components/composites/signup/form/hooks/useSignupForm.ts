@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import dayjs from 'dayjs';
@@ -6,7 +6,7 @@ import customParseFormat from 'dayjs/plugin/customParseFormat';
 dayjs.extend(customParseFormat);
 
 import { useToast } from '@/hooks';
-import { useSignup } from '@/services';
+import { useCheckNicknameDuplicated, useSignup } from '@/services';
 import { ERROR_MSG, GENDER_OPTIONS, TOAST } from '@/assets';
 import type { CheckboxGroupType, SelectOptionType } from '@/types';
 
@@ -25,6 +25,7 @@ interface FormType {
 const useSignupForm = () => {
   const navigate = useNavigate();
 
+  const [isNicknameChecked, setIsNicknameChecked] = useState(false);
   const {
     formState: { errors },
     watch,
@@ -45,6 +46,7 @@ const useSignupForm = () => {
       termOfAgreements: TERM_AGREEMENT,
     },
   });
+  const { mutate: checkNicknameDuplicated } = useCheckNicknameDuplicated();
   const { mutate: createUser } = useSignup();
   const { addToast } = useToast();
 
@@ -123,12 +125,44 @@ const useSignupForm = () => {
     return hasError;
   };
 
-  // TODO: 추후 data 이용 예정
+  const handleNicknameChange = () => {
+    if (isNicknameChecked) {
+      setIsNicknameChecked(false);
+    }
+  };
+
+  const handleNicknameDuplicateCheck = () => {
+    if (!watch('nickname')) return;
+
+    const req = { nickname: watch('nickname') };
+
+    checkNicknameDuplicated(req, {
+      onSuccess: (isDuplicated) => {
+        if (isDuplicated) {
+          setError('nickname', {
+            type: 'validate',
+            message: '닉네임이 중복되었습니다.',
+          });
+        } else {
+          if (!isNicknameChecked) {
+            setIsNicknameChecked(true);
+          }
+        }
+      },
+    });
+  };
+
   const handleAccountCreate = handleSubmit(
     (data) => {
       const hasError = checkAgreementRequiredError() || checkBirthDateError();
 
       if (hasError) {
+        return;
+      }
+
+      if (!isNicknameChecked) {
+        addToast(TOAST.INFO.CHECK_NICKNAME);
+
         return;
       }
 
@@ -148,19 +182,35 @@ const useSignupForm = () => {
           },
         },
       };
+      checkNicknameDuplicated(
+        { nickname: data.nickname },
+        {
+          onSuccess: (isDuplicated) => {
+            if (isDuplicated) {
+              console.log('중복 O');
+              setError('nickname', {
+                type: 'validate',
+                message: '닉네임이 중복되었습니다.',
+              });
+            } else {
+              console.log('중복 X');
 
-      createUser(req, {
-        onSuccess: () => {
-          addToast(TOAST.SUCCESS.SIGNUP);
-          navigate('/login');
+              createUser(req, {
+                onSuccess: () => {
+                  addToast(TOAST.SUCCESS.SIGNUP);
+                  navigate('/login');
+                },
+                onError: (error) => {
+                  switch (error.message) {
+                    case 'User already registered':
+                      addToast(TOAST.WARNING.AUTH_ALREADY_REGISTERED);
+                  }
+                },
+              });
+            }
+          },
         },
-        onError: (error) => {
-          switch (error.message) {
-            case 'User already registered':
-              addToast(TOAST.WARNING.AUTH_ALREADY_REGISTERED);
-          }
-        },
-      });
+      );
     },
     () => {
       checkAgreementRequiredError();
@@ -214,10 +264,13 @@ const useSignupForm = () => {
   };
 
   return {
+    isNicknameChecked,
     errors,
     watch,
     register,
     checkBirthDateValidate,
+    handleNicknameChange,
+    handleNicknameDuplicateCheck,
     handleGenderOptionSelect,
     handleTermAllSelect,
     handleTermItemSelect,

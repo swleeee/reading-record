@@ -1,7 +1,23 @@
 import { useMutation } from '@tanstack/react-query';
 
-import { loginAPI, logoutAPI, signupAPI } from '@/apis';
-import type { LoginQueryModel, SignupQueryModel } from '@/types';
+import {
+  checkNicknameDuplicatedAPI,
+  loginAPI,
+  logoutAPI,
+  signupAPI,
+} from '@/apis';
+import type {
+  CheckNicknameDuplicatedQueryModel,
+  LoginQueryModel,
+  SignupQueryModel,
+} from '@/types';
+
+export const useCheckNicknameDuplicated = () => {
+  return useMutation({
+    mutationFn: (req: CheckNicknameDuplicatedQueryModel) =>
+      checkNicknameDuplicatedAPI(req),
+  });
+};
 
 export const useSignup = () => {
   return useMutation({

@@ -17,10 +17,13 @@ const NICKNAME_MIN_LENGTH = 2;
 
 const SignupForm = () => {
   const {
+    isNicknameChecked,
     errors,
     watch,
     register,
     checkBirthDateValidate,
+    handleNicknameChange,
+    handleNicknameDuplicateCheck,
     handleGenderOptionSelect,
     handleTermAllSelect,
     handleTermItemSelect,
@@ -33,12 +36,8 @@ const SignupForm = () => {
     errors.birth?.year?.message ||
     errors.birth?.month?.message ||
     errors.birth?.day?.message;
-
   // TODO: 이후 작성 예정
   const handleEmailDuplicateCheck = () => {};
-
-  // TODO: 이후 작성 예정
-  const handleNicknameDuplicateCheck = () => {};
 
   return (
     <S.Form onSubmit={handleAccountCreate}>
@@ -129,6 +128,7 @@ const SignupForm = () => {
         css={S.labelContent}
         isRequired
         error={errors.nickname?.message}
+        pass={isNicknameChecked ? '사용 가능한 닉네임입니다.' : ''}
         id="nickname"
         label="닉네임"
       >
@@ -150,9 +150,11 @@ const SignupForm = () => {
                 value: /^[A-za-z0-9가-힣]{2,20}$/,
                 message: ERROR_MSG.INVALID_NICKNAME,
               },
+              onChange: handleNicknameChange,
             })}
           />
           <Button
+            isDisabled={isNicknameChecked}
             styleType="secondary"
             sizeType="lg"
             label="중복 확인"
