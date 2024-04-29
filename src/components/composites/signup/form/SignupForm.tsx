@@ -8,7 +8,7 @@ import {
   Link,
   RadioButton,
 } from '@/components';
-import { ERROR_MSG, GENDER_OPTIONS } from '@/assets';
+import { ERROR_MESSAGE, GENDER_OPTIONS } from '@/assets';
 import useSignupForm from './hooks/useSignupForm';
 import * as S from './SignupForm.styled';
 
@@ -57,10 +57,10 @@ const SignupForm = () => {
             placeholder="이메일을 입력해주세요"
             value={watch('email')}
             register={register('email', {
-              required: ERROR_MSG.REQUIRED,
+              required: ERROR_MESSAGE.REQUIRED,
               pattern: {
                 value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                message: ERROR_MSG.INVALID_EMAIL,
+                message: ERROR_MESSAGE.INVALID_EMAIL,
               },
             })}
           />
@@ -82,7 +82,7 @@ const SignupForm = () => {
           value={watch('password')}
           type="password"
           register={register('password', {
-            required: ERROR_MSG.REQUIRED,
+            required: ERROR_MESSAGE.REQUIRED,
             minLength: {
               value: PASSWORD_MIN_LENGTH,
               message: `비밀번호는 ${PASSWORD_MIN_LENGTH}자 이상이어야 합니다`,
@@ -90,7 +90,7 @@ const SignupForm = () => {
             pattern: {
               value:
                 /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{4,30}$/,
-              message: ERROR_MSG.INVALID_PASSWORD,
+              message: ERROR_MESSAGE.INVALID_PASSWORD,
             },
             deps: ['passwordConfirm'],
           })}
@@ -112,9 +112,11 @@ const SignupForm = () => {
           value={watch('passwordConfirm')}
           type="password"
           register={register('passwordConfirm', {
-            required: ERROR_MSG.REQUIRED,
+            required: ERROR_MESSAGE.REQUIRED,
             validate: (value) =>
-              value === watch('password') ? true : ERROR_MSG.PASSWORD_NOT_MATCH,
+              value === watch('password')
+                ? true
+                : ERROR_MESSAGE.PASSWORD_NOT_MATCH,
           })}
         />
       </LabelContent>
@@ -135,14 +137,14 @@ const SignupForm = () => {
             placeholder="영문, 한글, 숫자 (2-20자)"
             value={watch('nickname')}
             register={register('nickname', {
-              required: ERROR_MSG.REQUIRED,
+              required: ERROR_MESSAGE.REQUIRED,
               minLength: {
                 value: NICKNAME_MIN_LENGTH,
                 message: `${NICKNAME_MIN_LENGTH}글자 이상 입력해주세요.`,
               },
               pattern: {
                 value: /^[A-za-z0-9가-힣]{2,20}$/,
-                message: ERROR_MSG.INVALID_NICKNAME,
+                message: ERROR_MESSAGE.INVALID_NICKNAME,
               },
               onChange: handleNicknameChange,
             })}
@@ -173,7 +175,7 @@ const SignupForm = () => {
             placeholder="YYYY"
             value={watch('birth.year')}
             register={register('birth.year', {
-              required: ERROR_MSG.REQUIRED,
+              required: ERROR_MESSAGE.REQUIRED,
               validate: (value) => checkBirthDateValidate('year', value),
               onChange: handleBirthChange('year'),
             })}
@@ -186,7 +188,7 @@ const SignupForm = () => {
             placeholder="MM"
             value={watch('birth.month')}
             register={register('birth.month', {
-              required: ERROR_MSG.REQUIRED,
+              required: ERROR_MESSAGE.REQUIRED,
               validate: (value) => checkBirthDateValidate('month', value),
               onChange: handleBirthChange('month'),
             })}
@@ -199,7 +201,7 @@ const SignupForm = () => {
             placeholder="DD"
             value={watch('birth.day')}
             register={register('birth.day', {
-              required: ERROR_MSG.REQUIRED,
+              required: ERROR_MESSAGE.REQUIRED,
               validate: (value) => checkBirthDateValidate('day', value),
               onChange: handleBirthChange('day'),
             })}

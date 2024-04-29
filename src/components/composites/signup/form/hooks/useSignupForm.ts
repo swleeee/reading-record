@@ -7,7 +7,7 @@ dayjs.extend(customParseFormat);
 
 import { useToast } from '@/hooks';
 import { useCheckNicknameDuplicated, useSignup } from '@/services';
-import { ERROR_MSG, GENDER_OPTIONS, TOAST_MESSAGE } from '@/assets';
+import { ERROR_MESSAGE, GENDER_OPTIONS, TOAST_MESSAGE } from '@/assets';
 import type { CheckboxGroupType, SelectOptionType } from '@/types';
 
 const TERM_AGREEMENT = { term: false, policy: false, age: false };
@@ -69,21 +69,21 @@ const useSignupForm = () => {
     switch (key) {
       case 'year': {
         if (+value < 1900 || +value > new Date().getFullYear()) {
-          return ERROR_MSG.INVALID_YEAR;
+          return ERROR_MESSAGE.INVALID_YEAR;
         }
         break;
       }
       case 'month':
         {
           if (+value < 1 || +value > 12) {
-            return ERROR_MSG.INVALID_MONTH;
+            return ERROR_MESSAGE.INVALID_MONTH;
           }
         }
         break;
       case 'day':
         {
           if (+value < 1 || +value > 31) {
-            return ERROR_MSG.INVALID_DAY;
+            return ERROR_MESSAGE.INVALID_DAY;
           }
         }
         break;
@@ -102,7 +102,7 @@ const useSignupForm = () => {
     if (!getBirthDateValid()) {
       setError('birth', {
         type: 'validate',
-        message: ERROR_MSG.INVALID_DATE,
+        message: ERROR_MESSAGE.INVALID_DATE,
       });
       hasError = true;
     }
@@ -120,7 +120,7 @@ const useSignupForm = () => {
     ) {
       setError('termOfAgreements', {
         type: 'required',
-        message: ERROR_MSG.REQUIRED,
+        message: ERROR_MESSAGE.REQUIRED,
       });
       hasError = true;
     }

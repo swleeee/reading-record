@@ -12,7 +12,7 @@ import {
 import { useModal, useToast } from '@/hooks';
 import {
   BOOK_READING_STATUS_OPTIONS,
-  ERROR_MSG,
+  ERROR_MESSAGE,
   TOAST_MESSAGE,
 } from '@/assets';
 import RatingIcon from '@/assets/icon/ic_rating.svg?react';
@@ -176,7 +176,7 @@ const BookReadingStatusChangeModal = React.forwardRef<
                   placeholder="감상문 내용을 입력해주세요."
                   value={watch('recordContent') ?? ''}
                   register={register('recordContent', {
-                    required: ERROR_MSG.REQUIRED,
+                    required: ERROR_MESSAGE.REQUIRED,
                   })}
                 />
                 {errors.recordContent?.message && (

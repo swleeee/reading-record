@@ -1,4 +1,4 @@
-export const ERROR_MSG = {
+export const ERROR_MESSAGE = {
   REQUIRED: '필수 값입니다.',
   INVALID_YEAR: '연도를 정확하게 입력해주세요 (YYYY).',
   INVALID_MONTH: '월을 정확하게 입력해주세요 (MM).',
