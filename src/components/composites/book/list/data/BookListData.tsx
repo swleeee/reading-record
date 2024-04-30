@@ -12,8 +12,8 @@ const BookListData = ({ books }: BookListDataProps) => {
     books.map((book) => (
       <BookListCard
         key={book.isbn}
-        readingStatus={book.readingStatus}
-        rating={book.rating}
+        readingStatus="pending" // TODO: 수정 예정
+        rating={4.5} // TODO: 수정 예정
         isbn={book.isbn}
         thumbnail={book.thumbnail}
         bookTitle={book.title}

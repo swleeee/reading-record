@@ -45,8 +45,6 @@ export interface GetBooksServerModel {
     total_count: number;
   };
   documents: {
-    readingStatus: (typeof BOOK_READING_STATUS_OPTIONS)[number]['key'];
-    rating: number | null;
     authors: string[];
     contents: string;
     datetime: string;
