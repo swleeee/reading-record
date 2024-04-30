@@ -34,6 +34,10 @@ export interface GetBooksQueryModel {
   target: 'title' | 'isbn' | 'publisher' | 'person';
 }
 
+export interface GetBookDetailQueryModel {
+  query: string;
+}
+
 export interface GetBooksServerModel {
   meta: {
     is_end: boolean;
@@ -41,8 +45,6 @@ export interface GetBooksServerModel {
     total_count: number;
   };
   documents: {
-    readingStatus: (typeof BOOK_READING_STATUS_OPTIONS)[number]['key'];
-    rating: number | null;
     authors: string[];
     contents: string;
     datetime: string;

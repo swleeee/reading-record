@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 
-import { BookDetail, MainLayout } from '@/components';
+import { BookDetail, BookDetailInfoSkeleton, MainLayout } from '@/components';
 
 const root = () => {
   return (
     <MainLayout>
-      <BookDetail />
+      <Suspense fallback={<BookDetailInfoSkeleton />}>
+        <BookDetail />
+      </Suspense>
     </MainLayout>
   );
 };
