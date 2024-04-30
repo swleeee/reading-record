@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 
 import { BookDetail, MainLayout } from '@/components';
 
 const root = () => {
   return (
     <MainLayout>
-      <BookDetail />
+      {/* TODO: 스켈레톤 UI 추가 예정 */}
+      <Suspense fallback={<></>}>
+        <BookDetail />
+      </Suspense>
     </MainLayout>
   );
 };
