@@ -1,12 +1,11 @@
 import React, { Suspense } from 'react';
 
-import { BookDetail, MainLayout } from '@/components';
+import { BookDetail, BookDetailInfoSkeleton, MainLayout } from '@/components';
 
 const root = () => {
   return (
     <MainLayout>
-      {/* TODO: 스켈레톤 UI 추가 예정 */}
-      <Suspense fallback={<></>}>
+      <Suspense fallback={<BookDetailInfoSkeleton />}>
         <BookDetail />
       </Suspense>
     </MainLayout>
