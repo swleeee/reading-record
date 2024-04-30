@@ -1,4 +1,5 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 
 import { Button } from '@/components';
 import { useModal } from '@/hooks';
@@ -11,6 +12,8 @@ interface BookInfoContentProps {
 }
 
 const BookDetailInfo = ({ book }: BookInfoContentProps) => {
+  const { id } = useParams();
+
   const { modalRef, openModal } = useModal();
 
   return (
@@ -40,6 +43,7 @@ const BookDetailInfo = ({ book }: BookInfoContentProps) => {
                 onClick={openModal(
                   <BookReadingStatusChangeModal
                     ref={modalRef}
+                    id={id}
                     readingStatus="completed"
                   />,
                 )}

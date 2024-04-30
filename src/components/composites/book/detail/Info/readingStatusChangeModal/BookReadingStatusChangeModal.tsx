@@ -1,7 +1,10 @@
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import type { Dayjs } from 'dayjs';
+import dayjs, { Dayjs } from 'dayjs';
+import utc from 'dayjs/plugin/utc';
+dayjs.extend(utc);
 
+import { useUser } from '@/contexts';
 import {
   DatePicker,
   ErrorMessage,
@@ -10,13 +13,17 @@ import {
   Textarea,
 } from '@/components';
 import { useModal, useToast } from '@/hooks';
+import { useUpdateBookRecordStatus } from '@/services';
 import RatingIcon from '@/assets/icon/ic_rating.svg?react';
 import {
   BOOK_READING_STATUS_OPTIONS,
   ERROR_MESSAGE,
   TOAST_MESSAGE,
 } from '@/constants';
-import type { SelectOptionType } from '@/types';
+import type {
+  SelectOptionType,
+  UpdateBookRecordStateQueryModel,
+} from '@/types';
 import * as S from './BookReadingStatusChangeModal.styled';
 
 type Form = {
@@ -28,13 +35,17 @@ type Form = {
 };
 
 interface BookReadingStatusChangeModalProps {
+  id?: string;
   readingStatus: string;
 }
 
 const BookReadingStatusChangeModal = React.forwardRef<
   HTMLDialogElement,
   BookReadingStatusChangeModalProps
->(({ readingStatus }, ref) => {
+>(({ id, readingStatus }, ref) => {
+  const isbn = id ? id.split(' ').filter((item) => item)[0] : '';
+  console.log(id, isbn);
+
   const {
     formState: { errors },
     watch,
@@ -45,6 +56,9 @@ const BookReadingStatusChangeModal = React.forwardRef<
     mode: 'onTouched',
   });
 
+  const { isPending: isUpdateStatusLoading, mutate: updateBookRecordStatus } =
+    useUpdateBookRecordStatus();
+  const { user } = useUser();
   const { addToast } = useToast();
   const { closeModal } = useModal();
 
@@ -58,6 +72,32 @@ const BookReadingStatusChangeModal = React.forwardRef<
     }
   };
 
+  const makeData = (data: Form) => {
+    if (data.readingStatus?.key === 'pending') {
+      return {
+        rating: null,
+        readingStartDate: null,
+        readingEndDate: null,
+        recordComment: null,
+      };
+    }
+    if (data.readingStatus?.key === 'ongoing') {
+      return {
+        rating: null,
+        readingStartDate: data.readingStartDateTime!.utc().format(),
+        readingEndDate: null,
+        recordComment: null,
+      };
+    }
+
+    return {
+      rating: data.rating,
+      readingStartDate: data.readingStartDateTime!.utc().format(),
+      readingEndDate: data.readingEndDateTime!.utc().format(),
+      recordComment: data.recordContent,
+    };
+  };
+
   const handleOptionSelect = (option: SelectOptionType) => () => {
     setValue('readingStatus', option);
   };
@@ -66,8 +106,20 @@ const BookReadingStatusChangeModal = React.forwardRef<
     setValue('rating', index);
   };
 
-  // TODO: 추후 작성 예정
-  const handleReadingStatusChange = handleSubmit(() => {
+  const handleReadingStatusChange = handleSubmit((data) => {
+    const req: UpdateBookRecordStateQueryModel = {
+      userId: user?.id!,
+      isbn,
+      ...makeData(data),
+    };
+
+    updateBookRecordStatus(req, {
+      onSuccess: () => {
+        addToast(TOAST_MESSAGE.SUCCESS.UPDATE_READING_COMPLETED_STATUS);
+        closeModal();
+      },
+    });
+
     /*
       NOTE: 상황별 토스트
       1. '읽기 전', '읽기 중' -> '읽기 완료' (TOAST.SUCCESS.UPDATE_READING_PENDING_STATUS) 
@@ -75,8 +127,6 @@ const BookReadingStatusChangeModal = React.forwardRef<
       3. '읽기 중' -> '읽기 전' (TOAST.SUCCESS.UPDATE_READING_PENDING_STATUS)
       4. '읽기 완료' -> '읽기 전' or '읽기 중' (TOAST.WARNING.UPDATE_READING_STATUS)
     */
-    addToast(TOAST_MESSAGE.SUCCESS.UPDATE_READING_COMPLETED_STATUS);
-    closeModal();
   });
 
   useEffect(() => {
@@ -94,6 +144,7 @@ const BookReadingStatusChangeModal = React.forwardRef<
     <Modal
       ref={ref}
       isDisabled={false}
+      isLoading={isUpdateStatusLoading}
       activeButtonName="변경"
       closeButtonName="닫기"
       title="도서 읽기 상태 변경"
