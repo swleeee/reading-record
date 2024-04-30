@@ -62,7 +62,7 @@ const BookDetailInfo = ({ book }: BookInfoContentProps) => {
           </S.BookInfoDescription>
           <S.BookInfoTitle>번역자</S.BookInfoTitle>
           <S.BookInfoDescription>
-            {book.translators.join(', ')}
+            {book.translators.join(', ') || '-'}
           </S.BookInfoDescription>
           <S.BookInfoTitle>출판사</S.BookInfoTitle>
           <S.BookInfoDescription>{book.publisher}</S.BookInfoDescription>
