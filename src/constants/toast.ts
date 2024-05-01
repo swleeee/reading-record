@@ -45,6 +45,10 @@ export const TOAST_MESSAGE = {
       type: 'warning',
       message: `'읽기 완료' 상태에서 다른 상태로 변경할 수 없습니다 :(`,
     },
+    END_DATE_BEFORE_THAN_START_DATE: {
+      type: 'warning',
+      message: `'종료 날짜'가 '시작 날짜'보다 이후여야 합니다.`,
+    },
   },
   INFO: {
     CHECK_NICKNAME: {

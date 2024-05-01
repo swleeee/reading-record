@@ -183,6 +183,7 @@ const Calendar = ({
 
 interface DatePickerProps {
   isDisabled?: boolean;
+  hasError?: boolean;
   selectedDate: dayjs.Dayjs | null;
   placeholder: string;
   selectDate: (date: dayjs.Dayjs) => void;
@@ -190,6 +191,7 @@ interface DatePickerProps {
 
 const DatePicker = ({
   isDisabled = false,
+  hasError = false,
   selectedDate,
   placeholder,
   selectDate,
@@ -207,6 +209,7 @@ const DatePicker = ({
       <Input
         css={S.datePickerInput}
         isDisabled={isDisabled}
+        hasError={hasError}
         isReadOnly
         placeholder={placeholder}
         value={selectedDate ? selectedDate.format('YYYY-MM-DD') : ''}

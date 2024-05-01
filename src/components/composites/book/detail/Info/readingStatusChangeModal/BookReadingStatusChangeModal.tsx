@@ -2,7 +2,9 @@ import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import dayjs, { Dayjs } from 'dayjs';
 import utc from 'dayjs/plugin/utc';
+import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
 dayjs.extend(utc);
+dayjs.extend(isSameOrBefore);
 
 import { useUser } from '@/contexts';
 import {
@@ -70,7 +72,9 @@ const BookReadingStatusChangeModal = React.forwardRef<
       formState: { errors },
       watch,
       register,
+      clearErrors,
       reset,
+      setError,
       setValue,
       handleSubmit,
     } = useForm<Form>({
@@ -88,10 +92,20 @@ const BookReadingStatusChangeModal = React.forwardRef<
     const selectDate = (type: 'start' | 'end') => (date: Dayjs) => {
       if (type === 'start') {
         setValue('readingStartDateTime', date);
+
+        if (date.isSameOrBefore(watch('readingEndDateTime'))) {
+          clearErrors('readingStartDateTime');
+          clearErrors('readingEndDateTime');
+        }
       }
 
       if (type === 'end') {
         setValue('readingEndDateTime', date);
+
+        if (watch('readingStartDateTime')?.isSameOrBefore(date)) {
+          clearErrors('readingStartDateTime');
+          clearErrors('readingEndDateTime');
+        }
       }
     };
 
@@ -227,7 +241,18 @@ const BookReadingStatusChangeModal = React.forwardRef<
                   break;
 
                 // TODO: 추가 예정
-                case 'CANNOT_UPDATE_READING_END_DATE':
+                case 'CANNOT_END_DATE_BEFORE_THAN_START_DATE':
+                  setError('readingEndDateTime', {
+                    type: 'validate',
+                    message: ERROR_MESSAGE.START_DATE_BEFORE_THAN_END_DATE,
+                  });
+                  setError('readingStartDateTime', {
+                    type: 'validate',
+                    message: ERROR_MESSAGE.START_DATE_BEFORE_THAN_END_DATE,
+                  });
+                  addToast(
+                    TOAST_MESSAGE.WARNING.END_DATE_BEFORE_THAN_START_DATE,
+                  );
                   break;
               }
             },
@@ -296,17 +321,28 @@ const BookReadingStatusChangeModal = React.forwardRef<
                 </S.Label>
                 <S.DatePickerWrapper>
                   <DatePicker
+                    hasError={!!errors.readingStartDateTime}
                     selectedDate={watch('readingStartDateTime')}
                     placeholder="독서 시작 날짜를 선택하세요."
                     selectDate={selectDate('start')}
                   />
                   <DatePicker
                     isDisabled={watch('readingStatus')?.key === 'ongoing'}
+                    hasError={!!errors.readingEndDateTime}
                     selectedDate={watch('readingEndDateTime')}
                     placeholder="독서 종료 날짜를 선택하세요."
                     selectDate={selectDate('end')}
                   />
                 </S.DatePickerWrapper>
+                {(errors.readingStartDateTime?.message ||
+                  errors.readingEndDateTime?.message) && (
+                  <ErrorMessage
+                    message={
+                      (errors.readingStartDateTime?.message ||
+                        errors.readingEndDateTime?.message)!
+                    }
+                  />
+                )}
               </S.DataWrapper>
               {watch('readingStatus')?.key === 'completed' && (
                 <S.DataWrapper marginBottom="24px">

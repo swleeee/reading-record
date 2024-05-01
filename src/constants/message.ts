@@ -13,6 +13,7 @@ export const ERROR_MESSAGE = {
   MIN_LENGTH_NICKNAME: `닉네임은 ${NICKNAME_MIN_LENGTH}자 이상이어야 합니다.`,
   PASSWORD_NOT_MATCH: '비밀번호가 일치하지 않습니다.',
   REQUIRED: '필수 값입니다.',
+  START_DATE_BEFORE_THAN_END_DATE: `'시작 날짜' 이후로 선택해주세요.`,
 };
 
 export const PASS_MESSAGE = {
