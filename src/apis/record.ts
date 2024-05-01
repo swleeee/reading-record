@@ -24,20 +24,26 @@ export const getBookRecordAPI = async (req: GetBookRecordQueryModel) => {
   return data;
 };
 
+const createBookRecordPayload = (req: CreateBookRecordStateQueryModel) => {
+  return {
+    user_id: req.userId,
+    isbn: req.isbn,
+    rating: req.rating ?? null,
+    reading_start_at: req.readingStartDate ?? null,
+    reading_end_at: req.readingEndDate ?? null,
+    record_comment: req.recordComment ?? null,
+    bookmark: req.bookMark ?? null,
+  };
+};
+
 export const createBookRecordStateAPI = async (
   req: CreateBookRecordStateQueryModel,
 ) => {
+  const value = createBookRecordPayload(req);
+
   const { data, error } = await supabase
     .from('book_record')
-    .insert({
-      user_id: req.userId,
-      isbn: req.isbn,
-      rating: req.rating ?? null,
-      reading_start_at: req.readingStartDate ?? null,
-      reading_end_at: req.readingEndDate ?? null,
-      record_comment: req.recordComment ?? null,
-      bookmark: req.bookMark ?? null,
-    })
+    .insert(value)
     .select();
 
   if (error) {
@@ -50,18 +56,13 @@ export const createBookRecordStateAPI = async (
 export const updateBookRecordStateAPI = async (
   req: UpdateBookRecordStateQueryModel,
 ) => {
+  const { recordId, ...rest } = req;
+  const value = createBookRecordPayload(rest);
+
   const { data, error } = await supabase
     .from('book_record')
-    .update({
-      user_id: req.userId,
-      isbn: req.isbn,
-      rating: req.rating ?? null,
-      reading_start_at: req.readingStartDate ?? null,
-      reading_end_at: req.readingEndDate ?? null,
-      record_comment: req.recordComment ?? null,
-      bookmark: req.bookMark ?? null,
-    })
-    .eq('id', req.recordId)
+    .update(value)
+    .eq('id', recordId)
     .select();
 
   if (error) {
