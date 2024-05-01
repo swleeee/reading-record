@@ -5,6 +5,7 @@ import type {
   GetBookRecordQueryModel,
   UpdateBookRecordStateQueryModel,
 } from '@/types';
+import queryClient from './queryClient';
 import { bookKeys } from './book';
 
 const bookRecordKeys = {
@@ -22,5 +23,10 @@ export const useUpdateBookRecordStatus = () => {
   return useMutation({
     mutationFn: (req: UpdateBookRecordStateQueryModel) =>
       updateBookRecordStateAPI(req),
+    onSuccess: (_, variables) => {
+      queryClient.invalidateQueries({
+        queryKey: bookRecordKeys.record(variables.isbn),
+      });
+    },
   });
 };
