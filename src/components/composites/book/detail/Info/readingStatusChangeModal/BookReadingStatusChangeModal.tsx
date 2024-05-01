@@ -93,19 +93,39 @@ const BookReadingStatusChangeModal = React.forwardRef<
       if (type === 'start') {
         setValue('readingStartDateTime', date);
 
-        if (date.isSameOrBefore(watch('readingEndDateTime'))) {
-          clearErrors('readingStartDateTime');
-          clearErrors('readingEndDateTime');
+        if (dayjs.isDayjs(watch('readingEndDateTime'))) {
+          if (errors.readingStartDateTime?.type === 'required') {
+            clearErrors('readingStartDateTime');
+            return;
+          }
+
+          if (date.isSameOrBefore(watch('readingEndDateTime'))) {
+            clearErrors('readingStartDateTime');
+            clearErrors('readingEndDateTime');
+          }
+
+          return;
         }
+        clearErrors('readingStartDateTime');
       }
 
       if (type === 'end') {
         setValue('readingEndDateTime', date);
 
-        if (watch('readingStartDateTime')?.isSameOrBefore(date)) {
-          clearErrors('readingStartDateTime');
-          clearErrors('readingEndDateTime');
+        if (dayjs.isDayjs(watch('readingStartDateTime'))) {
+          if (errors.readingEndDateTime?.type === 'required') {
+            clearErrors('readingEndDateTime');
+            return;
+          }
+
+          if (watch('readingStartDateTime')?.isSameOrBefore(date)) {
+            clearErrors('readingStartDateTime');
+            clearErrors('readingEndDateTime');
+          }
+
+          return;
         }
+        clearErrors('readingEndDateTime');
       }
     };
 
@@ -203,74 +223,121 @@ const BookReadingStatusChangeModal = React.forwardRef<
       setValue('rating', index + 1);
     };
 
-    const handleReadingStatusChange = handleSubmit((data) => {
-      const req: CreateBookRecordStateQueryModel = {
-        userId: user?.id!,
-        isbn,
-        ...makeData(data),
-      };
+    const checkDateRequiredError = () => {
+      let hasError = false;
 
-      const toastMessage = getToastMessage(
-        recordId,
-        { readingStartDateTime, readingEndDateTime },
-        {
-          readingStartDateTime: data.readingStartDateTime
-            ? data.readingStartDateTime.format()
-            : null,
-          readingEndDateTime: data.readingEndDateTime
-            ? data.readingEndDateTime.format()
-            : null,
-        },
-      );
+      if (
+        watch('readingStatus')?.key === 'ongoing' &&
+        !dayjs.isDayjs(watch('readingStartDateTime'))
+      ) {
+        setError('readingStartDateTime', {
+          type: 'required',
+          message: ERROR_MESSAGE.REQUIRED,
+        });
 
-      if (recordId) {
-        updateBookRecordStatus(
-          { ...req, recordId },
-          {
-            onSuccess: () => {
-              if (toastMessage) {
-                addToast(toastMessage);
-              }
-
-              closeModal();
-            },
-            onError: (error) => {
-              switch (error.message) {
-                case 'CANNOT_UPDATE_READING_COMPLETE_STATUS':
-                  addToast(TOAST_MESSAGE.WARNING.UPDATE_READING_STATUS);
-                  break;
-
-                // TODO: 추가 예정
-                case 'CANNOT_END_DATE_BEFORE_THAN_START_DATE':
-                  setError('readingEndDateTime', {
-                    type: 'validate',
-                    message: ERROR_MESSAGE.START_DATE_BEFORE_THAN_END_DATE,
-                  });
-                  setError('readingStartDateTime', {
-                    type: 'validate',
-                    message: ERROR_MESSAGE.START_DATE_BEFORE_THAN_END_DATE,
-                  });
-                  addToast(
-                    TOAST_MESSAGE.WARNING.END_DATE_BEFORE_THAN_START_DATE,
-                  );
-                  break;
-              }
-            },
-          },
-        );
-        return;
+        hasError = true;
       }
 
-      createBookRecordStatus(req, {
-        onSuccess: () => {
-          if (toastMessage) {
-            addToast(toastMessage);
-          }
+      if (watch('readingStatus')?.key === 'completed') {
+        if (!dayjs.isDayjs(watch('readingStartDateTime'))) {
+          setError('readingStartDateTime', {
+            type: 'required',
+            message: ERROR_MESSAGE.REQUIRED,
+          });
 
-          closeModal();
-        },
-      });
-    });
+          hasError = true;
+        }
+
+        if (!dayjs.isDayjs(watch('readingEndDateTime'))) {
+          setError('readingEndDateTime', {
+            type: 'required',
+            message: ERROR_MESSAGE.REQUIRED,
+          });
+
+          hasError = true;
+        }
+      }
+
+      return hasError;
+    };
+
+    const handleReadingStatusChange = handleSubmit(
+      (data) => {
+        if (checkDateRequiredError()) {
+          return;
+        }
+
+        const req: CreateBookRecordStateQueryModel = {
+          userId: user?.id!,
+          isbn,
+          ...makeData(data),
+        };
+
+        const toastMessage = getToastMessage(
+          recordId,
+          { readingStartDateTime, readingEndDateTime },
+          {
+            readingStartDateTime: data.readingStartDateTime
+              ? data.readingStartDateTime.format()
+              : null,
+            readingEndDateTime: data.readingEndDateTime
+              ? data.readingEndDateTime.format()
+              : null,
+          },
+        );
+
+        if (recordId) {
+          updateBookRecordStatus(
+            { ...req, recordId },
+            {
+              onSuccess: () => {
+                if (toastMessage) {
+                  addToast(toastMessage);
+                }
+
+                closeModal();
+              },
+              onError: (error) => {
+                switch (error.message) {
+                  case 'CANNOT_UPDATE_READING_COMPLETE_STATUS':
+                    addToast(TOAST_MESSAGE.WARNING.UPDATE_READING_STATUS);
+                    break;
+
+                  // TODO: 추가 예정
+                  case 'CANNOT_END_DATE_BEFORE_THAN_START_DATE':
+                    setError('readingEndDateTime', {
+                      type: 'validate',
+                      message: ERROR_MESSAGE.START_DATE_BEFORE_THAN_END_DATE,
+                    });
+                    setError('readingStartDateTime', {
+                      type: 'validate',
+                      message: ERROR_MESSAGE.START_DATE_BEFORE_THAN_END_DATE,
+                    });
+                    addToast(
+                      TOAST_MESSAGE.WARNING.END_DATE_BEFORE_THAN_START_DATE,
+                    );
+                    break;
+                }
+              },
+            },
+          );
+          return;
+        }
+
+        createBookRecordStatus(req, {
+          onSuccess: () => {
+            if (toastMessage) {
+              addToast(toastMessage);
+            }
+
+            closeModal();
+          },
+        });
+      },
+      () => {
+        checkDateRequiredError();
+      },
+    );
 
     useEffect(() => {
       reset({
