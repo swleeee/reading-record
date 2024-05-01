@@ -1,7 +1,8 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 
-import { useGetBookDetail } from '@/services';
+import { useUser } from '@/contexts';
+import { useGetBookDetail, useGetBookRecord } from '@/services';
 import type { GetBookRecordsServerModel } from '@/types';
 import BookInfoContent from './Info/BookDetailInfo';
 import BookRecordList from './record/BookRecordList';
@@ -10,8 +11,12 @@ const BookDetail = () => {
   const { id: isbn } = useParams();
 
   const query = isbn ? isbn.split(' ').filter((item) => item)[0] : '';
-  const req = { query };
-  const { data } = useGetBookDetail(req);
+  const { user } = useUser();
+  const { data: bookDetailInfo } = useGetBookDetail({ query });
+  const { data: bookRecordInfo } = useGetBookRecord({
+    userId: user?.id!,
+    isbn: query,
+  });
 
   const bookRecordServerData: GetBookRecordsServerModel = {
     pageInfo: {
@@ -82,11 +87,15 @@ const BookDetail = () => {
     ],
   };
 
-  if (!data) return null;
+  if (!bookDetailInfo) return null;
+  if (!bookRecordInfo) return null;
 
   return (
     <>
-      <BookInfoContent book={data.documents[0]} />
+      <BookInfoContent
+        book={bookDetailInfo.documents[0]}
+        records={bookRecordInfo}
+      />
       <BookRecordList bookRecordData={bookRecordServerData} />
     </>
   );

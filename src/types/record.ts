@@ -1,3 +1,19 @@
+export interface GetBookRecordQueryModel {
+  userId: string;
+  isbn: string;
+}
+
+export type GetBookRecordServerModel = {
+  created_at: string;
+  updated_at: string;
+  id: string;
+  isbn: string;
+  rating: number | null;
+  reading_start_at: string | null;
+  reading_end_at: string | null;
+  record_comment: string | null;
+}[];
+
 export interface UpdateBookRecordStateQueryModel {
   userId: string;
   isbn: string;
