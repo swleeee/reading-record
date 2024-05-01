@@ -1,4 +1,5 @@
 import { supabase } from '@/lib';
+import { DB_TABLE_NAME } from '@/constants';
 import type {
   CreateBookRecordStateQueryModel,
   GetBookRecordQueryModel,
@@ -8,7 +9,7 @@ import type {
 
 export const getBookRecordAPI = async (req: GetBookRecordQueryModel) => {
   const { data, error } = await supabase
-    .from('book_record')
+    .from(DB_TABLE_NAME.BOOK_RECORD)
     .select(
       'created_at, updated_at, id, isbn, rating, reading_start_at, reading_end_at, record_comment',
     )
@@ -42,7 +43,7 @@ export const createBookRecordStateAPI = async (
   const value = createBookRecordPayload(req);
 
   const { data, error } = await supabase
-    .from('book_record')
+    .from(DB_TABLE_NAME.BOOK_RECORD)
     .insert(value)
     .select();
 
@@ -60,7 +61,7 @@ export const updateBookRecordStateAPI = async (
   const value = createBookRecordPayload(rest);
 
   const { data, error } = await supabase
-    .from('book_record')
+    .from(DB_TABLE_NAME.BOOK_RECORD)
     .update(value)
     .eq('id', recordId)
     .select();
