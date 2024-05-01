@@ -17,6 +17,7 @@ import {
   useCreateBookRecordStatus,
   useUpdateBookRecordStatus,
 } from '@/services';
+import { getBookReadingStatus } from '@/utils';
 import RatingIcon from '@/assets/icon/ic_rating.svg?react';
 import {
   BOOK_READING_STATUS_OPTIONS,
@@ -120,6 +121,66 @@ const BookReadingStatusChangeModal = React.forwardRef<
       };
     };
 
+    const getToastMessageByStatus = (
+      readingStatus: (typeof BOOK_READING_STATUS_OPTIONS)[number]['key'],
+    ) => {
+      switch (readingStatus) {
+        case 'pending':
+          return TOAST_MESSAGE.SUCCESS.UPDATE_READING_PENDING_STATUS;
+
+        case 'ongoing':
+          return TOAST_MESSAGE.SUCCESS.UPDATE_READING_ONGOING_STATUS;
+
+        case 'completed':
+          return TOAST_MESSAGE.SUCCESS.UPDATE_READING_PENDING_STATUS;
+      }
+
+      return null;
+    };
+
+    type ReadingTimeRange = {
+      readingStartDateTime: string | null;
+      readingEndDateTime: string | null;
+    };
+
+    /*
+      NOTE: 상황별 토스트
+      1. '읽기 전', '읽기 중' -> '읽기 완료' (TOAST_MESSAGE.SUCCESS.UPDATE_READING_PENDING_STATUS) 
+      2. '읽기 전' -> '읽기 중' (TOAST_MESSAGE.SUCCESS.UPDATE_READING_ONGOING_STATUS)
+      3. '읽기 중' -> '읽기 전' (TOAST_MESSAGE.SUCCESS.UPDATE_READING_PENDING_STATUS)
+      4. 같은 상태로 업데이트 (TOAST_MESSAGE.SUCCSS.UPDATE_RECORD_CONTENT)
+      5. '읽기 완료' -> '읽기 전' or '읽기 중' (TOAST_MESSAGE.WARNING.UPDATE_READING_STATUS)    
+    */
+    const getToastMessage = (
+      recordId: string | null,
+      originRecordDateTime: ReadingTimeRange,
+      newRecordDateTime: ReadingTimeRange,
+    ) => {
+      // NOTE: 첫 독서 기록 생성
+      const originReadingStatus =
+        getBookReadingStatus(
+          originRecordDateTime.readingStartDateTime,
+          originRecordDateTime.readingEndDateTime,
+        ) ?? BOOK_READING_STATUS_OPTIONS[0];
+
+      const newReadingStatus =
+        getBookReadingStatus(
+          newRecordDateTime.readingStartDateTime,
+          newRecordDateTime.readingEndDateTime,
+        ) ?? BOOK_READING_STATUS_OPTIONS[0];
+
+      if (!recordId) {
+        return getToastMessageByStatus(newReadingStatus.key);
+      }
+
+      // NOTE: 독서 기록 업데이트
+      if (originReadingStatus.key === newReadingStatus.key) {
+        return TOAST_MESSAGE.SUCCESS.UPDATE_RECORD_CONTENT;
+      }
+
+      return getToastMessageByStatus(newReadingStatus.key);
+    };
+
     const handleOptionSelect = (option: SelectOptionType) => () => {
       setValue('readingStatus', option);
     };
@@ -135,13 +196,40 @@ const BookReadingStatusChangeModal = React.forwardRef<
         ...makeData(data),
       };
 
+      const toastMessage = getToastMessage(
+        recordId,
+        { readingStartDateTime, readingEndDateTime },
+        {
+          readingStartDateTime: data.readingStartDateTime
+            ? data.readingStartDateTime.format()
+            : null,
+          readingEndDateTime: data.readingEndDateTime
+            ? data.readingEndDateTime.format()
+            : null,
+        },
+      );
+
       if (recordId) {
         updateBookRecordStatus(
           { ...req, recordId },
           {
             onSuccess: () => {
-              addToast(TOAST_MESSAGE.SUCCESS.UPDATE_READING_COMPLETED_STATUS);
+              if (toastMessage) {
+                addToast(toastMessage);
+              }
+
               closeModal();
+            },
+            onError: (error) => {
+              switch (error.message) {
+                case 'CANNOT_UPDATE_READING_COMPLETE_STATUS':
+                  addToast(TOAST_MESSAGE.WARNING.UPDATE_READING_STATUS);
+                  break;
+
+                // TODO: 추가 예정
+                case 'CANNOT_UPDATE_READING_END_DATE':
+                  break;
+              }
             },
           },
         );
@@ -150,18 +238,13 @@ const BookReadingStatusChangeModal = React.forwardRef<
 
       createBookRecordStatus(req, {
         onSuccess: () => {
-          addToast(TOAST_MESSAGE.SUCCESS.UPDATE_READING_COMPLETED_STATUS);
+          if (toastMessage) {
+            addToast(toastMessage);
+          }
+
           closeModal();
         },
       });
-
-      /*
-      NOTE: 상황별 토스트
-      1. '읽기 전', '읽기 중' -> '읽기 완료' (TOAST.SUCCESS.UPDATE_READING_PENDING_STATUS) 
-      2. '읽기 전' -> '읽기 중' (TOAST.SUCCESS.UPDATE_READING_ONGOING_STATUS)
-      3. '읽기 중' -> '읽기 전' (TOAST.SUCCESS.UPDATE_READING_PENDING_STATUS)
-      4. '읽기 완료' -> '읽기 전' or '읽기 중' (TOAST.WARNING.UPDATE_READING_STATUS)
-    */
     });
 
     useEffect(() => {
