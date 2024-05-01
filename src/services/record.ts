@@ -1,7 +1,12 @@
 import { useMutation, useSuspenseQuery } from '@tanstack/react-query';
 
-import { getBookRecordAPI, updateBookRecordStateAPI } from '@/apis';
+import {
+  createBookRecordStateAPI,
+  getBookRecordAPI,
+  updateBookRecordStateAPI,
+} from '@/apis';
 import type {
+  CreateBookRecordStateQueryModel,
   GetBookRecordQueryModel,
   UpdateBookRecordStateQueryModel,
 } from '@/types';
@@ -16,6 +21,18 @@ export const useGetBookRecord = (req: GetBookRecordQueryModel) => {
   return useSuspenseQuery({
     queryKey: bookRecordKeys.record(req.isbn),
     queryFn: () => getBookRecordAPI(req),
+  });
+};
+
+export const useCreateBookRecordStatus = () => {
+  return useMutation({
+    mutationFn: (req: CreateBookRecordStateQueryModel) =>
+      createBookRecordStateAPI(req),
+    onSuccess: (_, variables) => {
+      queryClient.invalidateQueries({
+        queryKey: bookRecordKeys.record(variables.isbn),
+      });
+    },
   });
 };
 

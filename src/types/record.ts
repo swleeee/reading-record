@@ -14,7 +14,7 @@ export type GetBookRecordServerModel = {
   record_comment: string | null;
 }[];
 
-export interface UpdateBookRecordStateQueryModel {
+export interface CreateBookRecordStateQueryModel {
   userId: string;
   isbn: string;
   rating: number | null;
@@ -22,6 +22,11 @@ export interface UpdateBookRecordStateQueryModel {
   readingEndDate: string | null;
   recordComment: string | null;
   bookMark?: boolean;
+}
+
+export interface UpdateBookRecordStateQueryModel
+  extends CreateBookRecordStateQueryModel {
+  recordId: string;
 }
 
 export interface GetBookRecordsServerModel {

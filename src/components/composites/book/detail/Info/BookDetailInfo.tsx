@@ -54,6 +54,7 @@ const BookDetailInfo = ({ book, records }: BookInfoContentProps) => {
                   <BookReadingStatusChangeModal
                     ref={modalRef}
                     id={id}
+                    recordId={records.length ? records[0].id : null}
                     readingStatus={currentReadingStatus}
                     readingStartDateTime={
                       records.length ? records[0].reading_start_at : null

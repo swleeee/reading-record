@@ -1,5 +1,6 @@
 import { supabase } from '@/lib';
 import type {
+  CreateBookRecordStateQueryModel,
   GetBookRecordQueryModel,
   GetBookRecordServerModel,
   UpdateBookRecordStateQueryModel,
@@ -23,23 +24,44 @@ export const getBookRecordAPI = async (req: GetBookRecordQueryModel) => {
   return data;
 };
 
+export const createBookRecordStateAPI = async (
+  req: CreateBookRecordStateQueryModel,
+) => {
+  const { data, error } = await supabase
+    .from('book_record')
+    .insert({
+      user_id: req.userId,
+      isbn: req.isbn,
+      rating: req.rating ?? null,
+      reading_start_at: req.readingStartDate ?? null,
+      reading_end_at: req.readingEndDate ?? null,
+      record_comment: req.recordComment ?? null,
+      bookmark: req.bookMark ?? null,
+    })
+    .select();
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  return data;
+};
+
 export const updateBookRecordStateAPI = async (
   req: UpdateBookRecordStateQueryModel,
 ) => {
   const { data, error } = await supabase
     .from('book_record')
-    .upsert(
-      {
-        user_id: req.userId,
-        isbn: req.isbn,
-        rating: req.rating ?? null,
-        reading_start_at: req.readingStartDate ?? null,
-        reading_end_at: req.readingEndDate ?? null,
-        record_comment: req.recordComment ?? null,
-        bookmark: req.bookMark ?? null,
-      },
-      { onConflict: 'isbn' },
-    )
+    .update({
+      user_id: req.userId,
+      isbn: req.isbn,
+      rating: req.rating ?? null,
+      reading_start_at: req.readingStartDate ?? null,
+      reading_end_at: req.readingEndDate ?? null,
+      record_comment: req.recordComment ?? null,
+      bookmark: req.bookMark ?? null,
+    })
+    .eq('id', req.recordId)
     .select();
 
   if (error) {

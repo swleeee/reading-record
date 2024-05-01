@@ -13,7 +13,10 @@ import {
   Textarea,
 } from '@/components';
 import { useModal, useToast } from '@/hooks';
-import { useUpdateBookRecordStatus } from '@/services';
+import {
+  useCreateBookRecordStatus,
+  useUpdateBookRecordStatus,
+} from '@/services';
 import RatingIcon from '@/assets/icon/ic_rating.svg?react';
 import {
   BOOK_READING_STATUS_OPTIONS,
@@ -21,8 +24,8 @@ import {
   TOAST_MESSAGE,
 } from '@/constants';
 import type {
+  CreateBookRecordStateQueryModel,
   SelectOptionType,
-  UpdateBookRecordStateQueryModel,
 } from '@/types';
 import * as S from './BookReadingStatusChangeModal.styled';
 
@@ -36,6 +39,7 @@ type Form = {
 
 interface BookReadingStatusChangeModalProps {
   id?: string;
+  recordId: string | null;
   readingStatus: SelectOptionType;
   readingStartDateTime: string | null;
   readingEndDateTime: string | null;
@@ -50,6 +54,7 @@ const BookReadingStatusChangeModal = React.forwardRef<
   (
     {
       id,
+      recordId,
       readingStatus,
       readingStartDateTime,
       readingEndDateTime,
@@ -59,7 +64,6 @@ const BookReadingStatusChangeModal = React.forwardRef<
     ref,
   ) => {
     const isbn = id ? id.split(' ').filter((item) => item)[0] : '';
-    console.log(id, isbn);
 
     const {
       formState: { errors },
@@ -72,6 +76,8 @@ const BookReadingStatusChangeModal = React.forwardRef<
       mode: 'onTouched',
     });
 
+    const { isPending: isCreateStatusLoading, mutate: createBookRecordStatus } =
+      useCreateBookRecordStatus();
     const { isPending: isUpdateStatusLoading, mutate: updateBookRecordStatus } =
       useUpdateBookRecordStatus();
     const { user } = useUser();
@@ -123,13 +129,26 @@ const BookReadingStatusChangeModal = React.forwardRef<
     };
 
     const handleReadingStatusChange = handleSubmit((data) => {
-      const req: UpdateBookRecordStateQueryModel = {
+      const req: CreateBookRecordStateQueryModel = {
         userId: user?.id!,
         isbn,
         ...makeData(data),
       };
 
-      updateBookRecordStatus(req, {
+      if (recordId) {
+        updateBookRecordStatus(
+          { ...req, recordId },
+          {
+            onSuccess: () => {
+              addToast(TOAST_MESSAGE.SUCCESS.UPDATE_READING_COMPLETED_STATUS);
+              closeModal();
+            },
+          },
+        );
+        return;
+      }
+
+      createBookRecordStatus(req, {
         onSuccess: () => {
           addToast(TOAST_MESSAGE.SUCCESS.UPDATE_READING_COMPLETED_STATUS);
           closeModal();
@@ -163,7 +182,7 @@ const BookReadingStatusChangeModal = React.forwardRef<
       <Modal
         ref={ref}
         isDisabled={false}
-        isLoading={isUpdateStatusLoading}
+        isLoading={isCreateStatusLoading || isUpdateStatusLoading}
         activeButtonName="변경"
         closeButtonName="닫기"
         title="도서 읽기 상태 변경"
