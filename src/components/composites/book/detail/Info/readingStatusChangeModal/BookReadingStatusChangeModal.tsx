@@ -217,6 +217,13 @@ const BookReadingStatusChangeModal = React.forwardRef<
 
     const handleOptionSelect = (option: SelectOptionType) => () => {
       setValue('readingStatus', option);
+
+      if (
+        option.key === 'ongoing' &&
+        dayjs.isDayjs(watch('readingEndDateTime'))
+      ) {
+        setValue('readingEndDateTime', null);
+      }
     };
 
     const handleRatingMouseEnter = (index: number) => () => {
