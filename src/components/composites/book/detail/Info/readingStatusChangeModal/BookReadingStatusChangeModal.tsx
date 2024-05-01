@@ -125,7 +125,7 @@ const BookReadingStatusChangeModal = React.forwardRef<
     };
 
     const handleRatingMouseEnter = (index: number) => () => {
-      setValue('rating', index);
+      setValue('rating', index + 1);
     };
 
     const handleReadingStatusChange = handleSubmit((data) => {
@@ -173,7 +173,7 @@ const BookReadingStatusChangeModal = React.forwardRef<
         readingEndDateTime: readingEndDateTime
           ? dayjs(readingEndDateTime)
           : null,
-        rating,
+        rating: rating ?? 1,
         recordContent,
       });
     }, []);
@@ -239,7 +239,7 @@ const BookReadingStatusChangeModal = React.forwardRef<
                       <RatingIcon
                         key={i}
                         css={S.ratingIcon(
-                          i - 1 < (watch('rating') ? watch('rating')! : 0),
+                          i < (watch('rating') ? watch('rating')! : 1),
                         )}
                         onMouseEnter={handleRatingMouseEnter(i)}
                       />
