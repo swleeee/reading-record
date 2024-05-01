@@ -1,17 +1,30 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 
 import { Button } from '@/components';
 import { useModal } from '@/hooks';
-import type { GetBooksServerModel } from '@/types';
+import { getBookReadingStatus } from '@/utils';
+import { BOOK_READING_STATUS_OPTIONS } from '@/constants';
+import type { GetBookRecordServerModel, GetBooksServerModel } from '@/types';
 import BookReadingStatusChangeModal from './readingStatusChangeModal/BookReadingStatusChangeModal';
 import * as S from './BookDetailInfo.styled';
 
 interface BookInfoContentProps {
   book: GetBooksServerModel['documents'][number];
+  records: GetBookRecordServerModel;
 }
 
-const BookDetailInfo = ({ book }: BookInfoContentProps) => {
+const BookDetailInfo = ({ book, records }: BookInfoContentProps) => {
+  const { id } = useParams();
+
   const { modalRef, openModal } = useModal();
+
+  const currentReadingStatus = records.length
+    ? getBookReadingStatus(
+        records[0].reading_start_at,
+        records[0].reading_end_at,
+      ) ?? BOOK_READING_STATUS_OPTIONS[0]
+    : BOOK_READING_STATUS_OPTIONS[0];
 
   return (
     <S.BookDetailSection>
@@ -31,7 +44,7 @@ const BookDetailInfo = ({ book }: BookInfoContentProps) => {
           <S.BookSubInfoWrapper>
             <S.BookSubInfoTitle>읽기 상태</S.BookSubInfoTitle>
             <S.BookSubInfoDescription>
-              <span>읽지 않음</span>
+              <span>{currentReadingStatus.label}</span>
               {/* TODO: 추후 위치 적절한지 고려한 후 수정 필요 */}
               <Button
                 styleType="tertiary"
@@ -40,7 +53,19 @@ const BookDetailInfo = ({ book }: BookInfoContentProps) => {
                 onClick={openModal(
                   <BookReadingStatusChangeModal
                     ref={modalRef}
-                    readingStatus="completed"
+                    id={id}
+                    recordId={records.length ? records[0].id : null}
+                    readingStatus={currentReadingStatus}
+                    readingStartDateTime={
+                      records.length ? records[0].reading_start_at : null
+                    }
+                    readingEndDateTime={
+                      records.length ? records[0].reading_end_at : null
+                    }
+                    rating={records.length ? records[0].rating : null}
+                    recordContent={
+                      records.length ? records[0].record_comment : null
+                    }
                   />,
                 )}
               />

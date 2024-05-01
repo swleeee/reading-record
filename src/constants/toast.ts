@@ -20,6 +20,10 @@ export const TOAST_MESSAGE = {
       type: 'success',
       message: `'읽기 완료' 상태 변경 완료!`,
     },
+    UPDATE_RECORD_CONTENT: {
+      type: 'success',
+      message: '독서 기록 내용이 변경 되었습니다!',
+    },
   },
   WARNING: {
     AUTH_ALREADY_REGISTERED: {
@@ -39,7 +43,11 @@ export const TOAST_MESSAGE = {
     },
     UPDATE_READING_STATUS: {
       type: 'warning',
-      message: '상태를 변경할 수 없습니다 :(',
+      message: `'읽기 완료' 상태에서 다른 상태로 변경할 수 없습니다 :(`,
+    },
+    END_DATE_BEFORE_THAN_START_DATE: {
+      type: 'warning',
+      message: `'종료 날짜'가 '시작 날짜'보다 이후여야 합니다.`,
     },
   },
   INFO: {

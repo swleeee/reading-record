@@ -9,6 +9,7 @@ interface ModalProps {
   className?: string;
   children: React.ReactNode;
   isDisabled?: boolean;
+  isLoading?: boolean;
   activeButtonName?: string;
   closeButtonName: string;
   title: string;
@@ -22,6 +23,7 @@ const Modal = React.forwardRef<HTMLDialogElement, ModalProps>(
       className,
       children,
       isDisabled,
+      isLoading,
       activeButtonName,
       closeButtonName,
       title,
@@ -66,6 +68,7 @@ const Modal = React.forwardRef<HTMLDialogElement, ModalProps>(
             {activeButtonName && activeFn && (
               <Button
                 isDisabled={isDisabled}
+                isLoading={isLoading}
                 label={activeButtonName}
                 styleType="primary"
                 sizeType="md"

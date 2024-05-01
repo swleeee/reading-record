@@ -1,4 +1,5 @@
 import { supabase } from '@/lib';
+import { DB_TABLE_NAME } from '@/constants';
 import type {
   CheckNicknameDuplicatedQueryModel,
   LoginQueryModel,
@@ -9,7 +10,7 @@ export const checkNicknameDuplicatedAPI = async (
   req: CheckNicknameDuplicatedQueryModel,
 ) => {
   const { data, error } = await supabase
-    .from('users')
+    .from(DB_TABLE_NAME.AUTH)
     .select('nickname')
     .eq('nickname', req.nickname);
 

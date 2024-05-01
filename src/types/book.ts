@@ -60,22 +60,6 @@ export interface GetBooksServerModel {
   }[];
 }
 
-export interface GetBookRecordsServerModel {
-  pageInfo: {
-    totalCount: number;
-    totalPages: number;
-  };
-  records: {
-    id: string;
-    userName: string;
-    createdDate: string;
-    profileImgSrc: string | null;
-    likeCount: number;
-    content: string;
-    rating: number;
-  }[];
-}
-
 export interface GetMyLibraryServerModel {
   pageInfo: {
     totalCount: number;
