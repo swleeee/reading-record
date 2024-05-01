@@ -15,20 +15,14 @@ import {
   Textarea,
 } from '@/components';
 import { useModal, useToast } from '@/hooks';
-import {
-  useCreateBookRecordStatus,
-  useUpdateBookRecordStatus,
-} from '@/services';
+import { useCreateBookRecord, useUpdateBookRecord } from '@/services';
 import RatingIcon from '@/assets/icon/ic_rating.svg?react';
 import {
   BOOK_READING_STATUS_OPTIONS,
   ERROR_MESSAGE,
   TOAST_MESSAGE,
 } from '@/constants';
-import type {
-  CreateBookRecordStateQueryModel,
-  SelectOptionType,
-} from '@/types';
+import type { CreateBookRecordQueryModel, SelectOptionType } from '@/types';
 import * as S from './BookReadingStatusChangeModal.styled';
 
 type Form = {
@@ -81,9 +75,9 @@ const BookReadingStatusChangeModal = React.forwardRef<
     });
 
     const { isPending: isCreateStatusLoading, mutate: createBookRecordStatus } =
-      useCreateBookRecordStatus();
+      useCreateBookRecord();
     const { isPending: isUpdateStatusLoading, mutate: updateBookRecordStatus } =
-      useUpdateBookRecordStatus();
+      useUpdateBookRecord();
     const { user } = useUser();
     const { addToast } = useToast();
     const { closeModal } = useModal();
@@ -256,7 +250,7 @@ const BookReadingStatusChangeModal = React.forwardRef<
           return;
         }
 
-        const req: CreateBookRecordStateQueryModel = {
+        const req: CreateBookRecordQueryModel = {
           userId: user?.id!,
           isbn,
           ...makeData(data),

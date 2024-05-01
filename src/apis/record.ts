@@ -1,10 +1,10 @@
 import { supabase } from '@/lib';
 import { DB_TABLE_NAME } from '@/constants';
 import type {
-  CreateBookRecordStateQueryModel,
+  CreateBookRecordQueryModel,
   GetBookRecordQueryModel,
   GetBookRecordServerModel,
-  UpdateBookRecordStateQueryModel,
+  UpdateBookRecordQueryModel,
 } from '@/types';
 
 export const getBookRecordAPI = async (req: GetBookRecordQueryModel) => {
@@ -25,7 +25,7 @@ export const getBookRecordAPI = async (req: GetBookRecordQueryModel) => {
   return data;
 };
 
-const createBookRecordPayload = (req: CreateBookRecordStateQueryModel) => {
+const createBookRecordPayload = (req: CreateBookRecordQueryModel) => {
   return {
     user_id: req.userId,
     isbn: req.isbn,
@@ -37,9 +37,7 @@ const createBookRecordPayload = (req: CreateBookRecordStateQueryModel) => {
   };
 };
 
-export const createBookRecordStateAPI = async (
-  req: CreateBookRecordStateQueryModel,
-) => {
+export const createBookRecordAPI = async (req: CreateBookRecordQueryModel) => {
   const value = createBookRecordPayload(req);
 
   const { data, error } = await supabase
@@ -54,9 +52,7 @@ export const createBookRecordStateAPI = async (
   return data;
 };
 
-export const updateBookRecordStateAPI = async (
-  req: UpdateBookRecordStateQueryModel,
-) => {
+export const updateBookRecordAPI = async (req: UpdateBookRecordQueryModel) => {
   const { recordId, ...rest } = req;
   const value = createBookRecordPayload(rest);
 
