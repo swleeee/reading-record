@@ -19,7 +19,6 @@ import {
   useCreateBookRecordStatus,
   useUpdateBookRecordStatus,
 } from '@/services';
-import { getBookReadingStatus } from '@/utils';
 import RatingIcon from '@/assets/icon/ic_rating.svg?react';
 import {
   BOOK_READING_STATUS_OPTIONS,
@@ -172,11 +171,6 @@ const BookReadingStatusChangeModal = React.forwardRef<
       return null;
     };
 
-    type ReadingTimeRange = {
-      readingStartDateTime: string | null;
-      readingEndDateTime: string | null;
-    };
-
     /*
       NOTE: 상황별 토스트
       1. '읽기 전', '읽기 중' -> '읽기 완료' (TOAST_MESSAGE.SUCCESS.UPDATE_READING_PENDING_STATUS) 
@@ -187,22 +181,10 @@ const BookReadingStatusChangeModal = React.forwardRef<
     */
     const getToastMessage = (
       recordId: string | null,
-      originRecordDateTime: ReadingTimeRange,
-      newRecordDateTime: ReadingTimeRange,
+      originReadingStatus: SelectOptionType,
+      newReadingStatus: SelectOptionType,
     ) => {
       // NOTE: 첫 독서 기록 생성
-      const originReadingStatus =
-        getBookReadingStatus(
-          originRecordDateTime.readingStartDateTime,
-          originRecordDateTime.readingEndDateTime,
-        ) ?? BOOK_READING_STATUS_OPTIONS[0];
-
-      const newReadingStatus =
-        getBookReadingStatus(
-          newRecordDateTime.readingStartDateTime,
-          newRecordDateTime.readingEndDateTime,
-        ) ?? BOOK_READING_STATUS_OPTIONS[0];
-
       if (!recordId) {
         return getToastMessageByStatus(newReadingStatus.key);
       }
@@ -282,15 +264,8 @@ const BookReadingStatusChangeModal = React.forwardRef<
 
         const toastMessage = getToastMessage(
           recordId,
-          { readingStartDateTime, readingEndDateTime },
-          {
-            readingStartDateTime: data.readingStartDateTime
-              ? data.readingStartDateTime.format()
-              : null,
-            readingEndDateTime: data.readingEndDateTime
-              ? data.readingEndDateTime.format()
-              : null,
-          },
+          readingStatus,
+          data.readingStatus!,
         );
 
         if (recordId) {
