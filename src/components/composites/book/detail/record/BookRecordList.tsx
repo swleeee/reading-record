@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Pagination } from '@/components';
 import type { GetBookUserRecordsServerModel, SelectOptionType } from '@/types';
-import BookRecordListData from './data/BookRecordListData';
+import { BookRecordListData } from './data';
 
 interface BookRecordListProps {
   bookRecordData: GetBookUserRecordsServerModel;
