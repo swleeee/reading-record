@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 import { supabase } from '@/lib';
+import { getFirstIsbnSegment } from '@/utils';
 import type {
   GetBookDetailQueryModel,
   // GetBookUserRecordsServerModel,
@@ -23,9 +24,7 @@ export const getBooksAPI = async (req: GetBooksQueryModel) => {
 
   const documents = await Promise.all(
     book.documents.map(async (document) => {
-      const isbn = document.isbn
-        ? document.isbn.split(' ').filter((item) => item)[0]
-        : '';
+      const isbn = getFirstIsbnSegment(document.isbn);
 
       // const { data: records, error: recordsError } = await supabase
       //   .from('book_record')

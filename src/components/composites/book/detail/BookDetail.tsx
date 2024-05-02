@@ -7,6 +7,7 @@ import {
   useGetBookRecord,
   useGetBookUserRecords,
 } from '@/services';
+import { getFirstIsbnSegment } from '@/utils';
 import { BOOK_REVIEW_DROPDOWN_OPTIONS } from '@/constants';
 import { SelectOptionType } from '@/types';
 import BookInfoContent from './Info/BookDetailInfo';
@@ -16,7 +17,7 @@ const BookDetail = () => {
   const [searchParams] = useSearchParams();
   const { id: isbn } = useParams();
 
-  const query = isbn ? isbn.split(' ').filter((item) => item)[0] : '';
+  const query = getFirstIsbnSegment(isbn);
   const [selectedFilter, setSelectedFilter] = useState<SelectOptionType>(
     BOOK_REVIEW_DROPDOWN_OPTIONS[0],
   );
