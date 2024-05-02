@@ -10,7 +10,7 @@ import {
 import { getFirstIsbnSegment } from '@/utils';
 import { BOOK_REVIEW_DROPDOWN_OPTIONS } from '@/constants';
 import { SelectOptionType } from '@/types';
-import BookInfoContent from './Info/BookDetailInfo';
+import BookInfoContent from './info/BookDetailInfo';
 import BookRecordList from './record/BookRecordList';
 
 const BookDetail = () => {
