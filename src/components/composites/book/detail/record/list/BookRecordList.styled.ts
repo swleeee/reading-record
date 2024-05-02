@@ -1,6 +1,6 @@
 import tw, { css } from 'twin.macro';
 
-export const RecordDataSection = tw.section`max-w-[768px] mx-auto px-[24px] desktop:max-w-[1200px]`;
+export const RecordSection = tw.section`max-w-[768px] mx-auto px-[24px] desktop:max-w-[1200px]`;
 
 export const RecordHeader = tw.header`flex justify-between items-center border-b border-b-gray100 pb-[4px]`;
 

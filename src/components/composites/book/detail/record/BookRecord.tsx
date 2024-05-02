@@ -2,22 +2,22 @@ import React from 'react';
 
 import { Pagination } from '@/components';
 import type { GetBookUserRecordsServerModel, SelectOptionType } from '@/types';
-import { BookRecordListData } from './data';
+import { BookRecordList } from './list';
 
-interface BookRecordListProps {
+interface BookRecordProps {
   bookRecordData: GetBookUserRecordsServerModel;
   recordSort: SelectOptionType;
   onSortSelect: (option: SelectOptionType) => void;
 }
 
-const BookRecordList = ({
+const BookRecord = ({
   bookRecordData,
   recordSort,
   onSortSelect,
-}: BookRecordListProps) => {
+}: BookRecordProps) => {
   return (
     <>
-      <BookRecordListData
+      <BookRecordList
         recordSort={recordSort}
         records={bookRecordData.records}
         onSelect={onSortSelect}
@@ -30,4 +30,4 @@ const BookRecordList = ({
   );
 };
 
-export default BookRecordList;
+export default BookRecord;

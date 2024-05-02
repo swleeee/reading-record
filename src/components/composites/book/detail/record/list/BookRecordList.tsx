@@ -7,19 +7,19 @@ import LikeIcon from '@/assets/icon/ic_thumb_up.svg?react';
 import RatingIcon from '@/assets/icon/ic_rating.svg?react';
 import { BOOK_REVIEW_DROPDOWN_OPTIONS } from '@/constants';
 import type { GetBookUserRecordsServerModel, SelectOptionType } from '@/types';
-import * as S from './BookRecordListData.styled';
+import * as S from './BookRecordList.styled';
 
-interface BookRecordListDataProps {
+interface BookRecordListProps {
   recordSort: SelectOptionType;
   records: GetBookUserRecordsServerModel['records'];
   onSelect: (option: SelectOptionType) => void;
 }
 
-const BookRecordListData = ({
+const BookRecordList = ({
   recordSort,
   records,
   onSelect,
-}: BookRecordListDataProps) => {
+}: BookRecordListProps) => {
   const { user } = useUser();
 
   const { mutate: createLikeRecord } = useCreateLikeForRecord();
@@ -31,7 +31,7 @@ const BookRecordListData = ({
   };
 
   return (
-    <S.RecordDataSection>
+    <S.RecordSection>
       <S.RecordHeader>
         <S.RecordTitle>도서 감상 내용</S.RecordTitle>
         <Dropdown
@@ -76,8 +76,8 @@ const BookRecordListData = ({
           content={`현재 작성된 감상문이 없습니다.\n책을 읽고 감상문을 작성해주세요 :)`}
         />
       )}
-    </S.RecordDataSection>
+    </S.RecordSection>
   );
 };
 
-export default BookRecordListData;
+export default BookRecordList;

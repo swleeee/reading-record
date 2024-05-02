@@ -11,7 +11,7 @@ import { getFirstIsbnSegment } from '@/utils';
 import { BOOK_REVIEW_DROPDOWN_OPTIONS } from '@/constants';
 import { SelectOptionType } from '@/types';
 import BookInfoContent from './info/BookDetailInfo';
-import BookRecordList from './record/BookRecordList';
+import BookRecord from './record/BookRecord';
 
 const BookDetail = () => {
   const [searchParams] = useSearchParams();
@@ -48,7 +48,7 @@ const BookDetail = () => {
         ratingTotal={bookUserRecordInfo.ratingTotal}
         recordTotalCount={bookUserRecordInfo.pageInfo.totalCount}
       />
-      <BookRecordList
+      <BookRecord
         bookRecordData={bookUserRecordInfo}
         recordSort={selectedFilter}
         onSortSelect={handleRecordSortSelect}

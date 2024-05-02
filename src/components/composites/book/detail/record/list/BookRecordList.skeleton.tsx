@@ -2,11 +2,11 @@ import React from 'react';
 import Skeleton from 'react-loading-skeleton';
 
 import LikeIcon from '@/assets/icon/ic_thumb_up.svg?react';
-import * as S from './BookRecordListData.styled';
+import * as S from './BookRecordList.styled';
 
-const BookRecordListDataSkeleton = () => {
+const BookRecordListSkeleton = () => {
   return (
-    <S.RecordDataSection>
+    <S.RecordSection>
       <S.RecordHeader>
         <S.RecordTitle>도서 감상 내용</S.RecordTitle>
         <Skeleton width={110} height={40} />
@@ -36,8 +36,8 @@ const BookRecordListDataSkeleton = () => {
           </S.RecordItemFooter>
         </S.RecordList>
       ))}
-    </S.RecordDataSection>
+    </S.RecordSection>
   );
 };
 
-export default BookRecordListDataSkeleton;
+export default BookRecordListSkeleton;
