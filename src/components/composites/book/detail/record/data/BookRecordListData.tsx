@@ -40,7 +40,10 @@ const BookRecordListData = ({
               </S.PersonInfo>
               <S.RatingInfo>
                 {Array.from({ length: 5 }, (_, i) => (
-                  <RatingIcon css={S.ratingIcon(i < (record.rating ?? 0))} />
+                  <RatingIcon
+                    key={i}
+                    css={S.ratingIcon(i < (record.rating ?? 0))}
+                  />
                 ))}
               </S.RatingInfo>
             </S.RecordItemHeader>
