@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
+import { useUser } from '@/contexts';
 import { Pagination } from '@/components';
 import { useGetBooks } from '@/services';
 import SearchIcon from '@/assets/icon/ic_search.svg?react';
@@ -20,16 +21,18 @@ const BookList = () => {
     searchParams.get(key),
   );
 
+  const { user } = useUser();
+
   const req = {
     query: searchParams.get(target ? target.key : 'title') ?? '',
     sort: 'accuracy' as GetBooksQueryModel['sort'],
     page: searchParams.get('page') ? +searchParams.get('page')! : 1,
     size: 10,
     target: (target ? target.key : 'title') as GetBooksQueryModel['target'],
+    userId: user?.id!,
   };
 
   const { data } = useGetBooks(req);
-  // TODO: 'readingStatus', 'rating' 관련 조회 API 추가 필요
 
   useEffect(() => {
     if (noSearchRef) {

@@ -1,6 +1,8 @@
 import React from 'react';
 
 import { BookListCard, NoData } from '@/components';
+// import { getBookReadingStatus } from '@/utils';
+// import { BOOK_READING_STATUS_OPTIONS } from '@/constants';
 import type { GetBooksServerModel } from '@/types';
 
 interface BookListDataProps {
@@ -12,8 +14,17 @@ const BookListData = ({ books }: BookListDataProps) => {
     books.map((book) => (
       <BookListCard
         key={book.isbn}
-        readingStatus="pending" // TODO: 수정 예정
-        rating={4.5} // TODO: 수정 예정
+        // readingStatus={
+        //   getBookReadingStatus(
+        //     book.myRecord.reading_start_at,
+        //     book.myRecord.reading_end_at,
+        //   ) ?? BOOK_READING_STATUS_OPTIONS[0]
+        // }
+        rating={
+          book.record.ratingTotal
+            ? Math.floor(book.record.ratingTotal / book.record.count)
+            : null
+        }
         isbn={book.isbn}
         thumbnail={book.thumbnail}
         bookTitle={book.title}
