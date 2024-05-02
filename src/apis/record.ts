@@ -2,6 +2,7 @@ import { supabase } from '@/lib';
 import { DB_TABLE_NAME } from '@/constants';
 import type {
   CreateBookRecordQueryModel,
+  CreateLikeForRecordQueryModel,
   GetBookRecordQueryModel,
   GetBookRecordServerModel,
   GetBookUserRecordsQueryModel,
@@ -136,4 +137,17 @@ export const getBookUserRecordsAPI = async (
   };
 
   return data;
+};
+
+export const createLikeForRecordAPI = async (
+  req: CreateLikeForRecordQueryModel,
+) => {
+  const { error } = await supabase.from(DB_TABLE_NAME.BOOK_RECORD_LIKE).insert({
+    user_id: req.userId,
+    record_id: req.recordId,
+  });
+
+  if (error) {
+    throw new Error(error.message);
+  }
 };

@@ -2,12 +2,14 @@ import { useMutation, useSuspenseQuery } from '@tanstack/react-query';
 
 import {
   createBookRecordAPI,
+  createLikeForRecordAPI,
   getBookRecordAPI,
   getBookUserRecordsAPI,
   updateBookRecordAPI,
 } from '@/apis';
 import type {
   CreateBookRecordQueryModel,
+  CreateLikeForRecordQueryModel,
   GetBookRecordQueryModel,
   GetBookUserRecordsQueryModel,
   UpdateBookRecordQueryModel,
@@ -56,5 +58,14 @@ export const useGetBookUserRecords = (req: GetBookUserRecordsQueryModel) => {
   return useSuspenseQuery({
     queryKey: bookRecordKeys.userRecords(req),
     queryFn: () => getBookUserRecordsAPI(req),
+  });
+};
+
+export const useCreateLikeForRecord = () => {
+  return useMutation({
+    mutationFn: (req: CreateLikeForRecordQueryModel) =>
+      createLikeForRecordAPI(req),
+
+    onSuccess: (_, variables) => {}, // TODO: 좋아요 조회 기능 구현 후 작성 예정
   });
 };

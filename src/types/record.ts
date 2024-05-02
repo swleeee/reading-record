@@ -47,3 +47,8 @@ export interface GetBookUserRecordsServerModel {
   })[];
   pageInfo: Pagination;
 }
+
+export interface CreateLikeForRecordQueryModel {
+  userId: string;
+  recordId: string;
+}

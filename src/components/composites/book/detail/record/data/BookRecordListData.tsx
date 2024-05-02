@@ -1,6 +1,8 @@
 import React from 'react';
 
+import { useUser } from '@/contexts';
 import { Dropdown, NoData, Profile } from '@/components';
+import { useCreateLikeForRecord } from '@/services';
 import LikeIcon from '@/assets/icon/ic_thumb_up.svg?react';
 import RatingIcon from '@/assets/icon/ic_rating.svg?react';
 import { BOOK_REVIEW_DROPDOWN_OPTIONS } from '@/constants';
@@ -18,6 +20,16 @@ const BookRecordListData = ({
   records,
   onSelect,
 }: BookRecordListDataProps) => {
+  const { user } = useUser();
+
+  const { mutate: createLikeRecord } = useCreateLikeForRecord();
+
+  const handleLikeButtonClick = (recordId: string) => () => {
+    const req = { recordId, userId: user?.id! };
+
+    createLikeRecord(req);
+  };
+
   return (
     <S.RecordDataSection>
       <S.RecordHeader>
@@ -49,8 +61,10 @@ const BookRecordListData = ({
             </S.RecordItemHeader>
             <S.RecordItemContent>{record.record_comment}</S.RecordItemContent>
             <S.RecordItemFooter>
-              {/* TODO: 클릭 이벤트는 추후 작성 예정 */}
-              <S.LikeButton type="button" onClick={() => {}}>
+              <S.LikeButton
+                type="button"
+                onClick={handleLikeButtonClick(record.id)}
+              >
                 <LikeIcon css={S.likeIcon} />
                 <S.Like>{record.like_count}</S.Like>
               </S.LikeButton>
