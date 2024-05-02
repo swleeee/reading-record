@@ -3,18 +3,27 @@ import { useParams } from 'react-router-dom';
 
 import { Button } from '@/components';
 import { useModal } from '@/hooks';
-import { getBookReadingStatus } from '@/utils';
+import { formatNumber, getBookReadingStatus } from '@/utils';
 import { BOOK_READING_STATUS_OPTIONS } from '@/constants';
 import type { GetBookRecordServerModel, GetBooksServerModel } from '@/types';
 import BookReadingStatusChangeModal from './readingStatusChangeModal/BookReadingStatusChangeModal';
 import * as S from './BookDetailInfo.styled';
 
 interface BookInfoContentProps {
-  book: GetBooksServerModel['documents'][number];
+  book?: GetBooksServerModel['documents'][number];
   records: GetBookRecordServerModel;
+  ratingTotal: number | null;
+  recordTotalCount: number;
 }
 
-const BookDetailInfo = ({ book, records }: BookInfoContentProps) => {
+const BookDetailInfo = ({
+  book,
+  records,
+  ratingTotal,
+  recordTotalCount,
+}: BookInfoContentProps) => {
+  if (!book) return null;
+
   const { id } = useParams();
 
   const { modalRef, openModal } = useModal();
@@ -35,11 +44,16 @@ const BookDetailInfo = ({ book, records }: BookInfoContentProps) => {
         <S.BookSubInfoList>
           <S.BookSubInfoWrapper>
             <S.BookSubInfoTitle>평점</S.BookSubInfoTitle>
-            <S.BookSubInfoDescription>4.5 / 5</S.BookSubInfoDescription>
+            <S.BookSubInfoDescription>
+              {ratingTotal ? Math.floor(ratingTotal / recordTotalCount) : '-'} /
+              5
+            </S.BookSubInfoDescription>
           </S.BookSubInfoWrapper>
           <S.BookSubInfoWrapper>
             <S.BookSubInfoTitle>읽기 완료 수</S.BookSubInfoTitle>
-            <S.BookSubInfoDescription>123k</S.BookSubInfoDescription>
+            <S.BookSubInfoDescription>
+              {formatNumber(recordTotalCount)}
+            </S.BookSubInfoDescription>
           </S.BookSubInfoWrapper>
           <S.BookSubInfoWrapper>
             <S.BookSubInfoTitle>읽기 상태</S.BookSubInfoTitle>
