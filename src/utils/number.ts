@@ -1,5 +1,5 @@
 export const formatNumber = (num: number, precision = 2) => {
-  const NUMBER_FORMAT_THRESHOLDS = [
+  const NUMBER_UNIT_SUFFIXES = [
     { suffix: 'T', threshold: 1e12 },
     { suffix: 'B', threshold: 1e9 },
     { suffix: 'M', threshold: 1e6 },
@@ -7,10 +7,13 @@ export const formatNumber = (num: number, precision = 2) => {
     { suffix: '', threshold: 1 },
   ];
 
-  const found = NUMBER_FORMAT_THRESHOLDS.find(
+  const matchedNumberFormat = NUMBER_UNIT_SUFFIXES.find(
     (x) => Math.abs(num) >= x.threshold,
   );
-  if (!found) return num;
+  if (!matchedNumberFormat) return num;
 
-  return (num / found.threshold).toFixed(precision) + found.suffix;
+  return (
+    (num / matchedNumberFormat.threshold).toFixed(precision) +
+    matchedNumberFormat.suffix
+  );
 };
