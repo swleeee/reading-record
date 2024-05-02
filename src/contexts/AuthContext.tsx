@@ -4,14 +4,17 @@ import { Session, User } from '@supabase/supabase-js';
 import { supabase } from '@/lib';
 
 export const AuthContext = createContext<{
+  isInitializing: boolean;
   user: User | null;
-  session: Session | null;
+  userSession: Session | null;
 }>({
+  isInitializing: true,
   user: null,
-  session: null,
+  userSession: null,
 });
 
 export const AuthContextProvider = (props: any) => {
+  const [isInitializing, setIsInitializing] = useState(true);
   const [userSession, setUserSession] = useState<Session | null>(null);
   const [user, setUser] = useState<User | null>(null);
 
@@ -29,12 +32,14 @@ export const AuthContextProvider = (props: any) => {
       },
     );
 
+    setIsInitializing(false);
+
     return () => {
       authListener.subscription.unsubscribe();
     };
   }, []);
 
-  const value = { userSession, user };
+  const value = { isInitializing, userSession, user };
   return <AuthContext.Provider value={value} {...props} />;
 };
 
