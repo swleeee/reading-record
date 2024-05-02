@@ -11,7 +11,6 @@ const BookRecordListDataSkeleton = () => {
         <S.RecordTitle>도서 감상 내용</S.RecordTitle>
         <Skeleton width={110} height={40} />
       </S.RecordHeader>
-
       {Array.from({ length: 5 }, (_, i) => (
         <S.RecordList key={i}>
           <S.RecordItemHeader>

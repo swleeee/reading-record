@@ -18,9 +18,7 @@ const Kakao = axios.create({
 export const getBooksAPI = async (req: GetBooksQueryModel) => {
   const { data: book } = await Kakao.get<GetBooksServerModel>(
     '/v3/search/book',
-    {
-      params: req,
-    },
+    { params: req },
   );
 
   const documents = await Promise.all(
