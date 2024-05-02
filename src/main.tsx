@@ -2,6 +2,7 @@ import React, { createContext, useEffect, useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import { RecoilRoot } from 'recoil';
 import { QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 import { AuthContextProvider } from './contexts';
 import { ModalPortal, Toast } from './components';
@@ -14,6 +15,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <AuthContextProvider>
       <QueryClientProvider client={queryClient}>
         <RecoilRoot>
+          <ReactQueryDevtools />
           <GlobalStyles />
           <Toast />
           <ModalPortal />
