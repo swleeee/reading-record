@@ -26,3 +26,8 @@ export interface TabType extends SelectOptionType {
 }
 
 export type CheckboxGroupType<T extends string> = { [key in T]: boolean };
+
+export interface Pagination {
+  totalCount: number;
+  totalPages: number;
+}

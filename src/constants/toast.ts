@@ -55,6 +55,10 @@ export const TOAST_MESSAGE = {
       type: 'info',
       message: '닉네임 중복 확인을 완료해주세요 :)',
     },
+    LOGIN: {
+      type: 'info',
+      message: '해당 서비스를 이용하기 위하여 로그인을 진행해주세요 :)',
+    },
     SERVICE_REPAIRING: {
       type: 'info',
       title: '서비스 준비중입니다.',

@@ -1,7 +1,10 @@
 import axios from 'axios';
 
+import { supabase } from '@/lib';
+import { getFirstIsbnSegment } from '@/utils';
 import type {
   GetBookDetailQueryModel,
+  // GetBookUserRecordsServerModel,
   GetBooksQueryModel,
   GetBooksServerModel,
 } from '@/types';
@@ -14,9 +17,58 @@ const Kakao = axios.create({
 });
 
 export const getBooksAPI = async (req: GetBooksQueryModel) => {
-  const { data } = await Kakao.get<GetBooksServerModel>('/v3/search/book', {
-    params: req,
-  });
+  const { data: book } = await Kakao.get<GetBooksServerModel>(
+    '/v3/search/book',
+    { params: req },
+  );
+
+  const documents = await Promise.all(
+    book.documents.map(async (document) => {
+      const isbn = getFirstIsbnSegment(document.isbn);
+
+      // const { data: records, error: recordsError } = await supabase
+      //   .from('book_record')
+      //   .select('reading_start_at, reading_end_at')
+      //   .eq('user_id', req.userId)
+      //   .eq('isbn', isbn)
+      //   .returns<GetBookUserRecordsServerModel['records']>();
+
+      // if (recordsError) {
+      //   throw new Error(recordsError.message);
+      // }
+
+      const { data: ratingData, error: ratingError } = await supabase
+        .rpc('get_book_rating_summary', {
+          input_isbn: isbn,
+        })
+        .returns<
+          [
+            {
+              count: GetBooksServerModel['documents'][number]['record']['count'];
+              rating_total: GetBooksServerModel['documents'][number]['record']['count'];
+            },
+          ]
+        >();
+
+      if (ratingError) {
+        throw new Error(ratingError.message);
+      }
+
+      return {
+        ...document,
+        // myRecord: {
+        //   reading_start_at: records.length ? records[0].reading_start_at : null,
+        //   reading_end_at: records.length ? records[0].reading_end_at : null,
+        // },
+        record: {
+          ratingTotal: ratingData[0].rating_total,
+          count: ratingData[0].count,
+        },
+      };
+    }),
+  );
+
+  const data: GetBooksServerModel = { ...book, documents };
 
   return data;
 };

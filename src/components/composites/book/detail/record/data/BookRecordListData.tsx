@@ -4,17 +4,17 @@ import { Dropdown, NoData, Profile } from '@/components';
 import LikeIcon from '@/assets/icon/ic_thumb_up.svg?react';
 import RatingIcon from '@/assets/icon/ic_rating.svg?react';
 import { BOOK_REVIEW_DROPDOWN_OPTIONS } from '@/constants';
-import type { GetBookRecordsServerModel, SelectOptionType } from '@/types';
+import type { GetBookUserRecordsServerModel, SelectOptionType } from '@/types';
 import * as S from './BookRecordListData.styled';
 
 interface BookRecordListDataProps {
-  selectedFilter: SelectOptionType;
-  records: GetBookRecordsServerModel['records'];
+  recordSort: SelectOptionType;
+  records: GetBookUserRecordsServerModel['records'];
   onSelect: (option: SelectOptionType) => void;
 }
 
 const BookRecordListData = ({
-  selectedFilter,
+  recordSort,
   records,
   onSelect,
 }: BookRecordListDataProps) => {
@@ -25,7 +25,7 @@ const BookRecordListData = ({
         <Dropdown
           css={S.filterDropdown}
           options={BOOK_REVIEW_DROPDOWN_OPTIONS}
-          selectedOption={selectedFilter}
+          selectedOption={recordSort}
           onSelect={onSelect}
         />
       </S.RecordHeader>
@@ -34,24 +34,25 @@ const BookRecordListData = ({
           <S.RecordList key={record.id}>
             <S.RecordItemHeader>
               <S.PersonInfo>
-                <Profile src={record.profileImgSrc} />
-                <S.UserName>{record.userName}</S.UserName>
-                <S.CreatedDate>
-                  {record.createdDate.split('T')[0]}
-                </S.CreatedDate>
+                <Profile src={record.users.profile_url} />
+                <S.UserName>{record.users.nickname}</S.UserName>
+                <S.CreatedDate>{record.created_at.split('T')[0]}</S.CreatedDate>
               </S.PersonInfo>
               <S.RatingInfo>
                 {Array.from({ length: 5 }, (_, i) => (
-                  <RatingIcon css={S.ratingIcon(i < record.rating)} />
+                  <RatingIcon
+                    key={i}
+                    css={S.ratingIcon(i < (record.rating ?? 0))}
+                  />
                 ))}
               </S.RatingInfo>
             </S.RecordItemHeader>
-            <S.RecordItemContent>{record.content}</S.RecordItemContent>
+            <S.RecordItemContent>{record.record_comment}</S.RecordItemContent>
             <S.RecordItemFooter>
               {/* TODO: 클릭 이벤트는 추후 작성 예정 */}
               <S.LikeButton type="button" onClick={() => {}}>
                 <LikeIcon css={S.likeIcon} />
-                <S.Like>{record.likeCount}</S.Like>
+                <S.Like>{record.like_count}</S.Like>
               </S.LikeButton>
             </S.RecordItemFooter>
           </S.RecordList>

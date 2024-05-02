@@ -10,7 +10,7 @@ import * as S from './index.styled';
 
 const root = () => {
   return (
-    <MainLayout css={S.mainLayout}>
+    <MainLayout css={S.mainLayout} isAuth>
       <BookSearch />
       <Suspense fallback={<BookListSkeleton />}>
         <BookList />

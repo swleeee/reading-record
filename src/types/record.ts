@@ -1,9 +1,11 @@
+import type { Pagination } from '@/types';
+
 export interface GetBookRecordQueryModel {
   userId: string;
   isbn: string;
 }
 
-export type GetBookRecordServerModel = {
+type BookRecordServerData = {
   created_at: string;
   updated_at: string;
   id: string;
@@ -12,7 +14,10 @@ export type GetBookRecordServerModel = {
   reading_start_at: string | null;
   reading_end_at: string | null;
   record_comment: string | null;
-}[];
+  like_count: number;
+};
+
+export type GetBookRecordServerModel = BookRecordServerData[];
 
 export interface CreateBookRecordQueryModel {
   userId: string;
@@ -28,18 +33,17 @@ export interface UpdateBookRecordQueryModel extends CreateBookRecordQueryModel {
   recordId: string;
 }
 
-export interface GetBookRecordsServerModel {
-  pageInfo: {
-    totalCount: number;
-    totalPages: number;
-  };
-  records: {
-    id: string;
-    userName: string;
-    createdDate: string;
-    profileImgSrc: string | null;
-    likeCount: number;
-    content: string;
-    rating: number;
-  }[];
+export interface GetBookUserRecordsQueryModel {
+  isbn: string;
+  page: number;
+  pageSize: number;
+  sort: 'like' | 'recent';
+}
+
+export interface GetBookUserRecordsServerModel {
+  ratingTotal: number | null;
+  records: (BookRecordServerData & {
+    users: { nickname: string; profile_url: string | null };
+  })[];
+  pageInfo: Pagination;
 }

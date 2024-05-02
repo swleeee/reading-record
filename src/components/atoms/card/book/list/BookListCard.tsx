@@ -3,11 +3,12 @@ import { Link, useSearchParams } from 'react-router-dom';
 
 import { Button } from '@/components';
 import RatingIcon from '@/assets/icon/ic_rating.svg?react';
-import { BOOK_READING_STATUS_OPTIONS } from '@/constants';
+// import { BOOK_READING_STATUS_OPTIONS } from '@/constants';
+// import type { SelectOptionType } from '@/types';
 import * as S from './BookListCard.styled';
 
 interface BookListCardProps {
-  readingStatus: (typeof BOOK_READING_STATUS_OPTIONS)[number]['key'];
+  // readingStatus: SelectOptionType;
   rating: number | null;
   isbn: string;
   thumbnail: string;
@@ -21,7 +22,7 @@ interface BookListCardProps {
 
 const BookListCard = ({
   isbn,
-  readingStatus,
+  // readingStatus,
   rating,
   thumbnail,
   bookTitle,
@@ -43,19 +44,12 @@ const BookListCard = ({
   return (
     <Link css={S.bookDetailLink} key={isbn} to={`/book/${isbn}`}>
       <S.Header>
-        <S.ReadingStatus>
-          {
-            BOOK_READING_STATUS_OPTIONS.find(
-              (option) => option.key === readingStatus,
-            )?.label
-          }
-        </S.ReadingStatus>
-        {rating && (
-          <S.RatingWrapper>
-            <RatingIcon css={S.ratingIcon} />
-            <S.Rating>{rating}</S.Rating>
-          </S.RatingWrapper>
-        )}
+        <S.ReadingStatus></S.ReadingStatus>
+        {/* <S.ReadingStatus>{readingStatus.label}</S.ReadingStatus> */}
+        <S.RatingWrapper>
+          <RatingIcon css={S.ratingIcon} />
+          <S.Rating>{rating ?? '-'} / 5</S.Rating>
+        </S.RatingWrapper>
       </S.Header>
       <S.Main>
         <S.BookThumbnail src={thumbnail} alt="book thumbnail" />

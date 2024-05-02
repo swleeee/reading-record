@@ -3,23 +3,29 @@ import { useMutation, useSuspenseQuery } from '@tanstack/react-query';
 import {
   createBookRecordAPI,
   getBookRecordAPI,
+  getBookUserRecordsAPI,
   updateBookRecordAPI,
 } from '@/apis';
 import type {
   CreateBookRecordQueryModel,
   GetBookRecordQueryModel,
+  GetBookUserRecordsQueryModel,
   UpdateBookRecordQueryModel,
 } from '@/types';
 import queryClient from './queryClient';
 import { bookKeys } from './book';
 
 const bookRecordKeys = {
-  record: (isbn: string) => [...bookKeys.detail(isbn), 'record'] as const,
+  myRecord: (isbn: string) => [...bookKeys.detail(isbn), 'myRecord'] as const,
+  userRecords: (filter: GetBookUserRecordsQueryModel) => {
+    const { isbn, ...rest } = filter;
+    return [...bookKeys.detail(isbn), 'userRecords', rest] as const;
+  },
 };
 
 export const useGetBookRecord = (req: GetBookRecordQueryModel) => {
   return useSuspenseQuery({
-    queryKey: bookRecordKeys.record(req.isbn),
+    queryKey: bookRecordKeys.myRecord(req.isbn),
     queryFn: () => getBookRecordAPI(req),
   });
 };
@@ -29,7 +35,7 @@ export const useCreateBookRecord = () => {
     mutationFn: (req: CreateBookRecordQueryModel) => createBookRecordAPI(req),
     onSuccess: (_, variables) => {
       queryClient.invalidateQueries({
-        queryKey: bookRecordKeys.record(variables.isbn),
+        queryKey: bookRecordKeys.myRecord(variables.isbn),
       });
     },
   });
@@ -40,8 +46,15 @@ export const useUpdateBookRecord = () => {
     mutationFn: (req: UpdateBookRecordQueryModel) => updateBookRecordAPI(req),
     onSuccess: (_, variables) => {
       queryClient.invalidateQueries({
-        queryKey: bookRecordKeys.record(variables.isbn),
+        queryKey: bookRecordKeys.myRecord(variables.isbn),
       });
     },
+  });
+};
+
+export const useGetBookUserRecords = (req: GetBookUserRecordsQueryModel) => {
+  return useSuspenseQuery({
+    queryKey: bookRecordKeys.userRecords(req),
+    queryFn: () => getBookUserRecordsAPI(req),
   });
 };

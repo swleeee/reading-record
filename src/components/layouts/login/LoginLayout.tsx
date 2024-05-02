@@ -8,13 +8,13 @@ import * as S from './LoginLayout.styled';
 const LoginLayout = () => {
   const navigate = useNavigate();
 
-  const { user } = useUser();
+  const { isInitializing, user } = useUser();
 
   useEffect(() => {
-    if (user) {
-      navigate('/');
-    }
-  }, []);
+    if (!user || isInitializing) return;
+
+    navigate('/');
+  }, [isInitializing, user]);
 
   return user ? null : (
     <S.LoginLayout>
