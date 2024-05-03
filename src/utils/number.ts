@@ -10,7 +10,8 @@ export const formatNumber = (num: number, precision = 2) => {
   const matchedNumberFormat = NUMBER_UNIT_SUFFIXES.find(
     (x) => Math.abs(num) >= x.threshold,
   );
-  if (!matchedNumberFormat) return num;
+
+  if (!matchedNumberFormat || !matchedNumberFormat.suffix) return num;
 
   return (
     (num / matchedNumberFormat.threshold).toFixed(precision) +
