@@ -3,7 +3,11 @@ import { useParams } from 'react-router-dom';
 
 import { useUser } from '@/contexts';
 import { Profile } from '@/components';
-import { useCreateLikeForRecord, useGetTotalLikeForRecord } from '@/services';
+import {
+  useCreateLikeForRecord,
+  useDeleteLikeForRecord,
+  useGetTotalLikeForRecord,
+} from '@/services';
 import { getFirstIsbnSegment } from '@/utils';
 import LikeIcon from '@/assets/icon/ic_thumb_up.svg?react';
 import LikeFilledIcon from '@/assets/icon/ic_thumb_up_filled.svg?react';
@@ -25,11 +29,12 @@ const BookRecordListItem = ({ record }: BookRecordListItemProps) => {
 
   const { data } = useGetTotalLikeForRecord(req);
   const { mutate: createLikeRecord } = useCreateLikeForRecord();
+  const { mutate: deleteLikeRecord } = useDeleteLikeForRecord();
 
   const handleLikeButtonClick = (recordId: string) => () => {
-    const req = { recordId, userId: user?.id! };
+    const req = { recordId, userId, isbn };
 
-    createLikeRecord(req);
+    data[0].isliked ? deleteLikeRecord(req) : createLikeRecord(req);
   };
 
   return (

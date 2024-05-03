@@ -3,6 +3,7 @@ import { useMutation, useSuspenseQuery } from '@tanstack/react-query';
 import {
   createBookRecordAPI,
   createLikeForRecordAPI,
+  deleteLikeForRecordAPI,
   getBookRecordAPI,
   getBookUserRecordsAPI,
   getTotalLikeForRecordAPI,
@@ -11,6 +12,7 @@ import {
 import type {
   CreateBookRecordQueryModel,
   CreateLikeForRecordQueryModel,
+  DeleteLikeForRecordQueryModel,
   GetBookRecordQueryModel,
   GetBookUserRecordsQueryModel,
   GetTotalLikeForRecordQueryModel,
@@ -81,7 +83,28 @@ export const useCreateLikeForRecord = () => {
   return useMutation({
     mutationFn: (req: CreateLikeForRecordQueryModel) =>
       createLikeForRecordAPI(req),
+    onSuccess: (_, variables) => {
+      queryClient.invalidateQueries({
+        queryKey: bookRecordKeys.userRecordLike(
+          variables.isbn,
+          variables.recordId,
+        ),
+      });
+    },
+  });
+};
 
-    onSuccess: (_, variables) => {}, // TODO: 좋아요 조회 기능 구현 후 작성 예정
+export const useDeleteLikeForRecord = () => {
+  return useMutation({
+    mutationFn: (req: DeleteLikeForRecordQueryModel) =>
+      deleteLikeForRecordAPI(req),
+    onSuccess: (_, variables) => {
+      queryClient.invalidateQueries({
+        queryKey: bookRecordKeys.userRecordLike(
+          variables.isbn,
+          variables.recordId,
+        ),
+      });
+    },
   });
 };

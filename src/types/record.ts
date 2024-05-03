@@ -61,6 +61,13 @@ export interface GetTotalLikeForRecordServerModel {
 }
 
 export interface CreateLikeForRecordQueryModel {
+  isbn: string;
+  userId: string;
+  recordId: string;
+}
+
+export interface DeleteLikeForRecordQueryModel {
+  isbn: string;
   userId: string;
   recordId: string;
 }

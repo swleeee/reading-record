@@ -3,6 +3,7 @@ import { DB_TABLE_NAME } from '@/constants';
 import type {
   CreateBookRecordQueryModel,
   CreateLikeForRecordQueryModel,
+  DeleteLikeForRecordQueryModel,
   GetBookRecordQueryModel,
   GetBookRecordServerModel,
   GetBookUserRecordsQueryModel,
@@ -172,6 +173,20 @@ export const createLikeForRecordAPI = async (
     user_id: req.userId,
     record_id: req.recordId,
   });
+
+  if (error) {
+    throw new Error(error.message);
+  }
+};
+
+export const deleteLikeForRecordAPI = async (
+  req: DeleteLikeForRecordQueryModel,
+) => {
+  const { error } = await supabase
+    .from(DB_TABLE_NAME.BOOK_RECORD_LIKE)
+    .delete()
+    .eq('record_id', req.recordId)
+    .eq('user_id', req.userId);
 
   if (error) {
     throw new Error(error.message);
