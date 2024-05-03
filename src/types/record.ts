@@ -15,6 +15,7 @@ type BookRecordServerData = {
   reading_end_at: string | null;
   record_comment: string | null;
   like_count: number;
+  user_id: string;
 };
 
 export type GetBookRecordServerModel = BookRecordServerData[];
@@ -46,4 +47,27 @@ export interface GetBookUserRecordsServerModel {
     users: { nickname: string; profile_url: string | null };
   })[];
   pageInfo: Pagination;
+}
+
+export interface GetTotalLikeForRecordQueryModel {
+  isbn: string;
+  userId: string;
+  recordId: string;
+}
+
+export interface GetTotalLikeForRecordServerModel {
+  isliked: boolean;
+  count: number;
+}
+
+export interface CreateLikeForRecordQueryModel {
+  isbn: string;
+  userId: string;
+  recordId: string;
+}
+
+export interface DeleteLikeForRecordQueryModel {
+  isbn: string;
+  userId: string;
+  recordId: string;
 }

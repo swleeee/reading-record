@@ -2,10 +2,14 @@ import { supabase } from '@/lib';
 import { DB_TABLE_NAME } from '@/constants';
 import type {
   CreateBookRecordQueryModel,
+  CreateLikeForRecordQueryModel,
+  DeleteLikeForRecordQueryModel,
   GetBookRecordQueryModel,
   GetBookRecordServerModel,
   GetBookUserRecordsQueryModel,
   GetBookUserRecordsServerModel,
+  GetTotalLikeForRecordQueryModel,
+  GetTotalLikeForRecordServerModel,
   UpdateBookRecordQueryModel,
 } from '@/types';
 
@@ -136,4 +140,55 @@ export const getBookUserRecordsAPI = async (
   };
 
   return data;
+};
+
+export const getTotalLikeForRecordAPI = async (
+  req: GetTotalLikeForRecordQueryModel,
+) => {
+  const { data, error } = await supabase
+    .rpc('get_book_record_like_summary', {
+      input_record_id: req.recordId,
+      input_user_id: req.userId,
+    })
+    .returns<
+      [
+        {
+          isliked: GetTotalLikeForRecordServerModel['isliked'];
+          count: GetTotalLikeForRecordServerModel['count'];
+        },
+      ]
+    >();
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  return data;
+};
+
+export const createLikeForRecordAPI = async (
+  req: CreateLikeForRecordQueryModel,
+) => {
+  const { error } = await supabase.from(DB_TABLE_NAME.BOOK_RECORD_LIKE).insert({
+    user_id: req.userId,
+    record_id: req.recordId,
+  });
+
+  if (error) {
+    throw new Error(error.message);
+  }
+};
+
+export const deleteLikeForRecordAPI = async (
+  req: DeleteLikeForRecordQueryModel,
+) => {
+  const { error } = await supabase
+    .from(DB_TABLE_NAME.BOOK_RECORD_LIKE)
+    .delete()
+    .eq('record_id', req.recordId)
+    .eq('user_id', req.userId);
+
+  if (error) {
+    throw new Error(error.message);
+  }
 };

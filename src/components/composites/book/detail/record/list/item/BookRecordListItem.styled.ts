@@ -1,16 +1,6 @@
 import tw, { css } from 'twin.macro';
 
-export const RecordDataSection = tw.section`max-w-[768px] mx-auto px-[24px] desktop:max-w-[1200px]`;
-
-export const RecordHeader = tw.header`flex justify-between items-center border-b border-b-gray100 pb-[4px]`;
-
-export const RecordTitle = tw.h3`m-body-m14 tablet:t-body-m14 desktop:d-body-m16`;
-
-export const filterDropdown = css`
-  ${tw`w-[110px]`}
-`;
-
-export const RecordList = tw.article`flex flex-col gap-y-[4px] border-b border-b-gray100 px-[12px] py-[20px]`;
+export const RecordItemContainer = tw.article`flex flex-col gap-y-[4px] border-b border-b-gray100 px-[12px] py-[20px]`;
 
 export const RecordItemHeader = tw.header`flex justify-between items-center`;
 
