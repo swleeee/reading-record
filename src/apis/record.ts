@@ -7,6 +7,8 @@ import type {
   GetBookRecordServerModel,
   GetBookUserRecordsQueryModel,
   GetBookUserRecordsServerModel,
+  GetTotalLikeForRecordQueryModel,
+  GetTotalLikeForRecordServerModel,
   UpdateBookRecordQueryModel,
 } from '@/types';
 
@@ -135,6 +137,30 @@ export const getBookUserRecordsAPI = async (
       totalPages: Math.ceil(ratingData[0].count / req.pageSize),
     },
   };
+
+  return data;
+};
+
+export const getTotalLikeForRecordAPI = async (
+  req: GetTotalLikeForRecordQueryModel,
+) => {
+  const { data, error } = await supabase
+    .rpc('get_book_record_like_summary', {
+      input_record_id: req.recordId,
+      input_user_id: req.userId,
+    })
+    .returns<
+      [
+        {
+          isliked: GetTotalLikeForRecordServerModel['isliked'];
+          count: GetTotalLikeForRecordServerModel['count'];
+        },
+      ]
+    >();
+
+  if (error) {
+    throw new Error(error.message);
+  }
 
   return data;
 };

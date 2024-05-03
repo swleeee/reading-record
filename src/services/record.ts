@@ -5,6 +5,7 @@ import {
   createLikeForRecordAPI,
   getBookRecordAPI,
   getBookUserRecordsAPI,
+  getTotalLikeForRecordAPI,
   updateBookRecordAPI,
 } from '@/apis';
 import type {
@@ -12,6 +13,7 @@ import type {
   CreateLikeForRecordQueryModel,
   GetBookRecordQueryModel,
   GetBookUserRecordsQueryModel,
+  GetTotalLikeForRecordQueryModel,
   UpdateBookRecordQueryModel,
 } from '@/types';
 import queryClient from './queryClient';
@@ -19,10 +21,15 @@ import { bookKeys } from './book';
 
 const bookRecordKeys = {
   myRecord: (isbn: string) => [...bookKeys.detail(isbn), 'myRecord'] as const,
-  userRecords: (filter: GetBookUserRecordsQueryModel) => {
-    const { isbn, ...rest } = filter;
-    return [...bookKeys.detail(isbn), 'userRecords', rest] as const;
+  userRecords: (isbn: string) => {
+    return [...bookKeys.detail(isbn), 'userRecords'] as const;
   },
+  userRecord: (filter: GetBookUserRecordsQueryModel) => {
+    const { isbn, ...rest } = filter;
+    return [...bookRecordKeys.userRecords(isbn), rest] as const;
+  },
+  userRecordLike: (isbn: string, recordId: string) =>
+    [...bookRecordKeys.userRecords(isbn), 'like', recordId] as const,
 };
 
 export const useGetBookRecord = (req: GetBookRecordQueryModel) => {
@@ -56,8 +63,17 @@ export const useUpdateBookRecord = () => {
 
 export const useGetBookUserRecords = (req: GetBookUserRecordsQueryModel) => {
   return useSuspenseQuery({
-    queryKey: bookRecordKeys.userRecords(req),
+    queryKey: bookRecordKeys.userRecord(req),
     queryFn: () => getBookUserRecordsAPI(req),
+  });
+};
+
+export const useGetTotalLikeForRecord = (
+  req: GetTotalLikeForRecordQueryModel,
+) => {
+  return useSuspenseQuery({
+    queryKey: bookRecordKeys.userRecordLike(req.isbn, req.recordId),
+    queryFn: () => getTotalLikeForRecordAPI(req),
   });
 };
 
