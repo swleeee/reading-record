@@ -4,6 +4,7 @@ import { supabase } from '@/lib';
 import { getFirstIsbnSegment } from '@/utils';
 import type {
   GetBookDetailQueryModel,
+  GetBookDetailServerModel,
   // GetBookUserRecordsServerModel,
   GetBooksQueryModel,
   GetBooksServerModel,
@@ -74,10 +75,25 @@ export const getBooksAPI = async (req: GetBooksQueryModel) => {
 };
 
 export const getBookDetailAPI = async (req: GetBookDetailQueryModel) => {
-  const { data } = await Kakao.get<GetBooksServerModel>(
+  const { data } = await Kakao.get<GetBookDetailServerModel>(
     '/v3/search/book?sort=accuracy&page=1&size=10&target=isbn',
     { params: req },
   );
+
+  await supabase.from('book').upsert({
+    isbn: data.documents[0].isbn,
+    title: data.documents[0].title,
+    contents: data.documents[0].contents,
+    thumbnail: data.documents[0].thumbnail,
+    authors: data.documents[0].authors,
+    publisher: data.documents[0].publisher,
+    url: data.documents[0].url,
+    datetime: data.documents[0].datetime,
+    translators: data.documents[0].translators,
+    price: data.documents[0].price,
+    sale_price: data.documents[0].sale_price,
+    status: data.documents[0].status,
+  });
 
   return data;
 };

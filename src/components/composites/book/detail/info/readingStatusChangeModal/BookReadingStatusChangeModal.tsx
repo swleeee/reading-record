@@ -16,7 +16,6 @@ import {
 } from '@/components';
 import { useModal, useToast } from '@/hooks';
 import { useCreateBookRecord, useUpdateBookRecord } from '@/services';
-import { getFirstIsbnSegment } from '@/utils';
 import RatingIcon from '@/assets/icon/ic_rating.svg?react';
 import {
   BOOK_READING_STATUS_OPTIONS,
@@ -60,8 +59,6 @@ const BookReadingStatusChangeModal = React.forwardRef<
     },
     ref,
   ) => {
-    const isbn = getFirstIsbnSegment(id);
-
     const {
       formState: { errors },
       watch,
@@ -253,7 +250,7 @@ const BookReadingStatusChangeModal = React.forwardRef<
 
         const req: CreateBookRecordQueryModel = {
           userId: user?.id!,
-          isbn,
+          isbn: id!,
           ...makeData(data),
         };
 

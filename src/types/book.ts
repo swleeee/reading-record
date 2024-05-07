@@ -69,6 +69,15 @@ export interface GetBooksServerModel {
   })[];
 }
 
+export interface GetBookDetailServerModel {
+  meta: {
+    is_end: boolean;
+    pageable_count: number;
+    total_count: number;
+  };
+  documents: Document[];
+}
+
 export interface GetMyLibraryServerModel {
   pageInfo: {
     totalCount: number;

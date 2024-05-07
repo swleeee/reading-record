@@ -49,6 +49,12 @@ export const useCreateBookRecord = () => {
       queryClient.invalidateQueries({
         queryKey: bookRecordKeys.myRecord(variables.isbn),
       });
+
+      if (variables.readingStartDate && variables.readingEndDate) {
+        queryClient.invalidateQueries({
+          queryKey: bookRecordKeys.userRecords(variables.isbn),
+        });
+      }
     },
   });
 };
@@ -60,6 +66,12 @@ export const useUpdateBookRecord = () => {
       queryClient.invalidateQueries({
         queryKey: bookRecordKeys.myRecord(variables.isbn),
       });
+
+      if (variables.readingStartDate && variables.readingEndDate) {
+        queryClient.invalidateQueries({
+          queryKey: bookRecordKeys.userRecords(variables.isbn),
+        });
+      }
     },
   });
 };

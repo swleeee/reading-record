@@ -26,11 +26,11 @@ const BookDetail = () => {
   const { data: bookDetailInfo } = useGetBookDetail({ query });
   const { data: bookRecordInfo } = useGetBookRecord({
     userId: user?.id!,
-    isbn: query,
+    isbn: isbn!,
   });
 
   const { data: bookUserRecordInfo } = useGetBookUserRecords({
-    isbn: query,
+    isbn: isbn!,
     page: searchParams.get('page') ? +searchParams.get('page')! : 1,
     pageSize: 10,
     sort: selectedFilter.key as 'like' | 'recent',
