@@ -5,12 +5,15 @@ import { Button } from '@/components';
 import { useModal } from '@/hooks';
 import { formatNumber, getBookReadingStatus } from '@/utils';
 import { BOOK_READING_STATUS_OPTIONS } from '@/constants';
-import type { GetBookRecordServerModel, GetBooksServerModel } from '@/types';
+import type {
+  GetBookDetailServerModel,
+  GetBookRecordServerModel,
+} from '@/types';
 import BookReadingStatusChangeModal from './readingStatusChangeModal/BookReadingStatusChangeModal';
 import * as S from './BookDetailInfo.styled';
 
 interface BookInfoContentProps {
-  book?: GetBooksServerModel['documents'][number];
+  book?: GetBookDetailServerModel['documents'][number];
   records: GetBookRecordServerModel;
   ratingTotal: number | null;
   recordTotalCount: number;
