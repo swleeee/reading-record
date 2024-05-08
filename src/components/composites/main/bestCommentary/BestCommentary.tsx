@@ -4,10 +4,10 @@ import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
 dayjs.extend(isoWeek);
 
+import { useGetBestRecords } from '@/services';
 import { deviceState } from '@/stores';
 import BestCommentaryMobile from './mobile/BestCommentaryMobile';
 import BestCommentaryDesktop from './desktop/BestCommentaryDesktop';
-import { useGetBestRecords } from '@/services';
 
 const BestCommentary = () => {
   const device = useRecoilValue(deviceState);
