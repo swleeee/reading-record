@@ -22,6 +22,7 @@ export const AuthContextProvider = (props: any) => {
     supabase.auth.getSession().then(({ data: { session } }) => {
       setUserSession(session);
       setUser(session?.user ?? null);
+      setIsInitializing(false);
     });
 
     const { data: authListener } = supabase.auth.onAuthStateChange(
@@ -29,10 +30,9 @@ export const AuthContextProvider = (props: any) => {
         console.log(`Supabase auth event: ${e}`);
         setUserSession(session);
         setUser(session?.user ?? null);
+        setIsInitializing(false);
       },
     );
-
-    setIsInitializing(false);
 
     return () => {
       authListener.subscription.unsubscribe();
