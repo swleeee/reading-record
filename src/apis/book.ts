@@ -25,8 +25,6 @@ export const getBooksAPI = async (req: GetBooksQueryModel) => {
 
   const documents = await Promise.all(
     book.documents.map(async (document) => {
-      const isbn = getFirstIsbnSegment(document.isbn);
-
       // const { data: records, error: recordsError } = await supabase
       //   .from('book_record')
       //   .select('reading_start_at, reading_end_at')
@@ -40,7 +38,7 @@ export const getBooksAPI = async (req: GetBooksQueryModel) => {
 
       const { data: ratingData, error: ratingError } = await supabase
         .rpc('get_book_rating_summary', {
-          input_isbn: isbn,
+          input_isbn: document.isbn,
         })
         .returns<
           [
