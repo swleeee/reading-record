@@ -8,6 +8,8 @@ import {
   PopularBook,
   BestCommentaryMobileSkeleton,
   BestCommentaryDesktopSkeleton,
+  ReadingBookMobileSkeleton,
+  ReadingBookDesktopSkeleton,
 } from '@/components';
 import { deviceState } from '@/stores';
 import * as S from './index.styled';
@@ -17,7 +19,17 @@ const root = () => {
 
   return (
     <MainLayout css={S.mainLayout}>
-      <ReadingBook />
+      <Suspense
+        fallback={
+          device === 'mobile' ? (
+            <ReadingBookMobileSkeleton />
+          ) : (
+            <ReadingBookDesktopSkeleton />
+          )
+        }
+      >
+        <ReadingBook />
+      </Suspense>
       <PopularBook />
       <Suspense
         fallback={
