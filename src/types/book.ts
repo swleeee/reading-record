@@ -1,15 +1,3 @@
-import { BOOK_READING_STATUS_OPTIONS } from '@/constants';
-
-export interface BookRecordCardType {
-  id: string;
-  bookImgSrc: string;
-  profileImgSrc: string | null;
-  userName: string;
-  likeCount: number;
-  createdDate: string;
-  content: string;
-}
-
 export interface ReadingBookCardType {
   id: string;
   bookImgSrc: string;

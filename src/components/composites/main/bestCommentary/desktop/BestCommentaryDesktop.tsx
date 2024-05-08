@@ -1,11 +1,11 @@
 import React from 'react';
 
 import { BookRecordCard } from '@/components';
-import type { BookRecordCardType } from '@/types';
+import type { GetBestRecordsServerModel } from '@/types';
 import * as S from './BestCommentaryDesktop.styled';
 
 interface BestCommentaryDesktopProps {
-  books: BookRecordCardType[];
+  books: GetBestRecordsServerModel;
 }
 
 const BestCommentaryDesktop = ({ books }: BestCommentaryDesktopProps) => {
