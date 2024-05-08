@@ -5,7 +5,7 @@ export interface GetBookRecordQueryModel {
   isbn: string;
 }
 
-type BookRecordServerData = {
+export type BookRecordServerData = {
   created_at: string;
   updated_at: string;
   id: string;

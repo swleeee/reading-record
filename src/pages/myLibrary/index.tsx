@@ -10,11 +10,12 @@ const root = () => {
       label: '전체',
       content: <MyLibraryPanel queryStatus="all" />,
     },
-    {
-      key: 'pending',
-      label: '소장 중',
-      content: <MyLibraryPanel queryStatus="pending" />,
-    },
+    // TODO: 소장 기능 추가 후 주석 해제
+    // {
+    //   key: 'pending',
+    //   label: '소장 중',
+    //   content: <MyLibraryPanel queryStatus="pending" />,
+    // },
     {
       key: 'ongoing',
       label: '읽고 있는 중',
