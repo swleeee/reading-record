@@ -4,6 +4,8 @@ import type {
   CreateBookRecordQueryModel,
   CreateLikeForRecordQueryModel,
   DeleteLikeForRecordQueryModel,
+  GetBestRecordsQueryModel,
+  GetBestRecordsServerModel,
   GetBookRecordQueryModel,
   GetBookRecordServerModel,
   GetBookUserRecordsQueryModel,
@@ -191,4 +193,20 @@ export const deleteLikeForRecordAPI = async (
   if (error) {
     throw new Error(error.message);
   }
+};
+
+export const getBestRecordsAPI = async (req: GetBestRecordsQueryModel) => {
+  const { data, error } = await supabase
+    .rpc('get_best_record', {
+      startdatetime: req.startDateTime,
+      enddatetime: req.endDateTime,
+      limitcount: 10,
+    })
+    .returns<GetBestRecordsServerModel>();
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  return data;
 };

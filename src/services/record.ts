@@ -4,6 +4,7 @@ import {
   createBookRecordAPI,
   createLikeForRecordAPI,
   deleteLikeForRecordAPI,
+  getBestRecordsAPI,
   getBookRecordAPI,
   getBookUserRecordsAPI,
   getTotalLikeForRecordAPI,
@@ -13,6 +14,7 @@ import type {
   CreateBookRecordQueryModel,
   CreateLikeForRecordQueryModel,
   DeleteLikeForRecordQueryModel,
+  GetBestRecordsQueryModel,
   GetBookRecordQueryModel,
   GetBookUserRecordsQueryModel,
   GetTotalLikeForRecordQueryModel,
@@ -33,6 +35,7 @@ const bookRecordKeys = {
   },
   userRecordLike: (isbn: string, recordId: string) =>
     [...bookRecordKeys.userRecords(isbn), 'like', recordId] as const,
+  bestRecord: (req: GetBestRecordsQueryModel) => ['bestRecord', req] as const,
 };
 
 export const useGetBookRecord = (req: GetBookRecordQueryModel) => {
@@ -223,5 +226,12 @@ export const useDeleteLikeForRecord = () => {
         ),
       });
     },
+  });
+};
+
+export const useGetBestRecords = (req: GetBestRecordsQueryModel) => {
+  return useSuspenseQuery({
+    queryKey: bookRecordKeys.bestRecord(req),
+    queryFn: () => getBestRecordsAPI(req),
   });
 };

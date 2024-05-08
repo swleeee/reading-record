@@ -1,19 +1,35 @@
-import React from 'react';
+import React, { Suspense } from 'react';
+import { useRecoilValue } from 'recoil';
 
 import {
   BestCommentary,
   ReadingBook,
   MainLayout,
   PopularBook,
+  BestCommentaryMobileSkeleton,
+  BestCommentaryDesktopSkeleton,
 } from '@/components';
+import { deviceState } from '@/stores';
 import * as S from './index.styled';
 
 const root = () => {
+  const device = useRecoilValue(deviceState);
+
   return (
     <MainLayout css={S.mainLayout}>
       <ReadingBook />
       <PopularBook />
-      <BestCommentary />
+      <Suspense
+        fallback={
+          device === 'mobile' ? (
+            <BestCommentaryMobileSkeleton />
+          ) : (
+            <BestCommentaryDesktopSkeleton />
+          )
+        }
+      >
+        <BestCommentary />
+      </Suspense>
     </MainLayout>
   );
 };

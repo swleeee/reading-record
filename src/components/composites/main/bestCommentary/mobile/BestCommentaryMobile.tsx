@@ -4,11 +4,11 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 
 import { BookRecordCard } from '@/components';
-import type { BookRecordCardType } from '@/types';
+import type { GetBestRecordsServerModel } from '@/types';
 import * as S from './BestCommentaryMobile.styled';
 
 interface BestCommentaryMobileProps {
-  books: BookRecordCardType[];
+  books: GetBestRecordsServerModel;
 }
 
 const BestCommentaryMobile = ({ books }: BestCommentaryMobileProps) => {

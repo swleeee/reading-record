@@ -1,6 +1,11 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 
-import { MainLayout, MyLibraryPanel, Tab } from '@/components';
+import {
+  BookListSkeleton,
+  MainLayout,
+  MyLibraryPanel,
+  Tab,
+} from '@/components';
 import * as S from './index.styled';
 
 const root = () => {
@@ -8,22 +13,35 @@ const root = () => {
     {
       key: 'all',
       label: '전체',
-      content: <MyLibraryPanel queryStatus="all" />,
+      content: (
+        <Suspense fallback={<BookListSkeleton />}>
+          <MyLibraryPanel queryStatus="all" />
+        </Suspense>
+      ),
     },
-    {
-      key: 'pending',
-      label: '소장 중',
-      content: <MyLibraryPanel queryStatus="pending" />,
-    },
+    // TODO: 소장 기능 추가 후 주석 해제
+    // {
+    //   key: 'pending',
+    //   label: '소장 중',
+    //   content: <MyLibraryPanel queryStatus="pending" />,
+    // },
     {
       key: 'ongoing',
       label: '읽고 있는 중',
-      content: <MyLibraryPanel queryStatus="ongoing" />,
+      content: (
+        <Suspense fallback={<BookListSkeleton />}>
+          <MyLibraryPanel queryStatus="ongoing" />
+        </Suspense>
+      ),
     },
     {
       key: 'completed',
       label: '읽기 완료',
-      content: <MyLibraryPanel queryStatus="completed" />,
+      content: (
+        <Suspense fallback={<BookListSkeleton />}>
+          <MyLibraryPanel queryStatus="completed" />
+        </Suspense>
+      ),
     },
   ];
 
