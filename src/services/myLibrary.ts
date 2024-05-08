@@ -12,6 +12,6 @@ const myLibrary = {
 export const useGetMyLibraries = (req: GetMyLibraryQueryModel) => {
   return useSuspenseQuery({
     queryKey: myLibrary.list(req),
-    queryFn: () => getMyLibrariesAPI(req),
+    queryFn: () => (req.userId ? getMyLibrariesAPI(req) : null),
   });
 };

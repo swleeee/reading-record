@@ -1,12 +1,3 @@
-export interface ReadingBookCardType {
-  id: string;
-  bookImgSrc: string;
-  title: string;
-  publisher: string;
-  authors: string[];
-  readingStartDate: string;
-}
-
 export interface PopularBookCardType {
   id: string;
   bookImgSrc: string;

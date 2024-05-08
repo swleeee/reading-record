@@ -4,11 +4,11 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 
 import { BookAddLink, BookReadingCard } from '@/components';
-import type { ReadingBookCardType } from '@/types';
+import type { GetMyLibraryServerModel } from '@/types';
 import * as S from './ReadingBookMobile.styled';
 
 interface ReadingBookMobileProps {
-  books: ReadingBookCardType[];
+  books?: GetMyLibraryServerModel['records'];
 }
 
 const ReadingBookMobile = ({ books }: ReadingBookMobileProps) => {
@@ -17,7 +17,7 @@ const ReadingBookMobile = ({ books }: ReadingBookMobileProps) => {
       <header>
         <S.Title>현재 읽고 있는 책!</S.Title>
       </header>
-      {books.length ? (
+      {books?.length ? (
         <Swiper
           css={S.swiper}
           breakpoints={{

@@ -1,11 +1,11 @@
 import React from 'react';
 
 import { BookAddLink, BookReadingCard } from '@/components';
-import type { ReadingBookCardType } from '@/types';
+import type { GetMyLibraryServerModel } from '@/types';
 import * as S from './ReadingBookDesktop.styled';
 
 interface ReadingBookDesktopProps {
-  books: ReadingBookCardType[];
+  books?: GetMyLibraryServerModel['records'];
 }
 
 const ReadingBookDesktop = ({ books }: ReadingBookDesktopProps) => {
@@ -14,7 +14,7 @@ const ReadingBookDesktop = ({ books }: ReadingBookDesktopProps) => {
       <header>
         <S.Title>현재 읽고 있는 책!</S.Title>
       </header>
-      {books.length ? (
+      {books?.length ? (
         <S.BookReadingCardWrapper>
           {books.map((book) => (
             <BookReadingCard css={S.card} key={book.id} {...book} />
