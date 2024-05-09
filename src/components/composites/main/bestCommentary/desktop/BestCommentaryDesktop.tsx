@@ -16,7 +16,7 @@ const BestCommentaryDesktop = ({ books }: BestCommentaryDesktopProps) => {
       </header>
       <S.BestCommentaryCardWrapper>
         {books?.map((book) => (
-          <BookRecordCard key={book.id} linkToBaseUrl="book" {...book} />
+          <BookRecordCard key={book.id} bookRecord={book} />
         ))}
       </S.BestCommentaryCardWrapper>
     </S.BestCommentarySection>

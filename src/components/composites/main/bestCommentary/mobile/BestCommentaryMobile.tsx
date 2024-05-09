@@ -29,7 +29,7 @@ const BestCommentaryMobile = ({ books }: BestCommentaryMobileProps) => {
       >
         {books?.map((book) => (
           <SwiperSlide key={book.id}>
-            <BookRecordCard linkToBaseUrl="book" {...book} />
+            <BookRecordCard bookRecord={book} />
           </SwiperSlide>
         ))}
       </Swiper>
