@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import dayjs from 'dayjs';
 
 import type { GetMyLibraryServerModel } from '@/types';
@@ -21,13 +22,22 @@ interface BookReadingCardProps {
 
 const BookReadingCard = ({
   className,
-  isbn, // TODO: isbn 추후 활용
+  isbn,
   book,
   reading_start_at,
 }: BookReadingCardProps) => {
+  const navigate = useNavigate();
+
+  const handleButtonClick = (isbn: string) => () => {
+    navigate(`book/${isbn}`);
+  };
+
   return (
-    // TODO: 클릭 이벤트 추가 예정
-    <S.CardButton className={className} type="button" onClick={() => {}}>
+    <S.CardButton
+      className={className}
+      type="button"
+      onClick={handleButtonClick(isbn)}
+    >
       <S.BookTitle>{book.title}</S.BookTitle>
       <S.BookDescriptionWrapper>
         <S.BookThumbnail src={book.thumbnail} alt="book thumbnail" />
