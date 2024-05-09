@@ -30,7 +30,8 @@ const root = () => {
       >
         <ReadingBook />
       </Suspense>
-      <PopularBook />
+      {/* TODO: 추후 기능 도입 예정 */}
+      {/* <PopularBook /> */}
       <Suspense
         fallback={
           device === 'mobile' ? (
