@@ -5,7 +5,7 @@ import type { GetBestRecordsServerModel } from '@/types';
 import * as S from './BestCommentaryDesktop.styled';
 
 interface BestCommentaryDesktopProps {
-  books: GetBestRecordsServerModel;
+  books: GetBestRecordsServerModel | null;
 }
 
 const BestCommentaryDesktop = ({ books }: BestCommentaryDesktopProps) => {
@@ -15,7 +15,7 @@ const BestCommentaryDesktop = ({ books }: BestCommentaryDesktopProps) => {
         <S.Title>주간 기록 베스트 10!</S.Title>
       </header>
       <S.BestCommentaryCardWrapper>
-        {books.map((book) => (
+        {books?.map((book) => (
           <BookRecordCard key={book.id} linkToBaseUrl="book" {...book} />
         ))}
       </S.BestCommentaryCardWrapper>

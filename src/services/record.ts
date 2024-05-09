@@ -232,6 +232,6 @@ export const useDeleteLikeForRecord = () => {
 export const useGetBestRecords = (req: GetBestRecordsQueryModel) => {
   return useSuspenseQuery({
     queryKey: bookRecordKeys.bestRecord(req),
-    queryFn: () => getBestRecordsAPI(req),
+    queryFn: () => (req.userId ? getBestRecordsAPI(req) : null),
   });
 };
