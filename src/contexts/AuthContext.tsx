@@ -2,6 +2,7 @@ import React, { createContext, useContext, useEffect, useState } from 'react';
 import { Session, User } from '@supabase/supabase-js';
 
 import { supabase } from '@/lib';
+import { queryClient } from '@/services';
 
 export const AuthContext = createContext<{
   isInitializing: boolean;
@@ -31,6 +32,10 @@ export const AuthContextProvider = (props: any) => {
         setUserSession(session);
         setUser(session?.user ?? null);
         setIsInitializing(false);
+
+        if (!session?.user) {
+          queryClient.invalidateQueries();
+        }
       },
     );
 

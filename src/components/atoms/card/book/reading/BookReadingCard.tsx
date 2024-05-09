@@ -1,36 +1,52 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import dayjs from 'dayjs';
 
+import type { GetMyLibraryServerModel } from '@/types';
 import * as S from './BookReadingCard.styled';
 
 interface BookReadingCardProps {
   className?: string;
   id: string;
-  bookImgSrc: string;
-  title: string;
-  publisher: string;
-  authors: string[];
-  readingStartDate: string;
+  book: GetMyLibraryServerModel['records'][number]['book'];
+  isbn: string;
+  reading_start_at: string | null;
+  reading_end_at: string | null;
+  rating: number | null;
+  like_count: number;
+  created_at: string;
+  updated_at: string;
+  user_id: string;
+  users: GetMyLibraryServerModel['records'][number]['users'];
 }
 
 const BookReadingCard = ({
   className,
-  id, // TODO: id 추후 활용
-  bookImgSrc,
-  title,
-  publisher,
-  authors,
-  readingStartDate,
+  isbn,
+  book,
+  reading_start_at,
 }: BookReadingCardProps) => {
+  const navigate = useNavigate();
+
+  const handleButtonClick = (isbn: string) => () => {
+    navigate(`book/${isbn}`);
+  };
+
   return (
-    // TODO: 클릭 이벤트 추가 예정
-    <S.CardButton className={className} type="button" onClick={() => {}}>
-      <S.BookTitle>{title}</S.BookTitle>
+    <S.CardButton
+      className={className}
+      type="button"
+      onClick={handleButtonClick(isbn)}
+    >
+      <S.BookTitle>{book.title}</S.BookTitle>
       <S.BookDescriptionWrapper>
-        <S.BookThumbnail src={bookImgSrc} alt="book thumbnail" />
+        <S.BookThumbnail src={book.thumbnail} alt="book thumbnail" />
         <S.BookContentWrapper>
-          <S.Author>{authors.join(', ')}</S.Author>
-          <S.publisher>{publisher}</S.publisher>
-          <S.Date>{readingStartDate}</S.Date>
+          <S.Author>{book.authors.join(', ')}</S.Author>
+          <S.publisher>{book.publisher}</S.publisher>
+          {reading_start_at && (
+            <S.Date>{dayjs(reading_start_at).format('YYYY-MM-DD')} ~</S.Date>
+          )}
         </S.BookContentWrapper>
       </S.BookDescriptionWrapper>
     </S.CardButton>

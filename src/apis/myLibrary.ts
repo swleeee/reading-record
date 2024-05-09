@@ -28,11 +28,13 @@ export const getMyLibrariesAPI = async (req: GetMyLibraryQueryModel) => {
       .not('record_comment', 'is', null);
   }
 
-  // NOTE: 페이징 적용
-  query = query.range(
-    (req.page - 1) * req.pageSize,
-    req.page * req.pageSize - 1,
-  );
+  // NOTE: 독서 기록 페이지에서는 페이징 적용하나, 메인 화면의 현재 읽고 있는 책 조회 시에는 페이징 적용 X
+  if (req.page && req.pageSize) {
+    query = query.range(
+      (req.page - 1) * req.pageSize,
+      req.page * req.pageSize - 1,
+    );
+  }
 
   // NOTE: 쿼리 실행
   const {

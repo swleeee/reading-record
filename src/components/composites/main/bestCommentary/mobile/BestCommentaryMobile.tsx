@@ -8,7 +8,7 @@ import type { GetBestRecordsServerModel } from '@/types';
 import * as S from './BestCommentaryMobile.styled';
 
 interface BestCommentaryMobileProps {
-  books: GetBestRecordsServerModel;
+  books: GetBestRecordsServerModel | null;
 }
 
 const BestCommentaryMobile = ({ books }: BestCommentaryMobileProps) => {
@@ -19,7 +19,6 @@ const BestCommentaryMobile = ({ books }: BestCommentaryMobileProps) => {
         여백과 달라지는 이슈 수정 필요! */}
         <S.Title>주간 기록 베스트 10!</S.Title>
       </header>
-
       <Swiper
         css={S.swiper}
         centeredSlides
@@ -28,9 +27,9 @@ const BestCommentaryMobile = ({ books }: BestCommentaryMobileProps) => {
         slidesPerView={1.2}
         spaceBetween={28}
       >
-        {books.map((book) => (
+        {books?.map((book) => (
           <SwiperSlide key={book.id}>
-            <BookRecordCard linkToBaseUrl="book" {...book} />
+            <BookRecordCard bookRecord={book} />
           </SwiperSlide>
         ))}
       </Swiper>

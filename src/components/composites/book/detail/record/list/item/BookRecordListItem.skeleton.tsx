@@ -1,7 +1,6 @@
 import React from 'react';
 import Skeleton from 'react-loading-skeleton';
 
-import LikeIcon from '@/assets/icon/ic_thumb_up.svg?react';
 import * as S from './BookRecordListItem.styled';
 
 const BookRecordListItemSkeleton = () => {
@@ -21,12 +20,7 @@ const BookRecordListItemSkeleton = () => {
         <Skeleton width="100%" height={48} />
       </S.RecordItemContent>
       <S.RecordItemFooter>
-        <S.LikeButton type="button" onClick={() => {}}>
-          <LikeIcon css={S.likeIcon} />
-          <S.Like>
-            <Skeleton width={16} />
-          </S.Like>
-        </S.LikeButton>
+        <Skeleton width={30} height={17} />
       </S.RecordItemFooter>
     </S.RecordItemContainer>
   );

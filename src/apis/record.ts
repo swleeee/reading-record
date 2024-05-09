@@ -152,14 +152,7 @@ export const getTotalLikeForRecordAPI = async (
       input_record_id: req.recordId,
       input_user_id: req.userId,
     })
-    .returns<
-      [
-        {
-          isliked: GetTotalLikeForRecordServerModel['isliked'];
-          count: GetTotalLikeForRecordServerModel['count'];
-        },
-      ]
-    >();
+    .returns<[GetTotalLikeForRecordServerModel]>();
 
   if (error) {
     throw new Error(error.message);
@@ -198,6 +191,7 @@ export const deleteLikeForRecordAPI = async (
 export const getBestRecordsAPI = async (req: GetBestRecordsQueryModel) => {
   const { data, error } = await supabase
     .rpc('get_best_record', {
+      current_user_id: req.userId,
       startdatetime: req.startDateTime,
       enddatetime: req.endDateTime,
       limitcount: 10,

@@ -8,6 +8,8 @@ import {
   PopularBook,
   BestCommentaryMobileSkeleton,
   BestCommentaryDesktopSkeleton,
+  ReadingBookMobileSkeleton,
+  ReadingBookDesktopSkeleton,
 } from '@/components';
 import { deviceState } from '@/stores';
 import * as S from './index.styled';
@@ -17,8 +19,19 @@ const root = () => {
 
   return (
     <MainLayout css={S.mainLayout}>
-      <ReadingBook />
-      <PopularBook />
+      <Suspense
+        fallback={
+          device === 'mobile' ? (
+            <ReadingBookMobileSkeleton />
+          ) : (
+            <ReadingBookDesktopSkeleton />
+          )
+        }
+      >
+        <ReadingBook />
+      </Suspense>
+      {/* TODO: 추후 기능 도입 예정 */}
+      {/* <PopularBook /> */}
       <Suspense
         fallback={
           device === 'mobile' ? (

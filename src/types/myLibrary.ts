@@ -3,8 +3,8 @@ import type { BookRecordServerData } from './record';
 
 export interface GetMyLibraryQueryModel {
   userId: string;
-  page: number;
-  pageSize: number;
+  page?: number;
+  pageSize?: number;
   filter: 'all' | 'ongoing' | 'completed';
 }
 

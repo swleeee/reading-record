@@ -75,19 +75,22 @@ export interface DeleteLikeForRecordQueryModel {
 export interface GetBestRecordsQueryModel {
   startDateTime: string;
   endDateTime: string;
+  userId: string;
 }
 
 export type GetBestRecordsServerModel = {
   created_at: string;
   updated_at: string;
   id: string;
+  user_id: string;
   isbn: string;
   rating: number;
   reading_start_at: string;
   reading_end_at: string;
   record_comment: string;
-  like_count: number;
   thumbnail: string;
   nickname: string;
   profile_url: string | null;
+  like_count: number; // TODO: 추후 삭제 필요
+  isliked: boolean; // TODO: 추후 삭제 필요
 }[];
