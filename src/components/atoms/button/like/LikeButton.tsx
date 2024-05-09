@@ -11,12 +11,18 @@ import LikeFilledIcon from '@/assets/icon/ic_thumb_up_filled.svg?react';
 import * as S from './LikeButton.styled';
 
 interface LikeButtonProps {
+  as?: 'div' | 'button';
   isbn: string;
   recordId: string;
   userId: string;
 }
 
-const LikeButton = ({ isbn, recordId, userId }: LikeButtonProps) => {
+const LikeButton = ({
+  as = 'button',
+  isbn,
+  recordId,
+  userId,
+}: LikeButtonProps) => {
   const { user } = useUser();
   const currentUserId = user?.id!;
 
@@ -36,6 +42,9 @@ const LikeButton = ({ isbn, recordId, userId }: LikeButtonProps) => {
 
   return (
     <S.LikeButton
+      as={as}
+      role="button"
+      tabIndex={0}
       disabled={currentUserId === userId}
       type="button"
       onClick={handleLikeButtonClick(isbn, recordId, currentUserId)}

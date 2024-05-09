@@ -42,6 +42,7 @@ const BookRecordCard = ({ bookRecord }: BookRecordCardProps) => {
             {dayjs(bookRecord.created_at).format('YYYY-MM-DD')}
           </S.CreatedDate>
           <LikeButton
+            as="div"
             isbn={bookRecord.isbn}
             recordId={bookRecord.id}
             userId={bookRecord.user_id}

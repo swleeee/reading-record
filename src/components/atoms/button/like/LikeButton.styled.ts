@@ -1,6 +1,8 @@
-import tw, { css } from 'twin.macro';
+import tw, { css, styled } from 'twin.macro';
 
-export const LikeButton = tw.button`flex items-center gap-[4px]`;
+export const LikeButton = styled.button`
+  ${tw`flex items-center gap-[4px]`}
+`;
 
 export const likeIcon = css`
   ${tw`w-[16px] h-[16px]`}
