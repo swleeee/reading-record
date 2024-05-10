@@ -22,7 +22,6 @@ const ProfileUploader = ({
   handleProfileImageEdit,
   handlePreviewImageDelete,
 }: ProfileUploaderProps) => {
-  console.log(fileInputRef);
   return (
     <S.ProfileWrapper>
       <S.ProfileEditInput
