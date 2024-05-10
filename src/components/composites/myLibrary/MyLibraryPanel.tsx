@@ -5,6 +5,7 @@ import { BookListCard, NoData, Pagination } from '@/components';
 import { useGetMyLibraries } from '@/services';
 import { getBookReadingStatus } from '@/utils';
 import { BOOK_READING_STATUS_OPTIONS } from '@/constants';
+import * as S from './MyLibraryPanel.styled';
 
 interface MyLibraryPanelProps {
   queryStatus: 'all' | 'ongoing' | 'completed';
@@ -25,7 +26,7 @@ const MyLibraryPanel = ({ queryStatus }: MyLibraryPanelProps) => {
   if (!data) return null;
 
   return (
-    <div>
+    <S.Container>
       {data.records.length ? (
         data.records.map((record) => (
           <BookListCard
@@ -53,7 +54,7 @@ const MyLibraryPanel = ({ queryStatus }: MyLibraryPanelProps) => {
         totalPages={Math.ceil((data.totalCount ?? 0) / 10)}
         maxPageCount={10}
       />
-    </div>
+    </S.Container>
   );
 };
 

@@ -6,7 +6,6 @@ import {
   MyLibraryPanel,
   Tab,
 } from '@/components';
-import * as S from './index.styled';
 
 const root = () => {
   const tabs = [
@@ -46,7 +45,7 @@ const root = () => {
   ];
 
   return (
-    <MainLayout css={S.mainLayout}>
+    <MainLayout>
       <Tab tabs={tabs} />
     </MainLayout>
   );

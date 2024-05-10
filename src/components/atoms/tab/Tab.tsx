@@ -69,7 +69,7 @@ const Tab = ({ tabs }: TabProps) => {
         })}
       </S.TabList>
       {tabs.map((tab) => (
-        <S.TabPanel
+        <section
           key={tab.key}
           id={`panel-${tab.key}`}
           tabIndex={0}
@@ -78,7 +78,7 @@ const Tab = ({ tabs }: TabProps) => {
           hidden={activeTab?.key !== tab.key}
         >
           {activeTab?.key === tab.key ? tab.content : null}
-        </S.TabPanel>
+        </section>
       ))}
     </>
   );
