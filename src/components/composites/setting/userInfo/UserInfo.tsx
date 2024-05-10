@@ -1,7 +1,8 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { useRecoilValue } from 'recoil';
 
+import { useImageFileUploader } from '@/hooks';
 import { useCheckNicknameDuplicated } from '@/services';
 import { deviceState } from '@/stores';
 import { getBirthDateValid, getBirthErrorMessage } from '@/utils';
@@ -14,8 +15,6 @@ import * as S from './UserInfo.styled';
 const UserInfo = () => {
   const device = useRecoilValue(deviceState);
 
-  const fileInputRef = useRef<HTMLInputElement>(null);
-  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [isNicknameChecked, setIsNicknameChecked] = useState(false);
   const methods = useForm<SettingUserInfoFormType>({
     mode: 'onTouched',
@@ -33,6 +32,18 @@ const UserInfo = () => {
     isPending: isCheckNicknameDuplicatedLoading,
     mutate: checkNicknameDuplicated,
   } = useCheckNicknameDuplicated();
+
+  const handleProfileImageChange = (file: File | null) => {
+    methods.setValue('profileFile', file);
+  };
+
+  const {
+    fileInputRef,
+    previewUrl,
+    handleFileChange,
+    handlePreviewImageDelete,
+    handleImageFileEdit: handleProfileImageEdit,
+  } = useImageFileUploader(handleProfileImageChange);
 
   const checkBirthDateValidate = (
     key: keyof SettingUserInfoFormType['birth'],
@@ -92,32 +103,6 @@ const UserInfo = () => {
         }
       },
     });
-  };
-
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = e.target.files;
-    if (files && files.length > 0) {
-      const file = files[0];
-      methods.setValue('profileFile', file);
-      previewFile(file);
-    }
-  };
-
-  const previewFile = (file: File) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onloadend = () => {
-      setPreviewUrl(reader.result as string);
-    };
-  };
-
-  const handlePreviewImageDelete = () => {
-    setPreviewUrl(null);
-    methods.setValue('profileFile', null);
-  };
-
-  const handleProfileImageEdit = () => {
-    fileInputRef.current?.click();
   };
 
   // TODO: 추후 작성
