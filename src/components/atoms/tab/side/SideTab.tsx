@@ -1,18 +1,19 @@
 import React from 'react';
 
 import type { TabType } from '@/types';
-import useTab from './hooks/useTab';
-import * as S from './Tab.styled';
+import useTab from '../hooks/useTab';
+import * as S from './SideTab.styled';
 
-interface TabProps {
+interface SideTabProps {
+  className?: string;
   tabs: TabType[];
 }
 
-const Tab = ({ tabs }: TabProps) => {
+const SideTab = ({ className, tabs }: SideTabProps) => {
   const { activeTab, handleTabClick } = useTab(tabs);
 
   return (
-    <>
+    <S.TabContainer className={className}>
       <S.TabList role="tablist">
         {tabs.map((tab) => {
           const isSelected = activeTab?.key === tab.key;
@@ -40,7 +41,7 @@ const Tab = ({ tabs }: TabProps) => {
         })}
       </S.TabList>
       {tabs.map((tab) => (
-        <section
+        <S.TabPanel
           key={tab.key}
           id={`panel-${tab.key}`}
           tabIndex={0}
@@ -49,10 +50,10 @@ const Tab = ({ tabs }: TabProps) => {
           hidden={activeTab?.key !== tab.key}
         >
           {activeTab?.key === tab.key ? tab.content : null}
-        </section>
+        </S.TabPanel>
       ))}
-    </>
+    </S.TabContainer>
   );
 };
 
-export default Tab;
+export default SideTab;

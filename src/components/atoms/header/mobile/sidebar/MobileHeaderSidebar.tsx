@@ -79,7 +79,7 @@ const MobileHeaderSidebar = () => {
             <Button
               isLoading={isLogoutLoading}
               label="로그아웃"
-              styleType="tertiary"
+              styleType="tertiaryPrimary"
               sizeType="md"
               onClick={handleLogout}
             />

@@ -1,3 +1,4 @@
+export * from './useImageFileUploader';
 export * from './useModal';
 export * from './useOnClickOutside';
 export * from './useSidebar';

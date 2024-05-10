@@ -23,11 +23,46 @@ const buttonSecondaryLoading = css`
   ${tw`hover:bg-white`}
 `;
 
-const buttonTertiaryDefault = tw`min-w-[inherit] h-auto p-0 text-brown400 bg-transparent hover:text-brown500 active:text-brown600 focus:(border border-solid border-brown700) disabled:(text-brown100 cursor-not-allowed)`;
-const buttonTertiaryLoading = css`
-  ${buttonLoading};
+const buttonTertiaryDefault = tw`min-w-[inherit] h-auto p-0 bg-transparent focus:(border border-solid) disabled:cursor-not-allowed`;
+
+const buttonTertiaryPrimaryDefault = css`
   ${buttonTertiaryDefault};
+  ${tw`text-brown400 hover:text-brown500 active:text-brown600 focus:border-brown700 disabled:text-brown100`}
+`;
+const buttonTertiaryPrimaryLoading = css`
+  ${buttonLoading};
+  ${buttonTertiaryPrimaryDefault};
   ${tw`hover:text-brown400`};
+`;
+
+const buttonTertiaryGrayDefault = css`
+  ${buttonTertiaryDefault};
+  ${tw`text-gray300 hover:text-gray400 active:text-gray500 focus:border-gray600 disabled:text-gray100`}
+`;
+const buttonTertiaryGrayLoading = css`
+  ${buttonLoading};
+  ${buttonTertiaryPrimaryDefault};
+  ${tw`hover:text-gray300`};
+`;
+
+const buttonTertiaryBlueDefault = css`
+  ${buttonTertiaryDefault};
+  ${tw`text-blue200 hover:text-blue300 active:text-blue400 focus:border-blue500 disabled:text-blue50`}
+`;
+const buttonTertiaryBlueLoading = css`
+  ${buttonLoading};
+  ${buttonTertiaryPrimaryDefault};
+  ${tw`hover:text-blue200`};
+`;
+
+const buttonTertiaryRedDefault = css`
+  ${buttonTertiaryDefault};
+  ${tw`text-red200 hover:text-red300 active:text-red400 focus:border-red500 disabled:text-red50`}
+`;
+const buttonTertiaryRedLoading = css`
+  ${buttonLoading};
+  ${buttonTertiaryPrimaryDefault};
+  ${tw`hover:text-red200`};
 `;
 
 const getButtonSize = (sizeType: ButtonSizeType) => {
@@ -49,8 +84,22 @@ const getButtonStyle = (isLoading: boolean, styleType: ButtonStyleType) => {
     return isLoading ? buttonSecondaryLoading : buttonSecondaryDefault;
   }
 
-  if (styleType === 'tertiary') {
-    return isLoading ? buttonTertiaryLoading : buttonTertiaryDefault;
+  if (styleType === 'tertiaryPrimary') {
+    return isLoading
+      ? buttonTertiaryPrimaryLoading
+      : buttonTertiaryPrimaryDefault;
+  }
+
+  if (styleType === 'tertiaryGray') {
+    return isLoading ? buttonTertiaryGrayLoading : buttonTertiaryGrayDefault;
+  }
+
+  if (styleType === 'tertiaryBlue') {
+    return isLoading ? buttonTertiaryBlueLoading : buttonTertiaryBlueDefault;
+  }
+
+  if (styleType === 'tertiaryRed') {
+    return isLoading ? buttonTertiaryRedLoading : buttonTertiaryRedDefault;
   }
 
   return isLoading ? buttonPrimaryLoading : buttonPrimaryDefault;
