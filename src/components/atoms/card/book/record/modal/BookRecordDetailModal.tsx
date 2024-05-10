@@ -42,7 +42,7 @@ const BookRecordDetailModal = React.forwardRef<
             <Button
               label="상세화면 보기"
               sizeType="sm"
-              styleType="tertiary"
+              styleType="tertiaryPrimary"
               onClick={handleButtonClick(bookRecord.isbn)}
             />
           </S.BookContentWrapper>
@@ -61,7 +61,7 @@ const BookRecordDetailModal = React.forwardRef<
               <Button
                 label="상세화면 보기"
                 sizeType="sm"
-                styleType="tertiary"
+                styleType="tertiaryPrimary"
                 onClick={handleButtonClick(bookRecord.isbn)}
               />
             )}

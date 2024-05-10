@@ -69,7 +69,7 @@ const BookListCard = ({
           <S.Publishing>
             <Button
               css={S.publisherLink}
-              styleType="tertiary"
+              styleType="tertiaryPrimary"
               sizeType="sm"
               label={publisher}
               onClick={handlePublisherClick(publisher)}

@@ -2,7 +2,7 @@ export type ButtonActionType = 'button' | 'submit' | 'reset';
 export type ButtonStyleType =
   | 'primary'
   | 'secondary'
-  | 'tertiary'
+  | 'tertiaryPrimary'
   | 'tertiaryGray'
   | 'tertiaryBlue'
   | 'tertiaryRed';
