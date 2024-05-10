@@ -118,7 +118,6 @@ const UserInfo = () => {
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log('click');
     const files = e.target.files;
     if (files && files.length > 0) {
       const file = files[0];
