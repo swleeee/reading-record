@@ -1,6 +1,8 @@
 import tw, { css, styled } from 'twin.macro';
 
-export const Header = tw.header`flex items-center w-full h-[60px] border-b border-b-gray100 px-[60px] py-[10px]`;
+export const Header = tw.header`border-b border-b-gray100`;
+
+export const Wrapper = tw.div`flex items-center w-full h-[60px] px-[24px] py-[10px] tablet:(max-w-[1360px] mx-auto)`;
 
 export const logo = css`
   ${tw`mr-[50px] t-body-sb16 labtop:d-body-sb18`}
