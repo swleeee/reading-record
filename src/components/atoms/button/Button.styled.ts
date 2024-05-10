@@ -30,6 +30,27 @@ const buttonTertiaryLoading = css`
   ${tw`hover:text-brown400`};
 `;
 
+const buttonTertiaryGrayDefault = tw`min-w-[inherit] h-auto p-0 text-gray300 bg-transparent hover:text-gray400 active:text-gray500 focus:(border border-solid border-gray600) disabled:(text-gray100 cursor-not-allowed)`;
+const buttonTertiaryGrayLoading = css`
+  ${buttonLoading};
+  ${buttonTertiaryDefault};
+  ${tw`hover:text-gray300`};
+`;
+
+const buttonTertiaryBlueDefault = tw`min-w-[inherit] h-auto p-0 text-blue200 bg-transparent hover:text-blue300 active:text-blue400 focus:(border border-solid border-blue500) disabled:(text-blue50 cursor-not-allowed)`;
+const buttonTertiaryBlueLoading = css`
+  ${buttonLoading};
+  ${buttonTertiaryDefault};
+  ${tw`hover:text-blue200`};
+`;
+
+const buttonTertiaryRedDefault = tw`min-w-[inherit] h-auto p-0 text-red200 bg-transparent hover:text-red300 active:text-red400 focus:(border border-solid border-red500) disabled:(text-blue50 cursor-not-allowed)`;
+const buttonTertiaryRedLoading = css`
+  ${buttonLoading};
+  ${buttonTertiaryDefault};
+  ${tw`hover:text-red200`};
+`;
+
 const getButtonSize = (sizeType: ButtonSizeType) => {
   if (sizeType === 'lg') return buttonLg;
   if (sizeType === 'md') return buttonMd;
@@ -51,6 +72,18 @@ const getButtonStyle = (isLoading: boolean, styleType: ButtonStyleType) => {
 
   if (styleType === 'tertiary') {
     return isLoading ? buttonTertiaryLoading : buttonTertiaryDefault;
+  }
+
+  if (styleType === 'tertiaryGray') {
+    return isLoading ? buttonTertiaryGrayLoading : buttonTertiaryGrayDefault;
+  }
+
+  if (styleType === 'tertiaryBlue') {
+    return isLoading ? buttonTertiaryBlueLoading : buttonTertiaryBlueDefault;
+  }
+
+  if (styleType === 'tertiaryRed') {
+    return isLoading ? buttonTertiaryRedLoading : buttonTertiaryRedDefault;
   }
 
   return isLoading ? buttonPrimaryLoading : buttonPrimaryDefault;
