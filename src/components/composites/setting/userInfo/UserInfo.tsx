@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { useRecoilValue } from 'recoil';
-import dayjs from 'dayjs';
 
 import { useCheckNicknameDuplicated } from '@/services';
 import { deviceState } from '@/stores';
+import { getBirthDateValid, getBirthErrorMessage } from '@/utils';
 import { ERROR_MESSAGE, GENDER_OPTIONS } from '@/constants';
 import type { SelectOptionType, SettingUserInfoFormType } from '@/types';
 import UserInfoMobile from './UserInfoMobile';
@@ -34,43 +34,20 @@ const UserInfo = () => {
     mutate: checkNicknameDuplicated,
   } = useCheckNicknameDuplicated();
 
-  const getBirthDateValid = () => {
-    const date = `${methods.watch('birth.year')}-${methods.watch(
-      'birth.month',
-    )}-${methods.watch('birth.day')}`;
-    const formattedDate = dayjs(date, 'YYYY-MM-DD', true);
-
-    return formattedDate.isValid();
-  };
-
   const checkBirthDateValidate = (
     key: keyof SettingUserInfoFormType['birth'],
     value: string,
   ) => {
-    switch (key) {
-      case 'year': {
-        if (+value < 1900 || +value > new Date().getFullYear()) {
-          return ERROR_MESSAGE.INVALID_YEAR;
-        }
-        break;
-      }
-      case 'month':
-        {
-          if (+value < 1 || +value > 12) {
-            return ERROR_MESSAGE.INVALID_MONTH;
-          }
-        }
-        break;
-      case 'day':
-        {
-          if (+value < 1 || +value > 31) {
-            return ERROR_MESSAGE.INVALID_DAY;
-          }
-        }
-        break;
-    }
+    const errorMessage = getBirthErrorMessage(key, value);
+    if (errorMessage) return errorMessage;
 
-    if (getBirthDateValid()) {
+    if (
+      getBirthDateValid(
+        methods.watch('birth.year'),
+        methods.watch('birth.month'),
+        methods.watch('birth.day'),
+      )
+    ) {
       methods.clearErrors('birth');
     }
 

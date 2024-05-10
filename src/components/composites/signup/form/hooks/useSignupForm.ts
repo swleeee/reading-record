@@ -9,6 +9,7 @@ import { useToast } from '@/hooks';
 import { useCheckNicknameDuplicated, useSignup } from '@/services';
 import { ERROR_MESSAGE, GENDER_OPTIONS, TOAST_MESSAGE } from '@/constants';
 import type { CheckboxGroupType, SelectOptionType } from '@/types';
+import { getBirthDateValid, getBirthErrorMessage } from '@/utils';
 
 const TERM_AGREEMENT = { term: false, policy: false, age: false };
 
@@ -53,43 +54,20 @@ const useSignupForm = () => {
   const { isPending: isSignupLoading, mutate: createUser } = useSignup();
   const { addToast } = useToast();
 
-  const getBirthDateValid = () => {
-    const date = `${watch('birth.year')}-${watch('birth.month')}-${watch(
-      'birth.day',
-    )}`;
-    const formattedDate = dayjs(date, 'YYYY-MM-DD', true);
-
-    return formattedDate.isValid();
-  };
-
   const checkBirthDateValidate = (
     key: keyof FormType['birth'],
     value: string,
   ) => {
-    switch (key) {
-      case 'year': {
-        if (+value < 1900 || +value > new Date().getFullYear()) {
-          return ERROR_MESSAGE.INVALID_YEAR;
-        }
-        break;
-      }
-      case 'month':
-        {
-          if (+value < 1 || +value > 12) {
-            return ERROR_MESSAGE.INVALID_MONTH;
-          }
-        }
-        break;
-      case 'day':
-        {
-          if (+value < 1 || +value > 31) {
-            return ERROR_MESSAGE.INVALID_DAY;
-          }
-        }
-        break;
-    }
+    const errorMessage = getBirthErrorMessage(key, value);
+    if (errorMessage) return errorMessage;
 
-    if (getBirthDateValid()) {
+    if (
+      getBirthDateValid(
+        watch('birth.year'),
+        watch('birth.month'),
+        watch('birth.day'),
+      )
+    ) {
       clearErrors('birth');
     }
 
@@ -99,7 +77,13 @@ const useSignupForm = () => {
   const checkBirthDateError = () => {
     let hasError = false;
 
-    if (!getBirthDateValid()) {
+    if (
+      !getBirthDateValid(
+        watch('birth.year'),
+        watch('birth.month'),
+        watch('birth.day'),
+      )
+    ) {
       setError('birth', {
         type: 'validate',
         message: ERROR_MESSAGE.INVALID_DATE,
