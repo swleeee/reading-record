@@ -1,7 +1,8 @@
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 
 import {
   checkNicknameDuplicatedAPI,
+  getUserProfileAPI,
   loginAPI,
   logoutAPI,
   signupAPI,
@@ -34,5 +35,12 @@ export const useLogin = () => {
 export const useLogout = () => {
   return useMutation({
     mutationFn: () => logoutAPI(),
+  });
+};
+
+export const useGetUserProfile = (path: string | null) => {
+  return useQuery({
+    queryKey: ['profile', path ?? 'default'],
+    queryFn: () => (path ? getUserProfileAPI(path) : null),
   });
 };

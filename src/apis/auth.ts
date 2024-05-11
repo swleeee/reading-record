@@ -42,3 +42,11 @@ export const loginAPI = async (req: LoginQueryModel) => {
 };
 
 export const logoutAPI = async () => await supabase.auth.signOut();
+
+export const getUserProfileAPI = async (profilePath: string) => {
+  const { data } = await supabase.storage
+    .from('image')
+    .getPublicUrl(profilePath);
+
+  return data;
+};
