@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { useRecoilValue } from 'recoil';
 
+import { useUser } from '@/contexts';
 import { useImageFileUploader } from '@/hooks';
-import { useCheckNicknameDuplicated } from '@/services';
+import { useCheckNicknameDuplicated, useUpdateUserInfo } from '@/services';
 import { deviceState } from '@/stores';
 import { getBirthDateValid, getBirthErrorMessage } from '@/utils';
 import { ERROR_MESSAGE, GENDER_OPTIONS } from '@/constants';
@@ -15,6 +16,7 @@ import * as S from './UserInfo.styled';
 const UserInfo = () => {
   const device = useRecoilValue(deviceState);
 
+  const { user } = useUser();
   const [isNicknameChecked, setIsNicknameChecked] = useState(false);
   const methods = useForm<SettingUserInfoFormType>({
     mode: 'onTouched',
@@ -32,6 +34,7 @@ const UserInfo = () => {
     isPending: isCheckNicknameDuplicatedLoading,
     mutate: checkNicknameDuplicated,
   } = useCheckNicknameDuplicated();
+  const { mutate: updateUserInfo } = useUpdateUserInfo();
 
   const handleProfileImageChange = (file: File | null) => {
     methods.setValue('profileFile', file);
@@ -105,8 +108,20 @@ const UserInfo = () => {
     });
   };
 
-  // TODO: 추후 작성
-  const handleAccountUpdate = methods.handleSubmit(() => {});
+  const handleAccountUpdate = methods.handleSubmit((data) => {
+    const { year, month, day } = data.birth;
+
+    const req = {
+      userId: user?.id!,
+      originProfilePath: user?.user_metadata.profile_url,
+      profileFile: data.profileFile,
+      nickname: data.nickname,
+      gender: data.gender.key as 'm' | 'f',
+      birth: `${year}-${month}-${day}`,
+    };
+
+    updateUserInfo(req);
+  });
 
   useEffect(() => {
     const initialGender = 'w';

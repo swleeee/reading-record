@@ -8,3 +8,12 @@ export interface SettingUserInfoFormType {
   birth: { year: string; month: string; day: string };
   gender: SelectOptionType;
 }
+
+export interface UpdateUserInfoQueryModel {
+  userId: string;
+  originProfilePath: string | null;
+  profileFile: File | null;
+  nickname: string;
+  gender: 'm' | 'f';
+  birth: string;
+}
