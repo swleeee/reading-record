@@ -2,17 +2,19 @@ import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 import { useUser } from '@/contexts';
+import { useToast } from '@/hooks';
 import {
   useCheckNicknameDuplicated,
   useGetUserInfo,
   useUpdateUserInfo,
 } from '@/services';
 import { getBirthDateValid, getBirthErrorMessage } from '@/utils';
-import { ERROR_MESSAGE, GENDER_OPTIONS } from '@/constants';
+import { ERROR_MESSAGE, GENDER_OPTIONS, TOAST_MESSAGE } from '@/constants';
 import type { SelectOptionType, SettingUserInfoFormType } from '@/types';
 
 const useUserInfoForm = () => {
   const { user } = useUser();
+
   const [isNicknameChecked, setIsNicknameChecked] = useState(false);
   const methods = useForm<SettingUserInfoFormType>({
     mode: 'onTouched',
@@ -32,6 +34,7 @@ const useUserInfoForm = () => {
   } = useCheckNicknameDuplicated();
   const { data } = useGetUserInfo({ userId: user?.id! });
   const { mutate: updateUserInfo } = useUpdateUserInfo();
+  const { addToast } = useToast();
 
   const checkBirthDateValidate = (
     key: keyof SettingUserInfoFormType['birth'],
@@ -105,7 +108,11 @@ const useUserInfoForm = () => {
       birth: `${year}-${month}-${day}`,
     };
 
-    updateUserInfo(req);
+    updateUserInfo(req, {
+      onSuccess: () => {
+        addToast(TOAST_MESSAGE.SUCCESS.UPDATE_USER_INFO);
+      },
+    });
   });
 
   const handleProfileImageChange = (file: File | null) => {
