@@ -4,7 +4,7 @@ import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { useUser } from '@/contexts';
 import { Button, Link, Profile } from '@/components';
 import { useToast } from '@/hooks';
-import { useGetUserProfile, useLogout } from '@/services';
+import { useLogout } from '@/services';
 import { TOAST_MESSAGE } from '@/constants';
 import * as S from './Header.styled';
 
@@ -14,7 +14,6 @@ const Header = () => {
 
   const { user } = useUser();
   const { isPending: isLogoutLoading, mutate: logout } = useLogout();
-  const { data } = useGetUserProfile(user?.user_metadata.profile_url);
   const { addToast } = useToast();
   const isLogin = !!user;
 
@@ -58,7 +57,7 @@ const Header = () => {
         </S.Navbar>
         {isLogin ? (
           <S.UserInfo>
-            <Profile src={data?.publicUrl ?? null} />
+            <Profile src={user?.user_metadata.profile_url} />
             <S.UserName>{user.user_metadata.nickname}님</S.UserName>
             <Button
               isLoading={isLogoutLoading}

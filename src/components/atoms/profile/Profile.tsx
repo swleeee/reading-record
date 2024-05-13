@@ -1,6 +1,7 @@
 import React from 'react';
 
-import DefaultPropfileIcon from '@/assets/icon/ic_default_profile.svg?react';
+import { useGetUserProfile } from '@/services';
+import DefaultProfileIcon from '@/assets/icon/ic_default_profile.svg?react';
 import * as S from './Profile.styled';
 
 interface ProfileProps {
@@ -9,10 +10,17 @@ interface ProfileProps {
 }
 
 const Profile = ({ className, src }: ProfileProps) => {
-  return src ? (
-    <img className={className} css={S.profile} src={src} alt="user profile" />
+  const { data } = useGetUserProfile(src);
+
+  return data?.publicUrl ? (
+    <img
+      className={className}
+      css={S.profile}
+      src={data?.publicUrl}
+      alt="user profile"
+    />
   ) : (
-    <DefaultPropfileIcon className={className} css={S.profile} />
+    <DefaultProfileIcon className={className} css={S.profile} />
   );
 };
 
