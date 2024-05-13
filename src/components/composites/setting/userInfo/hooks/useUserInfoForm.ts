@@ -33,7 +33,8 @@ const useUserInfoForm = () => {
     mutate: checkNicknameDuplicated,
   } = useCheckNicknameDuplicated();
   const { data } = useGetUserInfo({ userId: user?.id! });
-  const { mutate: updateUserInfo } = useUpdateUserInfo();
+  const { isPending: isUpdateUserInfoPending, mutate: updateUserInfo } =
+    useUpdateUserInfo();
   const { addToast } = useToast();
 
   const checkBirthDateValidate = (
@@ -182,6 +183,7 @@ const useUserInfoForm = () => {
   return {
     isCheckNicknameDuplicatedLoading,
     isNicknameChecked,
+    isUpdateUserInfoPending,
     data,
     methods,
     checkBirthDateValidate,

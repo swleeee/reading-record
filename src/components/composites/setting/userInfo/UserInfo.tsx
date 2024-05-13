@@ -15,6 +15,7 @@ const UserInfo = () => {
   const {
     isCheckNicknameDuplicatedLoading,
     isNicknameChecked,
+    isUpdateUserInfoPending,
     data,
     methods,
     checkBirthDateValidate,
@@ -42,6 +43,7 @@ const UserInfo = () => {
           <UserInfoMobile
             isNicknameChecked={isNicknameChecked}
             isCheckNicknameDuplicatedLoading={isCheckNicknameDuplicatedLoading}
+            isUpdateUserInfoPending={isUpdateUserInfoPending}
             fileInputRef={fileInputRef}
             previewUrl={previewUrl}
             checkBirthDateValidate={checkBirthDateValidate}
@@ -58,6 +60,7 @@ const UserInfo = () => {
           <UserInfoDesktop
             isNicknameChecked={isNicknameChecked}
             isCheckNicknameDuplicatedLoading={isCheckNicknameDuplicatedLoading}
+            isUpdateUserInfoPending={isUpdateUserInfoPending}
             fileInputRef={fileInputRef}
             previewUrl={previewUrl}
             checkBirthDateValidate={checkBirthDateValidate}

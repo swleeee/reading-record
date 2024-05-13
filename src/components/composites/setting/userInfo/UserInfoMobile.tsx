@@ -9,6 +9,7 @@ import * as S from './UserInfo.styled';
 interface UserInfoMobileProps {
   isNicknameChecked: boolean;
   isCheckNicknameDuplicatedLoading: boolean;
+  isUpdateUserInfoPending: boolean;
   fileInputRef: React.RefObject<HTMLInputElement>;
   previewUrl: string | null;
   checkBirthDateValidate: (
@@ -30,6 +31,7 @@ interface UserInfoMobileProps {
 const UserInfoMobile = ({
   isNicknameChecked,
   isCheckNicknameDuplicatedLoading,
+  isUpdateUserInfoPending,
   fileInputRef,
   previewUrl,
   checkBirthDateValidate,
@@ -74,6 +76,7 @@ const UserInfoMobile = ({
           handleGenderOptionSelect={handleGenderOptionSelect}
         />
         <Button
+          isLoading={isUpdateUserInfoPending}
           label="저장"
           sizeType="full"
           styleType="primary"

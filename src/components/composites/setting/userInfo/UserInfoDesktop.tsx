@@ -9,6 +9,7 @@ import * as S from './UserInfo.styled';
 interface UserInfoDesktopProps {
   isNicknameChecked: boolean;
   isCheckNicknameDuplicatedLoading: boolean;
+  isUpdateUserInfoPending: boolean;
   fileInputRef: React.RefObject<HTMLInputElement>;
   previewUrl: string | null;
   checkBirthDateValidate: (
@@ -30,6 +31,7 @@ interface UserInfoDesktopProps {
 const UserInfoDesktop = ({
   isNicknameChecked,
   isCheckNicknameDuplicatedLoading,
+  isUpdateUserInfoPending,
   fileInputRef,
   previewUrl,
   checkBirthDateValidate,
@@ -72,6 +74,7 @@ const UserInfoDesktop = ({
           handleGenderOptionSelect={handleGenderOptionSelect}
         />
         <Button
+          isLoading={isUpdateUserInfoPending}
           label="저장"
           sizeType="full"
           styleType="primary"
