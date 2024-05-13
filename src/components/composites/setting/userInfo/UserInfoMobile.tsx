@@ -1,4 +1,5 @@
 import React from 'react';
+import { useFormContext } from 'react-hook-form';
 
 import { Button, ProfileUploader } from '@/components';
 import { formatNumber } from '@/utils';
@@ -44,6 +45,10 @@ const UserInfoMobile = ({
   handleGenderOptionSelect,
   handleAccountUpdate,
 }: UserInfoMobileProps) => {
+  const {
+    formState: { errors },
+  } = useFormContext<SettingUserInfoFormType>();
+
   return (
     <>
       <S.TopWrapper>
@@ -76,6 +81,7 @@ const UserInfoMobile = ({
           handleGenderOptionSelect={handleGenderOptionSelect}
         />
         <Button
+          isDisabled={!!Object.keys(errors).length}
           isLoading={isUpdateUserInfoPending}
           label="저장"
           sizeType="full"
