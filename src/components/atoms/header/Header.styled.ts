@@ -28,11 +28,3 @@ export const navLink = (isSelected: boolean) => css`
 export const UserInfo = tw.div`flex items-center gap-x-[4px]`;
 
 export const UserName = tw.span`t-body-r14 desktop:d-body-r16`;
-
-export const defaultProfileIcon = css`
-  ${tw`w-[28px] h-[28px]`}
-
-  & > path:not(:first-of-type) {
-    ${tw`fill-gray50`}
-  }
-`;

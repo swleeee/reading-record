@@ -1,8 +1,11 @@
 import { useRef, useState } from 'react';
 
-export const useImageFileUploader = (onChange: (file: File | null) => void) => {
+export const useImageFileUploader = (
+  initPreviewUrl: string | null,
+  onChange: (file: File | null) => void,
+) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+  const [previewUrl, setPreviewUrl] = useState<string | null>(initPreviewUrl);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;

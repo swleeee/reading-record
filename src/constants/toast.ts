@@ -24,6 +24,10 @@ export const TOAST_MESSAGE = {
       type: 'success',
       message: '독서 기록 내용이 변경 되었습니다!',
     },
+    UPDATE_USER_INFO: {
+      type: 'success',
+      message: '회원 정보 수정이 완료되었습니다!',
+    },
   },
   WARNING: {
     AUTH_ALREADY_REGISTERED: {

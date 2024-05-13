@@ -10,6 +10,7 @@ import * as S from './UserInfo.styled';
 interface UserInfoMobileProps {
   isNicknameChecked: boolean;
   isCheckNicknameDuplicatedLoading: boolean;
+  isUpdateUserInfoPending: boolean;
   fileInputRef: React.RefObject<HTMLInputElement>;
   previewUrl: string | null;
   checkBirthDateValidate: (
@@ -31,6 +32,7 @@ interface UserInfoMobileProps {
 const UserInfoMobile = ({
   isNicknameChecked,
   isCheckNicknameDuplicatedLoading,
+  isUpdateUserInfoPending,
   fileInputRef,
   previewUrl,
   checkBirthDateValidate,
@@ -43,7 +45,9 @@ const UserInfoMobile = ({
   handleGenderOptionSelect,
   handleAccountUpdate,
 }: UserInfoMobileProps) => {
-  const { watch } = useFormContext<SettingUserInfoFormType>();
+  const {
+    formState: { errors },
+  } = useFormContext<SettingUserInfoFormType>();
 
   return (
     <>
@@ -51,7 +55,6 @@ const UserInfoMobile = ({
         <ProfileUploader
           fileInputRef={fileInputRef}
           previewUrl={previewUrl}
-          profileUrl={watch('profileUrl')}
           handleFileChange={handleFileChange}
           handleProfileImageEdit={handleProfileImageEdit}
           handlePreviewImageDelete={handlePreviewImageDelete}
@@ -78,6 +81,8 @@ const UserInfoMobile = ({
           handleGenderOptionSelect={handleGenderOptionSelect}
         />
         <Button
+          isDisabled={!!Object.keys(errors).length}
+          isLoading={isUpdateUserInfoPending}
           label="저장"
           sizeType="full"
           styleType="primary"

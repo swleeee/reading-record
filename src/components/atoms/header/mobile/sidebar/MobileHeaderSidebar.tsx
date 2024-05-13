@@ -3,7 +3,7 @@ import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 
 import { useUser } from '@/contexts';
-import { Button, Link } from '@/components';
+import { Button, Link, Profile } from '@/components';
 import { useOnClickOutside, useSidebar, useToast } from '@/hooks';
 import { useLogout } from '@/services';
 import { deviceState } from '@/stores';
@@ -43,6 +43,11 @@ const MobileHeaderSidebar = () => {
     }
   };
 
+  const handleProfileTouch = () => {
+    navigate('/setting');
+    closeSidebar();
+  };
+
   useEffect(() => {
     if (device === 'mobile' || !sidebar.isShow) return;
 
@@ -73,6 +78,16 @@ const MobileHeaderSidebar = () => {
       <S.ContentWrapper>
         {isLogin ? (
           <S.UserInfo>
+            <button
+              type="button"
+              aria-label="user profile"
+              onClick={handleProfileTouch}
+            >
+              <Profile
+                css={S.UserProfile}
+                src={user?.user_metadata.profile_url}
+              />
+            </button>
             <S.UserName>
               {user.user_metadata.nickname}님, 환영합니다.
             </S.UserName>

@@ -2,10 +2,9 @@ import React from 'react';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 
 import { useUser } from '@/contexts';
-import { Button, Link } from '@/components';
+import { Button, Link, Profile } from '@/components';
 import { useToast } from '@/hooks';
 import { useLogout } from '@/services';
-import DefaultProfileIcon from '@/assets/icon/ic_default_profile.svg?react';
 import { TOAST_MESSAGE } from '@/constants';
 import * as S from './Header.styled';
 
@@ -13,8 +12,8 @@ const Header = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const { isPending: isLogoutLoading, mutate: logout } = useLogout();
   const { user } = useUser();
+  const { isPending: isLogoutLoading, mutate: logout } = useLogout();
   const { addToast } = useToast();
   const isLogin = !!user;
 
@@ -27,6 +26,10 @@ const Header = () => {
         addToast(TOAST_MESSAGE.SUCCESS.LOGOUT);
       },
     });
+  };
+
+  const handleProfileClick = () => {
+    navigate('/setting');
   };
 
   return (
@@ -58,7 +61,13 @@ const Header = () => {
         </S.Navbar>
         {isLogin ? (
           <S.UserInfo>
-            <DefaultProfileIcon css={S.defaultProfileIcon} />
+            <button
+              type="button"
+              aria-label="user profile"
+              onClick={handleProfileClick}
+            >
+              <Profile src={user?.user_metadata.profile_url} />
+            </button>
             <S.UserName>{user.user_metadata.nickname}님</S.UserName>
             <Button
               isLoading={isLogoutLoading}
