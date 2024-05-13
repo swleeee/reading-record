@@ -9,10 +9,13 @@ import type {
 export const checkNicknameDuplicatedAPI = async (
   req: CheckNicknameDuplicatedQueryModel,
 ) => {
-  const { data, error } = await supabase
-    .from(DB_TABLE_NAME.AUTH)
-    .select('nickname')
-    .eq('nickname', req.nickname);
+  let query = supabase.from(DB_TABLE_NAME.AUTH).select('nickname');
+
+  if (req.userId) {
+    query = query.not('id', 'eq', req.userId);
+  }
+
+  const { data, error } = await query.eq('nickname', req.nickname);
 
   if (error) {
     throw new Error(error.message);

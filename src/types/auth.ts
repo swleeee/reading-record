@@ -1,5 +1,6 @@
 export interface CheckNicknameDuplicatedQueryModel {
   nickname: string;
+  userId?: string;
 }
 
 export interface SignupQueryModel {
