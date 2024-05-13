@@ -56,6 +56,26 @@ const useUserInfoForm = () => {
     return true;
   };
 
+  const checkBirthDateError = () => {
+    let hasError = false;
+
+    if (
+      !getBirthDateValid(
+        methods.watch('birth.year'),
+        methods.watch('birth.month'),
+        methods.watch('birth.day'),
+      )
+    ) {
+      methods.setError('birth', {
+        type: 'validate',
+        message: ERROR_MESSAGE.INVALID_DATE,
+      });
+      hasError = true;
+    }
+
+    return hasError;
+  };
+
   const handleBirthChange =
     (key: keyof SettingUserInfoFormType['birth']) =>
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -78,7 +98,7 @@ const useUserInfoForm = () => {
   const handleNicknameDuplicateCheck = () => {
     if (!methods.watch('nickname')) return;
 
-    const req = { nickname: methods.watch('nickname') };
+    const req = { nickname: methods.watch('nickname'), userId: user?.id! };
 
     checkNicknameDuplicated(req, {
       onSuccess: (isDuplicated) => {
@@ -96,24 +116,50 @@ const useUserInfoForm = () => {
     });
   };
 
-  const handleAccountUpdate = methods.handleSubmit((data) => {
-    const { year, month, day } = data.birth;
+  const handleAccountUpdate = methods.handleSubmit(
+    (data) => {
+      const hasError = checkBirthDateError();
 
-    const req = {
-      userId: user?.id!,
-      originProfilePath: user?.user_metadata.profile_url,
-      profileFile: data.profileFile,
-      nickname: data.nickname,
-      gender: data.gender.key as (typeof GENDER_OPTIONS)[number]['key'],
-      birth: `${year}-${month}-${day}`,
-    };
+      if (hasError) {
+        return;
+      }
 
-    updateUserInfo(req, {
-      onSuccess: () => {
-        addToast(TOAST_MESSAGE.SUCCESS.UPDATE_USER_INFO);
-      },
-    });
-  });
+      const { year, month, day } = data.birth;
+
+      checkNicknameDuplicated(
+        { nickname: data.nickname, userId: user?.id! },
+        {
+          onSuccess: (isDuplicated) => {
+            if (isDuplicated) {
+              methods.setError('nickname', {
+                type: 'validate',
+                message: ERROR_MESSAGE.DUPLICATE_NICKNAME,
+              });
+            } else {
+              const req = {
+                userId: user?.id!,
+                originProfilePath: user?.user_metadata.profile_url,
+                profileFile: data.profileFile,
+                nickname: data.nickname,
+                gender: data.gender
+                  .key as (typeof GENDER_OPTIONS)[number]['key'],
+                birth: `${year}-${month}-${day}`,
+              };
+
+              updateUserInfo(req, {
+                onSuccess: () => {
+                  addToast(TOAST_MESSAGE.SUCCESS.UPDATE_USER_INFO);
+                },
+              });
+            }
+          },
+        },
+      );
+    },
+    () => {
+      checkBirthDateError();
+    },
+  );
 
   const handleProfileImageChange = (file: File | null) => {
     methods.setValue('profileFile', file);
