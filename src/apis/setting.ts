@@ -1,6 +1,25 @@
 import { supabase } from '@/lib';
-import type { UpdateUserInfoQueryModel } from '@/types';
+import { DB_TABLE_NAME } from '@/constants';
+import type {
+  GetUserInfoQueryModel,
+  GetUserInfoServerModel,
+  UpdateUserInfoQueryModel,
+} from '@/types';
 import { deleteUploadedFileAPI, uploadFileAPI } from './file';
+
+export const getUserInfoAPI = async (req: GetUserInfoQueryModel) => {
+  const { data, error } = await supabase
+    .from(DB_TABLE_NAME.AUTH)
+    .select()
+    .eq('id', req.userId)
+    .returns<GetUserInfoServerModel>();
+
+  if (error) {
+    throw error.message;
+  }
+
+  return data;
+};
 
 const updateUserProfileImage = async (
   newFile: File | null,

@@ -1,5 +1,4 @@
 import React from 'react';
-import { useFormContext } from 'react-hook-form';
 
 import { Button, ProfileUploader } from '@/components';
 import { formatNumber } from '@/utils';
@@ -43,14 +42,11 @@ const UserInfoDesktop = ({
   handleGenderOptionSelect,
   handleAccountUpdate,
 }: UserInfoDesktopProps) => {
-  const { watch } = useFormContext<SettingUserInfoFormType>();
-
   return (
     <S.TopWrapper>
       <ProfileUploader
         fileInputRef={fileInputRef}
         previewUrl={previewUrl}
-        profileUrl={watch('profileUrl')}
         handleFileChange={handleFileChange}
         handleProfileImageEdit={handleProfileImageEdit}
         handlePreviewImageDelete={handlePreviewImageDelete}

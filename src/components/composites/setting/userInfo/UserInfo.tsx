@@ -4,7 +4,11 @@ import { useRecoilValue } from 'recoil';
 
 import { useUser } from '@/contexts';
 import { useImageFileUploader } from '@/hooks';
-import { useCheckNicknameDuplicated, useUpdateUserInfo } from '@/services';
+import {
+  useCheckNicknameDuplicated,
+  useGetUserInfo,
+  useUpdateUserInfo,
+} from '@/services';
 import { deviceState } from '@/stores';
 import { getBirthDateValid, getBirthErrorMessage } from '@/utils';
 import { ERROR_MESSAGE, GENDER_OPTIONS } from '@/constants';
@@ -34,6 +38,7 @@ const UserInfo = () => {
     isPending: isCheckNicknameDuplicatedLoading,
     mutate: checkNicknameDuplicated,
   } = useCheckNicknameDuplicated();
+  const { data } = useGetUserInfo({ userId: user?.id! });
   const { mutate: updateUserInfo } = useUpdateUserInfo();
 
   const handleProfileImageChange = (file: File | null) => {
@@ -46,7 +51,7 @@ const UserInfo = () => {
     handleFileChange,
     handlePreviewImageDelete,
     handleImageFileEdit: handleProfileImageEdit,
-  } = useImageFileUploader(handleProfileImageChange);
+  } = useImageFileUploader(data[0].profile_url, handleProfileImageChange);
 
   const checkBirthDateValidate = (
     key: keyof SettingUserInfoFormType['birth'],
@@ -116,7 +121,7 @@ const UserInfo = () => {
       originProfilePath: user?.user_metadata.profile_url,
       profileFile: data.profileFile,
       nickname: data.nickname,
-      gender: data.gender.key as 'm' | 'f',
+      gender: data.gender.key as (typeof GENDER_OPTIONS)[number]['key'],
       birth: `${year}-${month}-${day}`,
     };
 
@@ -124,16 +129,18 @@ const UserInfo = () => {
   });
 
   useEffect(() => {
-    const initialGender = 'w';
+    if (!data || !data.length) return;
+
+    const [year, month, day] = data[0].birth.split('-');
 
     methods.reset({
-      profileUrl: null,
-      email: 'test1@naver.com',
-      nickname: '구운동구운감자',
-      birth: { year: '1997', month: '10', day: '29' },
-      gender: GENDER_OPTIONS.find(({ key }) => key === initialGender),
+      profileUrl: data[0].profile_url,
+      email: data[0].email,
+      nickname: data[0].nickname,
+      birth: { year, month, day },
+      gender: GENDER_OPTIONS.find(({ key }) => key === data[0].gender),
     });
-  }, []);
+  }, [data]);
 
   return (
     <S.Section>
