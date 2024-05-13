@@ -15,6 +15,10 @@ export const Header = tw.div`relative flex justify-center items-center h-[50px] 
 
 export const UserInfo = tw.div`flex flex-col items-center`;
 
+export const UserProfile = css`
+  ${tw`w-[64px] h-[64px] mr-0 mb-[16px]`}
+`;
+
 export const UserName = tw.span`mb-[12px] m-body-m14`;
 
 export const logo = css`

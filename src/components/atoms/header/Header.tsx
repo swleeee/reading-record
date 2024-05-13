@@ -28,6 +28,10 @@ const Header = () => {
     });
   };
 
+  const handleProfileClick = () => {
+    navigate('/setting');
+  };
+
   return (
     <S.Header>
       <S.Wrapper>
@@ -57,7 +61,13 @@ const Header = () => {
         </S.Navbar>
         {isLogin ? (
           <S.UserInfo>
-            <Profile src={user?.user_metadata.profile_url} />
+            <button
+              type="button"
+              aria-label="user profile"
+              onClick={handleProfileClick}
+            >
+              <Profile src={user?.user_metadata.profile_url} />
+            </button>
             <S.UserName>{user.user_metadata.nickname}님</S.UserName>
             <Button
               isLoading={isLogoutLoading}
