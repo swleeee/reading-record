@@ -88,6 +88,7 @@ export const getBookUserRecordsAPI = async (
       'created_at, updated_at, id, isbn, rating, reading_start_at, reading_end_at, record_comment, like_count, user_id, users(nickname, profile_url)',
     )
     .eq('isbn', req.isbn)
+    .eq('isPublic', true)
     .not('rating', 'is', null)
     .not('reading_start_at', 'is', null)
     .not('reading_end_at', 'is', null)
