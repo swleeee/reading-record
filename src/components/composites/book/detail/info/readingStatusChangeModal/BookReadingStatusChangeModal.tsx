@@ -13,9 +13,12 @@ import {
   Modal,
   SegmentedButton,
   Textarea,
+  ToggleButton,
+  Tooltip,
 } from '@/components';
 import { useModal, useToast } from '@/hooks';
 import { useCreateBookRecord, useUpdateBookRecord } from '@/services';
+import InfoIcon from '@/assets/icon/ic_info.svg?react';
 import RatingIcon from '@/assets/icon/ic_rating.svg?react';
 import {
   BOOK_READING_STATUS_OPTIONS,
@@ -26,6 +29,7 @@ import type { CreateBookRecordQueryModel, SelectOptionType } from '@/types';
 import * as S from './BookReadingStatusChangeModal.styled';
 
 type Form = {
+  isPublic: boolean;
   readingStatus: SelectOptionType | null;
   readingStartDateTime: Dayjs | null;
   readingEndDateTime: Dayjs | null;
@@ -242,6 +246,10 @@ const BookReadingStatusChangeModal = React.forwardRef<
       return hasError;
     };
 
+    const handlePublicStateChange = () => {
+      setValue('isPublic', !watch('isPublic'));
+    };
+
     const handleReadingStatusChange = handleSubmit(
       (data) => {
         if (checkDateRequiredError()) {
@@ -405,6 +413,35 @@ const BookReadingStatusChangeModal = React.forwardRef<
                       />
                     ))}
                   </S.RatingInfo>
+                </S.DataWrapper>
+              )}
+              {watch('readingStatus')?.key === 'completed' && (
+                <S.DataWrapper marginBottom="24px">
+                  <div>
+                    <S.Label
+                      isRequired={
+                        watch('readingStatus')?.key === 'completed'
+                          ? true
+                          : false
+                      }
+                    >
+                      공개 여부
+                    </S.Label>
+                    <Tooltip
+                      content={
+                        <S.InfoContent>
+                          다른 유저들에게 공개할지에 대한 여부입니다.
+                        </S.InfoContent>
+                      }
+                      position="topLeft"
+                    >
+                      <InfoIcon css={S.infoIcon} />
+                    </Tooltip>
+                  </div>
+                  <ToggleButton
+                    isToggled={watch('isPublic')}
+                    onChange={handlePublicStateChange}
+                  />
                 </S.DataWrapper>
               )}
               {watch('readingStatus')?.key === 'completed' && (

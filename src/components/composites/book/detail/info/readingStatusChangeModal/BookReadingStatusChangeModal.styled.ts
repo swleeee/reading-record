@@ -1,6 +1,6 @@
 import tw, { css, styled } from 'twin.macro';
 
-export const DataSection = tw.section`h-[433px]`;
+export const DataSection = tw.section`h-[514px]`;
 
 export const EmptyDataWrapper = styled.article`
   ${tw`flex justify-center items-center w-full h-full rounded-[4px] bg-gray50 opacity-50`}
@@ -50,6 +50,16 @@ export const ratingIcon = (isFilled: boolean) => css`
     ${!isFilled && tw`opacity-30`}
   }
 `;
+
+export const infoIcon = css`
+  ${tw`w-[16px] h-[16px]`}
+
+  & > g > path {
+    ${tw`fill-gray600`}
+  }
+`;
+
+export const InfoContent = tw.p`m-body-r13 tablet:t-body-r13 desktop:d-body-r15`;
 
 export const recordContent = css`
   ${tw`h-[120px] tablet:h-[200px] desktop:h-[240px]`}
