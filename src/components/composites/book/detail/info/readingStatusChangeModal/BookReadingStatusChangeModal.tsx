@@ -128,6 +128,7 @@ const BookReadingStatusChangeModal = React.forwardRef<
     const makeData = (data: Form) => {
       if (data.readingStatus?.key === 'pending') {
         return {
+          isPublic: false,
           rating: null,
           readingStartDate: null,
           readingEndDate: null,
@@ -136,6 +137,7 @@ const BookReadingStatusChangeModal = React.forwardRef<
       }
       if (data.readingStatus?.key === 'ongoing') {
         return {
+          isPublic: false,
           rating: null,
           readingStartDate: data.readingStartDateTime!.utc().format(),
           readingEndDate: null,
@@ -144,6 +146,7 @@ const BookReadingStatusChangeModal = React.forwardRef<
       }
 
       return {
+        isPublic: data.publicState.key === 'public' ? true : false,
         rating: data.rating,
         readingStartDate: data.readingStartDateTime!.utc().format(),
         readingEndDate: data.readingEndDateTime!.utc().format(),

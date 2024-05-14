@@ -23,6 +23,7 @@ export type GetBookRecordServerModel = BookRecordServerData[];
 export interface CreateBookRecordQueryModel {
   userId: string;
   isbn: string;
+  isPublic: boolean;
   rating: number | null;
   readingStartDate: string | null;
   readingEndDate: string | null;

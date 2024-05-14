@@ -37,6 +37,7 @@ const createBookRecordPayload = (req: CreateBookRecordQueryModel) => {
   return {
     user_id: req.userId,
     isbn: req.isbn,
+    isPublic: req.isPublic,
     rating: req.rating ?? null,
     reading_start_at: req.readingStartDate ?? null,
     reading_end_at: req.readingEndDate ?? null,
