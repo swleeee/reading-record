@@ -11,9 +11,9 @@ import {
   DatePicker,
   LabelContent,
   Modal,
+  RadioButton,
   SegmentedButton,
   Textarea,
-  ToggleButton,
   Tooltip,
 } from '@/components';
 import { useModal, useToast } from '@/hooks';
@@ -23,13 +23,14 @@ import RatingIcon from '@/assets/icon/ic_rating.svg?react';
 import {
   BOOK_READING_STATUS_OPTIONS,
   ERROR_MESSAGE,
+  RECORD_CONTENT_PUBLIC_OPTIONS,
   TOAST_MESSAGE,
 } from '@/constants';
 import type { CreateBookRecordQueryModel, SelectOptionType } from '@/types';
 import * as S from './BookReadingStatusChangeModal.styled';
 
 type Form = {
-  isPublic: boolean;
+  publicState: SelectOptionType;
   readingStatus: SelectOptionType | null;
   readingStartDateTime: Dayjs | null;
   readingEndDateTime: Dayjs | null;
@@ -246,8 +247,8 @@ const BookReadingStatusChangeModal = React.forwardRef<
       return hasError;
     };
 
-    const handlePublicStateChange = () => {
-      setValue('isPublic', !watch('isPublic'));
+    const handlePublicStateSelect = (option: SelectOptionType) => () => {
+      setValue('publicState', option);
     };
 
     const handleReadingStatusChange = handleSubmit(
@@ -323,6 +324,7 @@ const BookReadingStatusChangeModal = React.forwardRef<
 
     useEffect(() => {
       reset({
+        publicState: RECORD_CONTENT_PUBLIC_OPTIONS[0],
         readingStatus,
         readingStartDateTime: readingStartDateTime
           ? dayjs(readingStartDateTime)
@@ -416,7 +418,7 @@ const BookReadingStatusChangeModal = React.forwardRef<
                   isRequired={
                     watch('readingStatus')?.key === 'completed' ? true : false
                   }
-                  id="isPublic"
+                  id="publicState"
                   label="공개 여부"
                   tooltip={
                     <Tooltip
@@ -431,9 +433,10 @@ const BookReadingStatusChangeModal = React.forwardRef<
                     </Tooltip>
                   }
                 >
-                  <ToggleButton
-                    isToggled={watch('isPublic')}
-                    onChange={handlePublicStateChange}
+                  <RadioButton
+                    options={RECORD_CONTENT_PUBLIC_OPTIONS}
+                    selectedOption={watch('publicState')}
+                    onSelect={handlePublicStateSelect}
                   />
                 </LabelContent>
               )}

@@ -35,3 +35,8 @@ export const GENDER_OPTIONS = [
 export const TERMS_DATE_OPTIONS = [{ key: '20240424', label: '2024.04.24' }];
 
 export const PRIVACY_DATE_OPTIONS = [{ key: '20240424', label: '2024.04.24' }];
+
+export const RECORD_CONTENT_PUBLIC_OPTIONS = [
+  { key: 'private', label: '비공개' },
+  { key: 'public', label: '공개' },
+];
