@@ -9,7 +9,7 @@ dayjs.extend(isSameOrBefore);
 import { useUser } from '@/contexts';
 import {
   DatePicker,
-  ErrorMessage,
+  LabelContent,
   Modal,
   SegmentedButton,
   Textarea,
@@ -360,14 +360,18 @@ const BookReadingStatusChangeModal = React.forwardRef<
             </S.EmptyDataWrapper>
           ) : (
             <>
-              <S.DataWrapper marginBottom="24px">
-                <S.Label
-                  isRequired={
-                    watch('readingStatus')?.key === 'pending' ? false : true
-                  }
-                >
-                  독서 기간
-                </S.Label>
+              <LabelContent
+                css={S.labelContent('24px')}
+                isRequired={
+                  watch('readingStatus')?.key === 'pending' ? false : true
+                }
+                id="readingStatus"
+                error={
+                  errors.readingStartDateTime?.message ||
+                  errors.readingEndDateTime?.message
+                }
+                label="독서 기간"
+              >
                 <S.DatePickerWrapper>
                   <DatePicker
                     hasError={!!errors.readingStartDateTime}
@@ -383,25 +387,16 @@ const BookReadingStatusChangeModal = React.forwardRef<
                     selectDate={selectDate('end')}
                   />
                 </S.DatePickerWrapper>
-                {(errors.readingStartDateTime?.message ||
-                  errors.readingEndDateTime?.message) && (
-                  <ErrorMessage
-                    message={
-                      (errors.readingStartDateTime?.message ||
-                        errors.readingEndDateTime?.message)!
-                    }
-                  />
-                )}
-              </S.DataWrapper>
+              </LabelContent>
               {watch('readingStatus')?.key === 'completed' && (
-                <S.DataWrapper marginBottom="24px">
-                  <S.Label
-                    isRequired={
-                      watch('readingStatus')?.key === 'completed' ? true : false
-                    }
-                  >
-                    평점
-                  </S.Label>
+                <LabelContent
+                  css={S.labelContent('24px')}
+                  isRequired={
+                    watch('readingStatus')?.key === 'completed' ? true : false
+                  }
+                  id="rating"
+                  label="평점"
+                >
                   <S.RatingInfo>
                     {Array.from({ length: 5 }, (_, i) => (
                       <RatingIcon
@@ -413,20 +408,17 @@ const BookReadingStatusChangeModal = React.forwardRef<
                       />
                     ))}
                   </S.RatingInfo>
-                </S.DataWrapper>
+                </LabelContent>
               )}
               {watch('readingStatus')?.key === 'completed' && (
-                <S.DataWrapper marginBottom="24px">
-                  <div>
-                    <S.Label
-                      isRequired={
-                        watch('readingStatus')?.key === 'completed'
-                          ? true
-                          : false
-                      }
-                    >
-                      공개 여부
-                    </S.Label>
+                <LabelContent
+                  css={S.labelContent('24px')}
+                  isRequired={
+                    watch('readingStatus')?.key === 'completed' ? true : false
+                  }
+                  id="isPublic"
+                  label="공개 여부"
+                  tooltip={
                     <Tooltip
                       content={
                         <S.InfoContent>
@@ -437,23 +429,24 @@ const BookReadingStatusChangeModal = React.forwardRef<
                     >
                       <InfoIcon css={S.infoIcon} />
                     </Tooltip>
-                  </div>
+                  }
+                >
                   <ToggleButton
                     isToggled={watch('isPublic')}
                     onChange={handlePublicStateChange}
                   />
-                </S.DataWrapper>
+                </LabelContent>
               )}
+
               {watch('readingStatus')?.key === 'completed' && (
-                <S.DataWrapper>
-                  <S.Label
-                    isRequired={
-                      watch('readingStatus')?.key === 'completed' ? true : false
-                    }
-                    htmlFor="recordContent"
-                  >
-                    감상문
-                  </S.Label>
+                <LabelContent
+                  isRequired={
+                    watch('readingStatus')?.key === 'completed' ? true : false
+                  }
+                  id="recordContent"
+                  label="감상문"
+                  error={errors.recordContent?.message}
+                >
                   <Textarea
                     css={S.recordContent}
                     hasError={!!errors.recordContent}
@@ -465,10 +458,7 @@ const BookReadingStatusChangeModal = React.forwardRef<
                       required: ERROR_MESSAGE.REQUIRED,
                     })}
                   />
-                  {errors.recordContent?.message && (
-                    <ErrorMessage message={errors.recordContent.message} />
-                  )}
-                </S.DataWrapper>
+                </LabelContent>
               )}
             </>
           )}
