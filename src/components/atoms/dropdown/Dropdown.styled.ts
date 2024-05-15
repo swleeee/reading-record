@@ -1,8 +1,8 @@
 import tw, { css, styled } from 'twin.macro';
 
-export const Dropdown = tw.div`relative shrink-0`;
+export const Dropdown = tw.div`relative shrink-0 rounded-[4px]`;
 
-export const DropdownToggleButton = tw.button`flex justify-between items-center gap-x-[4px] border border-gray300 rounded-[4px] px-[11px] py-[9px] w-full h-[40px] bg-white`;
+export const DropdownToggleButton = tw.button`flex justify-between items-center gap-x-[4px] border border-solid border-gray300 rounded-[4px] px-[11px] py-[9px] w-full h-[40px] bg-white`;
 
 export const Label = tw.span`m-body-r13 tablet:t-body-r13 desktop:d-body-r15`;
 
