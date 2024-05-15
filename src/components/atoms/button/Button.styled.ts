@@ -75,7 +75,7 @@ const getButtonSize = (sizeType: ButtonSizeType) => {
 
 // NOTE: 버튼 크기
 const buttonSm = tw`m-body-m12 h-[28px] px-[8px] tablet:(t-body-m12 px-[6px] py-[4px]) labtop:d-body-m14`;
-const buttonMd = tw`m-body-m14 h-[36px] px-[10px] tablet:(t-body-m14 px-[8px] py-[6px]) labtop:d-body-m16`;
+const buttonMd = tw`m-body-m13 h-[36px] px-[10px] tablet:(t-body-m13 px-[8px] py-[6px]) labtop:d-body-m15`;
 const buttonLg = tw`m-body-m14 h-[44px] px-[14px] tablet:(t-body-m14 px-[10px] py-[8px]) labtop:d-body-m16`;
 const buttonFull = tw`m-body-m14 min-w-[200px] w-full h-[44px] tablet:(t-body-m14 py-[8px]) labtop:d-body-m16`;
 

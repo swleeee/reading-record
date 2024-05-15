@@ -1,6 +1,6 @@
 import tw, { css, styled } from 'twin.macro';
 
-export const DataSection = tw.section`h-[433px]`;
+export const DataSection = tw.section`h-[514px]`;
 
 export const EmptyDataWrapper = styled.article`
   ${tw`flex justify-center items-center w-full h-full rounded-[4px] bg-gray50 opacity-50`}
@@ -10,22 +10,8 @@ export const EmptyDataWrapper = styled.article`
   }
 `;
 
-export const DataWrapper = styled.article<{ marginBottom?: string }>`
-  ${({ marginBottom }) => css`
-    ${tw`flex flex-col gap-y-[4px]`}
-
-    margin-bottom: ${marginBottom && marginBottom}
-  `}
-`;
-
-export const Label = styled.label<{ isRequired?: boolean }>`
-  ${({ isRequired }) => css`
-    ${tw`relative m-body-r13 after:(ml-[2px] text-red200) tablet:t-body-r13 desktop:d-body-r15`}
-
-    &::after {
-      content: ${isRequired ? `"*"` : null};
-    }
-  `}
+export const labelContent = (marginBottom?: string) => css`
+  margin-bottom: ${marginBottom && marginBottom};
 `;
 
 export const DatePickerWrapper = styled.div`
@@ -50,6 +36,16 @@ export const ratingIcon = (isFilled: boolean) => css`
     ${!isFilled && tw`opacity-30`}
   }
 `;
+
+export const infoIcon = css`
+  ${tw`w-[16px] h-[16px]`}
+
+  & > g > path {
+    ${tw`fill-gray600`}
+  }
+`;
+
+export const InfoContent = tw.p`m-body-r13 tablet:t-body-r13 desktop:d-body-r15`;
 
 export const recordContent = css`
   ${tw`h-[120px] tablet:h-[200px] desktop:h-[240px]`}

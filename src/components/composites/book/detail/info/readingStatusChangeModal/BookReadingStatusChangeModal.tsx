@@ -9,23 +9,28 @@ dayjs.extend(isSameOrBefore);
 import { useUser } from '@/contexts';
 import {
   DatePicker,
-  ErrorMessage,
+  LabelContent,
   Modal,
+  RadioButton,
   SegmentedButton,
   Textarea,
+  Tooltip,
 } from '@/components';
 import { useModal, useToast } from '@/hooks';
 import { useCreateBookRecord, useUpdateBookRecord } from '@/services';
+import InfoIcon from '@/assets/icon/ic_info.svg?react';
 import RatingIcon from '@/assets/icon/ic_rating.svg?react';
 import {
   BOOK_READING_STATUS_OPTIONS,
   ERROR_MESSAGE,
+  RECORD_CONTENT_PUBLIC_OPTIONS,
   TOAST_MESSAGE,
 } from '@/constants';
 import type { CreateBookRecordQueryModel, SelectOptionType } from '@/types';
 import * as S from './BookReadingStatusChangeModal.styled';
 
 type Form = {
+  publicState: SelectOptionType;
   readingStatus: SelectOptionType | null;
   readingStartDateTime: Dayjs | null;
   readingEndDateTime: Dayjs | null;
@@ -70,6 +75,14 @@ const BookReadingStatusChangeModal = React.forwardRef<
       handleSubmit,
     } = useForm<Form>({
       mode: 'onTouched',
+      defaultValues: {
+        publicState: RECORD_CONTENT_PUBLIC_OPTIONS[0],
+        readingStatus: null,
+        readingStartDateTime: null,
+        readingEndDateTime: null,
+        rating: null,
+        recordContent: null,
+      },
     });
 
     const { isPending: isCreateStatusLoading, mutate: createBookRecordStatus } =
@@ -123,6 +136,7 @@ const BookReadingStatusChangeModal = React.forwardRef<
     const makeData = (data: Form) => {
       if (data.readingStatus?.key === 'pending') {
         return {
+          isPublic: false,
           rating: null,
           readingStartDate: null,
           readingEndDate: null,
@@ -131,6 +145,7 @@ const BookReadingStatusChangeModal = React.forwardRef<
       }
       if (data.readingStatus?.key === 'ongoing') {
         return {
+          isPublic: false,
           rating: null,
           readingStartDate: data.readingStartDateTime!.utc().format(),
           readingEndDate: null,
@@ -139,6 +154,7 @@ const BookReadingStatusChangeModal = React.forwardRef<
       }
 
       return {
+        isPublic: data.publicState.key === 'public' ? true : false,
         rating: data.rating,
         readingStartDate: data.readingStartDateTime!.utc().format(),
         readingEndDate: data.readingEndDateTime!.utc().format(),
@@ -191,16 +207,10 @@ const BookReadingStatusChangeModal = React.forwardRef<
 
     const handleOptionSelect = (option: SelectOptionType) => () => {
       setValue('readingStatus', option);
-
-      if (
-        option.key === 'ongoing' &&
-        dayjs.isDayjs(watch('readingEndDateTime'))
-      ) {
-        setValue('readingEndDateTime', null);
-      }
+      clearErrors();
     };
 
-    const handleRatingMouseEnter = (index: number) => () => {
+    const handleRatingSelect = (index: number) => () => {
       setValue('rating', index + 1);
     };
 
@@ -240,6 +250,10 @@ const BookReadingStatusChangeModal = React.forwardRef<
       }
 
       return hasError;
+    };
+
+    const handlePublicStateSelect = (option: SelectOptionType) => () => {
+      setValue('publicState', option);
     };
 
     const handleReadingStatusChange = handleSubmit(
@@ -315,6 +329,7 @@ const BookReadingStatusChangeModal = React.forwardRef<
 
     useEffect(() => {
       reset({
+        publicState: RECORD_CONTENT_PUBLIC_OPTIONS[0],
         readingStatus,
         readingStartDateTime: readingStartDateTime
           ? dayjs(readingStartDateTime)
@@ -345,96 +360,111 @@ const BookReadingStatusChangeModal = React.forwardRef<
           onClick={handleOptionSelect}
         />
         <S.DataSection>
-          {watch('readingStatus')?.key === 'pending' ? (
-            // TODO: 도서 '읽기 전' 상태일 때 하기와 같이 문구 임시 노출 (추후 수정 필요)
-            <S.EmptyDataWrapper>
-              <p>책을 한 번 읽어보세요 :)</p>
-            </S.EmptyDataWrapper>
-          ) : (
-            <>
-              <S.DataWrapper marginBottom="24px">
-                <S.Label
-                  isRequired={
-                    watch('readingStatus')?.key === 'pending' ? false : true
-                  }
+          <LabelContent
+            css={S.labelContent('24px')}
+            isRequired={
+              watch('readingStatus')?.key === 'pending' ? false : true
+            }
+            id="readingStatus"
+            error={
+              errors.readingStartDateTime?.message ||
+              errors.readingEndDateTime?.message
+            }
+            label="독서 기간"
+          >
+            <S.DatePickerWrapper>
+              <DatePicker
+                isDisabled={watch('readingStatus')?.key === 'pending'}
+                hasError={!!errors.readingStartDateTime}
+                selectedDate={watch('readingStartDateTime')}
+                placeholder="독서 시작 날짜를 선택하세요."
+                selectDate={selectDate('start')}
+              />
+              <DatePicker
+                isDisabled={watch('readingStatus')?.key !== 'completed'}
+                hasError={!!errors.readingEndDateTime}
+                selectedDate={watch('readingEndDateTime')}
+                placeholder="독서 종료 날짜를 선택하세요."
+                selectDate={selectDate('end')}
+              />
+            </S.DatePickerWrapper>
+          </LabelContent>
+          <LabelContent
+            css={S.labelContent('24px')}
+            isRequired={
+              watch('readingStatus')?.key === 'completed' ? true : false
+            }
+            id="rating"
+            label="평점"
+          >
+            <S.RatingInfo>
+              {Array.from({ length: 5 }, (_, i) => (
+                <button
+                  key={i}
+                  type="button"
+                  disabled={watch('readingStatus')?.key !== 'completed'}
+                  aria-label="select rating"
+                  onClick={handleRatingSelect(i)}
                 >
-                  독서 기간
-                </S.Label>
-                <S.DatePickerWrapper>
-                  <DatePicker
-                    hasError={!!errors.readingStartDateTime}
-                    selectedDate={watch('readingStartDateTime')}
-                    placeholder="독서 시작 날짜를 선택하세요."
-                    selectDate={selectDate('start')}
+                  <RatingIcon
+                    css={S.ratingIcon(
+                      watch('readingStatus')?.key === 'completed'
+                        ? i < (watch('rating') ? watch('rating')! : 1)
+                        : false,
+                    )}
                   />
-                  <DatePicker
-                    isDisabled={watch('readingStatus')?.key === 'ongoing'}
-                    hasError={!!errors.readingEndDateTime}
-                    selectedDate={watch('readingEndDateTime')}
-                    placeholder="독서 종료 날짜를 선택하세요."
-                    selectDate={selectDate('end')}
-                  />
-                </S.DatePickerWrapper>
-                {(errors.readingStartDateTime?.message ||
-                  errors.readingEndDateTime?.message) && (
-                  <ErrorMessage
-                    message={
-                      (errors.readingStartDateTime?.message ||
-                        errors.readingEndDateTime?.message)!
-                    }
-                  />
-                )}
-              </S.DataWrapper>
-              {watch('readingStatus')?.key === 'completed' && (
-                <S.DataWrapper marginBottom="24px">
-                  <S.Label
-                    isRequired={
-                      watch('readingStatus')?.key === 'completed' ? true : false
-                    }
-                  >
-                    평점
-                  </S.Label>
-                  <S.RatingInfo>
-                    {Array.from({ length: 5 }, (_, i) => (
-                      <RatingIcon
-                        key={i}
-                        css={S.ratingIcon(
-                          i < (watch('rating') ? watch('rating')! : 1),
-                        )}
-                        onMouseEnter={handleRatingMouseEnter(i)}
-                      />
-                    ))}
-                  </S.RatingInfo>
-                </S.DataWrapper>
-              )}
-              {watch('readingStatus')?.key === 'completed' && (
-                <S.DataWrapper>
-                  <S.Label
-                    isRequired={
-                      watch('readingStatus')?.key === 'completed' ? true : false
-                    }
-                    htmlFor="recordContent"
-                  >
-                    감상문
-                  </S.Label>
-                  <Textarea
-                    css={S.recordContent}
-                    hasError={!!errors.recordContent}
-                    id="recordContent"
-                    maxLength={1000}
-                    placeholder="감상문 내용을 입력해주세요."
-                    value={watch('recordContent') ?? ''}
-                    register={register('recordContent', {
-                      required: ERROR_MESSAGE.REQUIRED,
-                    })}
-                  />
-                  {errors.recordContent?.message && (
-                    <ErrorMessage message={errors.recordContent.message} />
-                  )}
-                </S.DataWrapper>
-              )}
-            </>
-          )}
+                </button>
+              ))}
+            </S.RatingInfo>
+          </LabelContent>
+          <LabelContent
+            css={S.labelContent('24px')}
+            isRequired={
+              watch('readingStatus')?.key === 'completed' ? true : false
+            }
+            id="publicState"
+            label="공개 여부"
+            tooltip={
+              <Tooltip
+                content={
+                  <S.InfoContent>
+                    다른 유저들에게 공개할지에 대한 여부입니다.
+                  </S.InfoContent>
+                }
+                position="topLeft"
+              >
+                <InfoIcon css={S.infoIcon} />
+              </Tooltip>
+            }
+          >
+            <RadioButton
+              disabled={watch('readingStatus')?.key !== 'completed'}
+              options={RECORD_CONTENT_PUBLIC_OPTIONS}
+              selectedOption={watch('publicState')}
+              onSelect={handlePublicStateSelect}
+            />
+          </LabelContent>
+          <LabelContent
+            isRequired={
+              watch('readingStatus')?.key === 'completed' ? true : false
+            }
+            id="recordContent"
+            label="감상문"
+            error={errors.recordContent?.message}
+          >
+            <Textarea
+              css={S.recordContent}
+              disabled={watch('readingStatus')?.key !== 'completed'}
+              hasError={!!errors.recordContent}
+              id="recordContent"
+              maxLength={1000}
+              placeholder="감상문 내용을 입력해주세요."
+              value={watch('recordContent') ?? ''}
+              register={register('recordContent', {
+                required: ERROR_MESSAGE.REQUIRED,
+              })}
+            />
+          </LabelContent>
         </S.DataSection>
       </Modal>
     );

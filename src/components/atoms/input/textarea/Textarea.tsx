@@ -5,6 +5,7 @@ import * as S from './Textarea.styled';
 
 interface TextareaProps {
   className?: string;
+  disabled?: boolean;
   hasError?: boolean;
   id: string;
   maxLength: number;
@@ -15,6 +16,7 @@ interface TextareaProps {
 
 const Textarea = ({
   className,
+  disabled,
   hasError,
   id,
   maxLength,
@@ -28,6 +30,7 @@ const Textarea = ({
     </S.Length>
     <S.Textarea
       className={className}
+      disabled={disabled}
       hasError={hasError}
       id={id}
       maxLength={maxLength}

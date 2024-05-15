@@ -37,6 +37,7 @@ const createBookRecordPayload = (req: CreateBookRecordQueryModel) => {
   return {
     user_id: req.userId,
     isbn: req.isbn,
+    public_flag: req.isPublic,
     rating: req.rating ?? null,
     reading_start_at: req.readingStartDate ?? null,
     reading_end_at: req.readingEndDate ?? null,
@@ -87,6 +88,7 @@ export const getBookUserRecordsAPI = async (
       'created_at, updated_at, id, isbn, rating, reading_start_at, reading_end_at, record_comment, like_count, user_id, users(nickname, profile_url)',
     )
     .eq('isbn', req.isbn)
+    .eq('public_flag', true)
     .not('rating', 'is', null)
     .not('reading_start_at', 'is', null)
     .not('reading_end_at', 'is', null)

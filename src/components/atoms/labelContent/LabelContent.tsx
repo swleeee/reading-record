@@ -11,6 +11,7 @@ interface LabelContentProps {
   pass?: string;
   id: string;
   label: string;
+  tooltip?: React.ReactNode;
 }
 
 const LabelContent = ({
@@ -21,12 +22,16 @@ const LabelContent = ({
   pass,
   id,
   label,
+  tooltip,
 }: LabelContentProps) => {
   return (
     <S.LabelContent className={className}>
-      <S.Label htmlFor={id} isRequired={isRequired}>
-        {label}
-      </S.Label>
+      <S.LabelWrapper>
+        <S.Label htmlFor={id} isRequired={isRequired}>
+          {label}
+        </S.Label>
+        {tooltip && tooltip}
+      </S.LabelWrapper>
       {children}
       {error && <ErrorMessage css={S.message} message={error} />}
       {pass && <PassMessage css={S.message} message={pass} />}

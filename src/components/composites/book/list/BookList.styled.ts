@@ -3,7 +3,7 @@ import tw, { css, styled } from 'twin.macro';
 export const NoSearchContainer = styled.div<{ boundingClientTop: number }>`
   ${({ boundingClientTop }) => css`
     ${tw`flex flex-col gap-y-[16px] justify-center items-center`}
-    min-height: calc(100dvh - ${boundingClientTop}px - 32px);
+    min-height: calc(100dvh - ${boundingClientTop}px - 64px);
   `}
 `;
 
