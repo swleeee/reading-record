@@ -2,7 +2,7 @@ import tw, { css, styled } from 'twin.macro';
 
 export const LabelContent = tw.div`flex flex-col`;
 
-export const LabelWrapper = tw.div`flex gap-x-[4px] mb-[2px]`;
+export const LabelWrapper = tw.div`flex items-center gap-x-[4px] mb-[2px]`;
 
 interface LabelProps {
   isRequired?: boolean;
