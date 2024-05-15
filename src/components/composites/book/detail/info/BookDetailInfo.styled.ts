@@ -44,7 +44,7 @@ export const BookThumbnail = styled.img`
   ${bookThumbnail};
 `;
 
-export const BookInfoList = tw.dl`grid grid-cols-[minmax(80px, auto) 1fr] gap-y-[4px] rounded-[4px] px-[12px] py-[10px] bg-white shadow-light_sm tablet:mx-auto`;
+export const BookInfoList = tw.dl`grid grid-cols-[minmax(80px, auto) 1fr] gap-y-[12px] rounded-[4px] px-[12px] py-[10px] bg-white shadow-light_sm tablet:mx-auto`;
 
 export const BookInfoTitle = tw.dt`m-body-m13 tablet:t-body-m13 desktop:d-body-m15`;
 

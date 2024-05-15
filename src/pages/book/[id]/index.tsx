@@ -3,7 +3,7 @@ import React, { Suspense } from 'react';
 import {
   BookDetail,
   BookDetailInfoSkeleton,
-  BookRecordListSkeleton,
+  BookRecordSkeleton,
   MainLayout,
 } from '@/components';
 
@@ -14,7 +14,7 @@ const root = () => {
         fallback={
           <>
             <BookDetailInfoSkeleton />
-            <BookRecordListSkeleton />
+            <BookRecordSkeleton />
           </>
         }
       >
