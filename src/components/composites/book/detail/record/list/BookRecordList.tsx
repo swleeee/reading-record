@@ -34,6 +34,7 @@ const BookRecordList = ({
         ))
       ) : (
         <NoData
+          css={S.noDataContainer}
           content={`현재 작성된 감상문이 없습니다.\n책을 읽고 감상문을 작성해주세요 :)`}
         />
       )}

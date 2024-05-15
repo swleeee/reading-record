@@ -64,7 +64,7 @@ const BookDetailInfo = ({
               <span>{currentReadingStatus.label}</span>
               {/* TODO: 추후 위치 적절한지 고려한 후 수정 필요 */}
               <Button
-                styleType="tertiaryPrimary"
+                styleType="primary"
                 sizeType="sm"
                 label="변경"
                 onClick={openModal(
