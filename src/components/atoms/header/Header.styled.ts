@@ -4,8 +4,12 @@ export const Header = tw.header`border-b border-b-gray100`;
 
 export const Wrapper = tw.div`flex items-center w-full h-[60px] px-[24px] py-[10px] tablet:(max-w-[1360px] mx-auto)`;
 
-export const logo = css`
+export const logoLink = css`
   ${tw`mr-[50px] t-body-sb16 labtop:d-body-sb18`}
+`;
+
+export const logo = css`
+  ${tw`w-[96px] h-[28px]`}
 `;
 
 export const Navbar = styled.nav`
