@@ -1,6 +1,6 @@
 import tw, { css, styled } from 'twin.macro';
 
-export const Header = tw.header`border-b border-b-gray100`;
+export const Header = tw.header`sticky top-0 border-b border-b-gray100 bg-white z-HEADER`;
 
 export const Wrapper = tw.div`flex items-center w-full h-[60px] px-[24px] py-[10px] tablet:(max-w-[1360px] mx-auto)`;
 

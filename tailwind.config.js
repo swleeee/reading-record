@@ -123,6 +123,7 @@ export default {
         TOAST: '1000',
         MODAL: '1000',
         POPUP: '1000',
+        HEADER: '10000',
       },
       boxShadow: {
         radioButton: `0 0 0 2px theme('colors.brown400')`,
