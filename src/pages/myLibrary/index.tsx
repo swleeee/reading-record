@@ -1,9 +1,9 @@
 import React, { Suspense } from 'react';
 
 import {
-  BookListSkeleton,
   MainLayout,
   MyLibraryPanel,
+  MyLibraryPanelSkeleton,
   Tab,
 } from '@/components';
 
@@ -13,7 +13,7 @@ const root = () => {
       key: 'all',
       label: '전체',
       content: (
-        <Suspense fallback={<BookListSkeleton />}>
+        <Suspense fallback={<MyLibraryPanelSkeleton />}>
           <MyLibraryPanel queryStatus="all" />
         </Suspense>
       ),
@@ -28,7 +28,7 @@ const root = () => {
       key: 'ongoing',
       label: '읽고 있는 중',
       content: (
-        <Suspense fallback={<BookListSkeleton />}>
+        <Suspense fallback={<MyLibraryPanelSkeleton />}>
           <MyLibraryPanel queryStatus="ongoing" />
         </Suspense>
       ),
@@ -37,7 +37,7 @@ const root = () => {
       key: 'completed',
       label: '읽기 완료',
       content: (
-        <Suspense fallback={<BookListSkeleton />}>
+        <Suspense fallback={<MyLibraryPanelSkeleton />}>
           <MyLibraryPanel queryStatus="completed" />
         </Suspense>
       ),
@@ -45,7 +45,7 @@ const root = () => {
   ];
 
   return (
-    <MainLayout>
+    <MainLayout isAuth>
       <Tab tabs={tabs} />
     </MainLayout>
   );

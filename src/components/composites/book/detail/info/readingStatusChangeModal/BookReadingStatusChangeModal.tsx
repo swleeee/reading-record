@@ -461,7 +461,10 @@ const BookReadingStatusChangeModal = React.forwardRef<
               placeholder="감상문 내용을 입력해주세요."
               value={watch('recordContent') ?? ''}
               register={register('recordContent', {
-                required: ERROR_MESSAGE.REQUIRED,
+                required:
+                  watch('readingStatus')?.key === 'completed'
+                    ? ERROR_MESSAGE.REQUIRED
+                    : false,
               })}
             />
           </LabelContent>

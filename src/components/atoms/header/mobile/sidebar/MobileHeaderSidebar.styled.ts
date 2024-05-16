@@ -7,6 +7,10 @@ export const Sidebar = styled.aside<{ isShow: boolean }>`
   `}
 `;
 
+export const logo = css`
+  ${tw`w-[128px] h-[40px]`}
+`;
+
 export const CloseButton = tw.button`absolute top-[12px] right-[10px]`;
 
 export const ContentWrapper = tw.div`px-[8px] py-[12px] bg-gray50`;
@@ -21,7 +25,7 @@ export const UserProfile = css`
 
 export const UserName = tw.span`mb-[12px] m-body-m14`;
 
-export const logo = css`
+export const logoLink = css`
   ${tw`m-headline-1 tablet:t-headline-1 labtop:d-headline-1`}
 `;
 

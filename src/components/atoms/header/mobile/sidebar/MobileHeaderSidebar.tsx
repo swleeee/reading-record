@@ -7,6 +7,7 @@ import { Button, Link, Profile } from '@/components';
 import { useOnClickOutside, useSidebar, useToast } from '@/hooks';
 import { useLogout } from '@/services';
 import { deviceState } from '@/stores';
+import Logo from '@/assets/image/Logo.svg?react';
 import CloseIcon from '@/assets/icon/ic_close.svg?react';
 import ArrowForwardIcon from '@/assets/icon/ic_arrow_forward.svg?react';
 import { TOAST_MESSAGE } from '@/constants';
@@ -57,15 +58,14 @@ const MobileHeaderSidebar = () => {
   return (
     <S.Sidebar ref={sidebarRef} isShow={sidebar.isShow}>
       <S.Header>
-        {/* TODO: 추후 svg 대체 시 확인 필요 */}
         <Link
-          css={S.logo}
+          css={S.logoLink}
           styleType="tertiaryBrown"
           sizeType="md"
           to="/"
           onClick={handleLogoTouch}
         >
-          READING-RECORD
+          <Logo css={S.logo} />
         </Link>
         <S.CloseButton
           type="button"

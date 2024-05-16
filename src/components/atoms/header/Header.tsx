@@ -5,6 +5,7 @@ import { useUser } from '@/contexts';
 import { Button, Link, Profile } from '@/components';
 import { useToast } from '@/hooks';
 import { useLogout } from '@/services';
+import Logo from '@/assets/image/Logo.svg?react';
 import { TOAST_MESSAGE } from '@/constants';
 import * as S from './Header.styled';
 
@@ -35,9 +36,8 @@ const Header = () => {
   return (
     <S.Header>
       <S.Wrapper>
-        {/* TODO: 추후 svg 대체 시 확인 필요 */}
-        <Link css={S.logo} styleType="tertiaryBrown" sizeType="md" to="/">
-          READING-RECORD
+        <Link css={S.logoLink} styleType="tertiaryBrown" sizeType="md" to="/">
+          <Logo css={S.logo} />
         </Link>
         <S.Navbar>
           <ul>

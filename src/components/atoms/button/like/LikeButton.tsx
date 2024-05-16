@@ -37,6 +37,9 @@ const LikeButton = ({
       e.stopPropagation();
 
       const req = { recordId, userId, isbn };
+
+      if (!data) return;
+
       data[0].isliked ? deleteLikeRecord(req) : createLikeRecord(req);
     };
 
@@ -49,12 +52,12 @@ const LikeButton = ({
       type="button"
       onClick={handleLikeButtonClick(isbn, recordId, currentUserId)}
     >
-      {data[0].isliked ? (
+      {data?.[0].isliked ? (
         <LikeFilledIcon css={S.likeIcon} />
       ) : (
         <LikeIcon css={S.likeIcon} />
       )}
-      <S.Like>{data[0].count}</S.Like>
+      <S.Like>{data?.[0].count ?? 0}</S.Like>
     </S.LikeButton>
   );
 };

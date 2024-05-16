@@ -2,7 +2,8 @@ import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { useUser } from '@/contexts';
-import { AuthNavigation, LoginForm, SocialLogin } from '@/components';
+import { AuthNavigation, Link, LoginForm, SocialLogin } from '@/components';
+import Logo from '@/assets/image/Logo.svg?react';
 import * as S from './LoginLayout.styled';
 
 const LoginLayout = () => {
@@ -18,7 +19,9 @@ const LoginLayout = () => {
 
   return user ? null : (
     <S.LoginLayout>
-      <S.Logo>READING-RECORD</S.Logo>
+      <Link css={S.logoLink} styleType="tertiaryBrown" sizeType="md" to="/">
+        <Logo css={S.logo} />
+      </Link>
       <S.LoginContents>
         <LoginForm />
         <AuthNavigation />

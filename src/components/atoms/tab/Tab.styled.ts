@@ -1,7 +1,9 @@
 import tw, { css, styled } from 'twin.macro';
 
+export const TabContainer = tw.div`border-b border-gray200 px-[8px] bg-white`;
+
 export const TabList = styled.ul`
-  ${tw`flex border-b border-gray200 px-[8px] bg-white whitespace-nowrap overflow-x-auto`}
+  ${tw`flex px-[24px] whitespace-nowrap overflow-x-auto tablet:(max-w-[1360px] mx-auto)`}
 
   ::-webkit-scrollbar {
     ${tw`hidden`}

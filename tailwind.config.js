@@ -119,10 +119,11 @@ export default {
         check: `url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M5.707 7.293a1 1 0 0 0-1.414 1.414l2 2a1 1 0 0 0 1.414 0l4-4a1 1 0 0 0-1.414-1.414L7 8.586 5.707 7.293z'/%3e%3c/svg%3e")`,
       },
       zIndex: {
-        SIDEBAR: '999',
-        TOAST: '1000',
-        MODAL: '1000',
-        POPUP: '1000',
+        HEADER: '1000',
+        SIDEBAR: '10000',
+        TOAST: '10000',
+        MODAL: '10000',
+        POPUP: '10000',
       },
       boxShadow: {
         radioButton: `0 0 0 2px theme('colors.brown400')`,
