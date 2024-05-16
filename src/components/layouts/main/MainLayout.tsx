@@ -3,7 +3,7 @@ import { Navigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 
 import { useUser } from '@/contexts';
-import { Header, MobileHeader } from '@/components';
+import { Footer, Header, MobileHeader } from '@/components';
 import { deviceState } from '@/stores';
 import * as S from './MainLayout.styled';
 
@@ -29,6 +29,7 @@ const MainLayout = ({
     <>
       {device === 'mobile' ? <MobileHeader /> : <Header />}
       <S.Main className={className}>{children}</S.Main>
+      <Footer />
     </>
   );
 };
