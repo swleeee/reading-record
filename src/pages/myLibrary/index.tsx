@@ -45,7 +45,7 @@ const root = () => {
   ];
 
   return (
-    <MainLayout>
+    <MainLayout isAuth>
       <Tab tabs={tabs} />
     </MainLayout>
   );
