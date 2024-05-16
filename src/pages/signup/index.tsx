@@ -1,14 +1,17 @@
 import React from 'react';
 
-import { MainLayout, SignupForm } from '@/components';
+import { Link, SignupForm } from '@/components';
+import Logo from '@/assets/image/Logo.svg?react';
 import * as S from './index.styled';
 
 const root = () => {
   return (
-    <MainLayout css={S.mainLayout}>
-      <S.Title>회원가입</S.Title>
+    <S.SignupLayout>
+      <Link css={S.logoLink} styleType="tertiaryBrown" sizeType="md" to="/">
+        <Logo css={S.logo} />
+      </Link>
       <SignupForm />
-    </MainLayout>
+    </S.SignupLayout>
   );
 };
 
