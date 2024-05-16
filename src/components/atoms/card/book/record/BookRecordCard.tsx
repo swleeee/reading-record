@@ -3,9 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import dayjs from 'dayjs';
 
+import { useUser } from '@/contexts';
 import { LikeButton, Profile } from '@/components';
-import { useModal } from '@/hooks';
+import { useModal, useToast } from '@/hooks';
 import { deviceState } from '@/stores';
+import { TOAST_MESSAGE } from '@/constants';
 import type { GetBestRecordsServerModel } from '@/types';
 import BookRecordDetailModal from './modal/BookRecordDetailModal';
 import * as S from './BookRecordCard.styled';
@@ -17,22 +19,30 @@ interface BookRecordCardProps {
 const BookRecordCard = ({ bookRecord }: BookRecordCardProps) => {
   const navigate = useNavigate();
 
+  const { user } = useUser();
   const device = useRecoilValue(deviceState);
 
   const { modalRef, openModal } = useModal();
+  const { addToast } = useToast();
 
-  return (
-    <button
-      type="button"
-      css={S.bookRecordCard}
-      onClick={openModal(
+  const handleButtonClick = () => {
+    if (user?.id) {
+      openModal(
         <BookRecordDetailModal
           ref={modalRef}
           bookRecord={bookRecord}
           navigate={navigate}
         />,
-      )}
-    >
+      )();
+      return;
+    }
+
+    addToast(TOAST_MESSAGE.INFO.LOGIN);
+    navigate('/login');
+  };
+
+  return (
+    <button type="button" css={S.bookRecordCard} onClick={handleButtonClick}>
       <S.BookCoverImg src={bookRecord.thumbnail} />
       <S.BookRecordInfo>
         <S.Header>

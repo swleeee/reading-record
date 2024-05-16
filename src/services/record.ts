@@ -91,7 +91,7 @@ export const useGetTotalLikeForRecord = (
 ) => {
   return useSuspenseQuery({
     queryKey: bookRecordKeys.userRecordLike(req.isbn, req.recordId),
-    queryFn: () => getTotalLikeForRecordAPI(req),
+    queryFn: () => (req.userId ? getTotalLikeForRecordAPI(req) : null),
   });
 };
 
@@ -232,6 +232,6 @@ export const useDeleteLikeForRecord = () => {
 export const useGetBestRecords = (req: GetBestRecordsQueryModel) => {
   return useSuspenseQuery({
     queryKey: bookRecordKeys.bestRecord(req),
-    queryFn: () => (req.userId ? getBestRecordsAPI(req) : null),
+    queryFn: () => getBestRecordsAPI(req),
   });
 };

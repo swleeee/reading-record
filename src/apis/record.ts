@@ -193,7 +193,6 @@ export const deleteLikeForRecordAPI = async (
 export const getBestRecordsAPI = async (req: GetBestRecordsQueryModel) => {
   const { data, error } = await supabase
     .rpc('get_best_record', {
-      current_user_id: req.userId,
       startdatetime: req.startDateTime,
       enddatetime: req.endDateTime,
       limitcount: 10,
