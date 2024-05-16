@@ -13,32 +13,34 @@ const Tab = ({ tabs }: TabProps) => {
 
   return (
     <>
-      <S.TabList role="tablist">
-        {tabs.map((tab) => {
-          const isSelected = activeTab?.key === tab.key;
+      <S.TabContainer>
+        <S.TabList role="tablist">
+          {tabs.map((tab) => {
+            const isSelected = activeTab?.key === tab.key;
 
-          return (
-            <S.TabItem
-              key={tab.key}
-              role="presentation"
-              isSelected={isSelected}
-            >
-              <S.TabButton
-                id={`tab-${tab.key}`}
-                type="button"
-                role="tab"
-                aria-controls={`panel-${tab.key}`}
-                aria-selected={isSelected}
+            return (
+              <S.TabItem
+                key={tab.key}
+                role="presentation"
                 isSelected={isSelected}
-                tabIndex={isSelected ? 0 : -1}
-                onClick={handleTabClick(tab)}
               >
-                {tab.label}
-              </S.TabButton>
-            </S.TabItem>
-          );
-        })}
-      </S.TabList>
+                <S.TabButton
+                  id={`tab-${tab.key}`}
+                  type="button"
+                  role="tab"
+                  aria-controls={`panel-${tab.key}`}
+                  aria-selected={isSelected}
+                  isSelected={isSelected}
+                  tabIndex={isSelected ? 0 : -1}
+                  onClick={handleTabClick(tab)}
+                >
+                  {tab.label}
+                </S.TabButton>
+              </S.TabItem>
+            );
+          })}
+        </S.TabList>
+      </S.TabContainer>
       {tabs.map((tab) => (
         <section
           key={tab.key}

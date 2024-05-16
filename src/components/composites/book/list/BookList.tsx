@@ -54,13 +54,13 @@ const BookList = () => {
     );
 
   return (
-    <>
+    <S.Container>
       <BookListData books={data.documents} />
       <Pagination
         totalPages={Math.ceil(data.meta.total_count / 10)}
         maxPageCount={10}
       />
-    </>
+    </S.Container>
   );
 };
 

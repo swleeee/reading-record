@@ -1,5 +1,7 @@
 import tw, { css, styled } from 'twin.macro';
 
+export const Container = tw.div`tablet:(max-w-[1360px] mx-auto px-[24px])`;
+
 export const NoSearchContainer = styled.div<{ boundingClientTop: number }>`
   ${({ boundingClientTop }) => css`
     ${tw`flex flex-col gap-y-[16px] justify-center items-center`}

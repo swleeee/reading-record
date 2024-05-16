@@ -6,6 +6,7 @@ import { useGetMyLibraries } from '@/services';
 import { deviceState } from '@/stores';
 import ReadingBookMobile from './mobile/ReadingBookMobile';
 import ReadingBookDesktop from './desktop/ReadingBookDesktop';
+import * as S from './ReadingBook.styled';
 
 const ReadingBook = () => {
   const device = useRecoilValue(deviceState);
@@ -15,10 +16,14 @@ const ReadingBook = () => {
 
   const { data } = useGetMyLibraries(req);
 
-  return device === 'mobile' ? (
-    <ReadingBookMobile books={data?.records} />
-  ) : (
-    <ReadingBookDesktop books={data?.records} />
+  return (
+    <S.Container>
+      {device === 'mobile' ? (
+        <ReadingBookMobile books={data?.records} />
+      ) : (
+        <ReadingBookDesktop books={data?.records} />
+      )}
+    </S.Container>
   );
 };
 

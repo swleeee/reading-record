@@ -1,6 +1,6 @@
 import tw, { css } from 'twin.macro';
 
-export const ReadingBookSection = tw.section`tablet:mb-[64px] mx-[64px] px-[24px] py-[16px] bg-white`;
+export const ReadingBookSection = tw.section`tablet:mb-[64px] rounded-[4px] px-[24px] py-[16px] bg-white`;
 
 export const Title = tw.h2`tablet:t-body-m15 mb-[8px] desktop:d-body-m17`;
 

@@ -9,6 +9,7 @@ import { useGetBestRecords } from '@/services';
 import { deviceState } from '@/stores';
 import BestCommentaryMobile from './mobile/BestCommentaryMobile';
 import BestCommentaryDesktop from './desktop/BestCommentaryDesktop';
+import * as S from './BestCommentary.styled';
 
 const BestCommentary = () => {
   const device = useRecoilValue(deviceState);
@@ -25,10 +26,14 @@ const BestCommentary = () => {
 
   const { data: books } = useGetBestRecords(req);
 
-  return device === 'mobile' ? (
-    <BestCommentaryMobile books={books} />
-  ) : (
-    <BestCommentaryDesktop books={books} />
+  return (
+    <S.Container>
+      {device === 'mobile' ? (
+        <BestCommentaryMobile books={books} />
+      ) : (
+        <BestCommentaryDesktop books={books} />
+      )}
+    </S.Container>
   );
 };
 

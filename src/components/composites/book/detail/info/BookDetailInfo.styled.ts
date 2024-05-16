@@ -2,7 +2,7 @@ import tw, { css, styled } from 'twin.macro';
 
 export const BookDetailSection = tw.section`mb-[16px] tablet:mb-[24px] desktop:mb-[32px]`;
 
-export const BookInfoWrapper = tw.section`w-full max-w-[768px] h-full mx-auto rounded-[4px] px-[24px] tablet:p-0 desktop:max-w-[1200px]`;
+export const BookInfoWrapper = tw.section`w-full max-w-[768px] h-full mx-auto rounded-[4px] px-[24px] tablet:(max-w-[1360px] p-0)`;
 
 export const BookSubInfoList = tw.dl`relative flex justify-center gap-x-[12px] mt-[-25px] mb-[18px] tablet:mb-[24px] desktop:(mt-[-32px] mb-[32px])`;
 
