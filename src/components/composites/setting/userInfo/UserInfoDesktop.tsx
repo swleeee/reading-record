@@ -12,6 +12,7 @@ interface UserInfoDesktopProps {
   isCheckNicknameDuplicatedLoading: boolean;
   isUpdateUserInfoPending: boolean;
   fileInputRef: React.RefObject<HTMLInputElement>;
+  myTotalLikeCount?: number;
   previewUrl: string | null;
   checkBirthDateValidate: (
     key: keyof SettingUserInfoFormType['birth'],
@@ -34,6 +35,7 @@ const UserInfoDesktop = ({
   isCheckNicknameDuplicatedLoading,
   isUpdateUserInfoPending,
   fileInputRef,
+  myTotalLikeCount,
   previewUrl,
   checkBirthDateValidate,
   handleFileChange,
@@ -60,7 +62,9 @@ const UserInfoDesktop = ({
       />
       <S.SummaryList>
         <S.SummaryWrapper>
-          <S.SummaryContent>{formatNumber(150)}</S.SummaryContent>
+          <S.SummaryContent>
+            {myTotalLikeCount ? formatNumber(myTotalLikeCount) : '-'}
+          </S.SummaryContent>
           <S.SummaryLabel>좋아요 수</S.SummaryLabel>
         </S.SummaryWrapper>
         <S.SummaryWrapper>
