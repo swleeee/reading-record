@@ -10,6 +10,7 @@ import type {
   GetBookRecordServerModel,
   GetBookUserRecordsQueryModel,
   GetBookUserRecordsServerModel,
+  GetMyTotalLikeCountQueryModel,
   GetTotalLikeForRecordQueryModel,
   GetTotalLikeForRecordServerModel,
   UpdateBookRecordQueryModel,
@@ -198,6 +199,22 @@ export const getBestRecordsAPI = async (req: GetBestRecordsQueryModel) => {
       limitcount: 10,
     })
     .returns<GetBestRecordsServerModel>();
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  return data;
+};
+
+export const getMyTotalLikeCountAPI = async (
+  req: GetMyTotalLikeCountQueryModel,
+) => {
+  const { data, error } = await supabase
+    .rpc('get_my_like_total_count', {
+      input_user_id: req.userId,
+    })
+    .returns<number>();
 
   if (error) {
     throw new Error(error.message);

@@ -7,6 +7,7 @@ import {
   getBestRecordsAPI,
   getBookRecordAPI,
   getBookUserRecordsAPI,
+  getMyTotalLikeCountAPI,
   getTotalLikeForRecordAPI,
   updateBookRecordAPI,
 } from '@/apis';
@@ -17,6 +18,7 @@ import type {
   GetBestRecordsQueryModel,
   GetBookRecordQueryModel,
   GetBookUserRecordsQueryModel,
+  GetMyTotalLikeCountQueryModel,
   GetTotalLikeForRecordQueryModel,
   GetTotalLikeForRecordServerModel,
   UpdateBookRecordQueryModel,
@@ -233,5 +235,12 @@ export const useGetBestRecords = (req: GetBestRecordsQueryModel) => {
   return useSuspenseQuery({
     queryKey: bookRecordKeys.bestRecord(req),
     queryFn: () => getBestRecordsAPI(req),
+  });
+};
+
+export const useGetMyTotalLikeCount = (req: GetMyTotalLikeCountQueryModel) => {
+  return useSuspenseQuery({
+    queryKey: ['myTotalLikeCount'],
+    queryFn: () => getMyTotalLikeCountAPI(req),
   });
 };

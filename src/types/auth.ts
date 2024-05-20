@@ -41,6 +41,7 @@ export type GetUserInfoServerModel = {
   privacy_flag: boolean;
   profile_url: string | null;
   terms_flag: boolean;
+  book_score: number;
 }[];
 
 export interface SettingUserInfoFormType {

@@ -93,3 +93,7 @@ export type GetBestRecordsServerModel = {
   profile_url: string | null;
   like_count: number; // TODO: 추후 삭제 필요
 }[];
+
+export interface GetMyTotalLikeCountQueryModel {
+  userId: string;
+}

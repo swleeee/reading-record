@@ -50,7 +50,11 @@ const LikeButton = ({
       tabIndex={0}
       disabled={currentUserId === userId}
       type="button"
-      onClick={handleLikeButtonClick(isbn, recordId, currentUserId)}
+      onClick={
+        as === 'button'
+          ? handleLikeButtonClick(isbn, recordId, currentUserId)
+          : undefined
+      }
     >
       {data?.[0].isliked ? (
         <LikeFilledIcon css={S.likeIcon} />

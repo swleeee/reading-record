@@ -2,7 +2,9 @@ import React from 'react';
 import { FormProvider } from 'react-hook-form';
 import { useRecoilValue } from 'recoil';
 
+import { useUser } from '@/contexts';
 import { useImageFileUploader } from '@/hooks';
+import { useGetMyTotalLikeCount } from '@/services';
 import { deviceState } from '@/stores';
 import UserInfoMobile from './UserInfoMobile';
 import UserInfoDesktop from './UserInfoDesktop';
@@ -11,6 +13,11 @@ import * as S from './UserInfo.styled';
 
 const UserInfo = () => {
   const device = useRecoilValue(deviceState);
+
+  const { user } = useUser();
+  const { data: myTotalLikeCount } = useGetMyTotalLikeCount({
+    userId: user?.id!,
+  });
 
   const {
     isCheckNicknameDuplicatedLoading,
@@ -45,7 +52,9 @@ const UserInfo = () => {
             isCheckNicknameDuplicatedLoading={isCheckNicknameDuplicatedLoading}
             isUpdateUserInfoPending={isUpdateUserInfoPending}
             fileInputRef={fileInputRef}
+            myTotalLikeCount={myTotalLikeCount}
             previewUrl={previewUrl}
+            userInfo={data}
             checkBirthDateValidate={checkBirthDateValidate}
             handleFileChange={handleFileChange}
             handleProfileImageEdit={handleProfileImageEdit}
@@ -62,7 +71,9 @@ const UserInfo = () => {
             isCheckNicknameDuplicatedLoading={isCheckNicknameDuplicatedLoading}
             isUpdateUserInfoPending={isUpdateUserInfoPending}
             fileInputRef={fileInputRef}
+            myTotalLikeCount={myTotalLikeCount}
             previewUrl={previewUrl}
+            userInfo={data}
             checkBirthDateValidate={checkBirthDateValidate}
             handleFileChange={handleFileChange}
             handleProfileImageEdit={handleProfileImageEdit}
