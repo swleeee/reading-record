@@ -69,7 +69,7 @@ const UserInfoDesktop = ({
       <S.SummaryList>
         <S.SummaryWrapper>
           <S.SummaryContent>
-            {myTotalLikeCount ? formatNumber(myTotalLikeCount) : '-'}
+            {myTotalLikeCount ? formatNumber(myTotalLikeCount) : 0}
           </S.SummaryContent>
           <S.SummaryLabel>좋아요 수</S.SummaryLabel>
         </S.SummaryWrapper>
