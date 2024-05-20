@@ -3,7 +3,11 @@ import { useFormContext } from 'react-hook-form';
 
 import { Button, ProfileUploader } from '@/components';
 import { formatNumber } from '@/utils';
-import type { SelectOptionType, SettingUserInfoFormType } from '@/types';
+import type {
+  GetUserInfoServerModel,
+  SelectOptionType,
+  SettingUserInfoFormType,
+} from '@/types';
 import UserDefaultInfoForm from './defaultForm/UserDefaultInfoForm';
 import * as S from './UserInfo.styled';
 
@@ -14,6 +18,7 @@ interface UserInfoDesktopProps {
   fileInputRef: React.RefObject<HTMLInputElement>;
   myTotalLikeCount?: number;
   previewUrl: string | null;
+  userInfo: GetUserInfoServerModel;
   checkBirthDateValidate: (
     key: keyof SettingUserInfoFormType['birth'],
     value: string,
@@ -37,6 +42,7 @@ const UserInfoDesktop = ({
   fileInputRef,
   myTotalLikeCount,
   previewUrl,
+  userInfo,
   checkBirthDateValidate,
   handleFileChange,
   handleProfileImageEdit,
@@ -68,7 +74,9 @@ const UserInfoDesktop = ({
           <S.SummaryLabel>좋아요 수</S.SummaryLabel>
         </S.SummaryWrapper>
         <S.SummaryWrapper>
-          <S.SummaryContent>{formatNumber(1500)}</S.SummaryContent>
+          <S.SummaryContent>
+            {formatNumber(userInfo[0].book_score)}
+          </S.SummaryContent>
           <S.SummaryLabel>독서 점수</S.SummaryLabel>
         </S.SummaryWrapper>
       </S.SummaryList>

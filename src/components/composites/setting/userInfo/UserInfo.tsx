@@ -56,6 +56,7 @@ const UserInfo = () => {
             fileInputRef={fileInputRef}
             myTotalLikeCount={myTotalLikeCount}
             previewUrl={previewUrl}
+            userInfo={data}
             checkBirthDateValidate={checkBirthDateValidate}
             handleFileChange={handleFileChange}
             handleProfileImageEdit={handleProfileImageEdit}
@@ -74,6 +75,7 @@ const UserInfo = () => {
             fileInputRef={fileInputRef}
             myTotalLikeCount={myTotalLikeCount}
             previewUrl={previewUrl}
+            userInfo={data}
             checkBirthDateValidate={checkBirthDateValidate}
             handleFileChange={handleFileChange}
             handleProfileImageEdit={handleProfileImageEdit}
