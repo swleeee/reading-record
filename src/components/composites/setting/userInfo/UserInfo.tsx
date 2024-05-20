@@ -19,8 +19,6 @@ const UserInfo = () => {
     userId: user?.id!,
   });
 
-  console.log('M : ', myTotalLikeCount);
-
   const {
     isCheckNicknameDuplicatedLoading,
     isNicknameChecked,
