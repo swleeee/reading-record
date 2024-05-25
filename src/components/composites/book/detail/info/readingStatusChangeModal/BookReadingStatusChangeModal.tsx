@@ -361,7 +361,7 @@ const BookReadingStatusChangeModal = React.forwardRef<
           selectedOption={watch('readingStatus')}
           onClick={handleOptionSelect}
         />
-        <S.DataSection>
+        <section>
           <LabelContent
             css={S.labelContent('24px')}
             isRequired={
@@ -470,7 +470,7 @@ const BookReadingStatusChangeModal = React.forwardRef<
               })}
             />
           </LabelContent>
-        </S.DataSection>
+        </section>
       </Modal>
     );
   },
