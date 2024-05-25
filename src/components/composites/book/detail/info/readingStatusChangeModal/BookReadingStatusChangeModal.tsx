@@ -173,7 +173,7 @@ const BookReadingStatusChangeModal = React.forwardRef<
           return TOAST_MESSAGE.SUCCESS.UPDATE_READING_ONGOING_STATUS;
 
         case 'completed':
-          return TOAST_MESSAGE.SUCCESS.UPDATE_READING_PENDING_STATUS;
+          return TOAST_MESSAGE.SUCCESS.UPDATE_READING_COMPLETED_STATUS;
       }
 
       return null;
@@ -192,6 +192,8 @@ const BookReadingStatusChangeModal = React.forwardRef<
       originReadingStatus: SelectOptionType,
       newReadingStatus: SelectOptionType,
     ) => {
+      console.log(originReadingStatus, newReadingStatus);
+
       // NOTE: 첫 독서 기록 생성
       if (!recordId) {
         return getToastMessageByStatus(newReadingStatus.key);
