@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import { useUser } from '@/contexts';
 import { BookListCard, NoData, Pagination } from '@/components';
@@ -27,6 +27,14 @@ const MyLibraryPanel = ({ queryStatus }: MyLibraryPanelProps) => {
 
   if (!data) return null;
 
+  const [topPosition, setTopPosition] = useState(0);
+
+  useEffect(() => {
+    if (!ref.current) return;
+
+    setTopPosition(ref.current.getBoundingClientRect().top);
+  }, [ref]);
+
   return (
     <S.Container ref={ref}>
       {data.records.length ? (
@@ -50,7 +58,7 @@ const MyLibraryPanel = ({ queryStatus }: MyLibraryPanelProps) => {
           />
         ))
       ) : (
-        <NoData content={`비어 있습니다`} />
+        <NoData css={S.noData(topPosition)} content={`비어 있습니다`} />
       )}
       <Pagination
         ref={ref}
