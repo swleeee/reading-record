@@ -2,7 +2,7 @@ import tw, { css, styled } from 'twin.macro';
 
 export const Modal = styled.dialog<{ isShow: boolean }>`
   ${({ isShow }) => css`
-    ${tw`relative block w-[calc(100% - 24px)] max-w-[800px] mx-auto rounded-[4px] bg-white shadow-light_lg`}
+    ${tw`relative block w-[calc(100% - 36px)] max-w-[800px] mx-auto rounded-[4px] bg-white shadow-light_lg`}
     ${isShow ? tw`animate-show` : tw`animate-hide`}
   `}
 `;
