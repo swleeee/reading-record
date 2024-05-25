@@ -1,10 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
 import dayjs, { Dayjs } from 'dayjs';
 import utc from 'dayjs/plugin/utc';
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
-dayjs.extend(utc);
-dayjs.extend(isSameOrBefore);
 
 import { useUser } from '@/contexts';
 import {
@@ -28,6 +26,9 @@ import {
 } from '@/constants';
 import type { CreateBookRecordQueryModel, SelectOptionType } from '@/types';
 import * as S from './BookReadingStatusChangeModal.styled';
+
+dayjs.extend(utc);
+dayjs.extend(isSameOrBefore);
 
 type Form = {
   publicState: SelectOptionType;
@@ -69,7 +70,6 @@ const BookReadingStatusChangeModal = React.forwardRef<
       watch,
       register,
       clearErrors,
-      reset,
       setError,
       setValue,
       handleSubmit,
@@ -77,11 +77,15 @@ const BookReadingStatusChangeModal = React.forwardRef<
       mode: 'onTouched',
       defaultValues: {
         publicState: RECORD_CONTENT_PUBLIC_OPTIONS[0],
-        readingStatus: null,
-        readingStartDateTime: null,
-        readingEndDateTime: null,
-        rating: null,
-        recordContent: null,
+        readingStatus,
+        readingStartDateTime: readingStartDateTime
+          ? dayjs(readingStartDateTime)
+          : null,
+        readingEndDateTime: readingEndDateTime
+          ? dayjs(readingEndDateTime)
+          : null,
+        rating: rating ?? 1,
+        recordContent,
       },
     });
 
@@ -328,21 +332,6 @@ const BookReadingStatusChangeModal = React.forwardRef<
         checkDateRequiredError();
       },
     );
-
-    useEffect(() => {
-      reset({
-        publicState: RECORD_CONTENT_PUBLIC_OPTIONS[0],
-        readingStatus,
-        readingStartDateTime: readingStartDateTime
-          ? dayjs(readingStartDateTime)
-          : null,
-        readingEndDateTime: readingEndDateTime
-          ? dayjs(readingEndDateTime)
-          : null,
-        rating: rating ?? 1,
-        recordContent,
-      });
-    }, []);
 
     return (
       <Modal

@@ -1,5 +1,3 @@
-import React from 'react';
-
 import type { SelectOptionType } from '@/types';
 import * as S from './RadioButton.styled';
 

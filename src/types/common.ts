@@ -1,3 +1,5 @@
+import React from 'react';
+
 export type ButtonActionType = 'button' | 'submit' | 'reset';
 export type ButtonStyleType =
   | 'primary'

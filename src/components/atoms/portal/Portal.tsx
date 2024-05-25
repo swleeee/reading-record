@@ -14,4 +14,7 @@ const Portal = ({ children, isMounted, container }: PortalProps) => {
   return portal ? createPortal(children, portal) : null;
 };
 
-export default React.memo(Portal);
+const MemoizedPortal = React.memo(Portal);
+MemoizedPortal.displayName = 'MemoizedPortal';
+
+export default MemoizedPortal;

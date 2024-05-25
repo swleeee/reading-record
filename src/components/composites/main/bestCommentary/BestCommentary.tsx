@@ -1,14 +1,14 @@
-import React from 'react';
 import { useRecoilValue } from 'recoil';
 import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
-dayjs.extend(isoWeek);
 
 import { useGetBestRecords } from '@/services';
 import { deviceState } from '@/stores';
 import BestCommentaryMobile from './mobile/BestCommentaryMobile';
 import BestCommentaryDesktop from './desktop/BestCommentaryDesktop';
 import * as S from './BestCommentary.styled';
+
+dayjs.extend(isoWeek);
 
 const BestCommentary = () => {
   const device = useRecoilValue(deviceState);

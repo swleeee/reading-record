@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { BookReadingCardSkeleton } from '@/components';
 import * as S from './ReadingBookDesktop.styled';
 

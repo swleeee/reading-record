@@ -1,5 +1,3 @@
-import React from 'react';
-
 import PrivacyIndex from './index/PrivacyIndex';
 import {
   PrivacyArticle1,

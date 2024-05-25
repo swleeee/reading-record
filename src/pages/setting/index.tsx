@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { MainLayout, Setting } from '@/components';
 
 const root = () => {

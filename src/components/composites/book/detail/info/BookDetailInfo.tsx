@@ -1,4 +1,3 @@
-import React from 'react';
 import { useParams } from 'react-router-dom';
 
 import { Button } from '@/components';
@@ -25,11 +24,11 @@ const BookDetailInfo = ({
   ratingTotal,
   recordTotalCount,
 }: BookInfoContentProps) => {
-  if (!book) return null;
-
   const { id } = useParams();
 
   const { modalRef, openModal } = useModal();
+
+  if (!book) return null;
 
   const currentReadingStatus = records.length
     ? getBookReadingStatus(

@@ -67,17 +67,19 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+const DefaultInputComponent = (args: any) => {
+  const { watch, register } = useForm({ defaultValues: { input: '' } });
+
+  return (
+    <Input {...args} value={watch('input')} register={register('input')}>
+      {args.children}
+    </Input>
+  );
+};
+
 // QUESTION: Story 작성 시 react-hook-form을 어떻게 활용해야 되는가
 export const DefaultInput: Story = {
-  render: (args) => {
-    const { watch, register } = useForm({ defaultValues: { input: '' } });
-
-    return (
-      <Input {...args} value={watch('input')} register={register('input')}>
-        {args.children}
-      </Input>
-    );
-  },
+  render: (args) => <DefaultInputComponent {...args} />,
   args: {
     isDisabled: false,
     hasError: false,

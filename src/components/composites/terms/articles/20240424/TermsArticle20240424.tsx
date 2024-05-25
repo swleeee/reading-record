@@ -1,5 +1,3 @@
-import React from 'react';
-
 import TermsIndex from './index/TermsIndex';
 import {
   TermsAddendum,

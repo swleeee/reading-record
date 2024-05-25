@@ -1,5 +1,3 @@
-import React from 'react';
-
 import * as S from './PrivacyIndex.styled';
 
 const PrivacyIndex = () => {

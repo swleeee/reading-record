@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { useToast } from '@/hooks';
 import KakaoSymbolIcon from '@/assets/icon/ic_kakaoSymbol.svg?react';
 import NaverSymbolIcon from '@/assets/icon/ic_naverSymbol.svg?react';

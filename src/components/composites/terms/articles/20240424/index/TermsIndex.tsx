@@ -1,5 +1,3 @@
-import React from 'react';
-
 import * as S from './TermsIndex.styled';
 
 const TermsIndex = () => {

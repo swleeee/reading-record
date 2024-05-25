@@ -47,10 +47,17 @@ export const useLogout = () => {
   });
 };
 
+const isDataURI = (value: string) => {
+  const dataURIPattern =
+    /^data:([a-zA-Z0-9]+\/[a-zA-Z0-9-.+]+)?(;charset=[a-zA-Z0-9-]+)?(;base64)?,([^\r\n]*)$/;
+  return dataURIPattern.test(value);
+};
+
 export const useGetUserProfile = (path: string | null) => {
   return useQuery({
     queryKey: ['profile', path ?? 'default'],
-    queryFn: () => (path ? getUserProfileAPI(path) : null),
+    queryFn: () =>
+      path ? (isDataURI(path) ? path : getUserProfileAPI(path)) : null,
   });
 };
 

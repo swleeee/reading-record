@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 import { BOOK_SEARCH_DROPDOWN_OPTIONS } from '@/constants';
@@ -6,7 +6,7 @@ import type { SelectOptionType } from '@/types';
 
 const useBookSearch = () => {
   // TODO: SearchParams 추후 활용
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [, setSearchParams] = useSearchParams();
 
   const [, setSearchValue] = useState('');
   const [selectedOption, setSelectedOption] = useState<SelectOptionType>(

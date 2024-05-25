@@ -1,5 +1,3 @@
-import React from 'react';
-
 import type { TabType } from '@/types';
 import useTab from './hooks/useTab';
 import * as S from './Tab.styled';

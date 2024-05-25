@@ -24,7 +24,7 @@ const LikeButton = ({
   userId,
 }: LikeButtonProps) => {
   const { user } = useUser();
-  const currentUserId = user?.id!;
+  const currentUserId = user?.id ?? '';
 
   const req = { isbn, userId: currentUserId, recordId };
   const { data } = useGetTotalLikeForRecord(req);

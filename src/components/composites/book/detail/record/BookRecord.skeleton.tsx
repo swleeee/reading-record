@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { BookRecordListSkeleton } from './list';
 import * as S from './BookRecord.styled';
 

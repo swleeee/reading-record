@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { Dropdown, SearchInput } from '@/components';
 import { BOOK_SEARCH_DROPDOWN_OPTIONS } from '@/constants';
 import useBookSearch from './hooks/useBookSearch';

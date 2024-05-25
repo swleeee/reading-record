@@ -1,5 +1,3 @@
-import React from 'react';
-
 import type { SelectOptionType } from '@/types';
 import PrivacyArticle20240424 from './20240424/PrivacyArticle20240424';
 import * as S from './PrivacyArticles.styled';

@@ -95,7 +95,7 @@ export const Secondary: Story = {
 export const Tertiary: Story = {
   args: {
     ...Primary.args,
-    styleType: 'tertiary',
+    styleType: 'tertiaryPrimary',
   },
 
   argTypes: {

@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { Link, SignupForm } from '@/components';
 import Logo from '@/assets/image/Logo.svg?react';
 import * as S from './index.styled';

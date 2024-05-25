@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { Link } from '@/components';
 import { useSidebar } from '@/hooks';
 import Logo from '@/assets/image/Logo.svg?react';

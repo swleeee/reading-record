@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { BookRecordCard } from '@/components';
 import type { GetBestRecordsServerModel } from '@/types';
 import * as S from './BestCommentaryDesktop.styled';

@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { MainLayout, Terms } from '@/components';
 import * as S from './index.styled';
 

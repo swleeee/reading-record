@@ -6,24 +6,6 @@ import DefaultProfileIcon from '@/assets/icon/ic_default_profile.svg?react';
 import PersonEditIcon from '@/assets/icon/ic_person_edit.svg?react';
 import * as S from './ProfileUploader.styled';
 
-const isDataURI = (value: string) => {
-  const dataURIPattern =
-    /^data:([a-zA-Z0-9]+\/[a-zA-Z0-9-.+]+)?(;charset=[a-zA-Z0-9-]+)?(;base64)?,([^\r\n]*)$/;
-  return dataURIPattern.test(value);
-};
-
-const getUserProfileImageUrl = (previewUrl: string | null) => {
-  if (!previewUrl) return null;
-
-  if (isDataURI(previewUrl)) {
-    return previewUrl;
-  }
-
-  const { data } = useGetUserProfile(previewUrl);
-
-  return data?.publicUrl;
-};
-
 interface ProfileUploaderProps {
   fileInputRef: React.RefObject<HTMLInputElement>;
   previewUrl: string | null;
@@ -39,7 +21,7 @@ const ProfileUploader = ({
   handleProfileImageEdit,
   handlePreviewImageDelete,
 }: ProfileUploaderProps) => {
-  const userProfileImageUrl = getUserProfileImageUrl(previewUrl);
+  const { data: userProfileImageUrl } = useGetUserProfile(previewUrl);
 
   return (
     <S.ProfileWrapper>

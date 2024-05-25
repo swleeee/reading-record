@@ -8,6 +8,7 @@ const QUERY_STRING_TAB_KEY = 'tabId';
 const useTab = (tabs: TabType[]) => {
   const [searchParams, setSearchParams] = useSearchParams();
 
+  const appliedTab = searchParams.get(QUERY_STRING_TAB_KEY);
   const [activeTab, setActiveTab] = useState<TabType | null>(null);
 
   const handleTabClick =
@@ -33,7 +34,8 @@ const useTab = (tabs: TabType[]) => {
     }
 
     setActiveTab(selectedTab[0]);
-  }, [searchParams.get(QUERY_STRING_TAB_KEY)]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [appliedTab]);
 
   return { activeTab, handleTabClick };
 };

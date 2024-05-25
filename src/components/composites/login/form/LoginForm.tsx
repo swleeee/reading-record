@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { Button, Input } from '@/components';
 import VisibilityOff from '@/assets/icon/ic_visibility_off.svg?react';
 import VisibilityOn from '@/assets/icon/ic_visibility_on.svg?react';
