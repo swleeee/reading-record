@@ -30,11 +30,6 @@ export default defineConfig({
               module: '@emotion/react',
             },
           ],
-          [
-            '@babel/plugin-transform-react-jsx',
-            { pragma: '__cssprop' },
-            'twin.macro',
-          ],
         ],
       },
     }),
