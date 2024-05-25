@@ -2,6 +2,7 @@ import React, { Fragment, useEffect } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
 
+import { ScrollToTop } from './components';
 import { windowSizeState } from './stores';
 
 // NOTE: _app.tsx, 404.tsx
@@ -52,14 +53,16 @@ export const Router = () => {
 
   return (
     <BrowserRouter>
-      <Routes>
-        <Route element={<App />}>
-          {components.map(({ path, component: Component = Fragment }) => (
-            <Route index key={path} path={path} element={<Component />} />
-          ))}
-          <Route path="*" element={NotFound} />
-        </Route>
-      </Routes>
+      <ScrollToTop>
+        <Routes>
+          <Route element={<App />}>
+            {components.map(({ path, component: Component = Fragment }) => (
+              <Route index key={path} path={path} element={<Component />} />
+            ))}
+            <Route path="*" element={NotFound} />
+          </Route>
+        </Routes>
+      </ScrollToTop>
     </BrowserRouter>
   );
 };

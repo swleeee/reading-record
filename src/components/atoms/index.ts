@@ -18,6 +18,7 @@ export { default as NoData } from './noData/NoData';
 export { default as Pagination } from './pagination/Pagination';
 export { default as Popup } from './popup/Popup';
 export { default as RadioButton } from './radioButton/RadioButton';
+export { default as ScrollToTop } from './scrollToTop/ScrollToTop';
 export { default as Toast } from './toast/Toast';
 export { default as ToastItem } from './toast/item/ToastItem';
 export { default as Tooltip } from './tooltip/Tooltip';

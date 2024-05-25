@@ -53,5 +53,5 @@ export const AgreementLabelWrapper = tw.div`m-body-r14 tablet:t-body-r14 desktop
 export const AgreementRequiredText = tw.span`ml-[4px] text-gray400`;
 
 export const signupButton = css`
-  ${tw`my-[40px]`}
+  ${tw`mt-[40px]`}
 `;

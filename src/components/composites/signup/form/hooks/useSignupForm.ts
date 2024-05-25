@@ -182,7 +182,7 @@ const useSignupForm = () => {
               createUser(req, {
                 onSuccess: () => {
                   addToast(TOAST_MESSAGE.SUCCESS.SIGNUP);
-                  navigate('/login');
+                  navigate('/');
                 },
                 onError: (error) => {
                   switch (error.message) {

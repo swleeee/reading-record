@@ -12,7 +12,7 @@ export const logo = css`
 
 export const SidebarButton = styled.button<{ isShow: boolean }>`
   ${({ isShow }) => css`
-    ${tw`absolute top-[10px] right-[10px]`}
+    ${tw`absolute top-1/2 right-[10px] -translate-y-1/2`}
     ${!isShow ? tw`animate-fadeIn` : tw`animate-fadeOut`}
   `}
 `;

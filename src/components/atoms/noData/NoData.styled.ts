@@ -1,6 +1,6 @@
 import tw, { css } from 'twin.macro';
 
-export const NoData = tw.section`flex flex-col items-center gap-y-[8px]`;
+export const NoData = tw.section`flex flex-col justify-center items-center gap-y-[8px]`;
 
 export const noDataIcon = css`
   ${tw`w-[64px] h-[64px]`}

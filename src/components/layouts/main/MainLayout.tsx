@@ -1,5 +1,5 @@
-import React from 'react';
-import { Navigate } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Navigate, useLocation } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 
 import { useUser } from '@/contexts';
@@ -18,9 +18,15 @@ const MainLayout = ({
   children,
   isAuth = false,
 }: MainLayoutProps) => {
+  const location = useLocation();
+
   const device = useRecoilValue(deviceState);
 
   const { isInitializing, user } = useUser();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
 
   if (isInitializing) return null;
   if (!user && isAuth) return <Navigate to="/login" />;

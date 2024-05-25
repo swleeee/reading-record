@@ -49,6 +49,10 @@ const MobileHeaderSidebar = () => {
     closeSidebar();
   };
 
+  const handleLinkTouch = () => {
+    closeSidebar();
+  };
+
   useEffect(() => {
     if (device === 'mobile' || !sidebar.isShow) return;
 
@@ -108,14 +112,21 @@ const MobileHeaderSidebar = () => {
       <S.Navbar>
         <ul>
           <li>
-            <NavLink css={S.navLink(location.pathname === '/book')} to="/book">
+            <NavLink
+              css={S.navLink(location.pathname.split('/').includes('book'))}
+              to="/book"
+              onClick={handleLinkTouch}
+            >
               도서 목록
             </NavLink>
           </li>
           <li>
             <NavLink
-              css={S.navLink(location.pathname === '/myLibrary')}
+              css={S.navLink(
+                location.pathname.split('/').includes('myLibrary'),
+              )}
               to="/myLibrary"
+              onClick={handleLinkTouch}
             >
               독서 기록
             </NavLink>

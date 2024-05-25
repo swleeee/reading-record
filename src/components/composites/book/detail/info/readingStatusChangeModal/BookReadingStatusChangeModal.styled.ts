@@ -1,7 +1,5 @@
 import tw, { css, styled } from 'twin.macro';
 
-export const DataSection = tw.section`h-[514px]`;
-
 export const EmptyDataWrapper = styled.article`
   ${tw`flex justify-center items-center w-full h-full rounded-[4px] bg-gray50 opacity-50`}
 

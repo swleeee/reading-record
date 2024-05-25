@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useRef } from 'react';
+import { useRecoilValue } from 'recoil';
 
 import { Pagination } from '@/components';
+import { deviceState } from '@/stores';
 import type { GetBookUserRecordsServerModel, SelectOptionType } from '@/types';
 import { BookRecordList } from './list';
 import * as S from './BookRecord.styled';
@@ -16,16 +18,21 @@ const BookRecord = ({
   recordSort,
   onSortSelect,
 }: BookRecordProps) => {
+  const ref = useRef<HTMLDivElement>(null);
+
+  const device = useRecoilValue(deviceState);
+
   return (
-    <S.Container>
+    <S.Container ref={ref}>
       <BookRecordList
         recordSort={recordSort}
         records={bookRecordData.records}
         onSelect={onSortSelect}
       />
       <Pagination
+        ref={ref}
         totalPages={bookRecordData.pageInfo.totalPages}
-        maxPageCount={10}
+        maxPageCount={device === 'mobile' ? 5 : 10}
       />
     </S.Container>
   );
