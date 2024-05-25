@@ -43,7 +43,7 @@ const Header = () => {
           <ul>
             <li>
               <NavLink
-                css={S.navLink(location.pathname === '/book')}
+                css={S.navLink(location.pathname.split('/').includes('book'))}
                 to="/book"
               >
                 도서 목록
@@ -51,7 +51,9 @@ const Header = () => {
             </li>
             <li>
               <NavLink
-                css={S.navLink(location.pathname === '/myLibrary')}
+                css={S.navLink(
+                  location.pathname.split('/').includes('myLibrary'),
+                )}
                 to="/myLibrary"
               >
                 독서 기록

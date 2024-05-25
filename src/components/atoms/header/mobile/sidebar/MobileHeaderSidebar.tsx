@@ -113,7 +113,7 @@ const MobileHeaderSidebar = () => {
         <ul>
           <li>
             <NavLink
-              css={S.navLink(location.pathname === '/book')}
+              css={S.navLink(location.pathname.split('/').includes('book'))}
               to="/book"
               onClick={handleLinkTouch}
             >
@@ -122,7 +122,9 @@ const MobileHeaderSidebar = () => {
           </li>
           <li>
             <NavLink
-              css={S.navLink(location.pathname === '/myLibrary')}
+              css={S.navLink(
+                location.pathname.split('/').includes('myLibrary'),
+              )}
               to="/myLibrary"
               onClick={handleLinkTouch}
             >
