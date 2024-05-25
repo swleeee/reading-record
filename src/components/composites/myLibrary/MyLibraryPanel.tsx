@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 
 import { useUser } from '@/contexts';
 import { BookListCard, NoData, Pagination } from '@/components';
@@ -12,6 +12,8 @@ interface MyLibraryPanelProps {
 }
 
 const MyLibraryPanel = ({ queryStatus }: MyLibraryPanelProps) => {
+  const ref = useRef<HTMLDivElement>(null);
+
   const { user } = useUser();
 
   const req = {
@@ -26,7 +28,7 @@ const MyLibraryPanel = ({ queryStatus }: MyLibraryPanelProps) => {
   if (!data) return null;
 
   return (
-    <S.Container>
+    <S.Container ref={ref}>
       {data.records.length ? (
         data.records.map((record) => (
           <BookListCard
@@ -51,6 +53,7 @@ const MyLibraryPanel = ({ queryStatus }: MyLibraryPanelProps) => {
         <NoData content={`비어 있습니다`} />
       )}
       <Pagination
+        ref={ref}
         totalPages={Math.ceil((data.totalCount ?? 0) / 10)}
         maxPageCount={10}
       />

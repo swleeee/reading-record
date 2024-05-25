@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 
 import { Pagination } from '@/components';
 import type { GetBookUserRecordsServerModel, SelectOptionType } from '@/types';
@@ -16,17 +16,16 @@ const BookRecord = ({
   recordSort,
   onSortSelect,
 }: BookRecordProps) => {
+  const ref = useRef<HTMLDivElement>(null);
+
   return (
-    <S.Container>
+    <S.Container ref={ref}>
       <BookRecordList
         recordSort={recordSort}
         records={bookRecordData.records}
         onSelect={onSortSelect}
       />
-      <Pagination
-        totalPages={bookRecordData.pageInfo.totalPages}
-        maxPageCount={10}
-      />
+      <Pagination ref={ref} totalPages={2} maxPageCount={10} />
     </S.Container>
   );
 };

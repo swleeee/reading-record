@@ -1,7 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
-const usePagination = (maxPageCount: number, totalPages: number) => {
+const usePagination = (
+  maxPageCount: number,
+  totalPages: number,
+  ref: React.ForwardedRef<HTMLDivElement>,
+) => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const [pageNumbers, setPageNumbers] = useState<number[]>([]);
@@ -41,8 +45,13 @@ const usePagination = (maxPageCount: number, totalPages: number) => {
     );
   };
 
+  const scrollToTop = () => {
+    typeof ref !== 'function' && ref?.current?.scrollIntoView();
+  };
+
   const handlePreviousPageMove = () => {
     if (currentPage === 1) return;
+    scrollToTop();
 
     const prevPageNum = Math.max(
       maxPageCount *
@@ -59,6 +68,7 @@ const usePagination = (maxPageCount: number, totalPages: number) => {
 
   const handleFirstPageMove = () => {
     if (currentPage === 1) return;
+    scrollToTop();
 
     setSearchParams({
       ...getAllQuery(searchParams),
@@ -68,6 +78,7 @@ const usePagination = (maxPageCount: number, totalPages: number) => {
 
   const handleNextPageMove = () => {
     if (currentPage === totalPages) return;
+    scrollToTop();
 
     const nextPageNum = Math.min(
       Math.floor((currentPage + maxPageCount - 1) / maxPageCount) *
@@ -84,6 +95,7 @@ const usePagination = (maxPageCount: number, totalPages: number) => {
 
   const handleLastPageMove = () => {
     if (currentPage === totalPages) return;
+    scrollToTop();
 
     setSearchParams({
       ...getAllQuery(searchParams),
@@ -92,6 +104,8 @@ const usePagination = (maxPageCount: number, totalPages: number) => {
   };
 
   const handleNumberClick = (index: number) => () => {
+    scrollToTop();
+
     setSearchParams({
       ...getAllQuery(searchParams),
       page: `${index}`,

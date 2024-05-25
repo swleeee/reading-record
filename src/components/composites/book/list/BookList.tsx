@@ -14,6 +14,7 @@ const BookList = () => {
   const [searchParams] = useSearchParams();
 
   const noSearchRef = useRef<HTMLDivElement | null>(null);
+  const ref = useRef<HTMLDivElement | null>(null);
 
   const [noSearchClientTop, setNoSearchClientTop] = useState(0);
 
@@ -54,9 +55,10 @@ const BookList = () => {
     );
 
   return (
-    <S.Container>
+    <S.Container ref={ref}>
       <BookListData books={data.documents} />
       <Pagination
+        ref={ref}
         totalPages={Math.ceil(data.meta.total_count / 10)}
         maxPageCount={10}
       />
