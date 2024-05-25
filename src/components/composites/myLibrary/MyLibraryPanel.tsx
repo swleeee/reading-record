@@ -1,8 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { useRecoilValue } from 'recoil';
 
 import { useUser } from '@/contexts';
 import { BookListCard, NoData, Pagination } from '@/components';
 import { useGetMyLibraries } from '@/services';
+import { deviceState } from '@/stores';
 import { getBookReadingStatus } from '@/utils';
 import { BOOK_READING_STATUS_OPTIONS } from '@/constants';
 import * as S from './MyLibraryPanel.styled';
@@ -14,26 +16,25 @@ interface MyLibraryPanelProps {
 const MyLibraryPanel = ({ queryStatus }: MyLibraryPanelProps) => {
   const ref = useRef<HTMLDivElement>(null);
 
-  const { user } = useUser();
+  const device = useRecoilValue(deviceState);
+  const [topPosition, setTopPosition] = useState(0);
 
+  const { user } = useUser();
   const req = {
     userId: user?.id!,
     page: 1,
     pageSize: 10,
     filter: queryStatus,
   };
-
   const { data } = useGetMyLibraries(req);
-
-  if (!data) return null;
-
-  const [topPosition, setTopPosition] = useState(0);
 
   useEffect(() => {
     if (!ref.current) return;
 
     setTopPosition(ref.current.getBoundingClientRect().top);
   }, [ref]);
+
+  if (!data) return null;
 
   return (
     <S.Container ref={ref}>
@@ -63,7 +64,7 @@ const MyLibraryPanel = ({ queryStatus }: MyLibraryPanelProps) => {
       <Pagination
         ref={ref}
         totalPages={Math.ceil((data.totalCount ?? 0) / 10)}
-        maxPageCount={10}
+        maxPageCount={device === 'mobile' ? 5 : 10}
       />
     </S.Container>
   );

@@ -1,9 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import { useRecoilValue } from 'recoil';
 
 import { useUser } from '@/contexts';
 import { Pagination } from '@/components';
 import { useGetBooks } from '@/services';
+import { deviceState } from '@/stores';
 import SearchIcon from '@/assets/icon/ic_search.svg?react';
 import { BOOK_SEARCH_DROPDOWN_OPTIONS } from '@/constants';
 import type { GetBooksQueryModel } from '@/types';
@@ -16,6 +18,7 @@ const BookList = () => {
   const noSearchRef = useRef<HTMLDivElement | null>(null);
   const ref = useRef<HTMLDivElement | null>(null);
 
+  const device = useRecoilValue(deviceState);
   const [noSearchClientTop, setNoSearchClientTop] = useState(0);
 
   const target = BOOK_SEARCH_DROPDOWN_OPTIONS.find(({ key }) =>
@@ -60,7 +63,7 @@ const BookList = () => {
       <Pagination
         ref={ref}
         totalPages={Math.ceil(data.meta.total_count / 10)}
-        maxPageCount={10}
+        maxPageCount={device === 'mobile' ? 5 : 10}
       />
     </S.Container>
   );
