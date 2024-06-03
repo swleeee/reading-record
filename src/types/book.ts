@@ -1,6 +1,6 @@
 export interface PopularBookCardType {
   id: string;
-  bookImgSrc: string;
+  bookImgSrc?: string; // TODO: 옵셔널 제거 필요
   title: string;
   content: string;
 }
