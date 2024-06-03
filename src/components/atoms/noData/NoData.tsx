@@ -1,5 +1,3 @@
-import React from 'react';
-
 import NoDataIcon from '@/assets/icon/ic_error.svg?react';
 import * as S from './NoData.styled';
 

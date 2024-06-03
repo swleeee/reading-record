@@ -1,5 +1,3 @@
-import React from 'react';
-
 import type { SelectOptionType } from '@/types';
 import TermsArticle20240424 from './20240424/TermsArticle20240424';
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import { Dropdown } from '@/components';
 import { TERMS_DATE_OPTIONS } from '@/constants';

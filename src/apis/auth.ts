@@ -55,7 +55,7 @@ export const getUserProfileAPI = async (profilePath: string) => {
     .from('image')
     .getPublicUrl(profilePath);
 
-  return data;
+  return data.publicUrl;
 };
 
 export const getUserInfoAPI = async (req: GetUserInfoQueryModel) => {

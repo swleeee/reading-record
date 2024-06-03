@@ -1,5 +1,6 @@
-import { ERROR_MESSAGE } from '@/constants';
 import dayjs from 'dayjs';
+
+import { ERROR_MESSAGE } from '@/constants';
 
 export const getBirthDateValid = (year: string, month: string, day: string) => {
   const date = `${year}-${month}-${day}`;
@@ -20,18 +21,16 @@ export const getBirthErrorMessage = (
       break;
     }
     case 'month':
-      {
-        if (+value < 1 || +value > 12) {
-          return ERROR_MESSAGE.INVALID_MONTH;
-        }
+      if (+value < 1 || +value > 12) {
+        return ERROR_MESSAGE.INVALID_MONTH;
       }
+
       break;
     case 'day':
-      {
-        if (+value < 1 || +value > 31) {
-          return ERROR_MESSAGE.INVALID_DAY;
-        }
+      if (+value < 1 || +value > 31) {
+        return ERROR_MESSAGE.INVALID_DAY;
       }
+
       break;
   }
 

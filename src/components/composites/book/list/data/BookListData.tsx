@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { BookListCard, NoData } from '@/components';
 // import { getBookReadingStatus } from '@/utils';
 // import { BOOK_READING_STATUS_OPTIONS } from '@/constants';

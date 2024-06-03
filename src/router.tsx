@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react';
+import { Fragment, useEffect } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
 
@@ -49,7 +49,7 @@ export const Router = () => {
     return () => {
       window.removeEventListener('resize', handleScreenResize);
     };
-  }, []);
+  }, [setWindowSize]);
 
   return (
     <BrowserRouter>

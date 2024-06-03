@@ -140,7 +140,7 @@ export const useCreateLikeForRecord = () => {
     },
     // NOTE: mutation이 실패하면 onMutate에서 반환된 context를 사용하여 롤백 진행
     onError(
-      error,
+      _,
       variables,
       context:
         | {
@@ -153,7 +153,7 @@ export const useCreateLikeForRecord = () => {
         context?.oldData,
       );
     },
-    onSettled: (data, error, variables, context) => {
+    onSettled: (_, __, variables) => {
       queryClient.invalidateQueries({
         queryKey: bookRecordKeys.userRecordLike(
           variables.isbn,
@@ -207,7 +207,7 @@ export const useDeleteLikeForRecord = () => {
     },
     // NOTE: mutation이 실패하면 onMutate에서 반환된 context를 사용하여 롤백 진행
     onError(
-      error,
+      _,
       variables,
       context:
         | {
@@ -220,7 +220,7 @@ export const useDeleteLikeForRecord = () => {
         context?.oldData,
       );
     },
-    onSettled: (data, error, variables, context) => {
+    onSettled: (_, __, variables) => {
       queryClient.invalidateQueries({
         queryKey: bookRecordKeys.userRecordLike(
           variables.isbn,

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 
 import { useUser } from '@/contexts';

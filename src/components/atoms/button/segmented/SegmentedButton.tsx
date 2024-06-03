@@ -1,5 +1,3 @@
-import React from 'react';
-
 import DoneIcon from '@/assets/icon/ic_done.svg?react';
 import type { SelectOptionType } from '@/types';
 import * as S from './SegmentedButton.styled';

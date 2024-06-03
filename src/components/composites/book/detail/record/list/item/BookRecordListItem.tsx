@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { LikeButton, Profile } from '@/components';
 import RatingIcon from '@/assets/icon/ic_rating.svg?react';
 import type { GetBookUserRecordsServerModel } from '@/types';

@@ -1,7 +1,6 @@
 import axios from 'axios';
 
 import { supabase } from '@/lib';
-import { getFirstIsbnSegment } from '@/utils';
 import type {
   GetBookDetailQueryModel,
   GetBookDetailServerModel,

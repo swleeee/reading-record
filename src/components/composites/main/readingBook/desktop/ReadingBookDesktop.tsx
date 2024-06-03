@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { BookAddLink, BookReadingCard } from '@/components';
 import type { GetMyLibraryServerModel } from '@/types';
 import * as S from './ReadingBookDesktop.styled';

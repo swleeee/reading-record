@@ -40,6 +40,7 @@ function ToastItem({
       clearTimeout(existTimeout);
       clearTimeout(expireToastTimeout);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 
 import AddIcon from '@/assets/icon/ic_add.svg?react';

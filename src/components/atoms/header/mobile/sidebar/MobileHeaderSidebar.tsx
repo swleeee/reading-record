@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 
@@ -57,7 +57,7 @@ const MobileHeaderSidebar = () => {
     if (device === 'mobile' || !sidebar.isShow) return;
 
     closeSidebar();
-  }, [device]);
+  }, [device, sidebar.isShow, closeSidebar]);
 
   return (
     <S.Sidebar ref={sidebarRef} isShow={sidebar.isShow}>

@@ -178,7 +178,7 @@ const useUserInfoForm = () => {
       birth: { year, month, day },
       gender: GENDER_OPTIONS.find(({ key }) => key === data[0].gender),
     });
-  }, [data]);
+  }, [data, methods]);
 
   return {
     isCheckNicknameDuplicatedLoading,

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 
 import { useOnClickOutside } from '@/hooks';
 import CheckIcon from '@/assets/icon/ic_done.svg?react';

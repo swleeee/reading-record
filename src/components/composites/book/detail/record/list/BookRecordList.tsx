@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { Dropdown, NoData } from '@/components';
 import { BOOK_REVIEW_DROPDOWN_OPTIONS } from '@/constants';
 import type { GetBookUserRecordsServerModel, SelectOptionType } from '@/types';

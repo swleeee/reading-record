@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { Button, Link } from '@/components';
 import { useToast } from '@/hooks';
 import { TOAST_MESSAGE } from '@/constants';

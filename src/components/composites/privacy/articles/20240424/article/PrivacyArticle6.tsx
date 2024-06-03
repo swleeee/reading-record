@@ -1,5 +1,3 @@
-import React from 'react';
-
 import * as S from './PrivacyArticle.styled';
 
 const PrivacyArticle6 = () => {

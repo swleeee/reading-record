@@ -1,19 +1,35 @@
 module.exports = {
-  env: {
-    browser: true,
-    es2020: true
-  },
-  extends: ['plugin:prettier/recommended', 'react-app', 'eslint:recommended', 'plugin:@typescript-eslint/recommended', 'plugin:storybook/recommended'],
+  root: true,
+  env: { browser: true, es2020: true },
+  extends: [
+    'plugin:prettier/recommended',
+    'react-app',
+    'eslint:recommended',
+    'plugin:react-hooks/recommended',
+    'plugin:storybook/recommended',
+  ],
+  ignorePatterns: ['dist', '.eslintrc.cjs'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 'latest',
-    sourceType: 'module'
+    sourceType: 'module',
   },
-  plugins: ['react', '@typescript-eslint'],
+  plugins: ['react-refresh', 'unused-imports', 'import'],
   rules: {
-    'react-refresh/only-export-components': 'warn',
-    '@typescript-eslint/explicit-function-return-type': 'on',
-    '@typescript-eslint/explicit-module-boundary-types': 'on',
-    '@typescript-eslint/no-explicit-any': 'on'
-  }
+    'react-refresh/only-export-components': ['off'],
+    'import/first': 'error',
+    'import/newline-after-import': 'error',
+    'import/no-duplicates': 'error',
+    'no-unused-vars': 'off',
+    'unused-imports/no-unused-imports': 'error',
+    'unused-imports/no-unused-vars': [
+      'warn',
+      {
+        vars: 'all',
+        varsIgnorePattern: '^_',
+        args: 'after-used',
+        argsIgnorePattern: '^_',
+      },
+    ],
+  },
 };

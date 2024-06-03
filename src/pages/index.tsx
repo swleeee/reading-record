@@ -1,11 +1,11 @@
-import React, { Suspense } from 'react';
+import { Suspense } from 'react';
 import { useRecoilValue } from 'recoil';
 
 import {
   BestCommentary,
   ReadingBook,
   MainLayout,
-  PopularBook,
+  // PopularBook,
   BestCommentaryMobileSkeleton,
   BestCommentaryDesktopSkeleton,
   ReadingBookMobileSkeleton,
@@ -14,7 +14,7 @@ import {
 import { deviceState } from '@/stores';
 import * as S from './index.styled';
 
-const root = () => {
+const Root = () => {
   const device = useRecoilValue(deviceState);
 
   return (
@@ -47,4 +47,4 @@ const root = () => {
   );
 };
 
-export default root;
+export default Root;

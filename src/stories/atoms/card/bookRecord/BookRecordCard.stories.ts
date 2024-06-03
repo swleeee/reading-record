@@ -4,48 +4,47 @@ import { BookRecordCard } from '@/components';
 import Book1Img from '@/assets/image/book1.png';
 import Book2Img from '@/assets/image/book2.png';
 import Profile1Img from '@/assets/image/profile1.png';
-// import Profile2Img from '@/assets/image/profile2.png';
-// import { BookCardType } from '@/types';
 
 const meta = {
   title: 'Design System/Components/Card/BookRecordCard',
   component: BookRecordCard,
   argTypes: {
-    bookImgSrc: {
-      table: {
-        disable: true,
+    bookRecord: {
+      thumbnail: {
+        table: {
+          disable: true,
+        },
       },
-    },
-    profileImgSrc: {
-      table: {
-        disable: true,
+      profile_url: {
+        table: {
+          disable: true,
+        },
       },
-    },
-
-    userName: {
-      name: 'User name',
-      description: '유저 이름',
-      // type: {
-      //   required: true,
-      // },
-    },
-    likeCount: {
-      name: 'Like count',
-      description: '좋아요 수',
-      type: 'number',
-    },
-    content: {
-      name: 'Record content',
-      description: '감상문 내용',
-    },
-    id: {
-      table: {
-        disable: true,
+      nickname: {
+        name: 'User name',
+        description: '유저 이름',
+        // type: {
+        //   required: true,
+        // },
       },
-    },
-    linkToBaseUrl: {
-      table: {
-        disable: true,
+      like_count: {
+        name: 'Like count',
+        description: '좋아요 수',
+        type: 'number',
+      },
+      record_comment: {
+        name: 'Record record_comment',
+        description: '감상문 내용',
+      },
+      id: {
+        table: {
+          disable: true,
+        },
+      },
+      linkToBaseUrl: {
+        table: {
+          disable: true,
+        },
       },
     },
   },
@@ -56,25 +55,41 @@ type Story = StoryObj<typeof meta>;
 
 export const HasProfile: Story = {
   args: {
-    id: '1',
-    linkToBaseUrl: 'book',
-    bookImgSrc: Book1Img,
-    profileImgSrc: Profile1Img,
-    userName: '홍길동',
-    likeCount: 14,
-    content:
-      'dsfkldsjfldsjfkldsjfljdsfkldsjfldsjfkldsjfljdsfkldsjfldsjfkldsjfljdsfkldsjfldsjfkldsjfljdsfkldsjfldsjfkldsjfljdsfkldsjfldsjfkldsjfljdsfkldsjfldsjfkldsjfljdsfkldsjfldsjfkldsjfljdsfkldsjfldsjfkldsjfljdsfkldsjfldsjfkldsjfljdsfkldsjfldsjfkldsjfljdsfkldsjfldsjfkldsjfljdsfkldsjfldsjfkldsjfljdsfkldsjfldsjfkldsjfljdsfkldsjfldsjfkldsjfljdsfkldsjfldsjfkldsjfljdsfkldsjfldsjfkldsjfljdsfkldsjfldsjfkldsjflj',
+    bookRecord: {
+      created_at: '',
+      updated_at: '',
+      id: '1',
+      user_id: '1',
+      isbn: '1',
+      rating: 0,
+      reading_start_at: '',
+      reading_end_at: '',
+      thumbnail: Book1Img,
+      profile_url: Profile1Img,
+      nickname: '홍길동',
+      like_count: 14,
+      record_comment:
+        'dsfkldsjfldsjfkldsjfljdsfkldsjfldsjfkldsjfljdsfkldsjfldsjfkldsjfljdsfkldsjfldsjfkldsjfljdsfkldsjfldsjfkldsjfljdsfkldsjfldsjfkldsjfljdsfkldsjfldsjfkldsjfljdsfkldsjfldsjfkldsjfljdsfkldsjfldsjfkldsjfljdsfkldsjfldsjfkldsjfljdsfkldsjfldsjfkldsjfljdsfkldsjfldsjfkldsjfljdsfkldsjfldsjfkldsjfljdsfkldsjfldsjfkldsjfljdsfkldsjfldsjfkldsjfljdsfkldsjfldsjfkldsjfljdsfkldsjfldsjfkldsjfljdsfkldsjfldsjfkldsjflj',
+    },
   },
 };
 
 export const NoneProfile: Story = {
   args: {
-    id: '2',
-    linkToBaseUrl: 'book',
-    bookImgSrc: Book2Img,
-    profileImgSrc: null,
-    userName: '박주영',
-    likeCount: 8,
-    content: 'dsfkld',
+    bookRecord: {
+      created_at: '',
+      updated_at: '',
+      id: '2',
+      user_id: '2',
+      isbn: '2',
+      rating: 0,
+      reading_start_at: '',
+      reading_end_at: '',
+      thumbnail: Book2Img,
+      profile_url: null,
+      nickname: '박주영',
+      like_count: 8,
+      record_comment: 'dsfkld',
+    },
   },
 };

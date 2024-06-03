@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { useUser } from '@/contexts';
@@ -15,7 +15,7 @@ const LoginLayout = () => {
     if (!user || isInitializing) return;
 
     navigate('/');
-  }, [isInitializing, user]);
+  }, [isInitializing, user, navigate]);
 
   return user ? null : (
     <S.LoginLayout>
