@@ -33,6 +33,10 @@ export const TOAST_MESSAGE = {
       message:
         '비밀번호 재설정 링크가 전송되었습니다. \n이메일을 확인해주세요! :)',
     },
+    RESET_PASSWORD: {
+      type: 'success',
+      message: '비밀번호 변경 완료되었습니다! :)',
+    },
   },
   WARNING: {
     AUTH_ALREADY_REGISTERED: {
@@ -58,6 +62,11 @@ export const TOAST_MESSAGE = {
       type: 'warning',
       message: `'종료 날짜'가 '시작 날짜'보다 이후여야 합니다.`,
     },
+    RESET_PASSWORD_AUTH_EXPIRED: {
+      type: 'warning',
+      message:
+        '이메일 인증 유효시간이 만료되었습니다. \n다시 인증을 시도해주세요.',
+    },
     DEFAULT: {
       type: 'warning',
       message: '오류가 발생했습니다. 다시 시도해주세요.',
@@ -77,6 +86,10 @@ export const TOAST_MESSAGE = {
       title: '서비스 준비중입니다.',
       message:
         '서비스 이용에 불편을 드려 죄송합니다.\n더 나은 서비스로 찾아뵙겠습니다.',
+    },
+    RESET_PASSWORD_NOT_AUTHORIZED: {
+      type: 'info',
+      message: '이메일 인증을 먼저 진행해주세요 :)',
     },
   },
 } as const;

@@ -9,6 +9,7 @@ import type {
   UpdateUserInfoQueryModel,
   CheckEmailDuplicatedQueryModel,
   SendEmailForAuthQueryModel,
+  UpdateUserPasswordQueryModel,
 } from '@/types';
 import { deleteUploadedFileAPI, uploadFileAPI } from './file';
 
@@ -154,4 +155,18 @@ export const updateUserInfoAPI = async (req: UpdateUserInfoQueryModel) => {
   };
 
   await supabase.auth.updateUser({ data: body });
+};
+
+export const updateUserPasswordAPI = async (
+  req: UpdateUserPasswordQueryModel,
+) => {
+  const { data, error } = await supabase.auth.updateUser({
+    password: req.password,
+  });
+
+  if (error) {
+    throw error;
+  }
+
+  return data;
 };

@@ -4,7 +4,7 @@ import useResetPasswordForm from './hooks/useResetPasswordForm';
 import * as S from './ResetPasswordForm.styled';
 
 const ResetPasswordForm = () => {
-  const { errors, watch, register, handlePasswordReset } =
+  const { isPending, errors, watch, register, handlePasswordReset } =
     useResetPasswordForm();
 
   return (
@@ -65,7 +65,7 @@ const ResetPasswordForm = () => {
       </LabelContent>
       <Button
         isDisabled={!!Object.keys(errors).length}
-        isLoading={false} // TODO: API 연동 시 추가 예정
+        isLoading={isPending}
         actionType="submit"
         label="비밀번호 재설정"
         styleType="primary"

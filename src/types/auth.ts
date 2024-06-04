@@ -69,3 +69,7 @@ export interface UpdateUserInfoQueryModel {
   gender: (typeof GENDER_OPTIONS)[number]['key'];
   birth: string;
 }
+
+export interface UpdateUserPasswordQueryModel {
+  password: string;
+}

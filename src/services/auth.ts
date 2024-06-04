@@ -10,6 +10,7 @@ import {
   sendEmailForAuthAPI,
   signupAPI,
   updateUserInfoAPI,
+  updateUserPasswordAPI,
 } from '@/apis';
 import type {
   CheckEmailDuplicatedQueryModel,
@@ -19,6 +20,7 @@ import type {
   SendEmailForAuthQueryModel,
   SignupQueryModel,
   UpdateUserInfoQueryModel,
+  UpdateUserPasswordQueryModel,
 } from '@/types';
 import queryClient from './queryClient';
 
@@ -91,5 +93,12 @@ export const useUpdateUserInfo = () => {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['profile'] });
     },
+  });
+};
+
+export const useUpdateUserPassword = () => {
+  return useMutation({
+    mutationFn: (req: UpdateUserPasswordQueryModel) =>
+      updateUserPasswordAPI(req),
   });
 };
