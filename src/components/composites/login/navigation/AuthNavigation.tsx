@@ -12,14 +12,6 @@ const AuthNavigation = () => {
 
   return (
     <S.AuthNavigation>
-      {/* TODO: 아이디 찾기 기능 구현 시 Button -> Link 변경 */}
-      <Button
-        label="아이디 찾기"
-        sizeType="sm"
-        styleType="tertiaryPrimary"
-        onClick={handleLinkClick}
-      />
-      <S.Division />
       {/* TODO: 비밀번호 찾기 기능 구현 시 Button -> Link 변경 */}
       <Button
         label="비밀번호 찾기"
