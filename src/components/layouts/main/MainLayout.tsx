@@ -5,6 +5,7 @@ import { useRecoilValue } from 'recoil';
 import { useUser } from '@/contexts';
 import { Footer, Header, MobileHeader } from '@/components';
 import { deviceState } from '@/stores';
+import { PATH } from '@/constants';
 import * as S from './MainLayout.styled';
 
 interface MainLayoutProps {
@@ -29,7 +30,7 @@ const MainLayout = ({
   }, [location.pathname]);
 
   if (isInitializing) return null;
-  if (!user && isAuth) return <Navigate to="/login" />;
+  if (!user && isAuth) return <Navigate to={PATH.LOGIN} />;
 
   return (
     <>

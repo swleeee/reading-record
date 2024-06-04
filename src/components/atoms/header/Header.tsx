@@ -5,7 +5,7 @@ import { Button, Link, Profile } from '@/components';
 import { useToast } from '@/hooks';
 import { useLogout } from '@/services';
 import Logo from '@/assets/image/Logo.svg?react';
-import { TOAST_MESSAGE } from '@/constants';
+import { PATH, TOAST_MESSAGE } from '@/constants';
 import * as S from './Header.styled';
 
 const Header = () => {
@@ -21,7 +21,7 @@ const Header = () => {
     logout(undefined, {
       onSuccess: () => {
         if (location.pathname !== '/') {
-          navigate('/');
+          navigate(PATH.ROOT);
         }
         addToast(TOAST_MESSAGE.SUCCESS.LOGOUT);
       },
@@ -29,13 +29,18 @@ const Header = () => {
   };
 
   const handleProfileClick = () => {
-    navigate('/setting');
+    navigate(PATH.SETTING);
   };
 
   return (
     <S.Header>
       <S.Wrapper>
-        <Link css={S.logoLink} styleType="tertiaryBrown" sizeType="md" to="/">
+        <Link
+          css={S.logoLink}
+          styleType="tertiaryBrown"
+          sizeType="md"
+          to={PATH.ROOT}
+        >
           <Logo css={S.logo} />
         </Link>
         <S.Navbar>
@@ -43,7 +48,7 @@ const Header = () => {
             <li>
               <NavLink
                 css={S.navLink(location.pathname.split('/').includes('book'))}
-                to="/book"
+                to={PATH.BOOK}
               >
                 도서 목록
               </NavLink>
@@ -53,7 +58,7 @@ const Header = () => {
                 css={S.navLink(
                   location.pathname.split('/').includes('myLibrary'),
                 )}
-                to="/myLibrary"
+                to={PATH.MY_LIBRARY}
               >
                 독서 기록
               </NavLink>
@@ -79,7 +84,7 @@ const Header = () => {
             />
           </S.UserInfo>
         ) : (
-          <Link styleType="tertiaryBrown" sizeType="md" to="/login">
+          <Link styleType="tertiaryBrown" sizeType="md" to={PATH.LOGIN}>
             회원가입/로그인
           </Link>
         )}

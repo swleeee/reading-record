@@ -6,7 +6,7 @@ import { useUser } from '@/contexts';
 import { LikeButton, Profile } from '@/components';
 import { useModal, useToast } from '@/hooks';
 import { deviceState } from '@/stores';
-import { TOAST_MESSAGE } from '@/constants';
+import { PATH, TOAST_MESSAGE } from '@/constants';
 import type { GetBestRecordsServerModel } from '@/types';
 import BookRecordDetailModal from './modal/BookRecordDetailModal';
 import * as S from './BookRecordCard.styled';
@@ -37,7 +37,7 @@ const BookRecordCard = ({ bookRecord }: BookRecordCardProps) => {
     }
 
     addToast(TOAST_MESSAGE.INFO.LOGIN);
-    navigate('/login');
+    navigate(PATH.LOGIN);
   };
 
   return (

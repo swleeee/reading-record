@@ -10,7 +10,7 @@ import { deviceState } from '@/stores';
 import Logo from '@/assets/image/Logo.svg?react';
 import CloseIcon from '@/assets/icon/ic_close.svg?react';
 import ArrowForwardIcon from '@/assets/icon/ic_arrow_forward.svg?react';
-import { TOAST_MESSAGE } from '@/constants';
+import { PATH, TOAST_MESSAGE } from '@/constants';
 import * as S from './MobileHeaderSidebar.styled';
 
 const MobileHeaderSidebar = () => {
@@ -30,7 +30,7 @@ const MobileHeaderSidebar = () => {
     logout(undefined, {
       onSuccess: () => {
         if (location.pathname !== '/') {
-          navigate('/');
+          navigate(PATH.ROOT);
         }
         addToast(TOAST_MESSAGE.SUCCESS.LOGOUT);
         closeSidebar();
@@ -45,7 +45,7 @@ const MobileHeaderSidebar = () => {
   };
 
   const handleProfileTouch = () => {
-    navigate('/setting');
+    navigate(PATH.SETTING);
     closeSidebar();
   };
 
@@ -66,7 +66,7 @@ const MobileHeaderSidebar = () => {
           css={S.logoLink}
           styleType="tertiaryBrown"
           sizeType="md"
-          to="/"
+          to={PATH.ROOT}
           onClick={handleLogoTouch}
         >
           <Logo css={S.logo} />
@@ -104,7 +104,7 @@ const MobileHeaderSidebar = () => {
             />
           </S.UserInfo>
         ) : (
-          <S.LoginLink href="/login">
+          <S.LoginLink href={PATH.LOGIN}>
             회원가입/로그인하기 <ArrowForwardIcon css={S.arrowForwardIcon} />
           </S.LoginLink>
         )}
@@ -114,7 +114,7 @@ const MobileHeaderSidebar = () => {
           <li>
             <NavLink
               css={S.navLink(location.pathname.split('/').includes('book'))}
-              to="/book"
+              to={PATH.BOOK}
               onClick={handleLinkTouch}
             >
               도서 목록
@@ -125,7 +125,7 @@ const MobileHeaderSidebar = () => {
               css={S.navLink(
                 location.pathname.split('/').includes('myLibrary'),
               )}
-              to="/myLibrary"
+              to={PATH.MY_LIBRARY}
               onClick={handleLinkTouch}
             >
               독서 기록

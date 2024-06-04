@@ -7,8 +7,26 @@ import type {
   GetUserInfoQueryModel,
   GetUserInfoServerModel,
   UpdateUserInfoQueryModel,
+  CheckEmailDuplicatedQueryModel,
+  SendEmailForAuthQueryModel,
+  UpdateUserPasswordQueryModel,
 } from '@/types';
 import { deleteUploadedFileAPI, uploadFileAPI } from './file';
+
+export const checkEmailDuplicatedAPI = async (
+  req: CheckEmailDuplicatedQueryModel,
+) => {
+  const { data, error } = await supabase
+    .from(DB_TABLE_NAME.AUTH)
+    .select('email')
+    .eq('email', req.email);
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  return !!data?.length;
+};
 
 export const checkNicknameDuplicatedAPI = async (
   req: CheckNicknameDuplicatedQueryModel,
@@ -49,6 +67,20 @@ export const loginAPI = async (req: LoginQueryModel) => {
 };
 
 export const logoutAPI = async () => await supabase.auth.signOut();
+
+export const sendEmailForAuthAPI = async (req: SendEmailForAuthQueryModel) => {
+  const domain: string = import.meta.env.VITE_DOMAIN;
+
+  const { data, error } = await supabase.auth.resetPasswordForEmail(req.email, {
+    redirectTo: `${domain}?email=${req.email}`,
+  });
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  return data;
+};
 
 export const getUserProfileAPI = async (profilePath: string) => {
   const { data } = await supabase.storage
@@ -123,4 +155,18 @@ export const updateUserInfoAPI = async (req: UpdateUserInfoQueryModel) => {
   };
 
   await supabase.auth.updateUser({ data: body });
+};
+
+export const updateUserPasswordAPI = async (
+  req: UpdateUserPasswordQueryModel,
+) => {
+  const { data, error } = await supabase.auth.updateUser({
+    password: req.password,
+  });
+
+  if (error) {
+    throw error;
+  }
+
+  return data;
 };

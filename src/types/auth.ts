@@ -1,6 +1,10 @@
 import { GENDER_OPTIONS } from '@/constants';
 import type { SelectOptionType } from './common';
 
+export interface CheckEmailDuplicatedQueryModel {
+  email: string;
+}
+
 export interface CheckNicknameDuplicatedQueryModel {
   nickname: string;
   userId?: string;
@@ -24,6 +28,10 @@ export interface SignupQueryModel {
 export interface LoginQueryModel {
   email: string;
   password: string;
+}
+
+export interface SendEmailForAuthQueryModel {
+  email: string;
 }
 
 export interface GetUserInfoQueryModel {
@@ -60,4 +68,8 @@ export interface UpdateUserInfoQueryModel {
   nickname: string;
   gender: (typeof GENDER_OPTIONS)[number]['key'];
   birth: string;
+}
+
+export interface UpdateUserPasswordQueryModel {
+  password: string;
 }

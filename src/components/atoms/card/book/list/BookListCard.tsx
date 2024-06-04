@@ -3,6 +3,7 @@ import { Link, useSearchParams } from 'react-router-dom';
 
 import { Button } from '@/components';
 import RatingIcon from '@/assets/icon/ic_rating.svg?react';
+import { PATH } from '@/constants';
 import type { SelectOptionType } from '@/types';
 import * as S from './BookListCard.styled';
 
@@ -41,7 +42,7 @@ const BookListCard = ({
     };
 
   return (
-    <Link css={S.bookDetailLink} key={isbn} to={`/book/${isbn}`}>
+    <Link css={S.bookDetailLink} key={isbn} to={`${PATH.BOOK}/${isbn}`}>
       <S.Header>
         {readingStatus && (
           <S.ReadingStatus>{readingStatus.label}</S.ReadingStatus>
