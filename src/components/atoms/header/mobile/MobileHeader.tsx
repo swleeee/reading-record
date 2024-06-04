@@ -2,6 +2,7 @@ import { Link } from '@/components';
 import { useSidebar } from '@/hooks';
 import Logo from '@/assets/image/Logo.svg?react';
 import HamburgerIcon from '@/assets/icon/ic_hamburger.svg?react';
+import { PATH } from '@/constants';
 import MobileHeaderSidebar from './sidebar/MobileHeaderSidebar';
 import * as S from './MobileHeader.styled';
 
@@ -10,7 +11,12 @@ const MobileHeader = () => {
 
   return (
     <S.MobileHeader>
-      <Link css={S.logoLink} styleType="tertiaryGray" sizeType="md" to="/">
+      <Link
+        css={S.logoLink}
+        styleType="tertiaryGray"
+        sizeType="md"
+        to={PATH.ROOT}
+      >
         <Logo css={S.logo} />
       </Link>
       <S.SidebarButton

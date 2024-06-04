@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { useUser } from '@/contexts';
 import { useToast } from '@/hooks';
 import { useUpdateUserPassword } from '@/services';
-import { TOAST_MESSAGE } from '@/constants';
+import { PATH, TOAST_MESSAGE } from '@/constants';
 
 interface FormType {
   password: string;
@@ -34,7 +34,7 @@ const useResetPasswordForm = () => {
   const handlePasswordReset = handleSubmit(({ password }) => {
     if (!isPasswordResetAuthorized) {
       addToast(TOAST_MESSAGE.INFO.RESET_PASSWORD_NOT_AUTHORIZED);
-      navigate('/resetPassword');
+      navigate(PATH.RESET_PASSWORD);
       return;
     }
 
@@ -44,12 +44,12 @@ const useResetPasswordForm = () => {
         onSuccess: () => {
           setPasswordResetAuthorized(false);
           addToast(TOAST_MESSAGE.SUCCESS.RESET_PASSWORD);
-          navigate('/');
+          navigate(PATH.ROOT);
         },
         onError: (error) => {
           if (error.message === 'Auth session missing!') {
             addToast(TOAST_MESSAGE.WARNING.RESET_PASSWORD_AUTH_EXPIRED);
-            navigate('/resetPassword');
+            navigate(PATH.RESET_PASSWORD);
             return;
           }
           addToast(TOAST_MESSAGE.WARNING.DEFAULT);

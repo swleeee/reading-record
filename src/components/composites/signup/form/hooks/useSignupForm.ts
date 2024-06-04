@@ -6,9 +6,14 @@ import customParseFormat from 'dayjs/plugin/customParseFormat';
 
 import { useToast } from '@/hooks';
 import { useCheckNicknameDuplicated, useSignup } from '@/services';
-import { ERROR_MESSAGE, GENDER_OPTIONS, TOAST_MESSAGE } from '@/constants';
-import type { CheckboxGroupType, SelectOptionType } from '@/types';
 import { getBirthDateValid, getBirthErrorMessage } from '@/utils';
+import {
+  ERROR_MESSAGE,
+  GENDER_OPTIONS,
+  PATH,
+  TOAST_MESSAGE,
+} from '@/constants';
+import type { CheckboxGroupType, SelectOptionType } from '@/types';
 
 dayjs.extend(customParseFormat);
 
@@ -183,7 +188,7 @@ const useSignupForm = () => {
               createUser(req, {
                 onSuccess: () => {
                   addToast(TOAST_MESSAGE.SUCCESS.SIGNUP);
-                  navigate('/');
+                  navigate(PATH.ROOT);
                 },
                 onError: (error) => {
                   switch (error.message) {

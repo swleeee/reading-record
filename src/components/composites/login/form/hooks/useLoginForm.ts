@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 
 import { useToast } from '@/hooks';
 import { useLogin } from '@/services';
-import { TOAST_MESSAGE } from '@/constants';
+import { PATH, TOAST_MESSAGE } from '@/constants';
 
 const loginForm = {
   email: '',
@@ -35,7 +35,7 @@ const useLoginForm = () => {
   const handleLoginFormSubmit = handleSubmit((req) => {
     login(req, {
       onSuccess: () => {
-        navigate('/');
+        navigate(PATH.ROOT);
       },
       onError: (error) => {
         switch (error.message) {
