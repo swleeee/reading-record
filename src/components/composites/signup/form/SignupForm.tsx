@@ -47,7 +47,7 @@ const SignupForm = () => {
         isRequired
         error={errors.email?.message}
         id="email"
-        label="아이디"
+        label="아이디(이메일)"
       >
         <S.ContentWrapper>
           <Input
