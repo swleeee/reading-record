@@ -17,6 +17,7 @@ module.exports = {
   plugins: ['react-refresh', 'unused-imports', 'import'],
   rules: {
     'react-refresh/only-export-components': ['off'],
+    'react-hooks/exhaustive-deps': 'off',
     'import/first': 'error',
     'import/newline-after-import': 'error',
     'import/no-duplicates': 'error',
