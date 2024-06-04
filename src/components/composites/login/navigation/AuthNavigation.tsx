@@ -1,4 +1,4 @@
-import { Button, Link } from '@/components';
+import { Button } from '@/components';
 import { useToast } from '@/hooks';
 import { TOAST_MESSAGE } from '@/constants';
 import * as S from './AuthNavigation.styled';
@@ -27,10 +27,6 @@ const AuthNavigation = () => {
         styleType="tertiaryPrimary"
         onClick={handleLinkClick}
       />
-      <S.Division />
-      <Link sizeType="sm" styleType="tertiaryBrown" to="/signup">
-        회원가입
-      </Link>
     </S.AuthNavigation>
   );
 };

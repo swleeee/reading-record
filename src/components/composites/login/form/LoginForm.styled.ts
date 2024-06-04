@@ -30,4 +30,5 @@ export const VisibleButton = styled.button`
   }
 `;
 
-export const loginButton = tw`mb-20`;
+export const loginButton = tw`mb-[10px]`;
+export const signupLink = tw`mb-[10px]`;

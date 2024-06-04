@@ -1,4 +1,4 @@
-import { Button, Input } from '@/components';
+import { Button, Input, Link } from '@/components';
 import VisibilityOff from '@/assets/icon/ic_visibility_off.svg?react';
 import VisibilityOn from '@/assets/icon/ic_visibility_on.svg?react';
 import { ERROR_MESSAGE } from '@/constants';
@@ -54,6 +54,14 @@ const LoginForm = () => {
         styleType="primary"
         sizeType="full"
       />
+      <Link
+        css={S.signupLink}
+        sizeType="full"
+        styleType="secondary"
+        to="/signup"
+      >
+        회원가입
+      </Link>
     </S.LoginForm>
   );
 };
