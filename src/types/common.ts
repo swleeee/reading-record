@@ -10,8 +10,8 @@ export type ButtonStyleType =
   | 'tertiaryRed';
 export type ButtonSizeType = 'sm' | 'md' | 'lg' | 'full';
 
-export type LinkStyleType = 'tertiaryGray' | 'tertiaryBrown';
-export type LinkSizeType = 'sm' | 'md' | 'lg';
+export type LinkStyleType = 'secondary' | 'tertiaryGray' | 'tertiaryBrown';
+export type LinkSizeType = 'sm' | 'md' | 'lg' | 'full';
 
 export interface ToastType {
   id: string;
