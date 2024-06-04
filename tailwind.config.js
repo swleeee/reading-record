@@ -200,6 +200,12 @@ export default {
   plugins: [
     ({ addUtilities, theme }) => {
       const fontUtilities = {
+        '.google-login': {
+          fontSize: theme('fontSize.14'),
+          fontWeight: theme('fontWeight.medium'),
+          fontFamily: theme('fontFamily.roboto'),
+          lineHeight: theme('lineHeight.140'),
+        },
         '.d-display': {
           fontSize: theme('fontSize.56'),
           fontWeight: theme('fontWeight.bold'),
