@@ -97,7 +97,8 @@ const useUserInfoForm = () => {
   };
 
   const handleNicknameDuplicateCheck = () => {
-    if (!methods.watch('nickname')) return;
+    if (!methods.watch('nickname') || methods.watch('nickname').length < 2)
+      return;
 
     const req = { nickname: methods.watch('nickname'), userId: user?.id! };
 

@@ -120,7 +120,7 @@ const useSignupForm = () => {
   };
 
   const handleNicknameDuplicateCheck = () => {
-    if (!watch('nickname')) return;
+    if (!watch('nickname') || watch('nickname').length < 2) return;
 
     const req = { nickname: watch('nickname') };
 
