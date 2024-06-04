@@ -40,7 +40,7 @@ export default {
         gray800: '#434343',
         gray900: '#333333',
         black_50: 'rgba(0,0,0,0.5)',
-        mobile: '#fBFBFB',
+        default: '#FBFBFB',
         kakao: '#FEE500',
         naver: '#03C75A',
       },
