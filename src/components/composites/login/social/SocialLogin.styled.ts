@@ -39,9 +39,3 @@ export const GoogleLoginButton = styled.button`
   ${googleFontStyle};
   ${tw`mb-[10px] text-black bg-white shadow-light_md`};
 `;
-
-export const NaverLoginButton = styled.button`
-  ${socialLoginButton};
-  ${defaultFontStyle};
-  ${tw`text-white bg-naver`}
-`;
