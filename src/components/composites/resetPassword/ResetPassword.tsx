@@ -1,4 +1,5 @@
 import { useSearchParams } from 'react-router-dom';
+
 import { EmailAuthenticationForm, ResetPasswordForm } from './form';
 import * as S from './ResetPassword.styled';
 
