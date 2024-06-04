@@ -196,8 +196,6 @@ const BookReadingStatusChangeModal = React.forwardRef<
       originReadingStatus: SelectOptionType,
       newReadingStatus: SelectOptionType,
     ) => {
-      console.log(originReadingStatus, newReadingStatus);
-
       // NOTE: 첫 독서 기록 생성
       if (!recordId) {
         return getToastMessageByStatus(newReadingStatus.key);
