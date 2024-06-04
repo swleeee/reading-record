@@ -1,18 +1,22 @@
 import { useMutation, useQuery, useSuspenseQuery } from '@tanstack/react-query';
 
 import {
+  checkEmailDuplicatedAPI,
   checkNicknameDuplicatedAPI,
   getUserInfoAPI,
   getUserProfileAPI,
   loginAPI,
   logoutAPI,
+  sendEmailForAuthAPI,
   signupAPI,
   updateUserInfoAPI,
 } from '@/apis';
 import type {
+  CheckEmailDuplicatedQueryModel,
   CheckNicknameDuplicatedQueryModel,
   GetUserInfoQueryModel,
   LoginQueryModel,
+  SendEmailForAuthQueryModel,
   SignupQueryModel,
   UpdateUserInfoQueryModel,
 } from '@/types';
@@ -20,6 +24,13 @@ import queryClient from './queryClient';
 
 export const authKeys = {
   user: (req: GetUserInfoQueryModel) => ['user', req] as const,
+};
+
+export const useCheckEmailDuplicated = () => {
+  return useMutation({
+    mutationFn: (req: CheckEmailDuplicatedQueryModel) =>
+      checkEmailDuplicatedAPI(req),
+  });
 };
 
 export const useCheckNicknameDuplicated = () => {
@@ -44,6 +55,12 @@ export const useLogin = () => {
 export const useLogout = () => {
   return useMutation({
     mutationFn: () => logoutAPI(),
+  });
+};
+
+export const useSendEmailForAuthAPI = () => {
+  return useMutation({
+    mutationFn: (req: SendEmailForAuthQueryModel) => sendEmailForAuthAPI(req),
   });
 };
 

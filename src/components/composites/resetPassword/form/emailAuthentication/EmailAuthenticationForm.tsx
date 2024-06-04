@@ -1,18 +1,11 @@
 import { Button, Input, LabelContent } from '@/components';
 import { ERROR_MESSAGE } from '@/constants';
-import type { ResetPasswordStep } from '@/types';
 import useEmailAuthenticationForm from './hooks/useEmailAuthenticationForm';
 import * as S from './EmailAuthenticationForm.styled';
 
-interface EmailAuthenticationFormProps {
-  handleSetStep: (step: ResetPasswordStep) => void;
-}
-
-const EmailAuthenticationForm = ({
-  handleSetStep,
-}: EmailAuthenticationFormProps) => {
-  const { errors, watch, register, handleLinkSend } =
-    useEmailAuthenticationForm(handleSetStep);
+const EmailAuthenticationForm = () => {
+  const { isPending, errors, watch, register, handleLinkSend } =
+    useEmailAuthenticationForm();
 
   return (
     <S.Form onSubmit={handleLinkSend}>
@@ -43,7 +36,7 @@ const EmailAuthenticationForm = ({
       </LabelContent>
       <Button
         isDisabled={!!Object.keys(errors).length}
-        isLoading={false} // TODO: API 연동 시 추가 예정
+        isLoading={isPending}
         actionType="submit"
         label="이메일 인증코드 전송"
         styleType="primary"

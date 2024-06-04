@@ -7,8 +7,25 @@ import type {
   GetUserInfoQueryModel,
   GetUserInfoServerModel,
   UpdateUserInfoQueryModel,
+  CheckEmailDuplicatedQueryModel,
+  SendEmailForAuthQueryModel,
 } from '@/types';
 import { deleteUploadedFileAPI, uploadFileAPI } from './file';
+
+export const checkEmailDuplicatedAPI = async (
+  req: CheckEmailDuplicatedQueryModel,
+) => {
+  const { data, error } = await supabase
+    .from(DB_TABLE_NAME.AUTH)
+    .select('email')
+    .eq('email', req.email);
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  return !!data?.length;
+};
 
 export const checkNicknameDuplicatedAPI = async (
   req: CheckNicknameDuplicatedQueryModel,
@@ -49,6 +66,20 @@ export const loginAPI = async (req: LoginQueryModel) => {
 };
 
 export const logoutAPI = async () => await supabase.auth.signOut();
+
+export const sendEmailForAuthAPI = async (req: SendEmailForAuthQueryModel) => {
+  const { data, error } = await supabase.auth.resetPasswordForEmail(req.email, {
+    redirectTo: import.meta.env.DEV
+      ? `http://localhost:3001/resetPassword?email=${req.email}`
+      : `https://reading-record-blond.vercel.app//resetPassword?new=${req.email}`,
+  });
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  return data;
+};
 
 export const getUserProfileAPI = async (profilePath: string) => {
   const { data } = await supabase.storage

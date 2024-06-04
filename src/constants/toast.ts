@@ -28,6 +28,11 @@ export const TOAST_MESSAGE = {
       type: 'success',
       message: '회원 정보 수정이 완료되었습니다!',
     },
+    SEND_EMAIL: {
+      type: 'success',
+      message:
+        '비밀번호 재설정 링크가 전송되었습니다. \n이메일을 확인해주세요! :)',
+    },
   },
   WARNING: {
     AUTH_ALREADY_REGISTERED: {
@@ -52,6 +57,10 @@ export const TOAST_MESSAGE = {
     END_DATE_BEFORE_THAN_START_DATE: {
       type: 'warning',
       message: `'종료 날짜'가 '시작 날짜'보다 이후여야 합니다.`,
+    },
+    DEFAULT: {
+      type: 'warning',
+      message: '오류가 발생했습니다. 다시 시도해주세요.',
     },
   },
   INFO: {
