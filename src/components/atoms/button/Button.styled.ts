@@ -16,7 +16,7 @@ const buttonPrimaryLoading = css`
   ${tw`bg-brown400 hover:bg-brown400`}
 `;
 
-const buttonSecondaryDefault = tw`border border-solid border-brown400 text-brown400 bg-white hover:bg-brown50 active:bg-brown100 focus:(border border-solid border-brown700) disabled:(border-0 text-brown200 bg-brown100 cursor-not-allowed)`;
+const buttonSecondaryDefault = tw`border border-solid border-brown400 text-brown400 bg-white hover:bg-brown50 active:bg-brown100 focus:(border border-solid border-brown700) disabled:(border-0 text-brown300 bg-brown100 cursor-not-allowed)`;
 const buttonSecondaryLoading = css`
   ${buttonLoading};
   ${buttonSecondaryDefault};

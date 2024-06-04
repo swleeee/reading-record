@@ -3,7 +3,7 @@ import tw, { css } from 'twin.macro';
 import type { LinkSizeType, LinkStyleType } from '@/types';
 
 // NOTE: 링크 스타일
-const linkSecondary = tw`border border-solid border-brown400 text-brown400 bg-white hover:bg-brown50 active:bg-brown100 focus:(border border-solid border-brown700) disabled:(border-0 text-brown200 bg-brown100 cursor-not-allowed)`;
+const linkSecondary = tw`border border-solid border-brown400 text-brown400 bg-white hover:bg-brown50 active:bg-brown100 focus:(border border-solid border-brown700) disabled:(border-0 text-brown300 bg-brown100 cursor-not-allowed)`;
 const linkTertiaryBrown = tw`text-brown400 hover:text-brown500 active:text-brown600 focus:(border border-solid border-brown700)`;
 const linkTertiaryGray = tw`text-gray400 hover:text-gray500 active:text-gray600 focus:(border border-solid border-gray700)`;
 
