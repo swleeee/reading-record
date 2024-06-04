@@ -39,3 +39,5 @@ export interface Pagination {
   totalCount: number;
   totalPages: number;
 }
+
+export type ResetPasswordStep = 'authentication' | 'resetPassword';
