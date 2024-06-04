@@ -20,9 +20,9 @@ export const Label = styled.label<{ disabled?: boolean }>`
 export const Input = styled.input`
   ${({ disabled, type }) => css`
     ${type === 'radio' &&
-    tw`w-[16px] h-[16px] border border-solid border-gray300 rounded-full cursor-pointer desktop:(w-[20px] h-[20px] checked:border-[3px])`}
+    tw`w-[16px] h-[16px] border border-solid border-gray300 rounded-full cursor-pointer desktop:(w-[20px] h-[20px] checked:border-[2px])`}
     ${disabled
-      ? tw`border-gray50 cursor-not-allowed checked:(border-[2px] border-white bg-gray100 shadow-radioButtonDisabled)`
-      : tw`checked:(border-[2px] border-white bg-brown400 shadow-radioButton)`};
+      ? tw`border-gray50 cursor-not-allowed checked:(border-[3px] border-white bg-gray100 shadow-radioButtonDisabled)`
+      : tw`checked:(border-[3px] border-white bg-brown400 shadow-radioButton)`};
   `}
 `;
