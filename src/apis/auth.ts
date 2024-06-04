@@ -69,10 +69,10 @@ export const loginAPI = async (req: LoginQueryModel) => {
 export const logoutAPI = async () => await supabase.auth.signOut();
 
 export const sendEmailForAuthAPI = async (req: SendEmailForAuthQueryModel) => {
+  const domain: string = import.meta.env.VITE_DOMAIN;
+
   const { data, error } = await supabase.auth.resetPasswordForEmail(req.email, {
-    redirectTo: import.meta.env.DEV
-      ? `http://localhost:3001/resetPassword?email=${req.email}`
-      : `https://reading-record-blond.vercel.app//resetPassword?new=${req.email}`,
+    redirectTo: `${domain}?email=${req.email}`,
   });
 
   if (error) {
