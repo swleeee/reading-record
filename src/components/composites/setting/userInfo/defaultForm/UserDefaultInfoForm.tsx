@@ -153,7 +153,6 @@ const UserDefaultInfoForm = ({
             placeholder="DD"
             value={watch('birth.day')}
             register={register('birth.day', {
-              // required: ERROR_MESSAGE.REQUIRED,
               validate: (value) => checkBirthDateValidate('day', value),
               onChange: handleBirthChange('day'),
             })}
