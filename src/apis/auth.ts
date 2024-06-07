@@ -10,6 +10,7 @@ import type {
   CheckEmailDuplicatedQueryModel,
   SendEmailForAuthQueryModel,
   UpdateUserPasswordQueryModel,
+  SocialLoginQueryModel,
 } from '@/types';
 import { deleteUploadedFileAPI, uploadFileAPI } from './file';
 
@@ -61,6 +62,19 @@ export const loginAPI = async (req: LoginQueryModel) => {
 
   if (error) {
     throw new Error(error.message);
+  }
+
+  return data;
+};
+
+export const socialLoginAPI = async (provider: SocialLoginQueryModel) => {
+  const { data, error } = await supabase.auth.signInWithOAuth({
+    provider,
+    options: { redirectTo: window.location.origin },
+  });
+
+  if (error) {
+    throw error.message;
   }
 
   return data;

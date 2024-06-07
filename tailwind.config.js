@@ -73,9 +73,8 @@ export default {
         12: '12px',
       },
       fontFamily: {
-        garamond: 'GaramondPremrPro, Arial, sans-serif',
-        noto: 'Noto Sans, Arial, sans-serif',
         pretendard: 'Pretendard',
+        roboto: 'Roboto',
       },
       fontWeight: {
         ultralight: 100,
@@ -131,11 +130,11 @@ export default {
         light_sm:
           '0 1px 3px 0 rgba(45, 39, 39, 0.12), 0 1px 2px -1px rgba(45, 39, 39, 0.12)',
         light_md:
-          '0 4px 6px -1px rgba(45, 39, 39, 0.12), 0 2px 4px -2px rgba(45, 39, 39, 0.12)',
+          '0 2px 6px -1px rgba(45, 39, 39, 0.12), 0 1px 4px -2px rgba(45, 39, 39, 0.12)',
         light_lg:
-          '0 10px 15px -3px rgba(45, 39, 39, 0.12), 0 4px 6px -4px rgba(45, 39, 39, 0.12)',
+          '0 5px 15px -3px rgba(45, 39, 39, 0.12), 0 2px 6px -4px rgba(45, 39, 39, 0.12)',
         light_xl:
-          '0 20px 25px -5 px rgba(45, 39, 39, 0.12), 0 8px 16px -6px rgba(45, 39, 39, 0.12)',
+          '0 10px 25px -5px rgba(45, 39, 39, 0.12), 0 4px 16px -6px rgba(45, 39, 39, 0.12)',
       },
       keyframes: {
         show: {
@@ -201,6 +200,12 @@ export default {
   plugins: [
     ({ addUtilities, theme }) => {
       const fontUtilities = {
+        '.google-login': {
+          fontSize: theme('fontSize.14'),
+          fontWeight: theme('fontWeight.medium'),
+          fontFamily: theme('fontFamily.roboto'),
+          lineHeight: theme('lineHeight.140'),
+        },
         '.d-display': {
           fontSize: theme('fontSize.56'),
           fontWeight: theme('fontWeight.bold'),

@@ -41,6 +41,11 @@ const useUserInfoForm = () => {
     key: keyof SettingUserInfoFormType['birth'],
     value: string,
   ) => {
+    if (!value) {
+      methods.clearErrors('birth');
+      return true;
+    }
+
     const errorMessage = getBirthErrorMessage(key, value);
     if (errorMessage) return errorMessage;
 
@@ -143,9 +148,10 @@ const useUserInfoForm = () => {
                 originProfilePath: user?.user_metadata.profile_url,
                 profileFile: data.profileFile,
                 nickname: data.nickname,
-                gender: data.gender
-                  .key as (typeof GENDER_OPTIONS)[number]['key'],
-                birth: `${year}-${month}-${day}`,
+                gender: data.gender.key
+                  ? (data.gender.key as (typeof GENDER_OPTIONS)[number]['key'])
+                  : null,
+                birth: year && month && day ? `${year}-${month}-${day}` : null,
               };
 
               updateUserInfo(req, {
@@ -170,14 +176,18 @@ const useUserInfoForm = () => {
   useEffect(() => {
     if (!data || !data.length) return;
 
-    const [year, month, day] = data[0].birth.split('-');
+    const [year, month, day] = data[0].birth
+      ? data[0].birth.split('-')
+      : ['', '', ''];
 
     methods.reset({
       profileUrl: data[0].profile_url,
       email: data[0].email,
       nickname: data[0].nickname,
       birth: { year, month, day },
-      gender: GENDER_OPTIONS.find(({ key }) => key === data[0].gender),
+      gender: data[0].gender
+        ? GENDER_OPTIONS.find(({ key }) => key === data[0].gender)
+        : GENDER_OPTIONS[0],
     });
   }, [data, methods]);
 

@@ -3,6 +3,7 @@ import dayjs from 'dayjs';
 import { ERROR_MESSAGE } from '@/constants';
 
 export const getBirthDateValid = (year: string, month: string, day: string) => {
+  if (!year && !month && !day) return true;
   const date = `${year}-${month}-${day}`;
   const formattedDate = dayjs(date, 'YYYY-MM-DD', true);
 

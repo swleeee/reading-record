@@ -116,7 +116,6 @@ const UserDefaultInfoForm = ({
       </LabelContent>
       <LabelContent
         css={S.labelContent}
-        isRequired
         error={birthError}
         id="birth-year"
         label="생년월일"
@@ -130,7 +129,6 @@ const UserDefaultInfoForm = ({
             placeholder="YYYY"
             value={watch('birth.year')}
             register={register('birth.year', {
-              required: ERROR_MESSAGE.REQUIRED,
               validate: (value) => checkBirthDateValidate('year', value),
               onChange: handleBirthChange('year'),
             })}
@@ -138,12 +136,11 @@ const UserDefaultInfoForm = ({
           <Input
             css={S.birthdayInputWrapper}
             hasError={!!errors.birth?.month?.message}
-            id="birth=month"
+            id="birth-month"
             maxLength={2}
             placeholder="MM"
             value={watch('birth.month')}
             register={register('birth.month', {
-              required: ERROR_MESSAGE.REQUIRED,
               validate: (value) => checkBirthDateValidate('month', value),
               onChange: handleBirthChange('month'),
             })}
@@ -156,14 +153,13 @@ const UserDefaultInfoForm = ({
             placeholder="DD"
             value={watch('birth.day')}
             register={register('birth.day', {
-              required: ERROR_MESSAGE.REQUIRED,
               validate: (value) => checkBirthDateValidate('day', value),
               onChange: handleBirthChange('day'),
             })}
           />
         </S.BirthdayContainer>
       </LabelContent>
-      <LabelContent css={S.labelContent} isRequired id="gender" label="성별">
+      <LabelContent css={S.labelContent} id="gender" label="성별">
         <RadioButton
           options={GENDER_OPTIONS}
           selectedOption={watch('gender')}
