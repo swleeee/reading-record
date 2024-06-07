@@ -9,6 +9,7 @@ import {
   logoutAPI,
   sendEmailForAuthAPI,
   signupAPI,
+  socialLoginAPI,
   updateUserInfoAPI,
   updateUserPasswordAPI,
 } from '@/apis';
@@ -19,6 +20,7 @@ import type {
   LoginQueryModel,
   SendEmailForAuthQueryModel,
   SignupQueryModel,
+  SocialLoginQueryModel,
   UpdateUserInfoQueryModel,
   UpdateUserPasswordQueryModel,
 } from '@/types';
@@ -51,6 +53,12 @@ export const useSignup = () => {
 export const useLogin = () => {
   return useMutation({
     mutationFn: (req: LoginQueryModel) => loginAPI(req),
+  });
+};
+
+export const useSocialLogin = (req: SocialLoginQueryModel) => {
+  return useMutation({
+    mutationFn: () => socialLoginAPI(req),
   });
 };
 

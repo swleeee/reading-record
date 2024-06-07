@@ -30,6 +30,8 @@ export interface LoginQueryModel {
   password: string;
 }
 
+export type SocialLoginQueryModel = 'kakao';
+
 export interface SendEmailForAuthQueryModel {
   email: string;
 }

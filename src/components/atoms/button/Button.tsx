@@ -6,7 +6,7 @@ import type {
   ButtonStyleType,
 } from '@/types';
 import * as S from './Button.styled';
-import { LoadingSpinnner } from '../spinner';
+import { LoadingSpinner } from '../spinner';
 
 interface ButtonProps {
   className?: string;
@@ -40,7 +40,7 @@ const Button = ({
       onClick={onClick}
     >
       {isLoading && (
-        <LoadingSpinnner
+        <LoadingSpinner
           colorType={styleType === 'primary' ? 'white' : 'brown'}
         />
       )}

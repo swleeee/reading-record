@@ -9,7 +9,7 @@ export const Division = tw.span`inline-block w-full h-[1px] bg-gray-700`;
 export const SocialLoginDesc = tw.span`mx-[10px] m-body-r14 text-gray-700 whitespace-nowrap tablet:t-body-r14 labtop:d-body-r14`;
 
 const socialLoginButton = css`
-  ${tw`relative flex justify-center items-center gap-x-[8px] w-full h-[40px] rounded-[12px] hover:opacity-70`}
+  ${tw`relative flex justify-center items-center gap-x-[8px] w-full h-[40px] rounded-[6px] hover:opacity-70`}
 
   & > svg {
     ${tw`w-[18px] h-[18px]`}
