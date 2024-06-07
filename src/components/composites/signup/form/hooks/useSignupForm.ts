@@ -64,6 +64,11 @@ const useSignupForm = () => {
     key: keyof FormType['birth'],
     value: string,
   ) => {
+    if (!value) {
+      clearErrors('birth');
+      return;
+    }
+
     const errorMessage = getBirthErrorMessage(key, value);
     if (errorMessage) return errorMessage;
 
@@ -82,7 +87,6 @@ const useSignupForm = () => {
 
   const checkBirthDateError = () => {
     let hasError = false;
-
     if (
       !getBirthDateValid(
         watch('birth.year'),
@@ -167,8 +171,11 @@ const useSignupForm = () => {
         options: {
           data: {
             nickname: data.nickname,
-            gender: data.gender.key as 'm' | 'f', // TODO: 타입 좁히기 필요
-            birth: `${year}-${month}-${day}`,
+            // TODO: 타입 좁히기 필요
+            gender: data.gender.key
+              ? (data.gender.key as (typeof GENDER_OPTIONS)[number]['key'])
+              : null,
+            birth: year && month && day ? `${year}-${month}-${day}` : null,
             termsFlag: data.termOfAgreements.term,
             privacyFlag: data.termOfAgreements.policy,
             ageFlag: data.termOfAgreements.age,
