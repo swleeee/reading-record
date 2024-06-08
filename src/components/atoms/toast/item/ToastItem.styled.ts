@@ -20,6 +20,10 @@ export const ToastItem = styled.div<ToastItemProps>(
     ${TOAST_COLOR[type]}
     ${hasTitle && tw`gap-y-[6px]`}
     ${isClosing ? tw`animate-fadeOut` : tw`animate-fadeIn`}
+
+    & > svg {
+      ${hasTitle && tw`row-span-2`}
+    }
   `,
 );
 
@@ -30,7 +34,7 @@ const SYMBOL_FILL_COLOR = {
 };
 
 export const toastSymbolIcon = (type: ToastType['type']) => css`
-  ${tw`row-span-2 self-start w-[20px] h-[20px]`}
+  ${tw`self-start w-[20px] h-[20px]`}
 
   & > g > path {
     ${SYMBOL_FILL_COLOR[type]}
