@@ -1,26 +1,26 @@
 import { LoadingSpinner } from '@/components';
-import { useToast } from '@/hooks';
 import { useSocialLogin } from '@/services';
 import KakaoSymbolIcon from '@/assets/icon/ic_kakaoSymbol.svg?react';
 import GoogleSymbolIcon from '@/assets/icon/ic_googleSymbol.svg?react';
-import { TOAST_MESSAGE } from '@/constants';
+import type { SocialLoginQueryModel } from '@/types';
 import * as S from './SocialLogin.styled';
 
 const SocialLogin = () => {
-  const { isPending, mutate: loginWithKakao } = useSocialLogin('kakao');
-  const { addToast } = useToast();
+  const { isPending: isKakaoLoginPending, mutate: loginWithKakao } =
+    useSocialLogin('kakao');
+  const { isPending: isGoogleLoginPending, mutate: loginWithGoogle } =
+    useSocialLogin('google');
 
-  const handleButtonClick = (provider: 'kakao') => () => {
+  const handleButtonClick = (provider: SocialLoginQueryModel) => () => {
     switch (provider) {
       case 'kakao':
         loginWithKakao();
         break;
-    }
-  };
 
-  // TODO: 토스트 -> 모달 교체 예정
-  const handleSocialLoginButtonClick = () => {
-    addToast(TOAST_MESSAGE.INFO.SERVICE_REPAIRING);
+      case 'google':
+        loginWithGoogle();
+        break;
+    }
   };
 
   return (
@@ -32,11 +32,12 @@ const SocialLogin = () => {
       </S.SocialLoginHeader>
       <S.KakaoLoginButton type="button" onClick={handleButtonClick('kakao')}>
         <KakaoSymbolIcon css={S.symbol} />
-        {isPending && <LoadingSpinner colorType="black" />}
+        {isKakaoLoginPending && <LoadingSpinner colorType="black" />}
         카카오 로그인
       </S.KakaoLoginButton>
-      <S.GoogleLoginButton type="button" onClick={handleSocialLoginButtonClick}>
+      <S.GoogleLoginButton type="button" onClick={handleButtonClick('google')}>
         <GoogleSymbolIcon css={S.symbol} />
+        {isGoogleLoginPending && <LoadingSpinner colorType="black" />}
         Google 계정으로 로그인
       </S.GoogleLoginButton>
     </S.SocialLoginWrapper>
