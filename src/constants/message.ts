@@ -9,6 +9,7 @@ export const ERROR_MESSAGE = {
   INVALID_EMAIL: '잘못된 이메일 형식입니다.',
   INVALID_PASSWORD: '영문, 숫자, 특수문자 포함하여 4~30자로 입력해주세요.',
   INVALID_NICKNAME: '영문 대소문자, 한글, 숫자만 입력 가능합니다.',
+  NOT_EXIST_EMAIL: '가입된 이메일이 없습니다. 다시 확인해주세요.',
   MIN_LENGTH_PASSWORD: `비밀번호는 ${PASSWORD_MIN_LENGTH}자 이상이어야 합니다.`,
   MIN_LENGTH_NICKNAME: `닉네임은 ${NICKNAME_MIN_LENGTH}자 이상이어야 합니다.`,
   PASSWORD_NOT_MATCH: '비밀번호가 일치하지 않습니다.',

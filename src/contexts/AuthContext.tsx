@@ -1,4 +1,11 @@
-import { createContext, useContext, useEffect, useState } from 'react';
+import {
+  Dispatch,
+  SetStateAction,
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 import { Session, User } from '@supabase/supabase-js';
 
 import { supabase } from '@/lib';
@@ -6,18 +13,24 @@ import { queryClient } from '@/services';
 
 export const AuthContext = createContext<{
   isInitializing: boolean;
+  isPasswordResetAuthorized: boolean;
   user: User | null;
   userSession: Session | null;
+  setPasswordResetAuthorized: Dispatch<SetStateAction<boolean>>;
 }>({
   isInitializing: true,
+  isPasswordResetAuthorized: false,
   user: null,
   userSession: null,
+  setPasswordResetAuthorized: () => {},
 });
 
 export const AuthContextProvider = (props: any) => {
   const [isInitializing, setIsInitializing] = useState(true);
   const [userSession, setUserSession] = useState<Session | null>(null);
   const [user, setUser] = useState<User | null>(null);
+  const [isPasswordResetAuthorized, setPasswordResetAuthorized] =
+    useState(false);
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
@@ -36,6 +49,10 @@ export const AuthContextProvider = (props: any) => {
         if (!session?.user) {
           queryClient.invalidateQueries();
         }
+
+        if (e === 'PASSWORD_RECOVERY') {
+          setPasswordResetAuthorized(true);
+        }
       },
     );
 
@@ -44,7 +61,13 @@ export const AuthContextProvider = (props: any) => {
     };
   }, []);
 
-  const value = { isInitializing, userSession, user };
+  const value = {
+    isPasswordResetAuthorized,
+    isInitializing,
+    userSession,
+    user,
+    setPasswordResetAuthorized,
+  };
   return <AuthContext.Provider value={value} {...props} />;
 };
 

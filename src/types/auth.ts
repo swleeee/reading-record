@@ -1,6 +1,10 @@
 import { GENDER_OPTIONS } from '@/constants';
 import type { SelectOptionType } from './common';
 
+export interface CheckEmailDuplicatedQueryModel {
+  email: string;
+}
+
 export interface CheckNicknameDuplicatedQueryModel {
   nickname: string;
   userId?: string;
@@ -12,8 +16,8 @@ export interface SignupQueryModel {
   options: {
     data: {
       nickname: string;
-      gender: 'm' | 'f';
-      birth: string;
+      gender: (typeof GENDER_OPTIONS)[number]['key'] | null;
+      birth: string | null;
       termsFlag: boolean;
       privacyFlag: boolean;
       ageFlag: boolean;
@@ -26,16 +30,22 @@ export interface LoginQueryModel {
   password: string;
 }
 
+export type SocialLoginQueryModel = 'kakao' | 'google';
+
+export interface SendEmailForAuthQueryModel {
+  email: string;
+}
+
 export interface GetUserInfoQueryModel {
   userId: string;
 }
 
 export type GetUserInfoServerModel = {
   age_flag: boolean;
-  birth: string;
+  birth?: string;
   created_at: string;
   email: string;
-  gender: (typeof GENDER_OPTIONS)[number]['key'];
+  gender?: (typeof GENDER_OPTIONS)[number]['key'];
   id: string;
   nickname: string;
   privacy_flag: boolean;
@@ -58,6 +68,10 @@ export interface UpdateUserInfoQueryModel {
   originProfilePath: string | null;
   profileFile: File | null;
   nickname: string;
-  gender: (typeof GENDER_OPTIONS)[number]['key'];
-  birth: string;
+  gender: (typeof GENDER_OPTIONS)[number]['key'] | null;
+  birth: string | null;
+}
+
+export interface UpdateUserPasswordQueryModel {
+  password: string;
 }

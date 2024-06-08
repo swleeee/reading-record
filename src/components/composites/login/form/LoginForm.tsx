@@ -1,7 +1,7 @@
-import { Button, Input } from '@/components';
+import { Button, Input, Link } from '@/components';
 import VisibilityOff from '@/assets/icon/ic_visibility_off.svg?react';
 import VisibilityOn from '@/assets/icon/ic_visibility_on.svg?react';
-import { ERROR_MESSAGE } from '@/constants';
+import { ERROR_MESSAGE, PATH } from '@/constants';
 import useLoginForm from './hooks/useLoginForm';
 import * as S from './LoginForm.styled';
 
@@ -54,6 +54,14 @@ const LoginForm = () => {
         styleType="primary"
         sizeType="full"
       />
+      <Link
+        css={S.signupLink}
+        sizeType="full"
+        styleType="secondary"
+        to={PATH.SIGNUP}
+      >
+        회원가입
+      </Link>
     </S.LoginForm>
   );
 };

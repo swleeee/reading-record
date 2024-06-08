@@ -40,7 +40,7 @@ export const NumberButton = styled.button<{ isCurrentPage: boolean }>`
     ${tw`m-body-r12 tablet:t-body-r13 desktop:d-body-r14`}
     ${isCurrentPage
       ? tw`text-brown600 bg-brown200`
-      : tw`text-gray600 bg-mobile`}
+      : tw`text-gray600 bg-default`}
 
     &:not(:disabled):hover {
       ${!isCurrentPage && tw`bg-brown50`};

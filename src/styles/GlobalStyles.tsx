@@ -25,7 +25,7 @@ const customStyles = css`
   }
   #root {
     // FIXME: 모바일에서 주소 영역에 의해서 스크롤이 생기는 이슈
-    ${tw`flex flex-col`}
+    ${tw`flex flex-col tablet:bg-default`}
 
     & > main {
       ${tw`min-h-[100dvh]`};

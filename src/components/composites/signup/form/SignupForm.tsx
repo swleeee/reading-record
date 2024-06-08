@@ -47,7 +47,7 @@ const SignupForm = () => {
         isRequired
         error={errors.email?.message}
         id="email"
-        label="아이디"
+        label="아이디(이메일)"
       >
         <S.ContentWrapper>
           <Input
@@ -162,7 +162,6 @@ const SignupForm = () => {
       </LabelContent>
       <LabelContent
         css={S.labelContent}
-        isRequired
         error={birthError}
         id="birth-year"
         label="생년월일"
@@ -176,7 +175,6 @@ const SignupForm = () => {
             placeholder="YYYY"
             value={watch('birth.year')}
             register={register('birth.year', {
-              required: ERROR_MESSAGE.REQUIRED,
               validate: (value) => checkBirthDateValidate('year', value),
               onChange: handleBirthChange('year'),
             })}
@@ -184,12 +182,11 @@ const SignupForm = () => {
           <Input
             css={S.birthdayInputWrapper}
             hasError={!!errors.birth?.month?.message}
-            id="birth=month"
+            id="birth-month"
             maxLength={2}
             placeholder="MM"
             value={watch('birth.month')}
             register={register('birth.month', {
-              required: ERROR_MESSAGE.REQUIRED,
               validate: (value) => checkBirthDateValidate('month', value),
               onChange: handleBirthChange('month'),
             })}
@@ -202,14 +199,13 @@ const SignupForm = () => {
             placeholder="DD"
             value={watch('birth.day')}
             register={register('birth.day', {
-              required: ERROR_MESSAGE.REQUIRED,
               validate: (value) => checkBirthDateValidate('day', value),
               onChange: handleBirthChange('day'),
             })}
           />
         </S.BirthdayContainer>
       </LabelContent>
-      <LabelContent css={S.labelContent} isRequired id="gender" label="성별">
+      <LabelContent css={S.labelContent} id="gender" label="성별">
         <RadioButton
           options={GENDER_OPTIONS}
           selectedOption={watch('gender')}

@@ -21,12 +21,12 @@ const RadioButton = ({
           <S.Input
             type="radio"
             disabled={disabled}
-            id={option.key}
+            id={option.key || 'none'}
             value={option.key}
             checked={selectedOption.key === option.key}
             onChange={onSelect(option)}
           />
-          <S.Label htmlFor={option.key} disabled={disabled}>
+          <S.Label htmlFor={option.key || 'none'} disabled={disabled}>
             {option.label}
           </S.Label>
         </S.Container>
