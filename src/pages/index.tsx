@@ -6,8 +6,7 @@ import {
   ReadingBook,
   MainLayout,
   // PopularBook,
-  BestCommentaryMobileSkeleton,
-  BestCommentaryDesktopSkeleton,
+  BestCommentarySkeleton,
   ReadingBookMobileSkeleton,
   ReadingBookDesktopSkeleton,
 } from '@/components';
@@ -32,15 +31,7 @@ const Root = () => {
       </Suspense>
       {/* TODO: 추후 기능 도입 예정 */}
       {/* <PopularBook /> */}
-      <Suspense
-        fallback={
-          device === 'mobile' ? (
-            <BestCommentaryMobileSkeleton />
-          ) : (
-            <BestCommentaryDesktopSkeleton />
-          )
-        }
-      >
+      <Suspense fallback={<BestCommentarySkeleton />}>
         <BestCommentary />
       </Suspense>
     </MainLayout>
