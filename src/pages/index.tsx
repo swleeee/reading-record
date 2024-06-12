@@ -1,32 +1,19 @@
 import { Suspense } from 'react';
-import { useRecoilValue } from 'recoil';
 
 import {
   BestCommentary,
-  ReadingBook,
-  MainLayout,
-  // PopularBook,
   BestCommentarySkeleton,
-  ReadingBookMobileSkeleton,
-  ReadingBookDesktopSkeleton,
+  MainLayout,
+  ReadingBook,
+  ReadingBookSkeleton,
+  // PopularBook,
 } from '@/components';
-import { deviceState } from '@/stores';
 import * as S from './index.styled';
 
 const Root = () => {
-  const device = useRecoilValue(deviceState);
-
   return (
     <MainLayout css={S.mainLayout}>
-      <Suspense
-        fallback={
-          device === 'mobile' ? (
-            <ReadingBookMobileSkeleton />
-          ) : (
-            <ReadingBookDesktopSkeleton />
-          )
-        }
-      >
+      <Suspense fallback={<ReadingBookSkeleton />}>
         <ReadingBook />
       </Suspense>
       {/* TODO: 추후 기능 도입 예정 */}
