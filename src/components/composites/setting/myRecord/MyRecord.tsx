@@ -23,7 +23,6 @@ const MyRecord = () => {
         selectedOption={selectedOption}
         onClick={handleOptionSelect}
       />
-      {/* TODO: 스켈레톤 UI 적용 예정 */}
       <Suspense fallback={<MyRecordListSkeleton />}>
         <MyRecordList
           queryStatus={selectedOption.key as 'ongoing' | 'completed'}
