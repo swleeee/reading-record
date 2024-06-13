@@ -2,6 +2,7 @@ import { Global } from '@emotion/react';
 import tw, { css, GlobalStyles as BaseStyles } from 'twin.macro';
 
 import './font.css';
+import { scrollbar } from './scrollbar';
 
 const customStyles = css`
   *,
@@ -52,22 +53,9 @@ const customStyles = css`
   }
 
   textarea {
+    ${scrollbar}
     resize: none;
     outline: 0;
-
-    // NOTE: 스크롤 바 전체에 대한 스타일 지정
-    ::-webkit-scrollbar {
-      ${tw`w-[4px] h-[4px] tablet:(w-[8px] h-[8px])`}
-    }
-
-    // NOTE: 스크롤 바의 색상 지정 */
-    ::-webkit-scrollbar-thumb {
-      ${tw`rounded-full bg-brown300`}
-
-      &:hover {
-        ${tw`bg-brown500`}
-      }
-    }
   }
 `;
 
