@@ -41,7 +41,11 @@ const MyRecordList = ({ queryStatus }: MyRecordListProps) => {
           css={S.link}
           to={`${PATH.BOOK}/${record.book.isbn}`}
         >
-          <S.BookThumbnail src={record.book.thumbnail} alt="book thumbnail" />
+          <img
+            css={S.bookThumbnail}
+            src={record.book.thumbnail}
+            alt="book thumbnail"
+          />
           <S.BookContentWrapper>
             <S.Title>{record.book.title}</S.Title>
             <S.Author>{record.book.authors.join(', ')}</S.Author>

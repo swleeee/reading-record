@@ -4,6 +4,7 @@ import { SegmentedButton } from '@/components';
 import { MY_RECORD_STATUS_OPTIONS } from '@/constants';
 import type { SelectOptionType } from '@/types';
 import MyRecordList from './list/MyRecordList';
+import MyRecordListSkeleton from './list/MyRecordList.skeleton';
 import * as S from './MyRecord.styled';
 
 const MyRecord = () => {
@@ -23,7 +24,7 @@ const MyRecord = () => {
         onClick={handleOptionSelect}
       />
       {/* TODO: 스켈레톤 UI 적용 예정 */}
-      <Suspense fallback={<></>}>
+      <Suspense fallback={<MyRecordListSkeleton />}>
         <MyRecordList
           queryStatus={selectedOption.key as 'ongoing' | 'completed'}
         />
