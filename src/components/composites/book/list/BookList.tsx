@@ -6,7 +6,7 @@ import { useUser } from '@/contexts';
 import { Pagination } from '@/components';
 import { useGetBooks } from '@/services';
 import { deviceState } from '@/stores';
-import SearchIcon from '@/assets/icon/ic_search.svg?react';
+import SearchImage from '@/assets/image/search.svg?react';
 import { BOOK_SEARCH_DROPDOWN_OPTIONS } from '@/constants';
 import type { GetBooksQueryModel } from '@/types';
 import BookListData from './data/BookListData';
@@ -52,7 +52,7 @@ const BookList = () => {
         ref={noSearchRef}
         boundingClientTop={noSearchClientTop}
       >
-        <SearchIcon css={S.searchIcon} />
+        <SearchImage css={S.searchIcon} />
         <S.NoSearchText>검색창을 이용해주세요 :)</S.NoSearchText>
       </S.NoSearchContainer>
     );

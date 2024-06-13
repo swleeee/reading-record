@@ -2,7 +2,8 @@ import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 
-import { BookRecordCard } from '@/components';
+import { BookRecordCard, NoData } from '@/components';
+import NoRecordImg from '@/assets/image/no_record.svg?react';
 import type { GetBestRecordsServerModel } from '@/types';
 import * as S from './BestCommentaryMobile.styled';
 
@@ -18,20 +19,28 @@ const BestCommentaryMobile = ({ books }: BestCommentaryMobileProps) => {
         여백과 달라지는 이슈 수정 필요! */}
         <S.Title>주간 기록 베스트 10!</S.Title>
       </header>
-      <Swiper
-        css={S.swiper}
-        centeredSlides
-        modules={[Navigation, Pagination, Scrollbar, A11y]}
-        rewind
-        slidesPerView={1.2}
-        spaceBetween={28}
-      >
-        {books?.map((book) => (
-          <SwiperSlide key={book.id}>
-            <BookRecordCard bookRecord={book} />
-          </SwiperSlide>
-        ))}
-      </Swiper>
+      {books?.length ? (
+        <Swiper
+          css={S.swiper}
+          centeredSlides
+          modules={[Navigation, Pagination, Scrollbar, A11y]}
+          rewind
+          slidesPerView={1.2}
+          spaceBetween={28}
+        >
+          {books.map((book) => (
+            <SwiperSlide key={book.id}>
+              <BookRecordCard bookRecord={book} />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      ) : (
+        <NoData
+          css={S.noRecordData}
+          image={NoRecordImg}
+          content="저번 주 독서기록이 없습니다."
+        />
+      )}
     </>
   );
 };

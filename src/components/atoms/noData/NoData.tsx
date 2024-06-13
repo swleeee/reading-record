@@ -1,16 +1,26 @@
-import NoDataIcon from '@/assets/icon/ic_error.svg?react';
+import { ElementType, ReactNode } from 'react';
+
+import NoDataImage from '@/assets/image/no_data.svg?react';
 import * as S from './NoData.styled';
 
 interface NoDataProps {
   className?: string;
   content: string;
+  link?: ReactNode;
+  image?: ElementType;
 }
 
-const NoData = ({ className, content }: NoDataProps) => {
+const NoData = ({
+  className,
+  content,
+  image: Image = NoDataImage,
+  link,
+}: NoDataProps) => {
   return (
     <S.NoData className={className}>
-      <NoDataIcon css={S.noDataIcon} />
+      <Image css={S.noDataImage} />
       <S.NoDataDescription>{content}</S.NoDataDescription>
+      {link && link}
     </S.NoData>
   );
 };

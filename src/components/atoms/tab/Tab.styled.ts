@@ -1,6 +1,6 @@
 import tw, { css, styled } from 'twin.macro';
 
-export const TabContainer = tw.div`border-b border-gray200 px-[8px] bg-white`;
+export const TabContainer = tw.div`border-b border-gray200 bg-white`;
 
 export const TabList = styled.ul`
   ${tw`flex px-[24px] whitespace-nowrap overflow-x-auto tablet:(max-w-[1360px] mx-auto)`}
