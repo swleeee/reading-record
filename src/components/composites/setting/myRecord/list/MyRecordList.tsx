@@ -2,7 +2,9 @@ import dayjs from 'dayjs';
 import { Link } from 'react-router-dom';
 
 import { useUser } from '@/contexts';
+import { NoData, Link as LinkComponent } from '@/components';
 import { useGetMyLibraries } from '@/services';
+import BookImg from '@/assets/image/books.svg?react';
 import { PATH } from '@/constants';
 import * as S from './MyRecordList.styled';
 
@@ -32,6 +34,23 @@ const MyRecordList = ({ queryStatus }: MyRecordListProps) => {
   };
 
   if (!data) return null;
+
+  if (!data.records.length)
+    return (
+      <NoData
+        image={BookImg}
+        content={
+          queryStatus === 'completed'
+            ? '읽은 책이 없습니다 :( \n원하시는 책을 검색하여 읽어보세요!'
+            : '읽고 있는 책이 없습니다 :( \n원하시는 책을 검색하여 읽어보세요!'
+        }
+        link={
+          <LinkComponent sizeType="md" styleType="tertiaryBrown" to={PATH.BOOK}>
+            도서 검색하기
+          </LinkComponent>
+        }
+      />
+    );
 
   return (
     <S.RecordList>
