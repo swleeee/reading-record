@@ -2,7 +2,7 @@ import tw, { css, styled } from 'twin.macro';
 
 export const TabContainer = tw.div`flex gap-x-[40px]`;
 
-export const TabList = tw.ul`flex flex-col gap-y-[36px] min-h-[calc(100vh - 200px)] border-t border-gray50 rounded-[4px] py-[18px] bg-white shadow-light_md tablet:min-w-[180px] desktop:min-w-[240px]`;
+export const TabList = tw.ul`flex flex-col gap-y-[36px] min-h-[calc(100vh - 200px)] border-t border-gray50 rounded-[4px] py-[18px] bg-white tablet:min-w-[180px] desktop:min-w-[240px]`;
 
 export const TabItem = styled.li<{ isSelected: boolean }>`
   ${({ isSelected }) => css`
