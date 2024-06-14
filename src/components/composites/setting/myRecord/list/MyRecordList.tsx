@@ -14,7 +14,11 @@ interface MyRecordListProps {
 
 const MyRecordList = ({ queryStatus }: MyRecordListProps) => {
   const { user } = useUser();
-  const req = { userId: user?.id!, filter: queryStatus };
+  const req = {
+    userId: user?.id!,
+    filter: queryStatus,
+    target: 'myself' as const,
+  };
   const { data } = useGetMyLibraries(req);
 
   const getDateTime = (

@@ -6,6 +6,7 @@ export interface GetMyLibraryQueryModel {
   page?: number;
   pageSize?: number;
   filter: 'all' | 'ongoing' | 'completed';
+  target: 'all' | 'myself';
 }
 
 export interface GetMyLibraryServerModel {
