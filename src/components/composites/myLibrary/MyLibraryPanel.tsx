@@ -25,6 +25,7 @@ const MyLibraryPanel = ({ queryStatus }: MyLibraryPanelProps) => {
     page: 1,
     pageSize: 10,
     filter: queryStatus,
+    target: 'myself' as const,
   };
   const { data } = useGetMyLibraries(req);
 

@@ -11,7 +11,11 @@ const ReadingBook = () => {
   const device = useRecoilValue(deviceState);
 
   const { user } = useUser();
-  const req = { userId: user?.id!, filter: 'ongoing' as const };
+  const req = {
+    userId: user?.id!,
+    filter: 'ongoing' as const,
+    target: 'myself' as const,
+  };
 
   const { data } = useGetMyLibraries(req);
 

@@ -9,8 +9,11 @@ export const getMyLibrariesAPI = async (req: GetMyLibraryQueryModel) => {
     .select(
       'created_at, updated_at, id, isbn, rating, reading_start_at, reading_end_at, record_comment, like_count, user_id, users(nickname, profile_url), book!inner(thumbnail, isbn, title, authors, translators, publisher, datetime, contents)',
       { count: 'exact' },
-    )
-    .eq('user_id', req.userId);
+    );
+
+  if (req.target === 'myself') {
+    query = query.eq('user_id', req.userId);
+  }
 
   if (req.filter === 'ongoing') {
     query = query
