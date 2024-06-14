@@ -65,19 +65,45 @@ const buttonTertiaryRedLoading = css`
   ${tw`hover:text-red200`};
 `;
 
-const getButtonSize = (sizeType: ButtonSizeType) => {
-  if (sizeType === 'lg') return buttonLg;
-  if (sizeType === 'md') return buttonMd;
-  if (sizeType === 'sm') return buttonSm;
+const checkHasPadding = (styleType: ButtonStyleType) => {
+  if (styleType === 'primary' || styleType === 'secondary') return true;
 
-  return buttonFull;
+  return false;
+};
+
+const getButtonSize = (
+  sizeType: ButtonSizeType,
+  styleType: ButtonStyleType,
+) => {
+  const hasPadding = checkHasPadding(styleType);
+
+  if (sizeType === 'lg') return lgStyle(hasPadding);
+  if (sizeType === 'md') return mdStyle(hasPadding);
+  if (sizeType === 'sm') return smStyle(hasPadding);
+
+  return fullStyle(hasPadding);
 };
 
 // NOTE: 버튼 크기
-const buttonSm = tw`m-body-m12 h-[28px] px-[8px] tablet:(t-body-m12 px-[6px] py-[4px]) labtop:d-body-m14`;
-const buttonMd = tw`m-body-m13 h-[36px] px-[10px] tablet:(t-body-m13 px-[8px] py-[6px]) labtop:d-body-m15`;
-const buttonLg = tw`m-body-m14 h-[44px] px-[14px] tablet:(t-body-m14 px-[10px] py-[8px]) labtop:d-body-m16`;
-const buttonFull = tw`m-body-m14 min-w-[200px] w-full h-[44px] tablet:(t-body-m14 py-[8px]) labtop:d-body-m16`;
+const smStyle = (hasPadding: boolean) => css`
+  ${tw`m-body-m12 h-[28px] tablet:t-body-m12 desktop:d-body-m14`};
+  ${hasPadding && tw`px-[8px] tablet:(px-[6px] py-[4px])`}
+`;
+
+const mdStyle = (hasPadding: boolean) => css`
+  ${tw`m-body-m13 h-[36px] tablet:t-body-m13 desktop:d-body-m15`};
+  ${hasPadding && tw`px-[10px] tablet:(px-[8px] py-[6px])`}
+`;
+
+const lgStyle = (hasPadding: boolean) => css`
+  ${tw`m-body-m14 h-[44px] tablet:t-body-m14 desktop:d-body-m16`};
+  ${hasPadding && tw`px-[14px] tablet:(px-[10px] py-[8px])`}
+`;
+
+const fullStyle = (hasPadding: boolean) => css`
+  ${tw`m-body-m14 min-w-[200px] w-full h-[44px] tablet:t-body-m14 desktop:d-body-m16`};
+  ${hasPadding && tw`tablet:py-[8px]`}
+`;
 
 const getButtonStyle = (isLoading: boolean, styleType: ButtonStyleType) => {
   if (styleType === 'secondary') {
@@ -114,7 +140,7 @@ interface ButtonProps {
 export const Button = styled.button<ButtonProps>(
   ({ isLoading, sizeType, styleType }) => css`
     ${buttonDefault};
-    ${getButtonSize(sizeType)};
+    ${getButtonSize(sizeType, styleType)};
     ${getButtonStyle(isLoading, styleType)};
   `,
 );
