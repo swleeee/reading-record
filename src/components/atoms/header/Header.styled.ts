@@ -9,7 +9,7 @@ export const logoLink = css`
 `;
 
 export const logo = css`
-  ${tw`w-[96px] h-[28px]`}
+  ${tw`w-[75px] h-[28px]`}
 `;
 
 export const Navbar = styled.nav`

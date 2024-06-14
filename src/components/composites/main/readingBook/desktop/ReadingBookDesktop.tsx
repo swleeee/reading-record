@@ -1,9 +1,9 @@
 import { BookAddLink, BookReadingCard } from '@/components';
-import type { GetMyLibraryServerModel } from '@/types';
+import type { GetUserRecordServerModel } from '@/types';
 import * as S from './ReadingBookDesktop.styled';
 
 interface ReadingBookDesktopProps {
-  books?: GetMyLibraryServerModel['records'];
+  books?: GetUserRecordServerModel['records'];
 }
 
 const ReadingBookDesktop = ({ books }: ReadingBookDesktopProps) => {

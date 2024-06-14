@@ -1,13 +1,13 @@
 import { useNavigate } from 'react-router-dom';
 import dayjs from 'dayjs';
 
-import type { GetMyLibraryServerModel } from '@/types';
+import type { GetUserRecordServerModel } from '@/types';
 import * as S from './BookReadingCard.styled';
 
 interface BookReadingCardProps {
   className?: string;
   id: string;
-  book: GetMyLibraryServerModel['records'][number]['book'];
+  book: GetUserRecordServerModel['records'][number]['book'];
   isbn: string;
   reading_start_at: string | null;
   reading_end_at: string | null;
@@ -16,7 +16,7 @@ interface BookReadingCardProps {
   created_at: string;
   updated_at: string;
   user_id: string;
-  users: GetMyLibraryServerModel['records'][number]['users'];
+  users: GetUserRecordServerModel['records'][number]['users'];
 }
 
 const BookReadingCard = ({

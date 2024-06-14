@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { useUser } from '@/contexts';
 import { NoData, Link as LinkComponent } from '@/components';
-import { useGetMyLibraries } from '@/services';
+import { useGetUserRecords } from '@/services';
 import BookImg from '@/assets/image/books.svg?react';
 import { PATH } from '@/constants';
 import * as S from './MyRecordList.styled';
@@ -14,8 +14,12 @@ interface MyRecordListProps {
 
 const MyRecordList = ({ queryStatus }: MyRecordListProps) => {
   const { user } = useUser();
-  const req = { userId: user?.id!, filter: queryStatus };
-  const { data } = useGetMyLibraries(req);
+  const req = {
+    userId: user?.id!,
+    filter: queryStatus,
+    target: 'myself' as const,
+  };
+  const { data } = useGetUserRecords(req);
 
   const getDateTime = (
     status: 'ongoing' | 'completed',

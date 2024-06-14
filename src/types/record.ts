@@ -1,4 +1,4 @@
-import type { Pagination } from '@/types';
+import type { Document, Pagination } from '@/types';
 
 export interface GetBookRecordQueryModel {
   userId: string;
@@ -96,4 +96,20 @@ export type GetBestRecordsServerModel = {
 
 export interface GetMyTotalLikeCountQueryModel {
   userId: string;
+}
+
+export interface GetUserRecordQueryModel {
+  userId: string;
+  page?: number;
+  pageSize?: number;
+  filter: 'all' | 'ongoing' | 'completed';
+  target: 'all' | 'myself';
+}
+
+export interface GetUserRecordServerModel {
+  records: (BookRecordServerData & {
+    book: Document;
+    users: { nickname: string; profile_url: string | null };
+  })[];
+  totalCount: number;
 }
