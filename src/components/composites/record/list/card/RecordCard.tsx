@@ -58,7 +58,7 @@ const RecordCard = ({
         )}
       </S.WriterWrapper>
       <S.RecordWrapper>
-        <S.BookThumbnail src={bookThumbnail} alt="book thumbnail" />
+        <img css={S.bookThumbnail} src={bookThumbnail} alt="book thumbnail" />
         <div>
           <S.RecordComment>
             {!isExpanded && hasMoreContent ? (
