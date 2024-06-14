@@ -9,6 +9,7 @@ import {
   getBookUserRecordsAPI,
   getMyTotalLikeCountAPI,
   getTotalLikeForRecordAPI,
+  getUserRecordsAPI,
   updateBookRecordAPI,
 } from '@/apis';
 import type {
@@ -21,28 +22,34 @@ import type {
   GetMyTotalLikeCountQueryModel,
   GetTotalLikeForRecordQueryModel,
   GetTotalLikeForRecordServerModel,
+  GetUserRecordQueryModel,
   UpdateBookRecordQueryModel,
 } from '@/types';
 import queryClient from './queryClient';
 import { bookKeys } from './book';
 
+// TODO: 쿼리키 정리 필요
 const bookRecordKeys = {
-  myRecord: (isbn: string) => [...bookKeys.detail(isbn), 'myRecord'] as const,
-  userRecords: (isbn: string) => {
-    return [...bookKeys.detail(isbn), 'userRecords'] as const;
+  myBookRecord: (isbn: string) =>
+    [...bookKeys.detail(isbn), 'myRecord'] as const,
+  userBookRecords: (isbn: string) => {
+    return [...bookKeys.detail(isbn), 'userBookRecords'] as const;
   },
-  userRecord: (filter: GetBookUserRecordsQueryModel) => {
+  userBookRecord: (filter: GetBookUserRecordsQueryModel) => {
     const { isbn, ...rest } = filter;
-    return [...bookRecordKeys.userRecords(isbn), rest] as const;
+    return [...bookRecordKeys.userBookRecords(isbn), rest] as const;
   },
-  userRecordLike: (isbn: string, recordId: string) =>
-    [...bookRecordKeys.userRecords(isbn), 'like', recordId] as const,
+  userBookRecordLike: (isbn: string, recordId: string) =>
+    [...bookRecordKeys.userBookRecords(isbn), 'like', recordId] as const,
   bestRecord: (req: GetBestRecordsQueryModel) => ['bestRecord', req] as const,
+  userRecords: () => ['userRecord', 'list'] as const,
+  userRecord: (req: GetUserRecordQueryModel) =>
+    [...bookRecordKeys.userRecords(), req] as const,
 };
 
 export const useGetBookRecord = (req: GetBookRecordQueryModel) => {
   return useSuspenseQuery({
-    queryKey: bookRecordKeys.myRecord(req.isbn),
+    queryKey: bookRecordKeys.myBookRecord(req.isbn),
     queryFn: () => getBookRecordAPI(req),
   });
 };
@@ -52,12 +59,12 @@ export const useCreateBookRecord = () => {
     mutationFn: (req: CreateBookRecordQueryModel) => createBookRecordAPI(req),
     onSuccess: (_, variables) => {
       queryClient.invalidateQueries({
-        queryKey: bookRecordKeys.myRecord(variables.isbn),
+        queryKey: bookRecordKeys.myBookRecord(variables.isbn),
       });
 
       if (variables.readingStartDate && variables.readingEndDate) {
         queryClient.invalidateQueries({
-          queryKey: bookRecordKeys.userRecords(variables.isbn),
+          queryKey: bookRecordKeys.userBookRecords(variables.isbn),
         });
       }
     },
@@ -69,12 +76,12 @@ export const useUpdateBookRecord = () => {
     mutationFn: (req: UpdateBookRecordQueryModel) => updateBookRecordAPI(req),
     onSuccess: (_, variables) => {
       queryClient.invalidateQueries({
-        queryKey: bookRecordKeys.myRecord(variables.isbn),
+        queryKey: bookRecordKeys.myBookRecord(variables.isbn),
       });
 
       if (variables.readingStartDate && variables.readingEndDate) {
         queryClient.invalidateQueries({
-          queryKey: bookRecordKeys.userRecords(variables.isbn),
+          queryKey: bookRecordKeys.userBookRecords(variables.isbn),
         });
       }
     },
@@ -83,7 +90,7 @@ export const useUpdateBookRecord = () => {
 
 export const useGetBookUserRecords = (req: GetBookUserRecordsQueryModel) => {
   return useSuspenseQuery({
-    queryKey: bookRecordKeys.userRecord(req),
+    queryKey: bookRecordKeys.userBookRecord(req),
     queryFn: () => getBookUserRecordsAPI(req),
   });
 };
@@ -92,7 +99,7 @@ export const useGetTotalLikeForRecord = (
   req: GetTotalLikeForRecordQueryModel,
 ) => {
   return useSuspenseQuery({
-    queryKey: bookRecordKeys.userRecordLike(req.isbn, req.recordId),
+    queryKey: bookRecordKeys.userBookRecordLike(req.isbn, req.recordId),
     queryFn: () => (req.userId ? getTotalLikeForRecordAPI(req) : null),
   });
 };
@@ -102,7 +109,7 @@ export const useCreateLikeForRecord = () => {
     mutationFn: (req: CreateLikeForRecordQueryModel) =>
       createLikeForRecordAPI(req),
     onMutate: async (variables) => {
-      const queryKey = bookRecordKeys.userRecordLike(
+      const queryKey = bookRecordKeys.userBookRecordLike(
         variables.isbn,
         variables.recordId,
       );
@@ -149,13 +156,13 @@ export const useCreateLikeForRecord = () => {
         | undefined,
     ) {
       queryClient.setQueryData(
-        bookRecordKeys.userRecordLike(variables.isbn, variables.recordId),
+        bookRecordKeys.userBookRecordLike(variables.isbn, variables.recordId),
         context?.oldData,
       );
     },
     onSettled: (_, __, variables) => {
       queryClient.invalidateQueries({
-        queryKey: bookRecordKeys.userRecordLike(
+        queryKey: bookRecordKeys.userBookRecordLike(
           variables.isbn,
           variables.recordId,
         ),
@@ -169,7 +176,7 @@ export const useDeleteLikeForRecord = () => {
     mutationFn: (req: DeleteLikeForRecordQueryModel) =>
       deleteLikeForRecordAPI(req),
     onMutate: async (variables) => {
-      const queryKey = bookRecordKeys.userRecordLike(
+      const queryKey = bookRecordKeys.userBookRecordLike(
         variables.isbn,
         variables.recordId,
       );
@@ -216,13 +223,13 @@ export const useDeleteLikeForRecord = () => {
         | undefined,
     ) {
       queryClient.setQueryData(
-        bookRecordKeys.userRecordLike(variables.isbn, variables.recordId),
+        bookRecordKeys.userBookRecordLike(variables.isbn, variables.recordId),
         context?.oldData,
       );
     },
     onSettled: (_, __, variables) => {
       queryClient.invalidateQueries({
-        queryKey: bookRecordKeys.userRecordLike(
+        queryKey: bookRecordKeys.userBookRecordLike(
           variables.isbn,
           variables.recordId,
         ),
@@ -242,5 +249,12 @@ export const useGetMyTotalLikeCount = (req: GetMyTotalLikeCountQueryModel) => {
   return useSuspenseQuery({
     queryKey: ['myTotalLikeCount'],
     queryFn: () => getMyTotalLikeCountAPI(req),
+  });
+};
+
+export const useGetUserRecords = (req: GetUserRecordQueryModel) => {
+  return useSuspenseQuery({
+    queryKey: bookRecordKeys.userRecord(req),
+    queryFn: () => (req.userId ? getUserRecordsAPI(req) : null),
   });
 };

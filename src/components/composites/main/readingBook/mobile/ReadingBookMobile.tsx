@@ -3,11 +3,11 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 
 import { BookAddLink, BookReadingCard } from '@/components';
-import type { GetMyLibraryServerModel } from '@/types';
+import type { GetUserRecordServerModel } from '@/types';
 import * as S from './ReadingBookMobile.styled';
 
 interface ReadingBookMobileProps {
-  books?: GetMyLibraryServerModel['records'];
+  books?: GetUserRecordServerModel['records'];
 }
 
 const ReadingBookMobile = ({ books }: ReadingBookMobileProps) => {

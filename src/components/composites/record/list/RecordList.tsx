@@ -4,7 +4,7 @@ import { useRecoilValue } from 'recoil';
 
 import { useUser } from '@/contexts';
 import { NoData, Pagination } from '@/components';
-import { useGetMyLibraries } from '@/services';
+import { useGetUserRecords } from '@/services';
 import { deviceState } from '@/stores';
 import RecordCard from './card/RecordCard';
 import * as S from './RecordList.styled';
@@ -25,7 +25,7 @@ const RecordList = () => {
     filter: 'completed' as const,
     target: 'all' as const,
   };
-  const { data } = useGetMyLibraries(req);
+  const { data } = useGetUserRecords(req);
 
   useEffect(() => {
     if (!ref.current) return;

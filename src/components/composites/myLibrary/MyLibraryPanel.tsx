@@ -3,7 +3,7 @@ import { useRecoilValue } from 'recoil';
 
 import { useUser } from '@/contexts';
 import { BookListCard, NoData, Pagination } from '@/components';
-import { useGetMyLibraries } from '@/services';
+import { useGetUserRecords } from '@/services';
 import { deviceState } from '@/stores';
 import { getBookReadingStatus } from '@/utils';
 import { BOOK_READING_STATUS_OPTIONS } from '@/constants';
@@ -27,7 +27,7 @@ const MyLibraryPanel = ({ queryStatus }: MyLibraryPanelProps) => {
     filter: queryStatus,
     target: 'myself' as const,
   };
-  const { data } = useGetMyLibraries(req);
+  const { data } = useGetUserRecords(req);
 
   useEffect(() => {
     if (!ref.current) return;
