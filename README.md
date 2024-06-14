@@ -9,15 +9,14 @@
 
 ### 배포 주소
 
-- <ins>(추후 작성 예정)</ins>
+- https://reading-record-blond.vercel.app/
 
 ### 테스트 계정
 
 ```html
-email: (추후 작성 예정) password: (추후 작성 예정)
+email: test1@naver.com 
+password: qwer1234@
 ```
-
-- <ins>(추후 작성 예정)</ins>
 
 ## 시작 가이드
 
