@@ -122,10 +122,8 @@ const MobileHeaderSidebar = () => {
           </li>
           <li>
             <NavLink
-              css={S.navLink(
-                location.pathname.split('/').includes('myLibrary'),
-              )}
-              to={PATH.MY_LIBRARY}
+              css={S.navLink(location.pathname.split('/').includes('record'))}
+              to={PATH.RECORD}
               onClick={handleLinkTouch}
             >
               독서 기록

@@ -16,10 +16,14 @@ export const POPULAR_BOOK_DATE_FILTER_OPTIONS = [
   { key: 'year', label: 'Year' },
 ];
 
-export const BOOK_READING_STATUS_OPTIONS = [
-  { key: 'pending', label: '읽기 전' },
+export const MY_RECORD_STATUS_OPTIONS = [
   { key: 'ongoing', label: '읽기 중' },
   { key: 'completed', label: '읽기 완료' },
+];
+
+export const BOOK_READING_STATUS_OPTIONS = [
+  { key: 'pending', label: '읽기 전' },
+  ...MY_RECORD_STATUS_OPTIONS,
 ];
 
 export const DATE_PICKER_VIEW_MODE_OPTIONS = [

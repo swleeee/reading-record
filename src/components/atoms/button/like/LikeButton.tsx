@@ -59,11 +59,13 @@ const LikeButton = ({
       {data && (
         <>
           {data?.[0].isliked ? (
-            <LikeFilledIcon css={S.likeIcon} />
+            <LikeFilledIcon css={S.likeFilledIcon} />
           ) : (
             <LikeIcon css={S.likeIcon} />
           )}
-          <S.Like>{data?.[0].count ?? 0}</S.Like>
+          <S.Like isLiked={data?.[0].isliked}>
+            좋아요 {data?.[0].count ?? 0}
+          </S.Like>
         </>
       )}
     </S.LikeButton>

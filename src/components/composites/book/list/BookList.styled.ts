@@ -10,7 +10,7 @@ export const NoSearchContainer = styled.div<{ boundingClientTop: number }>`
 `;
 
 export const searchIcon = css`
-  ${tw`w-[64px] h-[64px] animate-shakingUpAndDown tablet:(w-[88px] h-[88px]) desktop:(w-[110px] h-[110px])`}
+  ${tw`w-[110px] h-[110px] animate-shakingUpAndDown tablet:(w-[198px] h-[198px]) desktop:(w-[220px] h-[220px])`}
 
   & > g > path {
     ${tw`fill-brown400`}

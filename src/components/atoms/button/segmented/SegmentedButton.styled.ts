@@ -7,12 +7,12 @@ export const SegmentButton = styled.button<{
   indexType: 'first' | 'last' | 'remainder';
 }>`
   ${({ isSelected, indexType }) => css`
-    ${tw`flex items-center gap-x-4 px-[14px] py-[8px] not-last-of-type:border-r border-r-black`}
+    ${tw`flex items-center gap-x-[4px] px-[14px] py-[8px] not-last-of-type:border-r border-r-black tablet:gap-x-[6px]`}
 
     ${isSelected ? tw`bg-brown200` : tw`bg-white hover:bg-brown50`}
     ${indexType === 'first'
-      ? tw`rounded-l-[4px]`
-      : indexType === 'last' && tw`rounded-r-[4px]`}
+      ? tw`rounded-l-[3px]`
+      : indexType === 'last' && tw`rounded-r-[3px]`}
   `}
 `;
 
