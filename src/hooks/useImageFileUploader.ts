@@ -1,27 +1,39 @@
-import React, { useRef, useState } from 'react';
+import { ChangeEvent, useRef, useState } from 'react';
+import imageCompression from 'browser-image-compression';
 
 export const useImageFileUploader = (
   initPreviewUrl: string | null,
   onChange: (file: File | null) => void,
 ) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const [isUploadLoading, setIsUploadLoading] = useState(false);
   const [previewUrl, setPreviewUrl] = useState<string | null>(initPreviewUrl);
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImageCompress = async (e: ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
-    if (files && files.length > 0) {
-      const file = files[0];
-      onChange(file);
-      previewFile(file);
-    }
-  };
 
-  const previewFile = (file: File) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onloadend = () => {
-      setPreviewUrl(reader.result as string);
-    };
+    if (files && files.length > 0) {
+      const options = {
+        maxSizeMB: 0.2,
+        maxWidthOrHeight: 256,
+        useWebWorker: true,
+        fileType: 'image/webp',
+      };
+
+      try {
+        setIsUploadLoading(true);
+        const compressedFile = await imageCompression(files[0], options);
+        onChange(compressedFile);
+        const promise = imageCompression.getDataUrlFromFile(compressedFile);
+        promise.then((result) => {
+          setPreviewUrl(result);
+        });
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setIsUploadLoading(false);
+      }
+    }
   };
 
   const handleImageFileEdit = () => {
@@ -35,8 +47,9 @@ export const useImageFileUploader = (
 
   return {
     fileInputRef,
+    isUploadLoading,
     previewUrl,
-    handleFileChange,
+    handleFileChange: handleImageCompress,
     handlePreviewImageDelete,
     handleImageFileEdit,
   };

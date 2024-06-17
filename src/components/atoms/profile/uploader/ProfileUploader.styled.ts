@@ -6,6 +6,11 @@ export const profile = css`
   ${tw`w-[128px] h-[128px] border border-white rounded-[64px]`}
 `;
 
+export const LoadingWrapper = styled.div`
+  ${profile};
+  ${tw`flex justify-center items-center border-gray900`}
+`;
+
 export const ProfileImage = styled.img`
   ${profile};
 `;

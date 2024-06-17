@@ -32,6 +32,7 @@ const UserInfo = () => {
 
   const {
     fileInputRef,
+    isUploadLoading,
     previewUrl,
     handleFileChange,
     handlePreviewImageDelete,
@@ -45,6 +46,7 @@ const UserInfo = () => {
         <S.TopWrapper>
           <ProfileUploader
             fileInputRef={fileInputRef}
+            isUploadLoading={isUploadLoading}
             previewUrl={previewUrl}
             handleFileChange={handleFileChange}
             handleProfileImageEdit={handleProfileImageEdit}
