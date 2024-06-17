@@ -41,5 +41,5 @@ export const Navbar = styled.nav`
 
 export const navLink = (isSelected: boolean) => css`
   ${tw`inline-flex items-center w-full h-[48px]  rounded-[4px] px-[12px] m-body-m14 cursor-pointer hover:bg-brown50`}
-  ${isSelected ? tw`text-brown400` : tw`text-gray300`}
+  ${isSelected ? tw`text-brown400` : tw`text-gray800`}
 `;

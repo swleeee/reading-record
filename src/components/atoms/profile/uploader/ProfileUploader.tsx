@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Button } from '@/components';
+import { Button, LoadingSpinner } from '@/components';
 import { useGetUserProfile } from '@/services';
 import DefaultProfileIcon from '@/assets/icon/ic_default_profile.svg?react';
 import PersonEditIcon from '@/assets/icon/ic_person_edit.svg?react';
@@ -8,6 +8,7 @@ import * as S from './ProfileUploader.styled';
 
 interface ProfileUploaderProps {
   fileInputRef: React.RefObject<HTMLInputElement>;
+  isUploadLoading: boolean;
   previewUrl: string | null;
   handleFileChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleProfileImageEdit: () => void;
@@ -17,6 +18,7 @@ interface ProfileUploaderProps {
 const ProfileUploader = ({
   fileInputRef,
   previewUrl,
+  isUploadLoading,
   handleFileChange,
   handleProfileImageEdit,
   handlePreviewImageDelete,
@@ -34,9 +36,14 @@ const ProfileUploader = ({
       <S.ProfileEditButton
         type="button"
         aria-label="edit profile image"
+        disabled={isUploadLoading}
         onClick={handleProfileImageEdit}
       >
-        {userProfileImageUrl ? (
+        {isUploadLoading ? (
+          <S.LoadingWrapper>
+            <LoadingSpinner colorType="black" />
+          </S.LoadingWrapper>
+        ) : userProfileImageUrl ? (
           <S.ProfileImage src={userProfileImageUrl} />
         ) : (
           <S.DefaultProfile>

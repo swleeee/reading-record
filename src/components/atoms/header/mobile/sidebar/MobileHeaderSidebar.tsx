@@ -69,7 +69,7 @@ const MobileHeaderSidebar = () => {
           to={PATH.ROOT}
           onClick={handleLogoTouch}
         >
-          <Logo css={S.logo} />
+          <Logo css={S.logo} aria-label="Reading Record logo" />
         </Link>
         <S.CloseButton
           type="button"

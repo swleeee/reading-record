@@ -1,40 +1,24 @@
-import { Fragment, useEffect } from 'react';
+import { useEffect, Suspense, lazy } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
 
-import { ScrollToTop } from './components';
+import Home from './pages';
+import Login from './pages/login';
+import Book from './pages/book';
+import Record from './pages/record';
+import Setting from './pages/setting';
+import BookDetail from './pages/book/[id]';
+import App from './pages/_app';
+import { LoadingPage, ScrollToTop } from './components';
 import { windowSizeState } from './stores';
 
-// NOTE: _app.tsx, 404.tsx
-const DEFAULT_MODULES: Record<string, { [key: string]: any }> =
-  import.meta.glob('/src/pages/(_app|404).tsx', { eager: true });
-
-// NOTE: 일반 컴포넌트
-const COMPONENT_MODULES: Record<string, { [key: string]: any }> =
-  import.meta.glob('/src/pages/**/[a-z[]*.tsx', { eager: true });
-
-// TODO: 변수 리팩토링
-const defaultRoutes = Object.keys(DEFAULT_MODULES).reduce<{
-  [key: string]: any;
-}>((routes, modulePath) => {
-  const key = modulePath.replace(/\/src\/pages\/|\.tsx$/g, '');
-  return { ...routes, [key]: DEFAULT_MODULES[modulePath].default };
-}, {});
-
-const components = Object.keys(COMPONENT_MODULES).map((modulePath) => {
-  const path = modulePath
-    .replace(/\/src\/pages|index|\.tsx$/g, '')
-    .replace(/\[\.{3}.+\]/, '*')
-    .replace(/\[(.+)\]/, ':$1');
-
-  return { path, component: COMPONENT_MODULES[modulePath].default };
-});
+const Signup = lazy(() => import('./pages/signup'));
+const ResetPassword = lazy(() => import('./pages/resetPassword'));
+const Privacy = lazy(() => import('./pages/privacy'));
+const Terms = lazy(() => import('./pages/terms'));
 
 export const Router = () => {
   const setWindowSize = useSetRecoilState(windowSizeState);
-
-  const App = defaultRoutes?.['_app'] || Fragment;
-  const NotFound = defaultRoutes?.['404'] || Fragment;
 
   useEffect(() => {
     const handleScreenResize = () => {
@@ -56,10 +40,48 @@ export const Router = () => {
       <ScrollToTop>
         <Routes>
           <Route element={<App />}>
-            {components.map(({ path, component: Component = Fragment }) => (
-              <Route index key={path} path={path} element={<Component />} />
-            ))}
-            <Route path="*" element={NotFound} />
+            {/* TODO: 추후 수정 예정 */}
+            {/* <Route path="*" element={<NotFound />} /> */}
+            <Route index path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route
+              path="/signup"
+              element={
+                <Suspense fallback={<LoadingPage />}>
+                  <Signup />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/resetPassword"
+              element={
+                <Suspense fallback={<LoadingPage />}>
+                  <ResetPassword />
+                </Suspense>
+              }
+            />
+            <Route path="/book">
+              <Route path="" element={<Book />} />
+              <Route path=":id" element={<BookDetail />} />
+            </Route>
+            <Route path="/record" element={<Record />} />
+            <Route path="/setting" element={<Setting />} />
+            <Route
+              path="/privacy"
+              element={
+                <Suspense fallback={<LoadingPage />}>
+                  <Privacy />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/terms"
+              element={
+                <Suspense fallback={<LoadingPage />}>
+                  <Terms />
+                </Suspense>
+              }
+            />
           </Route>
         </Routes>
       </ScrollToTop>

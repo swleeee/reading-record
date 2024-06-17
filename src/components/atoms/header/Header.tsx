@@ -41,7 +41,7 @@ const Header = () => {
           sizeType="md"
           to={PATH.ROOT}
         >
-          <Logo css={S.logo} />
+          <Logo css={S.logo} aria-label="Reading Record logo" />
         </Link>
         <S.Navbar>
           <ul>

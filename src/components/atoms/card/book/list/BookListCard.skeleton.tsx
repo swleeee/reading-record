@@ -1,5 +1,4 @@
 import Skeleton from 'react-loading-skeleton';
-import 'react-loading-skeleton/dist/skeleton.css';
 
 import RatingIcon from '@/assets/icon/ic_rating.svg?react';
 import * as S from './BookListCard.styled';
