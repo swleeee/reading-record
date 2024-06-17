@@ -3,6 +3,7 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import svgr from 'vite-plugin-svgr';
 import checker from 'vite-plugin-checker';
+import { compression } from 'vite-plugin-compression2';
 import { visualizer } from 'rollup-plugin-visualizer';
 
 import * as path from 'path';
@@ -38,6 +39,10 @@ export default defineConfig({
     checker({
       typescript: true,
       eslint: { lintCommand: 'eslint ./src --ext .ts,.tsx' },
+    }),
+    compression({
+      include: [/\.(js)$/, /\.(css)$/],
+      threshold: 2000,
     }),
     visualizer({
       open: true,
