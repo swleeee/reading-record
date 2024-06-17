@@ -52,4 +52,37 @@ export default defineConfig({
   resolve: {
     alias: [{ find: '@', replacement: path.resolve(__dirname, 'src') }],
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: (id) => {
+          if (id.includes('axios')) {
+            return '@network-vendor';
+          }
+          if (
+            id.includes('node_modules/react/') ||
+            id.includes('node_modules/react-dom/')
+          ) {
+            return '@react-vendor';
+          }
+          if (
+            id.includes('swiper') ||
+            id.includes('react-spinners') ||
+            id.includes('react-loading-skeleton')
+          ) {
+            return '@ui-effect-vendor';
+          }
+          if (id.includes('recoil')) {
+            return '@state-management-vendor';
+          }
+          if (id.includes('@emotion/')) {
+            return '@emotion-vendor';
+          }
+          if (id.includes('@tanstack/react-query')) {
+            return '@data-fetching-vendor';
+          }
+        },
+      },
+    },
+  },
 });
