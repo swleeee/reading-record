@@ -77,15 +77,10 @@ export default {
         roboto: 'Roboto',
       },
       fontWeight: {
-        ultralight: 100,
-        light: 200,
-        thin: 300,
         normal: 400,
         medium: 500,
         semibold: 600,
         bold: 700,
-        extrabold: 800,
-        black: 900,
       },
       lineHeight: {
         150: '1.5',
