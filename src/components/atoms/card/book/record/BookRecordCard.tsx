@@ -42,7 +42,7 @@ const BookRecordCard = ({ bookRecord }: BookRecordCardProps) => {
 
   return (
     <button type="button" css={S.bookRecordCard} onClick={handleButtonClick}>
-      <S.BookCoverImg src={bookRecord.thumbnail} />
+      <S.BookCoverImg src={bookRecord.thumbnail} alt="book thumbnail" />
       <S.BookRecordInfo>
         <S.Header>
           <Profile src={bookRecord.profile_url} />

@@ -46,6 +46,7 @@ const LikeButton = ({
   return (
     <S.LikeButton
       as={as}
+      aria-label="like button"
       role="button"
       tabIndex={0}
       disabled={currentUserId === userId}
