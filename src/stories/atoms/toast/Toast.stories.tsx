@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react';
 
-import { Toast, ToastItem } from '@/components';
-import { ToastType } from '@/types';
+import { Toast, ToastItem } from '@/shared/ui';
+import { ToastType } from '@/shared/model';
 
 const meta = {
   title: 'Design System/Components/Toast',

@@ -1,9 +1,9 @@
 import { Meta, StoryObj } from '@storybook/react';
 
-import { BookRecordCard } from '@/components';
-import Book1Img from '@/assets/image/book1.png';
-import Book2Img from '@/assets/image/book2.png';
-import Profile1Img from '@/assets/image/profile1.png';
+import { BookRecordCard } from '@/widgets/bookRecordCard';
+import Book1Img from '@/shared/assets/image/book1.png';
+import Book2Img from '@/shared/assets/image/book2.png';
+import Profile1Img from '@/shared/assets/image/profile1.png';
 
 const meta = {
   title: 'Design System/Components/Card/BookRecordCard',
