@@ -25,19 +25,8 @@ export const BookReadingCard = ({
   book,
   reading_start_at,
 }: BookReadingCardProps) => {
-  // const navigate = useNavigate();
-
-  // const handleButtonClick = (isbn: string) => () => {
-  //   navigate(`book/${isbn}`);
-  // };
-
   return (
-    <Link
-      className={className}
-      css={S.link}
-      to={`book/${isbn}`}
-      // onClick={handleButtonClick(isbn)}
-    >
+    <Link className={className} css={S.link} to={`book/${isbn}`}>
       <S.BookTitle>{book.title}</S.BookTitle>
       <S.BookDescriptionWrapper>
         <S.BookThumbnail src={book.thumbnail} alt="book thumbnail" />

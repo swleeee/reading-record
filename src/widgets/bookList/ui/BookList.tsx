@@ -61,7 +61,6 @@ export const BookList = () => {
 
   return (
     <S.Container ref={ref}>
-      {/* <BookListData books={data.documents} /> */}
       {data.documents.length ? (
         data.documents.map((book) => (
           <BookSearchCard
