@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { Meta, StoryObj } from '@storybook/react';
 
-import { Input } from '@/components';
+import { Input } from '@/shared/ui';
 
 const meta = {
   title: 'Design System/Components/Input',
