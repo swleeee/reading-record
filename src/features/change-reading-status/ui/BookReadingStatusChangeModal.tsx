@@ -19,7 +19,7 @@ import {
   ERROR_MESSAGE,
   RECORD_CONTENT_PUBLIC_OPTIONS,
 } from '@/shared/constants';
-import { type SelectOptionType } from '@/shared/model';
+import type { SelectOptionType } from '@/shared/model';
 import { useBookReadingStatusChange } from '../lib/useBookReadingStatusChange';
 import * as S from './BookReadingStatusChangeModal.styled';
 

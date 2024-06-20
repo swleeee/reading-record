@@ -11,8 +11,8 @@ export {
   useUpdateUserPassword,
   useUpdateUserInfo,
 } from './model/queries';
-export {
-  type CheckEmailDuplicatedQueryModel,
-  type SettingUserInfoFormType,
-  type SocialLoginQueryModel,
+export type {
+  CheckEmailDuplicatedQueryModel,
+  SettingUserInfoFormType,
+  SocialLoginQueryModel,
 } from './model/types';

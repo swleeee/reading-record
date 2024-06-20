@@ -1,7 +1,7 @@
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
 
-import { type SettingUserInfoFormType } from '@/entities/auth';
+import type { SettingUserInfoFormType } from '@/entities/auth';
 import { Button, Input, LabelContent, RadioButton } from '@/shared/ui';
 import {
   ERROR_MESSAGE,

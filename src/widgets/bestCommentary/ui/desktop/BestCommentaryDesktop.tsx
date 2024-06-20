@@ -1,5 +1,5 @@
-import type { GetBestRecordsServerModel } from '@/entities/record';
 import { BookRecordCard } from '@/widgets/bookRecordCard';
+import type { GetBestRecordsServerModel } from '@/entities/record';
 import { NoData } from '@/shared/ui';
 import NoRecordImg from '@/shared/assets/image/no_record.svg?react';
 import * as S from './BestCommentaryDesktop.styled';
