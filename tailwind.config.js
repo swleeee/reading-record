@@ -1,49 +1,121 @@
 /** @type {import('tailwindcss').Config} */
 
-const plugin = require('tailwindcss/plugin');
-
 export default {
+  darkMode: 'class',
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
-    extend: {
-      colors: {
-        brown50: '#F0EDEC',
-        brown100: '#D2C8C4',
-        brown200: '#BCADA8',
-        brown300: '#9D8780',
-        brown400: '#8A7067',
-        brown500: '#6D4C41',
-        brown600: '#63453B',
-        brown700: '#4D362E',
-        brown800: '#3C2A24',
-        brwon900: '#2E201B',
-        blue50: '#E6F0FF',
-        blue100: '#6BA6FF',
-        blue200: '#2B7FFF',
-        blue300: '#0065FF',
-        blue400: '#0047B3',
-        blue500: '#00329C',
-        red50: '#FAE6EB',
-        red100: '#E36B89',
-        red200: '#DB2E56',
-        red300: '#CE0033',
-        red400: '#900024',
-        red500: '#7E001F',
-        gray50: '#F2F2F2',
-        gray100: '#D6D6D6',
-        gray200: '#C2C2C2',
-        gray300: '#A6A6A6',
-        gray400: '#959595',
-        gray500: '#7A7A7A',
-        gray600: '#6F6F6F',
-        gray700: '#575757',
-        gray800: '#434343',
-        gray900: '#333333',
-        black_50: 'rgba(0,0,0,0.5)',
-        default: '#FBFBFB',
-        kakao: '#FEE500',
-        naver: '#03C75A',
+    colors: {
+      light: {
+        brown: {
+          50: '#F0EDEC',
+          100: '#D2C8C4',
+          200: '#BCADA8',
+          300: '#9D8780',
+          400: '#8A7067',
+          500: '#6D4C41',
+          600: '#63453B',
+          700: '#4D362E',
+          800: '#3C2A24',
+          900: '#2E201B',
+        },
+        navy: {
+          50: '#E6EBF5',
+          100: '#CCD6EB',
+          200: '#B3C0E0',
+          300: '#99ABD6',
+          400: '#8096CC',
+          500: '#6681C1',
+          600: '#4D6BB7',
+          700: '#3366AD',
+          800: '#1A50A2',
+          900: '#005B98',
+        },
+        red: {
+          50: '#FFDCE0',
+          100: '#FFC8D0',
+          200: '#FFB4C0',
+          300: '#FFA0B0',
+          400: '#FF8CA0',
+          500: '#FF7890',
+          600: '#FF6480',
+          700: '#FF5070',
+          800: '#FF3C60',
+          900: '#FF2850',
+        },
+        grey: {
+          50: '#FEFEFE',
+          100: '#FDFDFD',
+          200: '#F7F8F9',
+          300: '#E9EBEE',
+          400: '#C5C8CE',
+          500: '#646F7C',
+          600: '#374553',
+          700: '#28323C',
+          800: '#161D24',
+        },
       },
+      dark: {
+        brown: {
+          50: '#231A16',
+          100: '#33241D',
+          200: '#46302A',
+          300: '#5D403B',
+          400: '#73514B',
+          500: '#89695E',
+          600: '#9F8379',
+          700: '#B49C93',
+          800: '#CAB5AC',
+          900: '#E0CDC5',
+        },
+        navy: {
+          50: '#003FAB',
+          100: '#004CBF',
+          200: '#005AD3',
+          300: '#0068E6',
+          400: '#0075FA',
+          500: '#008DFF',
+          600: '#009BFF',
+          700: '#00A9FF',
+          800: '#00B7FF',
+          900: '#00C5FF',
+        },
+        red: {
+          50: '#BF1F3E',
+          100: '#CA2B4A',
+          200: '#D53756',
+          300: '#E14362',
+          400: '#EC4F6E',
+          500: '#F26175',
+          600: '#F6737D',
+          700: '#FF8590',
+          800: '#FF97A8',
+          900: '#FFA9BE',
+        },
+        // TODO: 컬러 전체적으로 수정 필요
+        grey: {
+          50: '#171B1C',
+          100: '#1E2427',
+          200: '#2E363A',
+          250: '#383F43',
+          300: '#41474C',
+          400: '#5A6166',
+          450: '#7A8083',
+          500: '#999FA4',
+          550: '#AFB4B9',
+          600: '#C5C8CE',
+          650: '#D6D8E4',
+          700: '#F7F8F9',
+          800: '#FDFDFD',
+        },
+      },
+      white: '#FFF',
+      black: '#000',
+      transparent: 'transparent',
+      black_50: 'rgba(0,0,0,0.5)',
+      kakao: '#FEE500',
+      naver: '#03C75A',
+    },
+    extend: {
       spacing: {
         1: '1px',
         2: '2px',
@@ -120,8 +192,10 @@ export default {
         POPUP: '10000',
       },
       boxShadow: {
-        radioButton: `0 0 0 1.6px theme('colors.brown400')`,
-        radioButtonDisabled: `0 0 0 1.6px theme('colors.gray100')`,
+        radioButton: `0 0 0 1.6px theme('colors.light.brown.400')`,
+        radioDarkButton: `0 0 0 1.6px theme('colors.dark.brown.600')`,
+        radioButtonDisabled: `0 0 0 1.6px theme('colors.light.grey.300')`,
+        radioButtonDarkDisabled: `0 0 0 1.6px theme('colors.dark.grey.600')`,
         light_sm:
           '0 1px 3px 0 rgba(45, 39, 39, 0.12), 0 1px 2px -1px rgba(45, 39, 39, 0.12)',
         light_md:
@@ -130,6 +204,14 @@ export default {
           '0 5px 15px -3px rgba(45, 39, 39, 0.12), 0 2px 6px -4px rgba(45, 39, 39, 0.12)',
         light_xl:
           '0 10px 25px -5px rgba(45, 39, 39, 0.12), 0 4px 16px -6px rgba(45, 39, 39, 0.12)',
+        dark_sm:
+          '0 1px 3px 0 rgba(211, 211, 211, 0.12), 0 1px 2px -1px rgba(211, 211, 211, 0.12)',
+        dark_md:
+          '0 2px 6px -1px rgba(211, 211, 211, 0.12), 0 1px 4px -2px rgba(211, 211, 211, 0.12)',
+        dark_lg:
+          '0 5px 15px -3px rgba(211, 211, 211, 0.12), 0 2px 6px -4px rgba(211, 211, 211, 0.12)',
+        dark_xl:
+          '0 10px 25px -5px rgba(211, 211, 211, 0.12), 0 4px 16px -6px rgba(211, 211, 211, 0.12)',
       },
       keyframes: {
         show: {
@@ -194,7 +276,7 @@ export default {
 
   plugins: [
     ({ addUtilities, theme }) => {
-      const fontUtilities = {
+      addUtilities({
         '.google-login': {
           fontSize: theme('fontSize.14'),
           fontWeight: theme('fontWeight.medium'),
@@ -471,9 +553,25 @@ export default {
           fontFamily: theme('fontFamily.pretendard'),
           lineHeight: theme('lineHeight.120'),
         },
-      };
-
-      addUtilities(fontUtilities);
+        '.light-bg-base': {
+          backgroundColor: theme('colors.light.grey.200'),
+        },
+        '.dark-bg-base': {
+          backgroundColor: theme('colors.dark.grey.100'),
+        },
+        '.dark-bg-elevated': {
+          backgroundColor: theme('colors.dark.grey.200'),
+        },
+        '.dark-bg-grouped-base': {
+          backgroundColor: theme('colors.dark.grey.300'),
+        },
+        '.dark-bg-grouped-contents': {
+          backgroundColor: theme('colors.dark.grey.400'),
+        },
+        '.dark-border-basic': {
+          border: `1px solid theme('colors.dark.grey.200')`,
+        },
+      });
     },
   ],
 };

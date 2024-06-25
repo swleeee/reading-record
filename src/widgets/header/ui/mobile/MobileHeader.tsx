@@ -25,7 +25,7 @@ export const MobileHeader = () => {
         isShow={sidebar.isShow}
         onClick={openSidebar(<MobileHeaderSidebar />)}
       >
-        <HamburgerIcon />
+        <HamburgerIcon css={S.iconStyle} />
       </S.SidebarButton>
     </S.MobileHeader>
   );

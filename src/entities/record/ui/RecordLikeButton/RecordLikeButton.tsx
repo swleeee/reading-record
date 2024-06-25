@@ -41,16 +41,12 @@ export const RecordLikeButton = ({
         as === 'button' ? onClick(isbn, recordId, currentUserId) : undefined
       }
     >
-      {isLiked && (
-        <>
-          {isLiked ? (
-            <LikeFilledIcon css={S.likeFilledIcon} />
-          ) : (
-            <LikeIcon css={S.likeIcon} />
-          )}
-          <S.LikeText isLiked={isLiked}>좋아요 {likeCount ?? 0}</S.LikeText>
-        </>
+      {isLiked ? (
+        <LikeFilledIcon css={S.likeFilledIcon} />
+      ) : (
+        <LikeIcon css={S.likeIcon} />
       )}
+      <S.LikeText isLiked={!!isLiked}>좋아요 {likeCount ?? 0}</S.LikeText>
     </S.RecordLikeButton>
   );
 };

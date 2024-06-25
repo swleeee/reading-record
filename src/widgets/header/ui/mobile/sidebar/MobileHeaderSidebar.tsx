@@ -47,7 +47,7 @@ const MobileHeaderSidebar = () => {
   };
 
   const handleProfileTouch = () => {
-    navigate(PATH.SETTING);
+    navigate(PATH.MY_PAGE);
     closeSidebar();
   };
 
@@ -78,7 +78,7 @@ const MobileHeaderSidebar = () => {
           aria-label="Close sidebar"
           onClick={closeSidebar}
         >
-          <CloseIcon />
+          <CloseIcon css={S.iconStyle} />
         </S.CloseButton>
       </S.Header>
       <S.ContentWrapper>

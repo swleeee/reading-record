@@ -8,7 +8,7 @@ export const profile = css`
 
 export const LoadingWrapper = styled.div`
   ${profile};
-  ${tw`flex justify-center items-center border-gray900`}
+  ${tw`flex justify-center items-center border-light-grey-800 dark:border-dark-grey-100`}
 `;
 
 export const ProfileImage = styled.img`
@@ -17,7 +17,7 @@ export const ProfileImage = styled.img`
 
 export const DefaultProfile = styled.div`
   ${profile};
-  ${tw`flex justify-center items-center bg-slate-600`}
+  ${tw`flex justify-center items-center bg-light-grey-600 dark:bg-dark-grey-300`}
 `;
 
 export const defaultProfileIcon = css`
@@ -33,5 +33,5 @@ export const ProfileEditInput = tw.input`hidden`;
 export const ProfileEditButton = tw.button`relative`;
 
 export const profileEditIcon = css`
-  ${tw`absolute top-0 right-0 w-[32px] h-[32px] border-2 border-white rounded-full bg-brown300`}
+  ${tw`absolute top-0 right-0 w-[32px] h-[32px] border-2 border-white rounded-full bg-light-brown-300 dark:bg-dark-brown-700`}
 `;

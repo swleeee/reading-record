@@ -4,6 +4,7 @@ export * from './number';
 export * from './record';
 export * from './validation';
 export * from './config/supabase';
+export * from './hooks/useThemeMode';
 export * from './hooks/useImageFileUploader';
 export * from './hooks/useModal';
 export * from './hooks/useOnClickOutside';

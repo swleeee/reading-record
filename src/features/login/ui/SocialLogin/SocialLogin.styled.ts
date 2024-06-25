@@ -4,9 +4,9 @@ export const SocialLoginWrapper = tw.section`flex flex-col items-center w-full m
 
 export const SocialLoginHeader = tw.div`flex items-center w-full mb-[20px]`;
 
-export const Division = tw.span`inline-block w-full h-[1px] bg-gray-700`;
+export const Division = tw.span`inline-block w-full h-[1px] bg-light-grey-700 dark:bg-dark-grey-700`;
 
-export const SocialLoginDesc = tw.span`mx-[10px] m-body-r14 text-gray-700 whitespace-nowrap tablet:t-body-r14 labtop:d-body-r14`;
+export const SocialLoginDesc = tw.span`mx-[10px] m-body-r14 text-light-grey-700 whitespace-nowrap dark:text-dark-grey-700 tablet:t-body-r14 labtop:d-body-r14`;
 
 const socialLoginButton = css`
   ${tw`relative flex justify-center items-center gap-x-[8px] w-full h-[40px] rounded-[6px] hover:opacity-70`}

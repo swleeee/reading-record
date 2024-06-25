@@ -33,7 +33,7 @@ export const SearchInput = ({
         onChange={handleSearchValueChange}
       >
         <S.SearchButton aria-label="search">
-          <SearchIcon />
+          <SearchIcon css={S.iconStyle} />
         </S.SearchButton>
       </Input>
     </S.Form>

@@ -1,5 +1,6 @@
 import Skeleton from 'react-loading-skeleton';
 
+import { SkeletonWrapper } from '@/shared/ui';
 import * as S from './BestCommentaryDesktop.styled';
 
 const BestCommentaryDesktopSkeleton = () => {
@@ -10,7 +11,9 @@ const BestCommentaryDesktopSkeleton = () => {
       </header>
       <S.BestCommentaryCardWrapper>
         {Array.from({ length: 4 }, (_, i) => (
-          <Skeleton key={i} width={360} height={148} />
+          <SkeletonWrapper key={i}>
+            <Skeleton width={360} height={148} />
+          </SkeletonWrapper>
         ))}
       </S.BestCommentaryCardWrapper>
     </S.BestCommentarySection>

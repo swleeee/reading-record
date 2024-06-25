@@ -1,7 +1,7 @@
 import tw, { css, styled } from 'twin.macro';
 
 export const defaultCard = css`
-  ${tw`flex flex-col rounded-[4px] p-[16px] w-[186px] h-[207px] bg-white shadow-light_md`}
+  ${tw`flex flex-col rounded-[4px] p-[16px] w-[186px] h-[207px] bg-white shadow-light_md dark:dark-bg-grouped-base`}
 `;
 
 export const SkeletonCard = styled.div`
@@ -10,11 +10,11 @@ export const SkeletonCard = styled.div`
 
 export const link = css`
   ${defaultCard}
-  ${tw`hover:bg-brown50`}
+  ${tw`hover:(bg-light-brown-50 dark:bg-dark-grey-250)`}
 `;
 
 export const BookTitle = styled.span`
-  ${tw`h-[55px] m-body-m14 text-ellipsis break-all overflow-hidden`}
+  ${tw`h-[55px] m-body-m14 text-ellipsis break-all overflow-hidden dark:text-white`}
 
   display: -webkit-box;
   -webkit-line-clamp: 3;
@@ -37,8 +37,8 @@ export const BookThumbnail = styled.img`
 
 export const BookContentWrapper = tw.div`flex flex-col items-start gap-y-[4px] ml-[51px]`;
 
-export const Author = tw.span`m-body-r13`;
+export const Author = tw.span`m-body-r13 dark:text-white`;
 
-export const publisher = tw.span`m-body-r13 text-gray800`;
+export const publisher = tw.span`m-body-r13 text-light-grey-800 dark:text-dark-grey-600`;
 
-export const Date = tw.time`m-body-r12 text-gray600`;
+export const Date = tw.time`m-body-r12 text-light-grey-600 dark:text-dark-grey-500`;

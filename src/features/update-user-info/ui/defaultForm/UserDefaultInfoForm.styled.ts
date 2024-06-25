@@ -18,8 +18,8 @@ export const inputWrapper = css`
 
 export const BirthdayContainer = styled.div<{ hasError: boolean }>`
   ${({ hasError }) => css`
-    ${tw`flex items-center border border-gray300 rounded-[4px] bg-white`}
-    ${hasError && tw`border-red200`}
+    ${tw`flex items-center border border-light-grey-500 rounded-[4px] bg-white dark:(border-dark-grey-500 dark-bg-grouped-base)`}
+    ${hasError && tw`border-light-red-500 dark:border-dark-red-500`}
   `}
 `;
 
@@ -27,7 +27,7 @@ export const birthdayInputWrapper = css`
   ${inputWrapper};
 
   &:not(:last-of-type) {
-    ${tw`relative after:(content-[""] absolute top-1/2 right-0 w-[1px] h-[50%] bg-gray300 -translate-y-1/2)`}
+    ${tw`relative after:(content-[""] absolute top-1/2 right-0 w-[1px] h-[50%] bg-light-grey-500 -translate-y-1/2 dark:bg-dark-grey-500)`}
   }
 
   & > input {

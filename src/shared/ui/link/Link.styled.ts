@@ -3,9 +3,9 @@ import tw, { css } from 'twin.macro';
 import type { LinkSizeType, LinkStyleType } from './Link';
 
 // NOTE: 링크 스타일
-const linkSecondary = tw`border border-solid border-brown400 text-brown400 bg-white hover:bg-brown50 active:bg-brown100 focus:(border border-solid border-brown700) disabled:(border-0 text-brown300 bg-brown100 cursor-not-allowed)`;
-const linkTertiaryBrown = tw`text-brown400 hover:text-brown500 active:text-brown600 focus:(border border-solid border-brown700)`;
-const linkTertiaryGray = tw`text-gray400 hover:text-gray500 active:text-gray600 focus:(border border-solid border-gray700)`;
+const linkSecondary = tw`border border-solid border-light-brown-400 text-light-brown-400 bg-white hover:(bg-light-brown-50) active:bg-light-brown-100 focus:(border border-solid border-light-brown-700) disabled:(border-0 text-light-brown-300 bg-light-brown-100 cursor-not-allowed)`;
+const linkTertiaryBrown = tw`text-light-brown-400 dark:text-dark-brown-500 hover:(text-light-brown-500 dark:text-dark-brown-400) active:(text-light-brown-600 dark:text-dark-brown-300) focus:(border border-solid border-light-brown-700 dark:border-dark-brown-200)`;
+const linkTertiaryGray = tw`text-light-grey-400 dark:text-dark-grey-500 hover:(text-light-grey-500 dark:text-dark-grey-400) active:(text-light-grey-600 dark:text-dark-grey-300) focus:(border border-solid border-light-grey-700 dark:border-dark-grey-200)`;
 
 const getLinkStyle = (styleType: LinkStyleType) => {
   if (styleType === 'secondary') {
@@ -27,7 +27,7 @@ const checkTertiaryStyle = (styleType: LinkStyleType) => {
 };
 
 const linkDefault = css`
-  ${tw`flex justify-center items-center gap-x-[6px] border-0 rounded-[4px] cursor-pointer border-amber-400`}
+  ${tw`flex justify-center items-center gap-x-[6px] border-0 rounded-[4px] cursor-pointer border-light-brown-400`}
 `;
 
 // NOTE: 링크 크기

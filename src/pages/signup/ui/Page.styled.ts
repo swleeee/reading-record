@@ -8,4 +8,8 @@ export const logoLink = css`
 
 export const logo = css`
   ${tw`w-[168px] h-[72px]`}
+
+  path {
+    ${tw`dark:fill-dark-brown-500`}
+  }
 `;
