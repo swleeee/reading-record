@@ -6,7 +6,7 @@ import App from '@/pages/_app';
 import { MainPage } from '@/pages/main';
 import { BookListPage } from '@/pages/bookList';
 import { RecordPage } from '@/pages/record';
-import { SettingPage } from '@/pages/setting';
+import { MyPage } from '@/pages/myPage';
 import { BookDetailPage } from '@/pages/bookDetail';
 import { LoginPage } from '@/pages/login';
 import { useThemeMode } from '@/shared/lib';
@@ -67,7 +67,7 @@ export const Router = () => {
               <Route path=":id" element={<BookDetailPage />} />
             </Route>
             <Route path="/record" element={<RecordPage />} />
-            <Route path="/setting" element={<SettingPage />} />
+            <Route path="/myPage" element={<MyPage />} />
             <Route
               path="/privacy"
               element={

@@ -31,7 +31,7 @@ export const Header = () => {
   };
 
   const handleProfileClick = () => {
-    navigate(PATH.SETTING);
+    navigate(PATH.MY_PAGE);
   };
 
   return (

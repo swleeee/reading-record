@@ -5,5 +5,5 @@ export const PATH = {
   RESET_PASSWORD: '/resetPassword',
   BOOK: '/book',
   RECORD: '/record',
-  SETTING: '/setting',
+  MY_PAGE: '/myPage',
 };

@@ -4,10 +4,10 @@ import { Setting } from '@/widgets/setting';
 import { UserInfo } from '@/features/update-user-info/ui';
 import { Tab } from '@/shared/ui';
 
-export const SettingPage = () => {
+export const MyPage = () => {
   const tabs = [
-    { key: 'user', label: '회원 정보', content: <UserInfo /> },
-    { key: 'myRecord', label: '나의 서재', content: <MyRecord /> },
+    { key: 'info', label: '회원 정보', content: <UserInfo /> },
+    { key: 'record', label: '나의 서재', content: <MyRecord /> },
     { key: 'setting', label: '설정', content: <Setting /> },
   ];
 

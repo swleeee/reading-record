@@ -47,7 +47,7 @@ const MobileHeaderSidebar = () => {
   };
 
   const handleProfileTouch = () => {
-    navigate(PATH.SETTING);
+    navigate(PATH.MY_PAGE);
     closeSidebar();
   };
 
