@@ -78,7 +78,7 @@ const MobileHeaderSidebar = () => {
           aria-label="Close sidebar"
           onClick={closeSidebar}
         >
-          <CloseIcon />
+          <CloseIcon css={S.iconStyle} />
         </S.CloseButton>
       </S.Header>
       <S.ContentWrapper>

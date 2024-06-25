@@ -3,9 +3,9 @@ import tw, { css, styled } from 'twin.macro';
 import type { ToastType } from '@/shared/model';
 
 const TOAST_COLOR = {
-  success: tw`border border-solid border-blue200 bg-blue50`,
-  warning: tw`border border-solid border-red200 bg-red50`,
-  info: tw`border border-solid border-brown500 bg-brown100`,
+  success: tw`border border-solid border-light-navy-500 bg-light-navy-50`,
+  warning: tw`border border-solid border-light-red-500 bg-light-red-50`,
+  info: tw`border border-solid border-light-brown-500 bg-light-brown-100`,
 };
 
 interface ToastItemProps {
@@ -28,9 +28,9 @@ export const ToastItem = styled.div<ToastItemProps>(
 );
 
 const SYMBOL_FILL_COLOR = {
-  success: tw`fill-blue200`,
-  warning: tw`fill-red200`,
-  info: tw`fill-brown500`,
+  success: tw`fill-light-navy-500`,
+  warning: tw`fill-light-red-500`,
+  info: tw`fill-light-brown-500`,
 };
 
 export const toastSymbolIcon = (type: ToastType['type']) => css`

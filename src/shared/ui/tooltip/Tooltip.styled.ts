@@ -5,11 +5,11 @@ import type { Position } from './Tooltip';
 export const Container = tw.div`relative inline-block cursor-pointer`;
 
 const tooltipTopPosition = css`
-  ${tw`mb-[10px] bottom-full after:(top-full border-transparent border-t-gray700)`}
+  ${tw`mb-[10px] bottom-full after:(top-full border-transparent border-t-light-grey-700 dark:border-t-dark-grey-400)`}
 `;
 
 const tooltipBottomPosition = css`
-  ${tw`mt-[10px] top-full after:(bottom-full border-transparent border-b-gray700)`}
+  ${tw`mt-[10px] top-full after:(bottom-full border-transparent border-b-light-grey-700 dark:border-b-dark-grey-400)`}
 `;
 
 const tooltipLeftPosition = css`
@@ -46,7 +46,7 @@ const getTooltipStyleWithHorizontal = (position: Position) => {
 
 export const TooltipBubble = styled.div<{ position: Position }>`
   ${({ position }) => css`
-    ${tw`absolute rounded-[4px] px-[16px] py-[12px] m-body-r14 text-white bg-gray700 whitespace-nowrap z-[10] after:(content-[''] absolute border-[5px] border-solid)`}
+    ${tw`absolute rounded-[4px] px-[16px] py-[12px] m-body-r14 text-white bg-light-grey-700 whitespace-nowrap z-[10] dark:bg-dark-grey-400 after:(content-[''] absolute border-[5px] border-solid)`}
     ${getTooltipStyleWithVertical(position)};
     ${getTooltipStyleWithHorizontal(position)}
   `}

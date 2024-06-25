@@ -10,11 +10,11 @@ interface LabelProps {
 
 export const Label = styled.label<LabelProps>`
   ${({ isRequired }) => css`
-    ${tw`relative flex items-center m-body-m13 text-gray800 tablet:t-body-m13 desktop:d-body-m15`}
+    ${tw`relative flex items-center m-body-m13 text-light-grey-700 dark:text-dark-grey-700 tablet:t-body-m13 desktop:d-body-m15`}
 
     &::after {
       ${isRequired && tw`content-["*"]`}
-      ${tw`ml-[2px] text-red100`}
+      ${tw`ml-[2px] text-light-red-500 dark:text-dark-red-500`}
     }
   `}
 `;

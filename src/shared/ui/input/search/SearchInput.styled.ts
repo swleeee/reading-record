@@ -10,4 +10,10 @@ export const searchInput = css`
   }
 `;
 
-export const SearchButton = tw.button`absolute top-1/2 right-[11px] -translate-y-1/2 flex justify-center items-center w-[28px] h-[28px] hover:(rounded-full bg-brown50)`;
+export const SearchButton = tw.button`absolute top-1/2 right-[11px] -translate-y-1/2 flex justify-center items-center w-[28px] h-[28px] hover:(rounded-full bg-light-brown-50)`;
+
+export const iconStyle = css`
+  & > g > path {
+    ${tw`dark:fill-dark-grey-800`}
+  }
+`;

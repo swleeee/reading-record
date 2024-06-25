@@ -9,14 +9,14 @@ const buttonDefault = css`
 const buttonLoading = tw`cursor-wait`;
 
 // NOTE: 버튼 스타일
-const buttonPrimaryDefault = tw`text-white bg-brown400 hover:bg-brown500 active:bg-brown600 focus:(border border-solid border-brown700) disabled:(bg-brown100 cursor-not-allowed)`;
+const buttonPrimaryDefault = tw`text-white bg-light-brown-400 dark:bg-dark-brown-600 hover:(bg-light-brown-500 dark:bg-dark-brown-500) active:(bg-light-brown-600 dark:bg-dark-brown-400) focus:(border border-solid border-light-brown-700 dark:border-dark-brown-300) disabled:(bg-light-brown-100 cursor-not-allowed dark:bg-dark-brown-800)`;
 const buttonPrimaryLoading = css`
   ${buttonLoading};
   ${buttonPrimaryDefault};
-  ${tw`bg-brown400 hover:bg-brown400`}
+  ${tw`bg-light-brown-400 hover:bg-light-brown-400`}
 `;
 
-const buttonSecondaryDefault = tw`border border-solid border-brown400 text-brown400 bg-white hover:bg-brown50 active:bg-brown100 focus:(border border-solid border-brown700) disabled:(border-0 text-brown300 bg-brown100 cursor-not-allowed)`;
+const buttonSecondaryDefault = tw`border border-solid border-light-brown-400 text-light-brown-400 bg-white hover:(bg-light-brown-50) active:bg-light-brown-100 focus:(border border-solid border-light-brown-700) disabled:(border-0 text-light-brown-300 bg-light-brown-100 cursor-not-allowed)`;
 const buttonSecondaryLoading = css`
   ${buttonLoading};
   ${buttonSecondaryDefault};
@@ -27,42 +27,42 @@ const buttonTertiaryDefault = tw`min-w-[inherit] h-auto p-0 bg-transparent focus
 
 const buttonTertiaryPrimaryDefault = css`
   ${buttonTertiaryDefault};
-  ${tw`text-brown400 hover:text-brown500 active:text-brown600 focus:border-brown700 disabled:text-brown100`}
+  ${tw`text-light-brown-400 dark:text-dark-brown-600 hover:(text-light-brown-500 dark:text-dark-brown-500) active:(text-light-brown-600 dark:text-dark-brown-400) focus:(border-light-brown-700 dark:border-dark-brown-300) disabled:(text-light-brown-100 dark:text-dark-brown-800)`}
 `;
 const buttonTertiaryPrimaryLoading = css`
   ${buttonLoading};
   ${buttonTertiaryPrimaryDefault};
-  ${tw`hover:text-brown400`};
+  ${tw`hover:text-light-brown-400`};
 `;
 
 const buttonTertiaryGrayDefault = css`
   ${buttonTertiaryDefault};
-  ${tw`text-gray300 hover:text-gray400 active:text-gray500 focus:border-gray600 disabled:text-gray100`}
+  ${tw`text-light-grey-400 dark:text-dark-grey-500 hover:(text-light-grey-500 dark:text-dark-grey-400) active:(text-light-grey-600 dark:text-dark-grey-300) focus:(border-light-grey-700 dark:border-dark-grey-200) disabled:text-light-grey-100`}
 `;
 const buttonTertiaryGrayLoading = css`
   ${buttonLoading};
   ${buttonTertiaryPrimaryDefault};
-  ${tw`hover:text-gray300`};
+  ${tw`hover:text-light-grey-400`};
 `;
 
 const buttonTertiaryBlueDefault = css`
   ${buttonTertiaryDefault};
-  ${tw`text-blue200 hover:text-blue300 active:text-blue400 focus:border-blue500 disabled:text-blue50`}
+  ${tw`text-light-navy-500 hover:text-light-navy-600 active:text-light-navy-600 focus:text-light-navy-600 disabled:text-light-navy-50`}
 `;
 const buttonTertiaryBlueLoading = css`
   ${buttonLoading};
   ${buttonTertiaryPrimaryDefault};
-  ${tw`hover:text-blue200`};
+  ${tw`hover:text-light-navy-600`};
 `;
 
 const buttonTertiaryRedDefault = css`
   ${buttonTertiaryDefault};
-  ${tw`text-red200 hover:text-red300 active:text-red400 focus:border-red500 disabled:text-red50`}
+  ${tw`text-light-red-500 hover:text-light-red-600 active:text-light-red-600 focus:text-light-red-600 disabled:text-light-red-600`}
 `;
 const buttonTertiaryRedLoading = css`
   ${buttonLoading};
   ${buttonTertiaryPrimaryDefault};
-  ${tw`hover:text-red200`};
+  ${tw`hover:text-light-red-500`};
 `;
 
 const checkHasPadding = (styleType: ButtonStyleType) => {

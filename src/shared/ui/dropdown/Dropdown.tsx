@@ -48,7 +48,11 @@ export const Dropdown = ({
         ) : (
           placeholder && <S.Placeholder>{placeholder}</S.Placeholder>
         )}
-        {isOpen ? <CollapseIcon /> : <ExpandIcon />}
+        {isOpen ? (
+          <CollapseIcon css={S.iconStyle} />
+        ) : (
+          <ExpandIcon css={S.iconStyle} />
+        )}
       </S.DropdownToggleButton>
       {isOpen && (
         <S.DropdownOptionWrapper className="dropdown-menu">

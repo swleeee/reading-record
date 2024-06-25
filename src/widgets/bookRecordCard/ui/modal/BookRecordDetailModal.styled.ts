@@ -8,12 +8,12 @@ export const BookCoverImg = tw.img`max-w-[75px] h-full max-h-[116px] object-fill
 
 export const UserInfoWrapper = tw.div`flex items-center`;
 
-export const UserName = tw.span`flex-1 m-body-r14 text-left text-ellipsis overflow-hidden tablet:t-body-r14 desktop:d-body-r16`;
+export const UserName = tw.span`flex-1 m-body-r14 text-left text-ellipsis overflow-hidden dark:text-white tablet:t-body-r14 desktop:d-body-r16`;
 
-export const CreatedDate = tw.time`m-body-r12 text-gray600 mr-[4px] tablet:t-body-r12 desktop:d-body-r14`;
+export const CreatedDate = tw.time`m-body-r12 text-light-grey-600  mr-[4px] dark:text-dark-grey-600 tablet:t-body-r12 desktop:d-body-r14`;
 
 export const ContentWrapper = tw.div`flex flex-col gap-y-[4px]`;
 
-export const RecordContent = tw.p`m-body-r12 text-left text-ellipsis break-all overflow-hidden tablet:t-body-r14 desktop:d-body-r14`;
+export const RecordContent = tw.p`m-body-r12 text-left text-ellipsis break-all overflow-hidden dark:text-dark-grey-800 tablet:t-body-r14 desktop:d-body-r14`;
 
 export const BottomWrapper = tw.div`flex justify-between gap-x-[4px] w-full`;

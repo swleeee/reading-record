@@ -9,12 +9,6 @@ export const NoSearchContainer = styled.div<{ boundingClientTop: number }>`
   `}
 `;
 
-export const searchIcon = css`
-  ${tw`w-[110px] h-[110px] animate-shakingUpAndDown tablet:(w-[198px] h-[198px]) desktop:(w-[220px] h-[220px])`}
+export const searchIcon = tw`w-[110px] h-[110px] animate-shakingUpAndDown tablet:(w-[198px] h-[198px]) desktop:(w-[220px] h-[220px])`;
 
-  & > g > path {
-    ${tw`fill-brown400`}
-  }
-`;
-
-export const NoSearchText = tw.p`m-headline-2 text-brown400 tablet:t-headline-3 desktop:d-headline-3`;
+export const NoSearchText = tw.p`m-headline-2 text-light-brown-400 tablet:t-headline-3 desktop:d-headline-3`;

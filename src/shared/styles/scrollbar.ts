@@ -8,10 +8,10 @@ export const scrollbar = css`
 
   // NOTE: 스크롤 바의 색상 지정 */
   ::-webkit-scrollbar-thumb {
-    ${tw`rounded-full bg-brown300`}
+    ${tw`rounded-full bg-light-brown-300 dark:bg-dark-brown-700`}
 
     &:hover {
-      ${tw`bg-brown500`}
+      ${tw`bg-light-brown-500 dark:bg-dark-brown-500`}
     }
   }
 `;

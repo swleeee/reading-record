@@ -8,8 +8,12 @@ export const logoLink = css`
 
 export const logo = css`
   ${tw`w-[168px] h-[72px]`}
+
+  path {
+    ${tw`dark:fill-dark-brown-500`}
+  }
 `;
 
-export const Section = tw.section`w-full rounded-[4px] tablet:(px-[28px] py-[32px] bg-white shadow-light_md)`;
+export const Section = tw.section`w-full rounded-[4px] tablet:(px-[28px] py-[32px] bg-white shadow-light_md dark:dark-bg-elevated)`;
 
-export const Title = tw.h2`mb-[32px] m-body-sb16 tablet:t-body-sb16 desktop:d-body-sb18`;
+export const Title = tw.h2`mb-[32px] m-body-sb16 dark:text-white tablet:t-body-sb16 desktop:d-body-sb18`;

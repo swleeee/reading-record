@@ -27,6 +27,10 @@ export const VisibleButton = styled.button`
 
   & > svg {
     ${tw`w-16 h-16`};
+
+    & > g > path {
+      ${tw`dark:fill-white`}
+    }
   }
 `;
 
