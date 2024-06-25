@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 export const useThemeMode = () => {
   const localStorageTheme = localStorage.getItem('theme');
@@ -13,11 +13,11 @@ export const useThemeMode = () => {
     initialThemeMode,
   );
 
-  const toggleThemeMode = () => {
+  const toggleThemeMode = useCallback(() => {
     const nextThemeMode = themeMode === 'light' ? 'dark' : 'light';
     localStorage.setItem('theme', nextThemeMode);
     setThemeMode(nextThemeMode);
-  };
+  }, [themeMode]);
 
   useEffect(() => {
     if (themeMode === 'dark') {
