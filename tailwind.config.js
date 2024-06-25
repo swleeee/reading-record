@@ -554,7 +554,7 @@ export default {
           lineHeight: theme('lineHeight.120'),
         },
         '.light-bg-base': {
-          backgroundColor: theme('colors.light.grey.300'),
+          backgroundColor: theme('colors.light.grey.200'),
         },
         '.dark-bg-base': {
           backgroundColor: theme('colors.dark.grey.100'),
