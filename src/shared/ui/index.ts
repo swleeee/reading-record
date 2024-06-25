@@ -17,6 +17,7 @@ export { Pagination } from './pagination/Pagination';
 export { Popup } from './popup/Popup';
 export { RadioButton } from './radioButton/RadioButton';
 export { ScrollToTop } from './scrollToTop/ScrollToTop';
+export { SkeletonWrapper } from './skeleton/SkeletonWrapper';
 export { Toast } from './toast/Toast';
 export { ToastItem } from './toast/item/ToastItem';
 export { Tooltip } from './tooltip/Tooltip';
