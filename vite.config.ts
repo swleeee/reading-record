@@ -3,6 +3,8 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import svgr from 'vite-plugin-svgr';
 import checker from 'vite-plugin-checker';
+import { compression } from 'vite-plugin-compression2';
+import { visualizer } from 'rollup-plugin-visualizer';
 
 import * as path from 'path';
 
@@ -38,6 +40,15 @@ export default defineConfig({
       typescript: true,
       eslint: { lintCommand: 'eslint ./src --ext .ts,.tsx' },
     }),
+    compression({
+      include: [/\.(js)$/, /\.(css)$/],
+      threshold: 2000,
+    }),
+    visualizer({
+      open: true,
+      gzipSize: true,
+      brotliSize: true,
+    }),
   ],
   server: {
     host: 'localhost',
@@ -45,5 +56,38 @@ export default defineConfig({
   },
   resolve: {
     alias: [{ find: '@', replacement: path.resolve(__dirname, 'src') }],
+  },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: (id) => {
+          if (id.includes('axios')) {
+            return '@network-vendor';
+          }
+          if (
+            id.includes('node_modules/react/') ||
+            id.includes('node_modules/react-dom/')
+          ) {
+            return '@react-vendor';
+          }
+          if (
+            id.includes('swiper') ||
+            id.includes('react-spinners') ||
+            id.includes('react-loading-skeleton')
+          ) {
+            return '@ui-effect-vendor';
+          }
+          if (id.includes('recoil')) {
+            return '@state-management-vendor';
+          }
+          if (id.includes('@emotion/')) {
+            return '@emotion-vendor';
+          }
+          if (id.includes('@tanstack/react-query')) {
+            return '@data-fetching-vendor';
+          }
+        },
+      },
+    },
   },
 });

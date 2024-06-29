@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom';
 
-import { SidebarPortal } from '@/components';
+import { SidebarPortal } from '@/shared/ui';
 import './App.css';
 
 const App = () => {
