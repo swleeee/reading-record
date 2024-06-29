@@ -1,9 +1,11 @@
+import { useContext } from 'react';
+
+import { ThemeContext } from '@/shared/context';
 import { LabelContent, ToggleButton } from '@/shared/ui';
-import { useThemeMode } from '@/shared/lib';
 import * as S from './Setting.styled';
 
 export const Setting = () => {
-  const { themeMode, toggleThemeMode } = useThemeMode();
+  const { themeMode, toggleThemeMode } = useContext(ThemeContext);
 
   const handleChange = () => {
     toggleThemeMode();

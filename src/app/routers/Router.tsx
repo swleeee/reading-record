@@ -9,7 +9,6 @@ import { RecordPage } from '@/pages/record';
 import { MyPage } from '@/pages/myPage';
 import { BookDetailPage } from '@/pages/bookDetail';
 import { LoginPage } from '@/pages/login';
-import { useThemeMode } from '@/shared/lib';
 import { LoadingPage, ScrollToTop } from '@/shared/ui';
 import { windowSizeState } from '@/shared/stores';
 
@@ -20,7 +19,6 @@ const TermsPage = lazy(() => import('@/pages/terms/ui/Page'));
 
 export const Router = () => {
   const setWindowSize = useSetRecoilState(windowSizeState);
-  useThemeMode();
 
   useEffect(() => {
     const handleScreenResize = () => {
