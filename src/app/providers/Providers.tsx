@@ -4,6 +4,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 import { AuthProvider } from './auth/AuthProvider';
+import { ThemeProvider } from './theme/ThemeProvider';
 
 interface ProvidersProps {
   children: ReactNode;
@@ -13,12 +14,14 @@ interface ProvidersProps {
 export const Providers = ({ children, client }: ProvidersProps) => {
   return (
     <AuthProvider>
-      <QueryClientProvider client={client}>
-        <RecoilRoot>
-          <ReactQueryDevtools />
-          {children}
-        </RecoilRoot>
-      </QueryClientProvider>
+      <ThemeProvider>
+        <QueryClientProvider client={client}>
+          <RecoilRoot>
+            <ReactQueryDevtools />
+            {children}
+          </RecoilRoot>
+        </QueryClientProvider>
+      </ThemeProvider>
     </AuthProvider>
   );
 };

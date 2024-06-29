@@ -26,3 +26,5 @@ export interface PaginationType {
   totalCount: number;
   totalPages: number;
 }
+
+export type ThemeModeType = 'light' | 'dark';

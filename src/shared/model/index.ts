@@ -6,4 +6,5 @@ export type {
   TabType,
   ToastType,
   PaginationType,
+  ThemeModeType,
 } from './types';
