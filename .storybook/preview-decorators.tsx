@@ -3,7 +3,7 @@ import { MemoryRouter } from 'react-router';
 import { RecoilRoot } from 'recoil';
 import { Decorator } from '@storybook/react';
 
-import GlobalStyles from '../src/styles/GlobalStyles';
+import GlobalStyles from '../src/app/styles/GlobalStyles';
 
 const previewDecorator: Decorator = (Story, context) => {
   return (
