@@ -1,0 +1,201 @@
+import { ColorPalette, ColorItem, Meta } from '@storybook/blocks';
+
+import resolveConfig from 'tailwindcss/resolveConfig';
+import tailwindConfig from '../../../../tailwind.config.cjs';
+
+export const fullConfig = resolveConfig(tailwindConfig);
+export const colors = fullConfig.theme.accentColor;
+
+<Meta title="Foundations/Colors" />
+<ColorItem
+  title="Primary"
+  subtitle="Light color"
+  colors={{
+    'brown-50': colors.light.brown[50],
+    'brown-100': colors.light.brown[100],
+    'brown-200': colors.light.brown[200],
+    'brown-300': colors.light.brown[300],
+    'brown-400': colors.light.brown[400],
+
+}}
+/>
+
+<ColorItem
+  colors={{
+    'brown-500': colors.light.brown[500],
+    'brown-600': colors.light.brown[600],
+    'brown-700': colors.light.brown[700],
+    'brown-800': colors.light.brown[800],
+    'brown-900': colors.light.brown[900],
+  }}
+/>
+<br />
+<ColorItem
+  subtitle="Dark color"
+  colors={{
+    'brown-50': colors.dark.brown[50],
+    'brown-100': colors.dark.brown[100],
+    'brown-200': colors.dark.brown[200],
+    'brown-300': colors.dark.brown[300],
+    'brown-400': colors.dark.brown[400],
+  }}
+/>
+<ColorItem
+  colors={{
+    'brown-500': colors.dark.brown[500],
+    'brown-600': colors.dark.brown[600],
+    'brown-700': colors.dark.brown[700],
+    'brown-800': colors.dark.brown[800],
+    'brown-900': colors.dark.brown[900],
+  }}
+/>
+<br />
+<br />
+
+<ColorItem
+  title="Navy"
+  subtitle="Light color"
+  colors={{
+    'navy-50': colors.light.navy[50],
+    'navy-100': colors.light.navy[100],
+    'navy-200': colors.light.navy[200],
+    'navy-300': colors.light.navy[300],
+    'navy-400': colors.light.navy[400],
+  }}
+/>
+<ColorItem
+  colors={{
+    'navy-500': colors.light.navy[500],
+    'navy-600': colors.light.navy[600],
+    'navy-700': colors.light.navy[700],
+    'navy-800': colors.light.navy[800],
+    'navy-900': colors.light.navy[900],
+  }}
+/>
+<br />
+<ColorItem
+  subtitle="Dark color"
+  colors={{
+    'navy-50': colors.dark.navy[50],
+    'navy-100': colors.dark.navy[100],
+    'navy-200': colors.dark.navy[200],
+    'navy-300': colors.dark.navy[300],
+    'navy-400': colors.dark.navy[400],
+  }}
+/>
+<ColorItem
+  colors={{
+    'navy-500': colors.dark.navy[500],
+    'navy-600': colors.dark.navy[600],
+    'navy-700': colors.dark.navy[700],
+    'navy-800': colors.dark.navy[800],
+    'navy-900': colors.dark.navy[900],
+  }}
+/>
+
+<br />
+<br />
+
+<ColorItem
+  title="Red"
+  subtitle="Light color"
+  colors={{
+    'red-50': colors.light.red[50],
+    'red-100': colors.light.red[100],
+    'red-200': colors.light.red[200],
+    'red-300': colors.light.red[300],
+    'red-400': colors.light.red[400],
+  }}
+/>
+<ColorItem
+  colors={{
+    'red-500': colors.light.red[500],
+    'red-600': colors.light.red[600],
+    'red-700': colors.light.red[700],
+    'red-800': colors.light.red[800],
+    'red-900': colors.light.red[900],
+  }}
+/>
+<br />
+<ColorItem
+  subtitle="Dark color"
+  colors={{
+    'red-50': colors.dark.red[50],
+    'red-100': colors.dark.red[100],
+    'red-200': colors.dark.red[200],
+    'red-300': colors.dark.red[300],
+    'red-400': colors.dark.red[400],
+  }}
+/>
+<ColorItem
+  colors={{
+    'red-500': colors.dark.red[500],
+    'red-600': colors.dark.red[600],
+    'red-700': colors.dark.red[700],
+    'red-800': colors.dark.red[800],
+    'red-900': colors.dark.red[900],
+  }}
+/>
+
+<br />
+<br />
+
+<ColorItem
+  title="Grey"
+  subtitle="Light color"
+  colors={{
+    'grey-50': colors.light.grey[50],
+    'grey-100': colors.light.grey[100],
+    'grey-200': colors.light.grey[200],
+    'grey-300': colors.light.grey[300],
+    'grey-400': colors.light.grey[400],
+  }}
+/>
+<ColorItem
+  colors={{
+    'grey-500': colors.light.grey[500],
+    'grey-600': colors.light.grey[600],
+    'grey-700': colors.light.grey[700],
+    'grey-800': colors.light.grey[800],
+  }}
+/>
+<br />
+<ColorItem
+  subtitle="Dark color"
+  colors={{
+    'grey-50': colors.dark.grey[50],
+    'grey-100': colors.dark.grey[100],
+    'grey-200': colors.dark.grey[200],
+    'grey-300': colors.dark.grey[300],
+    'grey-400': colors.dark.grey[400],
+  }}
+/>
+<ColorItem
+  colors={{
+    'grey-500': colors.dark.grey[500],
+    'grey-600': colors.dark.grey[600],
+    'grey-700': colors.dark.grey[700],
+    'grey-800': colors.dark.grey[800],
+  }}
+/>
+<br />
+<br />
+<ColorItem
+  title="Common"
+  subtitle="frequently used"
+  colors={{
+    white: colors.white,
+    black: colors.black,
+    black_50: colors.black_50,
+  }}
+/>
+<br />
+<br />
+<ColorItem
+  title="Login"
+  subtitle="Social Login bg-color"
+  colors={{
+    kakao: colors.kakao,
+    naver: colors.naver,
+  }}
+/>
