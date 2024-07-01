@@ -20,6 +20,7 @@ const config: StorybookConfig = {
   docs: {
     autodocs: 'tag',
   },
+  staticDirs: ['../public'], // 정적 파일 서빙 설정
   async viteFinal(config) {
     // Merge custom configuration into the default config
     return mergeConfig(config, {

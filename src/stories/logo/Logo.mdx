@@ -1,0 +1,22 @@
+import { Meta, IconGallery } from '@storybook/blocks';
+
+import Logo from '@/shared/assets/image/Logo.svg?react';
+
+<Meta title="Foundations/Logo" />
+
+# Logo
+
+<IconGallery
+  style={{
+    alignItems: 'center',
+    columnGap: '32px',
+    rowGap: '16px',
+    marginBottom: '48px',
+    border: '1px solid #cdcdcd',
+    borderRadius: '4px',
+    padding: '16px 24px',
+  }}
+>
+  <Logo style={{ width: '240px', height: '180px' }} />
+  <img src="./favicon.svg" style={{ width: '120px', height: '90px' }} />
+</IconGallery>
