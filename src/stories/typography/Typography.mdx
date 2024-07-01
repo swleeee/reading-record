@@ -1,0 +1,96 @@
+import { Meta, Typeset } from '@storybook/blocks';
+ 
+<Meta title="Foundations/Typography" />
+ 
+export const typography = {
+  type: {     
+     primary: 'Pretendard',
+  },
+  weight: {
+    normal: '400',
+    medium: '500',
+    semibold: '600',
+    bold: '700',
+  },
+};
+ 
+export const displayHeadlineText = 'Display or Headline Text'
+export const bodyText = 'Body Text'
+export const captionText = 'Caption Text'
+ 
+# Typography
+ 
+**Font**: Pretendard
+ 
+**Weights**: 400(regular), 500(medium), 600(semibold), 700(bold)
+
+<hr />
+
+**desktop**
+
+<Typeset
+  fontSizes={[56, 40, 32, 24, 18]}
+  fontWeight={typography.weight.bold}
+  sampleText={displayHeadlineText}
+  fontFamily={typography.type.primary}
+/>
+
+<Typeset
+  fontSizes={[17, 16, 15, 14]}
+  fontWeight={typography.weight.medium}
+  sampleText={bodyText}
+  fontFamily={typography.type.primary}
+/>
+
+<Typeset
+  fontSizes={[12]}
+  fontWeight={typography.weight.normal}
+  sampleText={captionText}
+  fontFamily={typography.type.primary}
+/>
+
+**tablet**
+
+<Typeset
+  fontSizes={[48, 32, 24, 18, 16]}
+  fontWeight={typography.weight.bold}
+  sampleText={displayHeadlineText}
+  fontFamily={typography.type.primary}
+/>
+
+<Typeset
+  fontSizes={[15, 14, 13, 12]}
+  fontWeight={typography.weight.medium}
+  sampleText={bodyText}
+  fontFamily={typography.type.primary}
+/>
+
+<Typeset
+  fontSizes={[12]}
+  fontWeight={typography.weight.normal}
+  sampleText={captionText}
+  fontFamily={typography.type.primary}
+/>
+
+**mobile**
+
+<Typeset
+  fontSizes={[36, 24, 18, 16, 14]}
+  fontWeight={typography.weight.bold}
+  sampleText={displayHeadlineText}
+  fontFamily={typography.type.primary}
+/>
+
+<Typeset
+  fontSizes={[15, 14, 13, 12]}
+  fontWeight={typography.weight.medium}
+  sampleText={bodyText}
+  fontFamily={typography.type.primary}
+/>
+
+<Typeset
+  fontSizes={[12]}
+  fontWeight={typography.weight.normal}
+  sampleText={captionText}
+  fontFamily={typography.type.primary}
+/>

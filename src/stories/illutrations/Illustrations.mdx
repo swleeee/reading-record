@@ -1,0 +1,28 @@
+import { Meta, IconGallery } from '@storybook/blocks';
+
+import BooksImg from '@/shared/assets/image/books.svg?react';
+import LoadingImg from '@/shared/assets/image/loading.svg?react';
+import NoDataImg from '@/shared/assets/image/no_data.svg?react';
+import NoRecordImg from '@/shared/assets/image/no_record.svg?react';
+import SearchImg from '@/shared/assets/image/search.svg?react';
+
+<Meta title="Foundations/Illustrations" />
+
+# Illustrations
+
+<IconGallery
+  style={{
+    columnGap: '32px',
+    rowGap: '16px',
+    marginBottom: '48px',
+    border: '1px solid #cdcdcd',
+    borderRadius: '4px',
+    padding: '16px 24px',
+  }}
+>
+  <BooksImg style={{ width: '240px', height: '180px' }} />
+  <LoadingImg style={{ width: '240px', height: '180px' }} />
+  <NoDataImg style={{ width: '240px', height: '180px' }} />
+  <NoRecordImg style={{ width: '240px', height: '180px' }} />
+  <SearchImg style={{ width: '240px', height: '180px' }} />
+</IconGallery>

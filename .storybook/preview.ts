@@ -1,4 +1,3 @@
-import { RecoilRoot } from 'recoil';
 import type { Preview } from '@storybook/react';
 
 import previewDecorator from './preview-decorators';
