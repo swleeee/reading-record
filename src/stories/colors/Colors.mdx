@@ -1,7 +1,7 @@
 import { ColorPalette, ColorItem, Meta } from '@storybook/blocks';
 
 import resolveConfig from 'tailwindcss/resolveConfig';
-import tailwindConfig from '../../../../tailwind.config.cjs';
+import tailwindConfig from '../../../tailwind.config.cjs';
 
 export const fullConfig = resolveConfig(tailwindConfig);
 export const colors = fullConfig.theme.accentColor;
